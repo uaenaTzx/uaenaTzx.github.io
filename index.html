@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652001879059">
+<link rel="shortcut icon" href="/favicon.ico?v=1652003401398">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -169,7 +169,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">1</span>
+        <span class="site-item-stat-count">2</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -220,6 +220,83 @@
         <div class="section-box gemini">
           <section class="section  posts-expand slide-down-in">
             
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/"> axios的二次封装 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-05-08 17:29:03">2022-05-08</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >2<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >315<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><p>意义： api统一管理,不管接口有多少,所有的接口都可以非常清晰,容易维护</p>
+<p><strong>为了理解axios的二次封装过程思路，博主通过简述的方式来走一遍二次封装的全过程</strong></p>
+<p>①文件创建：<br>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
   <article class="post-list-box  post box-shadow-wrapper">
     <div class="article-wrapper bg-color">
       <section class="post-header">
@@ -1163,11 +1240,59 @@ jQuery(document).ready(function($) {
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/"" data-c="
+          &lt;p&gt;意义： api统一管理,不管接口有多少,所有的接口都可以非常清晰,容易维护&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为了理解axios的二次封装过程思路，博主通过简述的方式来走一遍二次封装的全过程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;①文件创建：&lt;br&gt;
+在src目录下创建“api”文件夹，在文件夹里创建http.js，api.js，vote.js等文件&lt;/p&gt;
+&lt;p&gt;②第一次封装：&lt;br&gt;
+在http.js文件中添加axios的默认配置,对Get、Post等方法以及各类拦截器进行封装&lt;/p&gt;
+&lt;p&gt;③第二次封装——引用http.js进行相关接口方法的编写：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import axios from &#39;./http&#39;;
+
+function voteAdd(){
+    return axios.post(&#39;/insertVote&#39;);
+}
+//以下省略其他方法
+
+//统一暴露
+export default{
+    voteAdd,
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;④在api.js中导入存放相关接口的文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import vote from &#39;./vote&#39;
+//以下省略其他接口文件
+
+export default{
+    vote,
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注：api.js的作用是统一存放所有的接口，便于后续的管理和调试&lt;/p&gt;
+&lt;p&gt;⑤接口的调用——main.js:&lt;br&gt;
+&lt;strong&gt;将封装好的axios放入Vue原型对象的$api上（这个操作可以减少很多的码量）&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import api from &#39;./api/api&#39;
+Vue.prototype.$api = api
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;⑥接口的调用——app.vue：&lt;br&gt;
+在app.vue中调用接口&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;methods:{
+    add(){
+        this.$api.vote.voteAdd();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;至此，axios的二次封装直至运用就结束了&lt;/p&gt;
+">axios的二次封装</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/Promise_then()/"" data-c="
           &lt;p&gt;then()方法表示异步执行&lt;br&gt;
 即then()前面的函数执行之后再执行then()内部的函数 ----&amp;gt;作用：避免出现数据未获取的问题&lt;/p&gt;
 &lt;p&gt;语法：promise.then(onCompleted, onRejected);&lt;/p&gt;
-&lt;p&gt;参数：①promise：Promise对象&lt;br&gt;
+&lt;p&gt;参数：&lt;br&gt;
+①promise：Promise对象&lt;br&gt;
 ②onCompleted：请求成功时执行的函数&lt;br&gt;
 ③onRejected：请求失败是执行的函数&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;fetch(&amp;quot;./json/test.json&amp;quot;).then(res=&amp;gt;{

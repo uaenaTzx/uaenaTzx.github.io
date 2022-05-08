@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-08T09:24:41.319Z</updated>
+    <updated>2022-05-08T09:50:03.829Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -10,6 +10,56 @@
     <logo>https://uaenaTzx.github.io/images/avatar.png</logo>
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[axios的二次封装]]></title>
+        <id>https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/</id>
+        <link href="https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/">
+        </link>
+        <updated>2022-05-08T09:29:03.000Z</updated>
+        <content type="html"><![CDATA[<p>意义： api统一管理,不管接口有多少,所有的接口都可以非常清晰,容易维护</p>
+<p><strong>为了理解axios的二次封装过程思路，博主通过简述的方式来走一遍二次封装的全过程</strong></p>
+<p>①文件创建：<br>
+在src目录下创建“api”文件夹，在文件夹里创建http.js，api.js，vote.js等文件</p>
+<p>②第一次封装：<br>
+在http.js文件中添加axios的默认配置,对Get、Post等方法以及各类拦截器进行封装</p>
+<p>③第二次封装——引用http.js进行相关接口方法的编写：</p>
+<pre><code>import axios from './http';
+
+function voteAdd(){
+    return axios.post('/insertVote');
+}
+//以下省略其他方法
+
+//统一暴露
+export default{
+    voteAdd,
+}
+</code></pre>
+<p>④在api.js中导入存放相关接口的文件：</p>
+<pre><code>import vote from './vote'
+//以下省略其他接口文件
+
+export default{
+    vote,
+}
+</code></pre>
+<p>注：api.js的作用是统一存放所有的接口，便于后续的管理和调试</p>
+<p>⑤接口的调用——main.js:<br>
+<strong>将封装好的axios放入Vue原型对象的$api上（这个操作可以减少很多的码量）</strong></p>
+<pre><code>import api from './api/api'
+Vue.prototype.$api = api
+</code></pre>
+<p>⑥接口的调用——app.vue：<br>
+在app.vue中调用接口</p>
+<pre><code>methods:{
+    add(){
+        this.$api.vote.voteAdd();
+    }
+}
+</code></pre>
+<p>至此，axios的二次封装直至运用就结束了</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Promise中的then()函数]]></title>
         <id>https://uaenaTzx.github.io/post/Promise_then()/</id>
@@ -19,7 +69,8 @@
         <content type="html"><![CDATA[<p>then()方法表示异步执行<br>
 即then()前面的函数执行之后再执行then()内部的函数 ----&gt;作用：避免出现数据未获取的问题</p>
 <p>语法：promise.then(onCompleted, onRejected);</p>
-<p>参数：①promise：Promise对象<br>
+<p>参数：<br>
+①promise：Promise对象<br>
 ②onCompleted：请求成功时执行的函数<br>
 ③onRejected：请求失败是执行的函数</p>
 <pre><code>fetch(&quot;./json/test.json&quot;).then(res=&gt;{
