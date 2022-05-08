@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Hello Gridea | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1651978793786">
+<link rel="shortcut icon" href="/favicon.ico?v=1651978881682">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -738,22 +738,6 @@ jQuery(document).ready(function($) {
     <div class="box-in"></div>
 </div>    
 </body>
-
-<script>
-var timer  = null;
-box.onclick = function(){
-    cancelAnimationFrame(timer);
-    timer = requestAnimationFrame(function fn(){
-        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
-        if(oTop > 0){
-            document.body.scrollTop = document.documentElement.scrollTop = oTop - 100;
-            timer = requestAnimationFrame(fn);
-        }else{
-            cancelAnimationFrame(timer);
-        }    
-    });
-}
-</script>
     </div>
   </footer>
   
