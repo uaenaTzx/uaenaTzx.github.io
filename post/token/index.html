@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Token | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652001226148">
+<link rel="shortcut icon" href="/favicon.ico?v=1652001848460">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1466,7 +1466,19 @@ jQuery(document).ready(function($) {
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/Promise_then()/"" data-c="
-          ">Promise中的then()函数</a>
+          &lt;p&gt;then()方法表示异步执行&lt;br&gt;
+即then()前面的函数执行之后再执行then()内部的函数 ----&amp;gt;作用：避免出现数据未获取的问题&lt;/p&gt;
+&lt;p&gt;语法：promise.then(onCompleted, onRejected);&lt;/p&gt;
+&lt;p&gt;参数：①promise：Promise对象&lt;br&gt;
+②onCompleted：请求成功时执行的函数&lt;br&gt;
+③onRejected：请求失败是执行的函数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fetch(&amp;quot;./json/test.json&amp;quot;).then(res=&amp;gt;{
+           return res.json()
+       }).then(res=&amp;gt;{
+           console.log(res)
+       })
+&lt;/code&gt;&lt;/pre&gt;
+">Promise中的then()函数</a>
       </div>
       
       <div class="item">

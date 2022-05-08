@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-08T09:14:24.179Z</updated>
+    <updated>2022-05-08T09:24:22.811Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -16,5 +16,18 @@
         <link href="https://uaenaTzx.github.io/post/Promise_then()/">
         </link>
         <updated>2023-05-07T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>then()方法表示异步执行<br>
+即then()前面的函数执行之后再执行then()内部的函数 ----&gt;作用：避免出现数据未获取的问题</p>
+<p>语法：promise.then(onCompleted, onRejected);</p>
+<p>参数：①promise：Promise对象<br>
+②onCompleted：请求成功时执行的函数<br>
+③onRejected：请求失败是执行的函数</p>
+<pre><code>fetch(&quot;./json/test.json&quot;).then(res=&gt;{
+           return res.json()
+       }).then(res=&gt;{
+           console.log(res)
+       })
+</code></pre>
+]]></content>
     </entry>
 </feed>
