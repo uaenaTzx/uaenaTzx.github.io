@@ -1,75 +1,138 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://uaenaTzx.github.io/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://uaenaTzx.github.io/media/css/live2d.css">
-    <link rel="stylesheet" href="https://uaenaTzx.github.io/styles/main.css">
-    <script src="https://uaenaTzx.github.io/media/js/valine.min.js"></script>
-    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-    <meta name="description" content="菜狗tzx的笔记博客🐕" />
-    <meta http-equiv="x-pjax-version" content="v123">
-    <title>Uaena_blog</title>
-</head>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Uaena_blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://uaenaTzx.github.io/favicon.ico?v=1651977405412">
+<link rel="stylesheet" href="https://uaenaTzx.github.io/styles/main.css">
 
 
-<body>
-    <div id="content">
-        <div class="nav-large">
-            <div class="row">
-                <!-- ----------------左侧菜单栏html 👇-------------------------------------->
-                
-                <!-- ----------------左侧菜单栏html 👆-------------------------------------->
-                <!------------------ 顶部菜单栏html👇--------->
-                 
-                <!------------------ 顶部菜单栏html👆--------->
-                </div>
-            </div>
-            <div id="bg">
-            </div>
-            <!------- 背景图加载方式👇----- -->
-            <div id="bgchoice" style="display: none">
-            </div>
-            
-            <div id="bgurl" style="display:none"></div>
-            
-            <!------- 背景图加载方式👆----- --> 
-        <div id="landlord">
-            <div class="message" style="opacity:0"></div>
-            <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-        </div>
-    </div>
-        
-    <div id="domainname" style="display:none">https://uaenaTzx.github.io
-        </div>
 
-<!-------------------- live2d功能👇 --------------------------->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="菜狗tzx的笔记博客🐕">
     
-<!-------------------- live2d功能👆 --------------------------->
+  </head>
+  <body>
+    <div id="app" class="main">
 
-<!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
-<script>
-    var bgchoice = ""
-    var bg = $('#bg');
-    var bgurl = document.getElementById("bgurl").innerHTML;
-    if (bgchoice == 'default')
-    {
-        for (var i = 0; i < 3; i++)
-            bgurl = bgurl.replace("\\", "/");
-        bgurl = "https://uaenaTzx.github.io/" + bgurl;
-    }
-    bg.css("background", "url('" + bgurl + "')");
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://uaenaTzx.github.io">
+        <img src="https://uaenaTzx.github.io/images/avatar.png?v=1651977405412" class="site-logo">
+        <h1 class="site-title">Uaena_blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      菜狗tzx的笔记博客🐕
+    </div>
+    <div class="site-footer">
+       | <a class="rss" href="https://uaenaTzx.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
 
-    window.onload = function () {
-        aplayerbtnInit();
-    }
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://uaenaTzx.github.io/post/tzx-you-bo-ke-liao/">
+                  <h2 class="post-title">TZX有博客了</h2>
+                </a>
+                <div class="post-date">
+                  2022-05-08
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
-<!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
 
-</body>
+
+
+
+
+  </body>
 </html>
