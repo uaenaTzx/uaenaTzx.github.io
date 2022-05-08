@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Promise中的then()函数 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652021319231">
+<link rel="shortcut icon" href="/favicon.ico?v=1652021605651">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -528,7 +528,7 @@ jQuery(document).ready(function($) {
 <link rel="stylesheet" href="/media/live2d/css/live2d.css" />
 <div class="box-scale">
   <div id="landlord" style="left: 5px;bottom: 0px;"
-    data-key="">
+    data-key="#!usr/bin/env python3  # -*- coding:utf-8-*-  import itchat  import json  import requests  def get_data(text):  userId = &#39;123456&#39;  inputText = {&#39;text&#39;: text}  key = &#39;your apiKey&#39;  userInfo = {&#39;apiKey&#39;: key, &#39;userId&#39;: userId}  perception = {&#39;inputText&#39;: inputText}  data = {&#39;perception&#39;: perception, &#39;userInfo&#39;: userInfo}  return data  def get_answer(text):  data = get_data(text)  url = &#39;http://openapi.tuling123.com/openapi/api/v2&#39;  response = requests.post(url=url, data=json.dumps(data))  response.encoding = &#39;utf-8&#39;  result = response.json()  answer = result[&#39;results&#39;][0][&#39;values&#39;][&#39;text&#39;]  return answer  # 回复好友  @itchat.msg_register(itchat.content.TEXT)  def text_reply(msg):  myself = itchat.get_friends(update=True)[0][&#39;NickName&#39;]  content = msg[&#39;Content&#39;]  friend = msg[&#39;User&#39;][&#39;NickName&#39;]  # 给特定的人的回复，并且自己发的 不回复  if friend != myself and friend!= &#39;FRIEND&#39;:  print(&#39;%s: %s&#39; % (friend, content))  answer = get_answer(msg[&#39;Text&#39;])  itchat.send(answer, msg[&#39;FromUserName&#39;])  print(&#39;我：%s&#39; % answer)  else:  itchat.send(&#39;你是猪&#39;, msg[&#39;FromUserName&#39;])  # 获得群聊ID  def group_id(name):  df = itchat.search_chatrooms(name=name)  return df[0][&#39;UserName&#39;]  # 发送群聊  @itchat.msg_register(itchat.content.TEXT, isGroupChat=True)  def group_text_reply(msg):  group_name = msg[&#39;User&#39;][&#39;NickName&#39;]  group = [&#39;群聊测试&#39;, &#39;itchat&#39;]  igroup_info = itchat.search_chatrooms(name=name)  item = group_info[0][&#39;UserName&#39;]  if group_name in group:  itchat.send(get_answer(msg[&#39;Text&#39;]), item)  itchat.auto_login(hotReload=True)  itchat.run()">
     <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
     
 
