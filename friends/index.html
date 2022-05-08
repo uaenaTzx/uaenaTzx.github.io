@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652000010476">
+<link rel="shortcut icon" href="/favicon.ico?v=1652000542587">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -66,15 +66,13 @@
           
         </div>
         
-          <p class="subtitle">精于心，简于形</p>
+          <p class="subtitle">我是菜🐕我是菜🐕</p>
         
       </div>
       <nav class="site-nav" id="site_nav">
         <ul id="nav_ul">
           
             
-            
-              
             
             <li class="nav-item ">
               
@@ -87,8 +85,6 @@
           
             
             
-              
-            
             <li class="nav-item ">
               
               
@@ -99,8 +95,6 @@
             </li>
           
             
-            
-              
             
             <li class="nav-item ">
               
@@ -113,8 +107,6 @@
           
             
             
-              
-            
             <li class="nav-item ">
               
               
@@ -124,16 +116,6 @@
               
             </li>
           
-          
-            
-              <li class="nav-item nav-item-active">
-                <a href="/friends/" target="_self">
-                  
-                    <i class="fa fa-address-book"></i> 友链
-                  
-                </a>
-              </li>
-            
           
           
             <li id="fa_search" class="nav-item">
@@ -180,7 +162,7 @@
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
-    <p class="site-author-name">我是谁</p>
+    <p class="site-author-name">Uaena</p>
     
   </div>
   <div class="sidebar-item side-item-stat right-motion">
@@ -200,10 +182,24 @@
   </div>
   
     
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://uaenaTzx.github.io/atom.xml" target="_blank">RSS</a>
+        </span>
+      </div>
+    
   
   
 
+  
 
+
+
+  <div style="width: 100%; position: relative;">
+    <canvas id="canvasDiyBlock" style="width:100%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+    <script src="/media/js/magic/clock.js"></script>
+  </div>
 
 </div>
 </div>
@@ -380,11 +376,15 @@ jQuery(document).ready(function($) {
         <div class="live_ico_item type_info" id="showInfoBtn"></div>
         <div class="live_ico_item type_talk" id="showTalkBtn"></div>
         
+        <div class="live_ico_item type_music" id="musicButton"></div>
+        
         <div class="live_ico_item type_youdu" id="youduButton"></div>
         <div class="live_ico_item type_quit" id="hideButton"></div>
         <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
         <audio src="" style="display:none;" id="live2d_bgm" data-bgm="0" preload="none"></audio>
         <input id="duType" value="douqilai" type="hidden">
+        
+        <input name="live2dBGM" value="" type="hidden">
         
       </div>
     
@@ -1040,7 +1040,7 @@ jQuery(document).ready(function($) {
   }
 
   // 链接跳转
-  let newWindow = "false";
+  let newWindow = "true";
   if (newWindow === "true") {
     let links = document.querySelectorAll(".post-body a");
     links.forEach((item) => {
@@ -1463,7 +1463,12 @@ Wechat：Tongzixin2003&lt;br&gt;
 
 
 
+  <script src="/media/js/cool.js"></script>
 
+
+
+  <div class="snow-container"></div>
+  <script color="0,205,205" pointer-events="auto" zIndex="-1" opacity='0.7' count="99" src="/media/js/bg/canvas-nest.js"></script>
 
 
 </html>
