@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652167222882">
+<link rel="shortcut icon" href="/favicon.ico?v=1652169570761">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1221,9 +1221,22 @@ jQuery(document).ready(function($) {
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/promise-shou-xie-2-thenhan-shu-chu-li/"" data-c="
           &lt;p&gt;接下来我们来完善then()方法&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
+①传入onFulfiled，onRejected方法&lt;br&gt;
+②用onFulfiled，onRejected接收p.then()传入的value和reason&lt;/p&gt;
+&lt;p&gt;综上，写出的代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;then(onFulfilled, onRejected) {
+                //onFulfilled如果成功了，应该被调用
+                if(this.state===&#39;fulfilled&#39;){
+                    onFulfilled(this.value) 
+                }
+                //onRejected如果成功了，应该被调用
+                if(this.state===&#39;rejected&#39;){
+                    onRejected(this.reason)
+                }
+
+            }
+&lt;/code&gt;&lt;/pre&gt;
 ">Promise手写(2)——then()方法处理</a>
       </div>
       
@@ -1242,8 +1255,8 @@ jQuery(document).ready(function($) {
             constructor(executor) {
                 this.state = &#39;pending&#39;
 
-                this.value = null;
-                this.reason = null;
+                this.value = null;//记录成功的值，给将来的.then()使用
+                this.reason = null;//记录失败的值，给将来的.catch()使用
 
                 const resolve = (value) =&amp;gt; {
                     if (this.state === &#39;pending&#39;) {
@@ -1280,7 +1293,6 @@ jQuery(document).ready(function($) {
             console.log(res);
         })
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;得到的输出结果是 200&lt;/p&gt;
 ">Promise手写(1)——Promise类的基本构建</a>
       </div>
       
