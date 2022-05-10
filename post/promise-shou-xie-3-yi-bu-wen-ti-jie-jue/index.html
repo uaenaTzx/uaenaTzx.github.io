@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Promise手写(3)——异步问题解决 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652169570761">
+<link rel="shortcut icon" href="/favicon.ico?v=1652171779658">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -42,7 +42,7 @@
 
 
   <meta name="description" content="Promise手写(3)——异步问题解决" />
-  <meta name="keywords" content="" />
+  <meta name="keywords" content="Promise,Gridea" />
 </head>
 
 <body>
@@ -318,9 +318,21 @@
     </span>
     
     <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://uaenaTzx.github.io/tag/QQyiV-fVu/"> <span>Promise</span> </a>、   
+      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
+        <span>Gridea</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >1<span class="language" data-lan="minute"
+        >3<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -329,7 +341,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >16<span class="pc-show language" data-lan="words"
+        >496<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -354,9 +366,120 @@
 
             <div class="post-body next-md-body" id="post_body">
               <p>接下来我们来解决异步问题</p>
-<p><strong>需求：</strong></p>
-<p><strong>注意：</strong></p>
-<pre><code></code></pre>
+<p><strong>问题：</strong><br>
+当代码如下时：</p>
+<pre><code>const p = new Promise((resolve, reject) =&gt; {
+            setTimeout(() =&gt; {
+                resolve(200)
+            }, 1000)
+        })
+
+        p.then(res =&gt; {
+            console.log(res);
+        })
+</code></pre>
+<p>会遇到then()在state状态改变之前就执行，导致执行then()时的state仍然是pending状态</p>
+<p><strong>需求：</strong><br>
+①then()的执行不直接输出结果，而是将得到的数据先全部存放在两个数组中（成功和失败），在resolve或reject执行后再将数组中的函数输出<br>
+②需要增加一个if判断state如果是pending，将数据存储在数组中<br>
+③在resolve和reject方法中遍历两数组得到数据</p>
+<p><strong>注意：</strong><font color="red">(这个真的很重要！！！🙉🙉🙉)</font><br>
+①函数在数组中的存储需要用到函数的闭包(在函数的内部应用到外部的参数)——利用闭包将value或reason储存在函数中，并整合至数组</p>
+<pre><code>//闭包
+this.onResolvedCallbacks.push(() =&gt; {
+                        onFulfilled(this.value)
+                    })
+//非闭包
+this.onResolvedCallbacks.push(onFulfilled）
+</code></pre>
+<p>综上，写出的代码如下：</p>
+<pre><code>class Promise {
+            constructor(executor) {
+                this.state = 'pending'
+
+                this.value = null;
+                this.reason = null;
+
+                this.onResolvedCallbacks = [];
+                this.onRejectedCallbacks = [];
+
+                const resolve = (value) =&gt; {
+                    if (this.state === 'pending') {
+                        this.state = 'fulfiled';
+                        this.value = value;
+                        //遍历执行调用成功的数组
+                        this.onResolvedCallbacks.forEach(fn =&gt; fn()) //fn()即为内部存储的函数
+                    }
+                };
+
+                const reject = (reason) =&gt; {
+                    if (this.state === 'pending') {
+                        this.state = 'rejected';
+                        this.reason = reason;
+                        //遍历执行调用失败的数组
+                        this.onRejectedCallbacks.forEach(fn =&gt; fn())
+                    }
+                };
+
+                try {
+                    executor(resolve, reject);
+                } catch (reason) {
+                    reject(reason);
+                }
+            }
+
+            then(onFulfilled, onRejected) {
+                //onFulfilled如果成功了，应该被调用
+                if (this.state === 'fulfilled') {
+                    onFulfilled(this.value)
+                }
+                //onRejected如果成功了，应该被调用
+                if (this.state === 'rejected') {
+                    onRejected(this.reason)
+                }
+
+                if (this.state === 'pending') {
+                    //将成功的时候要干的事储存起来
+                    this.onResolvedCallbacks.push(() =&gt; {
+                        onFulfilled(this.value)
+                    })
+                    //将失败的时候要干的事储存起来
+                    this.onRejectedCallbacks.push(() =&gt; {
+                        onRejected(this.reason)
+                    })
+                }
+
+            }
+        }
+
+
+        const p = new Promise((resolve, reject) =&gt; {
+            //resolve和reject是Promise内部实现好的函数
+            //这里的代码是立刻可执行的
+            setTimeout(() =&gt; {
+                resolve(200)
+            }, 1000)
+
+        })
+
+        p.then(res =&gt; {
+            console.log(res,'1');
+        })
+
+        p.then(res =&gt; {
+            console.log(res,'2');
+        })
+
+        p.then(res =&gt; {
+            console.log(res,'3');
+        })
+</code></pre>
+<p>得到以下结果(1s后)：</p>
+<blockquote>
+<p>200 '1'<br>
+200 '2'<br>
+200 '3'</p>
+</blockquote>
 
             </div>
             
@@ -377,6 +500,10 @@
     </li>
   </ul>
   <div class="tags">
+    
+      <a href="https://uaenaTzx.github.io/tag/QQyiV-fVu/"># Promise</a>
+    
+      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/"># Gridea</a>
     
   </div>
   <div class="nav">
@@ -1520,9 +1647,120 @@ jQuery(document).ready(function($) {
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/promise-shou-xie-3-yi-bu-wen-ti-jie-jue/"" data-c="
           &lt;p&gt;接下来我们来解决异步问题&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;/strong&gt;&lt;br&gt;
+当代码如下时：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;const p = new Promise((resolve, reject) =&amp;gt; {
+            setTimeout(() =&amp;gt; {
+                resolve(200)
+            }, 1000)
+        })
+
+        p.then(res =&amp;gt; {
+            console.log(res);
+        })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;会遇到then()在state状态改变之前就执行，导致执行then()时的state仍然是pending状态&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
+①then()的执行不直接输出结果，而是将得到的数据先全部存放在两个数组中（成功和失败），在resolve或reject执行后再将数组中的函数输出&lt;br&gt;
+②需要增加一个if判断state如果是pending，将数据存储在数组中&lt;br&gt;
+③在resolve和reject方法中遍历两数组得到数据&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;font color=&#34;red&#34;&gt;(这个真的很重要！！！🙉🙉🙉)&lt;/font&gt;&lt;br&gt;
+①函数在数组中的存储需要用到函数的闭包(在函数的内部应用到外部的参数)——利用闭包将value或reason储存在函数中，并整合至数组&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//闭包
+this.onResolvedCallbacks.push(() =&amp;gt; {
+                        onFulfilled(this.value)
+                    })
+//非闭包
+this.onResolvedCallbacks.push(onFulfilled）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;综上，写出的代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Promise {
+            constructor(executor) {
+                this.state = &#39;pending&#39;
+
+                this.value = null;
+                this.reason = null;
+
+                this.onResolvedCallbacks = [];
+                this.onRejectedCallbacks = [];
+
+                const resolve = (value) =&amp;gt; {
+                    if (this.state === &#39;pending&#39;) {
+                        this.state = &#39;fulfiled&#39;;
+                        this.value = value;
+                        //遍历执行调用成功的数组
+                        this.onResolvedCallbacks.forEach(fn =&amp;gt; fn()) //fn()即为内部存储的函数
+                    }
+                };
+
+                const reject = (reason) =&amp;gt; {
+                    if (this.state === &#39;pending&#39;) {
+                        this.state = &#39;rejected&#39;;
+                        this.reason = reason;
+                        //遍历执行调用失败的数组
+                        this.onRejectedCallbacks.forEach(fn =&amp;gt; fn())
+                    }
+                };
+
+                try {
+                    executor(resolve, reject);
+                } catch (reason) {
+                    reject(reason);
+                }
+            }
+
+            then(onFulfilled, onRejected) {
+                //onFulfilled如果成功了，应该被调用
+                if (this.state === &#39;fulfilled&#39;) {
+                    onFulfilled(this.value)
+                }
+                //onRejected如果成功了，应该被调用
+                if (this.state === &#39;rejected&#39;) {
+                    onRejected(this.reason)
+                }
+
+                if (this.state === &#39;pending&#39;) {
+                    //将成功的时候要干的事储存起来
+                    this.onResolvedCallbacks.push(() =&amp;gt; {
+                        onFulfilled(this.value)
+                    })
+                    //将失败的时候要干的事储存起来
+                    this.onRejectedCallbacks.push(() =&amp;gt; {
+                        onRejected(this.reason)
+                    })
+                }
+
+            }
+        }
+
+
+        const p = new Promise((resolve, reject) =&amp;gt; {
+            //resolve和reject是Promise内部实现好的函数
+            //这里的代码是立刻可执行的
+            setTimeout(() =&amp;gt; {
+                resolve(200)
+            }, 1000)
+
+        })
+
+        p.then(res =&amp;gt; {
+            console.log(res,&#39;1&#39;);
+        })
+
+        p.then(res =&amp;gt; {
+            console.log(res,&#39;2&#39;);
+        })
+
+        p.then(res =&amp;gt; {
+            console.log(res,&#39;3&#39;);
+        })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到以下结果(1s后)：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;200 &#39;1&#39;&lt;br&gt;
+200 &#39;2&#39;&lt;br&gt;
+200 &#39;3&#39;&lt;/p&gt;
+&lt;/blockquote&gt;
 ">Promise手写(3)——异步问题解决</a>
       </div>
       
