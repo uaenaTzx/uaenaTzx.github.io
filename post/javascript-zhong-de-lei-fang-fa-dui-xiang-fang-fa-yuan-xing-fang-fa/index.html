@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>JavaScript中的类方法、对象方法、原型方法 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652152746716">
+<link rel="shortcut icon" href="/favicon.ico?v=1652153339952">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -341,7 +341,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >298<span class="pc-show language" data-lan="words"
+        >309<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -367,7 +367,7 @@
             <div class="post-body next-md-body" id="post_body">
               <p>定义：<br>
 ①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；<br>
-②对象方法：包括构造函数中的方法以及其原型上面的方法；<br>
+②对象方法：包括构造函数中的方法以及其原型上面的方法<font color="red">(对象方法包含了原型方法)；</font><br>
 ③原型方法：一般用于对象实例共享，为避免内存复用而在原型上添加方法；</p>
 <p><strong>js中的function作为构造函数时，被视为一个类。可以通过new xxx来得到一个实例对象</strong><br>
 以下是一个示例代码，来厘清以上三者的区别：</p>
@@ -392,7 +392,7 @@ People.prototype.learn=function(){
   console.log('learning'); 
 }
 var Uaena =new People(&quot;Uaena&quot;); 
-Uaena.Name();        //对象方法需要通过实例化对象去调用 
+Uaena.Name();         //对象方法需要通过实例化对象去调用 
 People.Sleep();        //类方法不需要通过实例化对象去调用 
 Uaena.learn();         //原型方法需要通过实例化对象去调用
 </code></pre>
@@ -1542,7 +1542,7 @@ jQuery(document).ready(function($) {
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/"" data-c="
           &lt;p&gt;定义：&lt;br&gt;
 ①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；&lt;br&gt;
-②对象方法：包括构造函数中的方法以及其原型上面的方法；&lt;br&gt;
+②对象方法：包括构造函数中的方法以及其原型上面的方法&lt;font color=&#34;red&#34;&gt;(对象方法包含了原型方法)；&lt;/font&gt;&lt;br&gt;
 ③原型方法：一般用于对象实例共享，为避免内存复用而在原型上添加方法；&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;js中的function作为构造函数时，被视为一个类。可以通过new xxx来得到一个实例对象&lt;/strong&gt;&lt;br&gt;
 以下是一个示例代码，来厘清以上三者的区别：&lt;/p&gt;
@@ -1567,7 +1567,7 @@ People.prototype.learn=function(){
   console.log(&#39;learning&#39;); 
 }
 var Uaena =new People(&amp;quot;Uaena&amp;quot;); 
-Uaena.Name();        //对象方法需要通过实例化对象去调用 
+Uaena.Name();         //对象方法需要通过实例化对象去调用 
 People.Sleep();        //类方法不需要通过实例化对象去调用 
 Uaena.learn();         //原型方法需要通过实例化对象去调用
 &lt;/code&gt;&lt;/pre&gt;
