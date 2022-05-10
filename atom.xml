@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-09T08:46:36.974Z</updated>
+    <updated>2022-05-10T03:06:36.018Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -10,6 +10,45 @@
     <logo>https://uaenaTzx.github.io/images/avatar.png</logo>
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[JavaScript中的类方法、对象方法、原型方法]]></title>
+        <id>https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/</id>
+        <link href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/">
+        </link>
+        <updated>2022-05-10T02:19:41.000Z</updated>
+        <content type="html"><![CDATA[<p>定义：<br>
+①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；<br>
+②对象方法：包括构造函数中的方法以及其原型上面的方法；<br>
+③原型方法：一般用于对象实例共享，为避免内存复用而在原型上添加方法；</p>
+<p><strong>js中的function作为构造函数时，被视为一个类。可以通过new xxx来得到一个实例对象</strong><br>
+以下是一个示例代码，来厘清以上三者的区别：</p>
+<pre><code>function People(name){ 
+  this.name=name; 
+  //对象方法 (实例方法)
+  //每个对象实例都有的方法
+  //只有对象实例才能调用的方法
+  this.Name=function(){
+    console.log(&quot;My name is &quot;+this.name); 
+  } 
+} 
+//类方法 
+//只有原型才能调用的方法
+People.Sleep=function(){ 
+  console.log(&quot;People need sleep&quot;); 
+} 
+//原型方法 
+//所有对象实例共享的方法
+//原型可通过People.prototype.learn()调用
+People.prototype.learn=function(){ 
+  console.log('learning'); 
+}
+var Uaena =new People(&quot;Uaena&quot;); 
+Uaena.Name();        //对象方法需要通过实例化对象去调用 
+People.Sleep();        //类方法不需要通过实例化对象去调用 
+Uaena.learn();         //原型方法需要通过实例化对象去调用
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[axios的二次封装]]></title>
         <id>https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/</id>

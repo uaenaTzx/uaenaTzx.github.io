@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652085936702">
+<link rel="shortcut icon" href="/favicon.ico?v=1652151991120">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -169,7 +169,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">2</span>
+        <span class="site-item-stat-count">3</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -220,6 +220,83 @@
         <div class="section-box gemini">
           <section class="section  posts-expand slide-down-in">
             
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/"> JavaScript中的类方法、对象方法、原型方法 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-05-10 10:19:41">2022-05-10</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >2<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >298<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><p>定义：<br>
+①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；<br>
+②对象方法：包括构造函数中的方法以及其原型上面的方法；<br>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
   <article class="post-list-box  post box-shadow-wrapper">
     <div class="article-wrapper bg-color">
       <section class="post-header">
@@ -1247,6 +1324,42 @@ jQuery(document).ready(function($) {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/"" data-c="
+          &lt;p&gt;定义：&lt;br&gt;
+①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；&lt;br&gt;
+②对象方法：包括构造函数中的方法以及其原型上面的方法；&lt;br&gt;
+③原型方法：一般用于对象实例共享，为避免内存复用而在原型上添加方法；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;js中的function作为构造函数时，被视为一个类。可以通过new xxx来得到一个实例对象&lt;/strong&gt;&lt;br&gt;
+以下是一个示例代码，来厘清以上三者的区别：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function People(name){ 
+  this.name=name; 
+  //对象方法 (实例方法)
+  //每个对象实例都有的方法
+  //只有对象实例才能调用的方法
+  this.Name=function(){
+    console.log(&amp;quot;My name is &amp;quot;+this.name); 
+  } 
+} 
+//类方法 
+//只有原型才能调用的方法
+People.Sleep=function(){ 
+  console.log(&amp;quot;People need sleep&amp;quot;); 
+} 
+//原型方法 
+//所有对象实例共享的方法
+//原型可通过People.prototype.learn()调用
+People.prototype.learn=function(){ 
+  console.log(&#39;learning&#39;); 
+}
+var Uaena =new People(&amp;quot;Uaena&amp;quot;); 
+Uaena.Name();        //对象方法需要通过实例化对象去调用 
+People.Sleep();        //类方法不需要通过实例化对象去调用 
+Uaena.learn();         //原型方法需要通过实例化对象去调用
+&lt;/code&gt;&lt;/pre&gt;
+">JavaScript中的类方法、对象方法、原型方法</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/"" data-c="
