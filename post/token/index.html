@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Token | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652153339952">
+<link rel="shortcut icon" href="/favicon.ico?v=1652163806808">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -186,7 +186,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">3</span>
+        <span class="site-item-stat-count">4</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1487,6 +1487,63 @@ jQuery(document).ready(function($) {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/promise-shou-xie-1-promise-lei-de-ji-ben-gou-jian/"" data-c="
+          &lt;p&gt;本篇开始手写Promise，从Promise类的基本构件开始&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
+①定义Promise对象，在构造函数中定义resolve和reject方法(用*executor（resolve，reject）&lt;em&gt;格式)&lt;br&gt;
+②在构造函数中定义state参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态&lt;br&gt;
+③在构造函数中定义value，reason参数，分别对应传入resolve和reject的值&lt;br&gt;
+&lt;strong&gt;注意：&lt;/strong&gt;&lt;br&gt;
+①Promise的state只能改变一次&lt;br&gt;
+②应该使用try catch语法完善&lt;/em&gt;executor（resolve，reject）*的执行&lt;/p&gt;
+&lt;p&gt;综上，写出的代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Promise {
+            constructor(executor) {
+                this.state = &#39;pending&#39;
+
+                this.value = null;
+                this.reason = null;
+
+                const resolve = (value) =&amp;gt; {
+                    if (this.state === &#39;pending&#39;) {
+                        this.state = &#39;fulfiled&#39;;
+                        this.value = value;
+                        
+                    }
+                };
+
+                const reject = (reason) =&amp;gt; {
+                    if (this.state === &#39;pending&#39;) {
+                        this.state = &#39;rejected&#39;;
+                        this.reason = reason;
+                        
+                    }
+                };
+
+                try {
+                    executor(resolve, reject);
+                } catch (reason) {
+                    reject(reason);
+                }
+            }
+        }
+
+
+        const p = new Promise((resolve, reject) =&amp;gt; {
+            //resolve和reject是Promise内部实现好的函数
+            //这里的代码是立刻可执行的
+            resolve(200)
+        })
+
+        p.then(res =&amp;gt; {
+            console.log(res);
+        })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到的输出结果是 200&lt;/p&gt;
+">Promise手写(1)——Promise类的基本构建</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/"" data-c="

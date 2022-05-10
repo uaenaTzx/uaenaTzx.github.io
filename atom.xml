@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-10T03:29:03.883Z</updated>
+    <updated>2022-05-10T06:27:57.333Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -10,6 +10,66 @@
     <logo>https://uaenaTzx.github.io/images/avatar.png</logo>
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Promise手写(1)——Promise类的基本构建]]></title>
+        <id>https://uaenaTzx.github.io/post/promise-shou-xie-1-promise-lei-de-ji-ben-gou-jian/</id>
+        <link href="https://uaenaTzx.github.io/post/promise-shou-xie-1-promise-lei-de-ji-ben-gou-jian/">
+        </link>
+        <updated>2022-05-10T04:12:08.000Z</updated>
+        <content type="html"><![CDATA[<p>本篇开始手写Promise，从Promise类的基本构件开始</p>
+<p><strong>需求：</strong><br>
+①定义Promise对象，在构造函数中定义resolve和reject方法(用*executor（resolve，reject）<em>格式)<br>
+②在构造函数中定义state参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态<br>
+③在构造函数中定义value，reason参数，分别对应传入resolve和reject的值<br>
+<strong>注意：</strong><br>
+①Promise的state只能改变一次<br>
+②应该使用try catch语法完善</em>executor（resolve，reject）*的执行</p>
+<p>综上，写出的代码如下：</p>
+<pre><code>class Promise {
+            constructor(executor) {
+                this.state = 'pending'
+
+                this.value = null;
+                this.reason = null;
+
+                const resolve = (value) =&gt; {
+                    if (this.state === 'pending') {
+                        this.state = 'fulfiled';
+                        this.value = value;
+                        
+                    }
+                };
+
+                const reject = (reason) =&gt; {
+                    if (this.state === 'pending') {
+                        this.state = 'rejected';
+                        this.reason = reason;
+                        
+                    }
+                };
+
+                try {
+                    executor(resolve, reject);
+                } catch (reason) {
+                    reject(reason);
+                }
+            }
+        }
+
+
+        const p = new Promise((resolve, reject) =&gt; {
+            //resolve和reject是Promise内部实现好的函数
+            //这里的代码是立刻可执行的
+            resolve(200)
+        })
+
+        p.then(res =&gt; {
+            console.log(res);
+        })
+</code></pre>
+<p>得到的输出结果是 200</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[JavaScript中的类方法、对象方法、原型方法]]></title>
         <id>https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/</id>
@@ -97,32 +157,6 @@ Vue.prototype.$api = api
 }
 </code></pre>
 <p>至此，axios的二次封装直至运用就结束了</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Promise中的then()函数]]></title>
-        <id>https://uaenaTzx.github.io/post/Promise_then()/</id>
-        <link href="https://uaenaTzx.github.io/post/Promise_then()/">
-        </link>
-        <updated>2022-05-08T09:24:35.000Z</updated>
-        <content type="html"><![CDATA[<p>then()方法表示异步执行<br>
-即then()前面的函数执行之后再执行then()内部的函数 ----&gt;作用：避免出现数据未获取的问题</p>
-<p>语法：promise.then(onCompleted, onRejected);</p>
-<p>参数：<br>
-①promise：Promise对象<br>
-②onCompleted：请求成功时执行的函数<br>
-③onRejected：请求失败是执行的函数</p>
-<pre><code>fetch(&quot;./json/test.json&quot;).then(res=&gt;{
-           return res.json()
-       }).then(res=&gt;{
-           console.log(res)
-       })
-</code></pre>
-<p>此时难免会生出一个问题：<strong>都有catch()方法了，为何还要有onRejected呢？</strong><br>
-其实onRejected一般是不写的，catch()的管辖范围大于onRejected<br>
-onRejected：promise执行失败时调用<br>
-catch：promise或onCompleted执行失败时调用<font color="red">(全局捕获)</font><br>
-——&gt;因此，我们一般都用catch而不用onRejected！</p>
 ]]></content>
     </entry>
 </feed>
