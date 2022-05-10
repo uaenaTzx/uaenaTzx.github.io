@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-10T06:27:57.333Z</updated>
+    <updated>2022-05-10T07:20:30.570Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -11,152 +11,39 @@
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
     <entry>
-        <title type="html"><![CDATA[Promise手写(1)——Promise类的基本构建]]></title>
-        <id>https://uaenaTzx.github.io/post/promise-shou-xie-1-promise-lei-de-ji-ben-gou-jian/</id>
-        <link href="https://uaenaTzx.github.io/post/promise-shou-xie-1-promise-lei-de-ji-ben-gou-jian/">
+        <title type="html"><![CDATA[Promise手写(5)——其他方法完善]]></title>
+        <id>https://uaenaTzx.github.io/post/promise-shou-xie-5-qi-ta-fang-fa-wan-shan/</id>
+        <link href="https://uaenaTzx.github.io/post/promise-shou-xie-5-qi-ta-fang-fa-wan-shan/">
         </link>
-        <updated>2022-05-10T04:12:08.000Z</updated>
-        <content type="html"><![CDATA[<p>本篇开始手写Promise，从Promise类的基本构件开始</p>
-<p><strong>需求：</strong><br>
-①定义Promise对象，在构造函数中定义resolve和reject方法(用*executor（resolve，reject）<em>格式)<br>
-②在构造函数中定义state参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态<br>
-③在构造函数中定义value，reason参数，分别对应传入resolve和reject的值<br>
-<strong>注意：</strong><br>
-①Promise的state只能改变一次<br>
-②应该使用try catch语法完善</em>executor（resolve，reject）*的执行</p>
-<p>综上，写出的代码如下：</p>
-<pre><code>class Promise {
-            constructor(executor) {
-                this.state = 'pending'
-
-                this.value = null;
-                this.reason = null;
-
-                const resolve = (value) =&gt; {
-                    if (this.state === 'pending') {
-                        this.state = 'fulfiled';
-                        this.value = value;
-                        
-                    }
-                };
-
-                const reject = (reason) =&gt; {
-                    if (this.state === 'pending') {
-                        this.state = 'rejected';
-                        this.reason = reason;
-                        
-                    }
-                };
-
-                try {
-                    executor(resolve, reject);
-                } catch (reason) {
-                    reject(reason);
-                }
-            }
-        }
-
-
-        const p = new Promise((resolve, reject) =&gt; {
-            //resolve和reject是Promise内部实现好的函数
-            //这里的代码是立刻可执行的
-            resolve(200)
-        })
-
-        p.then(res =&gt; {
-            console.log(res);
-        })
-</code></pre>
-<p>得到的输出结果是 200</p>
+        <updated>2022-05-10T06:32:04.000Z</updated>
+        <content type="html"><![CDATA[<p>接下来我们来完善Promise其他剩余的内容</p>
+<p><strong>需求：</strong></p>
+<p><strong>注意：</strong></p>
+<pre><code></code></pre>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[JavaScript中的类方法、对象方法、原型方法]]></title>
-        <id>https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/</id>
-        <link href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/">
+        <title type="html"><![CDATA[Promise手写(4)——处理链式&&循环调用问题]]></title>
+        <id>https://uaenaTzx.github.io/post/promise-shou-xie-4-chu-li-lian-shi-andxun-huan-diao-yong-wen-ti/</id>
+        <link href="https://uaenaTzx.github.io/post/promise-shou-xie-4-chu-li-lian-shi-andxun-huan-diao-yong-wen-ti/">
         </link>
-        <updated>2022-05-10T02:19:41.000Z</updated>
-        <content type="html"><![CDATA[<p>定义：<br>
-①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；<br>
-②对象方法：包括构造函数中的方法以及其原型上面的方法<font color="red">(对象方法包含了原型方法)；</font><br>
-③原型方法：一般用于对象实例共享，为避免内存复用而在原型上添加方法；</p>
-<p><strong>js中的function作为构造函数时，被视为一个类。可以通过new xxx来得到一个实例对象</strong><br>
-以下是一个示例代码，来厘清以上三者的区别：</p>
-<pre><code>function People(name){ 
-  this.name=name; 
-  //对象方法 (实例方法)
-  //每个对象实例都有的方法
-  //只有对象实例才能调用的方法
-  this.Name=function(){
-    console.log(&quot;My name is &quot;+this.name); 
-  } 
-} 
-//类方法 
-//只有原型才能调用的方法
-People.Sleep=function(){ 
-  console.log(&quot;People need sleep&quot;); 
-} 
-//原型方法 
-//所有对象实例共享的方法
-//原型可通过People.prototype.learn()调用
-People.prototype.learn=function(){ 
-  console.log('learning'); 
-}
-var Uaena =new People(&quot;Uaena&quot;); 
-Uaena.Name();         //对象方法需要通过实例化对象去调用 
-People.Sleep();        //类方法不需要通过实例化对象去调用 
-Uaena.learn();         //原型方法需要通过实例化对象去调用
-</code></pre>
+        <updated>2022-05-10T06:31:08.000Z</updated>
+        <content type="html"><![CDATA[<p>接下来我们来处理链式问题和循环调用问题</p>
+<p><strong>需求：</strong></p>
+<p><strong>注意：</strong></p>
+<pre><code></code></pre>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[axios的二次封装]]></title>
-        <id>https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/</id>
-        <link href="https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/">
+        <title type="html"><![CDATA[Promise手写(3)——异步问题解决]]></title>
+        <id>https://uaenaTzx.github.io/post/promise-shou-xie-3-yi-bu-wen-ti-jie-jue/</id>
+        <link href="https://uaenaTzx.github.io/post/promise-shou-xie-3-yi-bu-wen-ti-jie-jue/">
         </link>
-        <updated>2022-05-08T09:29:03.000Z</updated>
-        <content type="html"><![CDATA[<p>意义： api统一管理,不管接口有多少,所有的接口都可以非常清晰,容易维护</p>
-<p><strong>为了理解axios的二次封装过程思路，博主通过简述的方式来走一遍二次封装的全过程</strong></p>
-<p>①文件创建：<br>
-在src目录下创建“api”文件夹，在文件夹里创建http.js，api.js，vote.js等文件</p>
-<p>②第一次封装：<br>
-在http.js文件中添加axios的默认配置,对Get、Post等方法以及各类拦截器进行封装</p>
-<p>③第二次封装——引用http.js进行相关接口方法的编写：</p>
-<pre><code>import axios from './http';
-
-function voteAdd(){
-    return axios.post('/insertVote');
-}
-//以下省略其他方法
-
-//统一暴露
-export default{
-    voteAdd,
-}
-</code></pre>
-<p>④在api.js中导入存放相关接口的文件：</p>
-<pre><code>import vote from './vote'
-//以下省略其他接口文件
-
-export default{
-    vote,
-}
-</code></pre>
-<p>注：api.js的作用是统一存放所有的接口，便于后续的管理和调试</p>
-<p>⑤接口的调用——main.js:<br>
-<strong>将封装好的axios放入Vue原型对象的$api上（这个操作可以减少很多的码量）</strong></p>
-<pre><code>import api from './api/api'
-Vue.prototype.$api = api
-</code></pre>
-<p>⑥接口的调用——app.vue：<br>
-在app.vue中调用接口</p>
-<pre><code>methods:{
-    add(){
-        this.$api.vote.voteAdd();
-    }
-}
-</code></pre>
-<p>至此，axios的二次封装直至运用就结束了</p>
+        <updated>2022-05-10T06:30:23.000Z</updated>
+        <content type="html"><![CDATA[<p>接下来我们来解决异步问题</p>
+<p><strong>需求：</strong></p>
+<p><strong>注意：</strong></p>
+<pre><code></code></pre>
 ]]></content>
     </entry>
 </feed>

@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652163806808">
+<link rel="shortcut icon" href="/favicon.ico?v=1652167222882">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -169,7 +169,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">4</span>
+        <span class="site-item-stat-count">8</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -224,28 +224,16 @@
     <div class="article-wrapper bg-color">
       <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://uaenaTzx.github.io/post/Promise_then()/"> Promise中的then()函数 </a>
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/promise-shou-xie-2-thenhan-shu-chu-li/"> Promise手写(2)——then()方法处理 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-05-08 17:24:35">2022-05-08</span>
+      <span class="publish-time" data-t="2022-05-10 14:27:59">2022-05-10</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">标签:</span>
-       
-      <a href="https://uaenaTzx.github.io/tag/QQyiV-fVu/"> <span>Promise</span> </a>、   
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
-        <span>Gridea</span>
-      </a>
-       
-    </span>
-    <span class="post-meta-divider">|</span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
@@ -259,7 +247,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >174<span class="pc-show language" data-lan="words"
+        >15<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -288,9 +276,9 @@
               
             
             
-              <p><p>then()方法表示异步执行<br>
-即then()前面的函数执行之后再执行then()内部的函数 ----&gt;作用：避免出现数据未获取的问题</p>
-<p>语法：promise.then(onCompleted, onRejected);</p>
+              <p><p>接下来我们来完善then()方法</p>
+<p><strong>需求：</strong></p>
+<p><strong>注意：</strong></p>
 
                 
               <p>
@@ -299,7 +287,185 @@
         
         
         <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://uaenaTzx.github.io/post/Promise_then()/" rel="contents">
+          <a class="btn language" data-lan="read-more" href="https://uaenaTzx.github.io/post/promise-shou-xie-2-thenhan-shu-chu-li/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/promise-shou-xie-1-promise-lei-de-ji-ben-gou-jian/"> Promise手写(1)——Promise类的基本构建 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-05-10 12:12:08">2022-05-10</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://uaenaTzx.github.io/tag/QQyiV-fVu/"> <span>Promise</span> </a>、   
+      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
+        <span>Gridea</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >1<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >222<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><p>本篇开始手写Promise，从Promise类的基本构件开始</p>
+<p><strong>需求：</strong><br>
+①定义Promise对象，在构造函数中定义resolve和reject方法(用*executor（resolve，reject）<em>格式)<br>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://uaenaTzx.github.io/post/promise-shou-xie-1-promise-lei-de-ji-ben-gou-jian/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/"> JavaScript中的类方法、对象方法、原型方法 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-05-10 10:19:41">2022-05-10</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://uaenaTzx.github.io/tag/la3aFx0RN/"> <span>JavaScript</span> </a>、   
+      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
+        <span>Gridea</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >2<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >309<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+            
+              <p><p>定义：<br>
+①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；<br>
+②对象方法：包括构造函数中的方法以及其原型上面的方法<font color="red">(对象方法包含了原型方法)；</font><br>
+
+                
+              <p>
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/" rel="contents">
             阅读全文 »
           </a>
         </div>
@@ -334,7 +500,19 @@
             </a>
         </li>
       
+        <li class="pagination-li ">
+            <a href="/page/3">
+              3
+            </a>
+        </li>
+      
     
+    
+      <li class="pagination-dir">
+        <a href="/page/3">
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </li>
     
   </ul>
 </div>
@@ -1170,6 +1348,42 @@ jQuery(document).ready(function($) {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/promise-shou-xie-5-qi-ta-fang-fa-wan-shan/"" data-c="
+          &lt;p&gt;接下来我们来完善Promise其他剩余的内容&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+">Promise手写(5)——其他方法完善</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/promise-shou-xie-4-chu-li-lian-shi-andxun-huan-diao-yong-wen-ti/"" data-c="
+          &lt;p&gt;接下来我们来处理链式问题和循环调用问题&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+">Promise手写(4)——处理链式&&循环调用问题</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/promise-shou-xie-3-yi-bu-wen-ti-jie-jue/"" data-c="
+          &lt;p&gt;接下来我们来解决异步问题&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+">Promise手写(3)——异步问题解决</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/promise-shou-xie-2-thenhan-shu-chu-li/"" data-c="
+          &lt;p&gt;接下来我们来完善then()方法&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+">Promise手写(2)——then()方法处理</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/promise-shou-xie-1-promise-lei-de-ji-ben-gou-jian/"" data-c="
