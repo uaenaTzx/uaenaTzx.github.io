@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-16T09:05:23.121Z</updated>
+    <updated>2022-05-16T09:14:03.876Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -19,7 +19,7 @@
         <content type="html"><![CDATA[<h1 id="什么是async-await函数">什么是async、await函数</h1>
 <p>简而言之，<code>async/await</code>是针对js异步问题的一种强有力的处理方法。</p>
 <p>如果将<code>async</code>放在函数声明之前，则表明该函数是一个会返回<code>Promise</code>对象的异步函数。<br>
-<code>await</code>必须和<code>async</code>一起使用<font color="red">（有<code>await</code>必有<code>async</code>，有<code>async</code>不一定有<code>await</code>！！！🌞）</font>。<br>
+<code>await</code>必须和<code>async</code>一起使用<font color="red">(有<code>await</code>必有<code>async</code>，有<code>async</code>不一定有<code>await</code>🌞)</font><br>
 如果我们将<code>await</code>放在异步函数调用之前，则当代码执行到此处的时候，代码将会暂停，等到异步函数执行完成后，才会继续向下执行——<font color="red">这样就实现了异步函数的同步执行~</font></p>
 <p>接下来我们用代码来演示一遍<code>async</code>和<code>await</code>的使用（红绿灯案例）</p>
 <pre><code>        function timer(color, delay) {
@@ -227,15 +227,15 @@
         <link href="https://uaenaTzx.github.io/post/Promise-handwriting/">
         </link>
         <updated>2022-05-10T04:12:08.000Z</updated>
-        <content type="html"><![CDATA[<p>本篇开始手写Promise，从Promise类的基本构件开始</p>
-<p>#一、基本构件</p>
+        <content type="html"><![CDATA[<p>本篇开始手写<code>Promise</code>，从<code>Promise</code>类的基本构件开始</p>
+<h1 id="一-基本构件">一、基本构件</h1>
 <p><strong>需求：</strong><br>
-①定义Promise对象，在构造函数中定义resolve和reject方法(用executor(resolve，reject)格式)<br>
-②在构造函数中定义state参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态<br>
-③在构造函数中定义value，reason参数，分别对应传入resolve和reject的值</p>
+①定义<code>Promise</code>对象，在构造函数中定义<code>resolve</code>和<code>reject</code>方法(用<code>executor(resolve，reject)</code>格式)<br>
+②在构造函数中定义<code>state</code>参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态<br>
+③在构造函数中定义<code>value</code>，<code>reason</code>参数，分别对应传入<code>resolve</code>和<code>reject</code>的值</p>
 <p><strong>注意：</strong><br>
-①Promise的state只能改变一次<br>
-②应该使用try catch语法完善executor(resolve，reject)的执行</p>
+①<code>Promise</code>的<code>state</code>只能改变一次<br>
+②应该使用<code>try catch</code>语法完善<code>executor(resolve，reject)</code>的执行</p>
 <p>综上，写出的代码如下：</p>
 <pre><code>class Promise {
             constructor(executor) {
@@ -279,11 +279,11 @@
             console.log(res);
         })
 </code></pre>
-<p>接下来我们来完善then()方法</p>
-<p>#二、then()方法完善</p>
+<p>接下来我们来完善<code>then()</code>方法</p>
+<h1 id="二-then方法完善">二、then()方法完善</h1>
 <p><strong>需求：</strong><br>
-①传入onFulfiled，onRejected方法<br>
-②用onFulfiled，onRejected接收p.then()传入的value和reason</p>
+①传入<code>onFulfiled</code>，<code>onRejected</code>方法<br>
+②用<code>onFulfiled</code>，<code>onRejected</code>接收<code>p.then()</code>传入的<code>value</code>和<code>reason</code></p>
 <p>综上，写出的代码如下：</p>
 <pre><code>then(onFulfilled, onRejected) {
                 //onFulfilled如果成功了，应该被调用
@@ -298,7 +298,7 @@
             }
 </code></pre>
 <p>接下来我们来解决异步问题</p>
-<p>#三、异步问题解决</p>
+<h1 id="三-异步问题解决">三、异步问题解决</h1>
 <p><strong>问题：</strong><br>
 当代码如下时：</p>
 <pre><code>const p = new Promise((resolve, reject) =&gt; {
@@ -311,13 +311,13 @@
             console.log(res);
         })
 </code></pre>
-<p>会遇到then()在state状态改变之前就执行，导致执行then()时的state仍然是pending状态</p>
+<p>会遇到<code>then()</code>在<code>state</code>状态改变之前就执行，导致执行<code>then()</code>时的<code>state</code>仍然是<code>pending</code>状态</p>
 <p><strong>需求：</strong><br>
-①then()的执行不直接输出结果，而是将得到的数据先全部存放在两个数组中（成功和失败），在resolve或reject执行后再将数组中的函数输出<br>
-②需要增加一个if判断state如果是pending，将数据存储在数组中<br>
-③在resolve和reject方法中遍历两数组得到数据</p>
+①<code>then()</code>的执行不直接输出结果，而是将得到的数据先全部存放在两个数组中（成功和失败），在<code>resolve</code>或<code>reject</code>执行后再将数组中的函数输出<br>
+②需要增加一个<code>if</code>判断<code>state</code>如果是<code>pending</code>，将数据存储在数组中<br>
+③在<code>resolve</code>和<code>reject</code>方法中遍历两数组得到数据</p>
 <p><strong>注意：</strong><font color="red">(这个真的很重要！！！🙉🙉🙉)</font><br>
-①函数在数组中的存储需要用到函数的闭包(在函数的内部应用到外部的参数)——利用闭包将value或reason储存在函数中，并整合至数组</p>
+①函数在数组中的存储需要用到函数的闭包(在函数的内部应用到外部的参数)——利用闭包将<code>value</code>或<code>reason</code>储存在函数中，并整合至数组</p>
 <pre><code>//闭包
 this.onResolvedCallbacks.push(() =&gt; {
                         onFulfilled(this.value)
@@ -414,14 +414,14 @@ this.onResolvedCallbacks.push(onFulfilled）
 200 '3'</p>
 </blockquote>
 <p>接下来我们来处理链式问题</p>
-<p>#四、链式问题解决</p>
+<h1 id="四-链式问题解决">四、链式问题解决</h1>
 <p><strong>需求：</strong><br>
-①上一个.then要返回一个promise对象<br>
-②下一个.then的参数，要拿到上一个.then的回调返回值<br>
-③设置参数x为onFulfilled成功的.then回调的返回值，并通过resolve(x)来进行链式操作</p>
+①上一个<code>.then</code>要返回一个<code>Promise</code>对象<br>
+②下一个<code>.then</code>的参数，要拿到上一个<code>.then</code>的回调返回值<br>
+③设置参数<code>x</code>为<code>onFulfilled</code>成功的<code>.then</code>回调的返回值，并通过<code>resolve(x)</code>来进行链式操作</p>
 <p><strong>注意：</strong><font color="red">(真的很绕，好好理解一下🤡)</font><br>
-①代码运用了递归的思想，上一级then返回Promsie对象来延续下一级的then，因此需要在then函数中构造一个新的Promise对象并返回，在新的Promise对象中通过当前阶段的回调函数值决定下一步操作<br>
-②x可能是传入的普通值，也可能是Promise对象，因此要用一个函数来判断x的类型并进行相应的处理</p>
+①代码运用了递归的思想，上一级<code>then</code>返回<code>Promsie</code>对象来延续下一级的<code>then</code>，因此需要在<code>then</code>函数中构造一个新的<code>Promise</code>对象并返回，在新的<code>Promise</code>对象中通过当前阶段的回调函数值决定下一步操作<br>
+②<code>x</code>可能是传入的普通值，也可能是<code>Promise</code>对象，因此要用一个函数来判断x的类型并进行相应的处理</p>
 <p>综上，写出的代码如下：</p>
 <pre><code>class Promise {
             constructor(executor) {
@@ -530,8 +530,8 @@ this.onResolvedCallbacks.push(onFulfilled）
 <p>400<br>
 200</p>
 </blockquote>
-<p>接下来我们来完善Promise其他剩余的内容：</p>
-<p>#五、剩余内容完善</p>
+<p>接下来我们来完善<code>Promise</code>其他剩余的内容：</p>
+<h1 id="五-剩余内容完善">五、剩余内容完善</h1>
 <p>1、循环调用&amp;&amp;异常捕获<br>
 <strong>问题：</strong></p>
 <pre><code>const p = new Promise((resolve, reject) =&gt; {
@@ -543,12 +543,12 @@ const p2 = p.then((data)=&gt;{
             return p2
         })
 </code></pre>
-<p>其中，第一个p2等价于promise2，第二个p2等价于x(promise2,x的定义详见前文),显然promise2不可能等于x<br>
+<p>其中，第一个<code>p2</code>等价于<code>promise2</code>，第二个<code>p2</code>等价于<code>x</code>(<code>promise2</code>,<code>x</code>的定义详见前文),显然<code>promise2</code>不可能等于<code>x</code><br>
 <strong>需求：</strong><br>
-①通过判断语句来解决以上矛盾(写在resolvePromsie和rejectPromsie中)<br>
-②使用<em>try catch</em>语法来捕获错误</p>
+①通过判断语句来解决以上矛盾(写在<code>resolvePromsie</code>和<code>rejectPromsie</code>中)<br>
+②使用<code>try catch</code>语法来捕获错误</p>
 <p><strong>注意：</strong><br>
-①由于resolvePromsie和rejectPromsie写在promise2的内部，因此导入方法的promise2是不准确的，<em>此处需要使用异步操作（setTimeout（（）=&gt;{},0））来解决问题</em></p>
+①由于<code>resolvePromsie</code>和<code>rejectPromsie</code>写在<code>promise2</code>的内部，因此导入方法的<code>promise2</code>是不准确的，<font color="red">此处需要使用异步操作（setTimeout（（）=&gt;{},0））来解决问题</font></p>
 <p>综上，写出的代码如下：</p>
 <pre><code>class Promise {
             constructor(executor) {
@@ -674,9 +674,9 @@ const p2 = p.then((data)=&gt;{
             }
         }
 </code></pre>
-<p>2、将then中的参数变为可选<br>
+<p>2、将<code>then</code>中的参数变为可选<br>
 <strong>问题：</strong><br>
-上面我们处理 then 方法的时候都是默认传入 onFulfilled、onRejected 两个回调函数，但是实际上原生 Promise 是可以选择参数的单传或者不传，都不会影响执行</p>
+上面我们处理 <code>then</code> 方法的时候都是默认传入 <code>onFulfilled</code>、<code>onRejected</code> 两个回调函数，但是实际上原生 <code>Promise</code> 是可以选择参数的单传或者不传，都不会影响执行</p>
 <pre><code>const promise = new Promise((resolve, reject) =&gt; {
   resolve(400)
 })
@@ -685,7 +685,7 @@ promise.then().then(value =&gt; console.log(value))
 </code></pre>
 <p><strong>需求：</strong><br>
 ①通过判断语句,将没有传入参数变为默认函数</p>
-<p>综上，写出的then方法代码如下：</p>
+<p>综上，写出的<code>then</code>方法代码如下：</p>
 <pre><code>then(onFulfilled, onRejected) {
                 if (typeof onFulfilled != 'function') {
                     onFulfilled = function (value) {
@@ -703,7 +703,7 @@ promise.then().then(value =&gt; console.log(value))
                 return promise2
             }
 </code></pre>
-<p>3、实现resolve和reject的静态调用</p>
+<p>3、实现<code>resolve</code>和<code>reject</code>的静态调用</p>
 <p>比较简单，直接上代码</p>
 <pre><code>// resolve 静态方法
         Promise.resolve = function(value) {
@@ -728,8 +728,9 @@ promise.then().then(value =&gt; console.log(value))
 
         4、剩余方法
 
-        ①finally：(比较少用)
-        功能：无论传入的是resolve还是reject都会输出
+        ①`finally`：(比较少用)
+        功能：无论传入的是`resolve`还是`reject`都会输出
+        (一般用于`Promise`出错后的善后措施，如某些计时器的关闭等)
         ```
         finally(fn) {
                 return this.then(
@@ -752,8 +753,8 @@ promise.then().then(value =&gt; console.log(value))
             };
         ```
 
-        ③all：
-        功能：接受一个promise数组，当所有promise状态resolve后，执行resolve
+        ③`all`：
+        功能：接受一个`Promise`数组，当所有`Promise`状态`resolve`后，执行`resolve`
         ```
         Promise.all = function (promises) {
             return new Promise((resolve, reject) =&gt; {
@@ -781,8 +782,8 @@ promise.then().then(value =&gt; console.log(value))
         };
         ```
 
-        ④race：
-        功能：接受一个promise数组，当有一个promise状态resolve后，执行resolve(谁快谁先执行)
+        ④`race`：
+        功能：接受一个`promise`数组，当有一个`promise`状态`resolve`后，执行`resolve`(谁快谁先执行)
         ```
         Promise.race = function (promises) {
             return new Promise((resolve, reject) =&gt; {
@@ -806,7 +807,7 @@ promise.then().then(value =&gt; console.log(value))
         };
         ```
 
-        以上，Promise的大致功能就写完了🤤🤤🤤
+        以上，`Promise`的大致功能就写完了🤤🤤🤤
 
         下面是最后整理好的代码：
         ```
@@ -1033,8 +1034,8 @@ promise.then().then(value =&gt; console.log(value))
             }
         }
         ```
-Promise的手写部分基本大功告成 🎉🎉🎉
-在后续还会通过 Promise A+ 规范对我们的代码进行校验，来更加完善我们的代码👊👊👊
+`Promise`的手写部分基本大功告成 🎉🎉🎉
+在后续还会通过 `Promise A+` 规范对我们的代码进行校验，来更加完善我们的代码👊👊👊
 
 </code></pre>
 ]]></content>

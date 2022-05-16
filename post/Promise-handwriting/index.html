@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Promise手写 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652691839114">
+<link rel="shortcut icon" href="/favicon.ico?v=1652692439034">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -175,7 +175,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -219,6 +220,195 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper  auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E5%9F%BA%E6%9C%AC%E6%9E%84%E4%BB%B6">一、基本构件</a></li>
+<li><a href="#%E4%BA%8C-then%E6%96%B9%E6%B3%95%E5%AE%8C%E5%96%84">二、then()方法完善</a></li>
+<li><a href="#%E4%B8%89-%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3">三、异步问题解决</a></li>
+<li><a href="#%E5%9B%9B-%E9%93%BE%E5%BC%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3">四、链式问题解决</a></li>
+<li><a href="#%E4%BA%94-%E5%89%A9%E4%BD%99%E5%86%85%E5%AE%B9%E5%AE%8C%E5%96%84">五、剩余内容完善</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -341,7 +531,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >2999<span class="pc-show language" data-lan="words"
+        >3025<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -365,15 +555,15 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <p>本篇开始手写Promise，从Promise类的基本构件开始</p>
-<p>#一、基本构件</p>
+              <p>本篇开始手写<code>Promise</code>，从<code>Promise</code>类的基本构件开始</p>
+<h1 id="一-基本构件">一、基本构件</h1>
 <p><strong>需求：</strong><br>
-①定义Promise对象，在构造函数中定义resolve和reject方法(用executor(resolve，reject)格式)<br>
-②在构造函数中定义state参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态<br>
-③在构造函数中定义value，reason参数，分别对应传入resolve和reject的值</p>
+①定义<code>Promise</code>对象，在构造函数中定义<code>resolve</code>和<code>reject</code>方法(用<code>executor(resolve，reject)</code>格式)<br>
+②在构造函数中定义<code>state</code>参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态<br>
+③在构造函数中定义<code>value</code>，<code>reason</code>参数，分别对应传入<code>resolve</code>和<code>reject</code>的值</p>
 <p><strong>注意：</strong><br>
-①Promise的state只能改变一次<br>
-②应该使用try catch语法完善executor(resolve，reject)的执行</p>
+①<code>Promise</code>的<code>state</code>只能改变一次<br>
+②应该使用<code>try catch</code>语法完善<code>executor(resolve，reject)</code>的执行</p>
 <p>综上，写出的代码如下：</p>
 <pre><code>class Promise {
             constructor(executor) {
@@ -417,11 +607,11 @@
             console.log(res);
         })
 </code></pre>
-<p>接下来我们来完善then()方法</p>
-<p>#二、then()方法完善</p>
+<p>接下来我们来完善<code>then()</code>方法</p>
+<h1 id="二-then方法完善">二、then()方法完善</h1>
 <p><strong>需求：</strong><br>
-①传入onFulfiled，onRejected方法<br>
-②用onFulfiled，onRejected接收p.then()传入的value和reason</p>
+①传入<code>onFulfiled</code>，<code>onRejected</code>方法<br>
+②用<code>onFulfiled</code>，<code>onRejected</code>接收<code>p.then()</code>传入的<code>value</code>和<code>reason</code></p>
 <p>综上，写出的代码如下：</p>
 <pre><code>then(onFulfilled, onRejected) {
                 //onFulfilled如果成功了，应该被调用
@@ -436,7 +626,7 @@
             }
 </code></pre>
 <p>接下来我们来解决异步问题</p>
-<p>#三、异步问题解决</p>
+<h1 id="三-异步问题解决">三、异步问题解决</h1>
 <p><strong>问题：</strong><br>
 当代码如下时：</p>
 <pre><code>const p = new Promise((resolve, reject) =&gt; {
@@ -449,13 +639,13 @@
             console.log(res);
         })
 </code></pre>
-<p>会遇到then()在state状态改变之前就执行，导致执行then()时的state仍然是pending状态</p>
+<p>会遇到<code>then()</code>在<code>state</code>状态改变之前就执行，导致执行<code>then()</code>时的<code>state</code>仍然是<code>pending</code>状态</p>
 <p><strong>需求：</strong><br>
-①then()的执行不直接输出结果，而是将得到的数据先全部存放在两个数组中（成功和失败），在resolve或reject执行后再将数组中的函数输出<br>
-②需要增加一个if判断state如果是pending，将数据存储在数组中<br>
-③在resolve和reject方法中遍历两数组得到数据</p>
+①<code>then()</code>的执行不直接输出结果，而是将得到的数据先全部存放在两个数组中（成功和失败），在<code>resolve</code>或<code>reject</code>执行后再将数组中的函数输出<br>
+②需要增加一个<code>if</code>判断<code>state</code>如果是<code>pending</code>，将数据存储在数组中<br>
+③在<code>resolve</code>和<code>reject</code>方法中遍历两数组得到数据</p>
 <p><strong>注意：</strong><font color="red">(这个真的很重要！！！🙉🙉🙉)</font><br>
-①函数在数组中的存储需要用到函数的闭包(在函数的内部应用到外部的参数)——利用闭包将value或reason储存在函数中，并整合至数组</p>
+①函数在数组中的存储需要用到函数的闭包(在函数的内部应用到外部的参数)——利用闭包将<code>value</code>或<code>reason</code>储存在函数中，并整合至数组</p>
 <pre><code>//闭包
 this.onResolvedCallbacks.push(() =&gt; {
                         onFulfilled(this.value)
@@ -552,14 +742,14 @@ this.onResolvedCallbacks.push(onFulfilled）
 200 '3'</p>
 </blockquote>
 <p>接下来我们来处理链式问题</p>
-<p>#四、链式问题解决</p>
+<h1 id="四-链式问题解决">四、链式问题解决</h1>
 <p><strong>需求：</strong><br>
-①上一个.then要返回一个promise对象<br>
-②下一个.then的参数，要拿到上一个.then的回调返回值<br>
-③设置参数x为onFulfilled成功的.then回调的返回值，并通过resolve(x)来进行链式操作</p>
+①上一个<code>.then</code>要返回一个<code>Promise</code>对象<br>
+②下一个<code>.then</code>的参数，要拿到上一个<code>.then</code>的回调返回值<br>
+③设置参数<code>x</code>为<code>onFulfilled</code>成功的<code>.then</code>回调的返回值，并通过<code>resolve(x)</code>来进行链式操作</p>
 <p><strong>注意：</strong><font color="red">(真的很绕，好好理解一下🤡)</font><br>
-①代码运用了递归的思想，上一级then返回Promsie对象来延续下一级的then，因此需要在then函数中构造一个新的Promise对象并返回，在新的Promise对象中通过当前阶段的回调函数值决定下一步操作<br>
-②x可能是传入的普通值，也可能是Promise对象，因此要用一个函数来判断x的类型并进行相应的处理</p>
+①代码运用了递归的思想，上一级<code>then</code>返回<code>Promsie</code>对象来延续下一级的<code>then</code>，因此需要在<code>then</code>函数中构造一个新的<code>Promise</code>对象并返回，在新的<code>Promise</code>对象中通过当前阶段的回调函数值决定下一步操作<br>
+②<code>x</code>可能是传入的普通值，也可能是<code>Promise</code>对象，因此要用一个函数来判断x的类型并进行相应的处理</p>
 <p>综上，写出的代码如下：</p>
 <pre><code>class Promise {
             constructor(executor) {
@@ -668,8 +858,8 @@ this.onResolvedCallbacks.push(onFulfilled）
 <p>400<br>
 200</p>
 </blockquote>
-<p>接下来我们来完善Promise其他剩余的内容：</p>
-<p>#五、剩余内容完善</p>
+<p>接下来我们来完善<code>Promise</code>其他剩余的内容：</p>
+<h1 id="五-剩余内容完善">五、剩余内容完善</h1>
 <p>1、循环调用&amp;&amp;异常捕获<br>
 <strong>问题：</strong></p>
 <pre><code>const p = new Promise((resolve, reject) =&gt; {
@@ -681,12 +871,12 @@ const p2 = p.then((data)=&gt;{
             return p2
         })
 </code></pre>
-<p>其中，第一个p2等价于promise2，第二个p2等价于x(promise2,x的定义详见前文),显然promise2不可能等于x<br>
+<p>其中，第一个<code>p2</code>等价于<code>promise2</code>，第二个<code>p2</code>等价于<code>x</code>(<code>promise2</code>,<code>x</code>的定义详见前文),显然<code>promise2</code>不可能等于<code>x</code><br>
 <strong>需求：</strong><br>
-①通过判断语句来解决以上矛盾(写在resolvePromsie和rejectPromsie中)<br>
-②使用<em>try catch</em>语法来捕获错误</p>
+①通过判断语句来解决以上矛盾(写在<code>resolvePromsie</code>和<code>rejectPromsie</code>中)<br>
+②使用<code>try catch</code>语法来捕获错误</p>
 <p><strong>注意：</strong><br>
-①由于resolvePromsie和rejectPromsie写在promise2的内部，因此导入方法的promise2是不准确的，<em>此处需要使用异步操作（setTimeout（（）=&gt;{},0））来解决问题</em></p>
+①由于<code>resolvePromsie</code>和<code>rejectPromsie</code>写在<code>promise2</code>的内部，因此导入方法的<code>promise2</code>是不准确的，<font color="red">此处需要使用异步操作（setTimeout（（）=&gt;{},0））来解决问题</font></p>
 <p>综上，写出的代码如下：</p>
 <pre><code>class Promise {
             constructor(executor) {
@@ -812,9 +1002,9 @@ const p2 = p.then((data)=&gt;{
             }
         }
 </code></pre>
-<p>2、将then中的参数变为可选<br>
+<p>2、将<code>then</code>中的参数变为可选<br>
 <strong>问题：</strong><br>
-上面我们处理 then 方法的时候都是默认传入 onFulfilled、onRejected 两个回调函数，但是实际上原生 Promise 是可以选择参数的单传或者不传，都不会影响执行</p>
+上面我们处理 <code>then</code> 方法的时候都是默认传入 <code>onFulfilled</code>、<code>onRejected</code> 两个回调函数，但是实际上原生 <code>Promise</code> 是可以选择参数的单传或者不传，都不会影响执行</p>
 <pre><code>const promise = new Promise((resolve, reject) =&gt; {
   resolve(400)
 })
@@ -823,7 +1013,7 @@ promise.then().then(value =&gt; console.log(value))
 </code></pre>
 <p><strong>需求：</strong><br>
 ①通过判断语句,将没有传入参数变为默认函数</p>
-<p>综上，写出的then方法代码如下：</p>
+<p>综上，写出的<code>then</code>方法代码如下：</p>
 <pre><code>then(onFulfilled, onRejected) {
                 if (typeof onFulfilled != 'function') {
                     onFulfilled = function (value) {
@@ -841,7 +1031,7 @@ promise.then().then(value =&gt; console.log(value))
                 return promise2
             }
 </code></pre>
-<p>3、实现resolve和reject的静态调用</p>
+<p>3、实现<code>resolve</code>和<code>reject</code>的静态调用</p>
 <p>比较简单，直接上代码</p>
 <pre><code>// resolve 静态方法
         Promise.resolve = function(value) {
@@ -866,8 +1056,9 @@ promise.then().then(value =&gt; console.log(value))
 
         4、剩余方法
 
-        ①finally：(比较少用)
-        功能：无论传入的是resolve还是reject都会输出
+        ①`finally`：(比较少用)
+        功能：无论传入的是`resolve`还是`reject`都会输出
+        (一般用于`Promise`出错后的善后措施，如某些计时器的关闭等)
         ```
         finally(fn) {
                 return this.then(
@@ -890,8 +1081,8 @@ promise.then().then(value =&gt; console.log(value))
             };
         ```
 
-        ③all：
-        功能：接受一个promise数组，当所有promise状态resolve后，执行resolve
+        ③`all`：
+        功能：接受一个`Promise`数组，当所有`Promise`状态`resolve`后，执行`resolve`
         ```
         Promise.all = function (promises) {
             return new Promise((resolve, reject) =&gt; {
@@ -919,8 +1110,8 @@ promise.then().then(value =&gt; console.log(value))
         };
         ```
 
-        ④race：
-        功能：接受一个promise数组，当有一个promise状态resolve后，执行resolve(谁快谁先执行)
+        ④`race`：
+        功能：接受一个`promise`数组，当有一个`promise`状态`resolve`后，执行`resolve`(谁快谁先执行)
         ```
         Promise.race = function (promises) {
             return new Promise((resolve, reject) =&gt; {
@@ -944,7 +1135,7 @@ promise.then().then(value =&gt; console.log(value))
         };
         ```
 
-        以上，Promise的大致功能就写完了🤤🤤🤤
+        以上，`Promise`的大致功能就写完了🤤🤤🤤
 
         下面是最后整理好的代码：
         ```
@@ -1171,8 +1362,8 @@ promise.then().then(value =&gt; console.log(value))
             }
         }
         ```
-Promise的手写部分基本大功告成 🎉🎉🎉
-在后续还会通过 Promise A+ 规范对我们的代码进行校验，来更加完善我们的代码👊👊👊
+`Promise`的手写部分基本大功告成 🎉🎉🎉
+在后续还会通过 `Promise A+` 规范对我们的代码进行校验，来更加完善我们的代码👊👊👊
 
 </code></pre>
 
@@ -2326,7 +2517,7 @@ jQuery(document).ready(function($) {
           &lt;h1 id=&#34;什么是async-await函数&#34;&gt;什么是async、await函数&lt;/h1&gt;
 &lt;p&gt;简而言之，&lt;code&gt;async/await&lt;/code&gt;是针对js异步问题的一种强有力的处理方法。&lt;/p&gt;
 &lt;p&gt;如果将&lt;code&gt;async&lt;/code&gt;放在函数声明之前，则表明该函数是一个会返回&lt;code&gt;Promise&lt;/code&gt;对象的异步函数。&lt;br&gt;
-&lt;code&gt;await&lt;/code&gt;必须和&lt;code&gt;async&lt;/code&gt;一起使用&lt;font color=&#34;red&#34;&gt;（有&lt;code&gt;await&lt;/code&gt;必有&lt;code&gt;async&lt;/code&gt;，有&lt;code&gt;async&lt;/code&gt;不一定有&lt;code&gt;await&lt;/code&gt;！！！🌞）&lt;/font&gt;。&lt;br&gt;
+&lt;code&gt;await&lt;/code&gt;必须和&lt;code&gt;async&lt;/code&gt;一起使用&lt;font color=&#34;red&#34;&gt;(有&lt;code&gt;await&lt;/code&gt;必有&lt;code&gt;async&lt;/code&gt;，有&lt;code&gt;async&lt;/code&gt;不一定有&lt;code&gt;await&lt;/code&gt;🌞)&lt;/font&gt;&lt;br&gt;
 如果我们将&lt;code&gt;await&lt;/code&gt;放在异步函数调用之前，则当代码执行到此处的时候，代码将会暂停，等到异步函数执行完成后，才会继续向下执行——&lt;font color=&#34;red&#34;&gt;这样就实现了异步函数的同步执行~&lt;/font&gt;&lt;/p&gt;
 &lt;p&gt;接下来我们用代码来演示一遍&lt;code&gt;async&lt;/code&gt;和&lt;code&gt;await&lt;/code&gt;的使用（红绿灯案例）&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;        function timer(color, delay) {
@@ -2531,15 +2722,15 @@ jQuery(document).ready(function($) {
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/Promise-handwriting/"" data-c="
-          &lt;p&gt;本篇开始手写Promise，从Promise类的基本构件开始&lt;/p&gt;
-&lt;p&gt;#一、基本构件&lt;/p&gt;
+          &lt;p&gt;本篇开始手写&lt;code&gt;Promise&lt;/code&gt;，从&lt;code&gt;Promise&lt;/code&gt;类的基本构件开始&lt;/p&gt;
+&lt;h1 id=&#34;一-基本构件&#34;&gt;一、基本构件&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
-①定义Promise对象，在构造函数中定义resolve和reject方法(用executor(resolve，reject)格式)&lt;br&gt;
-②在构造函数中定义state参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态&lt;br&gt;
-③在构造函数中定义value，reason参数，分别对应传入resolve和reject的值&lt;/p&gt;
+①定义&lt;code&gt;Promise&lt;/code&gt;对象，在构造函数中定义&lt;code&gt;resolve&lt;/code&gt;和&lt;code&gt;reject&lt;/code&gt;方法(用&lt;code&gt;executor(resolve，reject)&lt;/code&gt;格式)&lt;br&gt;
+②在构造函数中定义&lt;code&gt;state&lt;/code&gt;参数，初始值为‘pending’，同时设有‘fulfiled’，‘rejected’共三种状态&lt;br&gt;
+③在构造函数中定义&lt;code&gt;value&lt;/code&gt;，&lt;code&gt;reason&lt;/code&gt;参数，分别对应传入&lt;code&gt;resolve&lt;/code&gt;和&lt;code&gt;reject&lt;/code&gt;的值&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;br&gt;
-①Promise的state只能改变一次&lt;br&gt;
-②应该使用try catch语法完善executor(resolve，reject)的执行&lt;/p&gt;
+①&lt;code&gt;Promise&lt;/code&gt;的&lt;code&gt;state&lt;/code&gt;只能改变一次&lt;br&gt;
+②应该使用&lt;code&gt;try catch&lt;/code&gt;语法完善&lt;code&gt;executor(resolve，reject)&lt;/code&gt;的执行&lt;/p&gt;
 &lt;p&gt;综上，写出的代码如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Promise {
             constructor(executor) {
@@ -2583,11 +2774,11 @@ jQuery(document).ready(function($) {
             console.log(res);
         })
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;接下来我们来完善then()方法&lt;/p&gt;
-&lt;p&gt;#二、then()方法完善&lt;/p&gt;
+&lt;p&gt;接下来我们来完善&lt;code&gt;then()&lt;/code&gt;方法&lt;/p&gt;
+&lt;h1 id=&#34;二-then方法完善&#34;&gt;二、then()方法完善&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
-①传入onFulfiled，onRejected方法&lt;br&gt;
-②用onFulfiled，onRejected接收p.then()传入的value和reason&lt;/p&gt;
+①传入&lt;code&gt;onFulfiled&lt;/code&gt;，&lt;code&gt;onRejected&lt;/code&gt;方法&lt;br&gt;
+②用&lt;code&gt;onFulfiled&lt;/code&gt;，&lt;code&gt;onRejected&lt;/code&gt;接收&lt;code&gt;p.then()&lt;/code&gt;传入的&lt;code&gt;value&lt;/code&gt;和&lt;code&gt;reason&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;综上，写出的代码如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;then(onFulfilled, onRejected) {
                 //onFulfilled如果成功了，应该被调用
@@ -2602,7 +2793,7 @@ jQuery(document).ready(function($) {
             }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;接下来我们来解决异步问题&lt;/p&gt;
-&lt;p&gt;#三、异步问题解决&lt;/p&gt;
+&lt;h1 id=&#34;三-异步问题解决&#34;&gt;三、异步问题解决&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;问题：&lt;/strong&gt;&lt;br&gt;
 当代码如下时：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;const p = new Promise((resolve, reject) =&amp;gt; {
@@ -2615,13 +2806,13 @@ jQuery(document).ready(function($) {
             console.log(res);
         })
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;会遇到then()在state状态改变之前就执行，导致执行then()时的state仍然是pending状态&lt;/p&gt;
+&lt;p&gt;会遇到&lt;code&gt;then()&lt;/code&gt;在&lt;code&gt;state&lt;/code&gt;状态改变之前就执行，导致执行&lt;code&gt;then()&lt;/code&gt;时的&lt;code&gt;state&lt;/code&gt;仍然是&lt;code&gt;pending&lt;/code&gt;状态&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
-①then()的执行不直接输出结果，而是将得到的数据先全部存放在两个数组中（成功和失败），在resolve或reject执行后再将数组中的函数输出&lt;br&gt;
-②需要增加一个if判断state如果是pending，将数据存储在数组中&lt;br&gt;
-③在resolve和reject方法中遍历两数组得到数据&lt;/p&gt;
+①&lt;code&gt;then()&lt;/code&gt;的执行不直接输出结果，而是将得到的数据先全部存放在两个数组中（成功和失败），在&lt;code&gt;resolve&lt;/code&gt;或&lt;code&gt;reject&lt;/code&gt;执行后再将数组中的函数输出&lt;br&gt;
+②需要增加一个&lt;code&gt;if&lt;/code&gt;判断&lt;code&gt;state&lt;/code&gt;如果是&lt;code&gt;pending&lt;/code&gt;，将数据存储在数组中&lt;br&gt;
+③在&lt;code&gt;resolve&lt;/code&gt;和&lt;code&gt;reject&lt;/code&gt;方法中遍历两数组得到数据&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;font color=&#34;red&#34;&gt;(这个真的很重要！！！🙉🙉🙉)&lt;/font&gt;&lt;br&gt;
-①函数在数组中的存储需要用到函数的闭包(在函数的内部应用到外部的参数)——利用闭包将value或reason储存在函数中，并整合至数组&lt;/p&gt;
+①函数在数组中的存储需要用到函数的闭包(在函数的内部应用到外部的参数)——利用闭包将&lt;code&gt;value&lt;/code&gt;或&lt;code&gt;reason&lt;/code&gt;储存在函数中，并整合至数组&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;//闭包
 this.onResolvedCallbacks.push(() =&amp;gt; {
                         onFulfilled(this.value)
@@ -2718,14 +2909,14 @@ this.onResolvedCallbacks.push(onFulfilled）
 200 &#39;3&#39;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;接下来我们来处理链式问题&lt;/p&gt;
-&lt;p&gt;#四、链式问题解决&lt;/p&gt;
+&lt;h1 id=&#34;四-链式问题解决&#34;&gt;四、链式问题解决&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
-①上一个.then要返回一个promise对象&lt;br&gt;
-②下一个.then的参数，要拿到上一个.then的回调返回值&lt;br&gt;
-③设置参数x为onFulfilled成功的.then回调的返回值，并通过resolve(x)来进行链式操作&lt;/p&gt;
+①上一个&lt;code&gt;.then&lt;/code&gt;要返回一个&lt;code&gt;Promise&lt;/code&gt;对象&lt;br&gt;
+②下一个&lt;code&gt;.then&lt;/code&gt;的参数，要拿到上一个&lt;code&gt;.then&lt;/code&gt;的回调返回值&lt;br&gt;
+③设置参数&lt;code&gt;x&lt;/code&gt;为&lt;code&gt;onFulfilled&lt;/code&gt;成功的&lt;code&gt;.then&lt;/code&gt;回调的返回值，并通过&lt;code&gt;resolve(x)&lt;/code&gt;来进行链式操作&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;font color=&#34;red&#34;&gt;(真的很绕，好好理解一下🤡)&lt;/font&gt;&lt;br&gt;
-①代码运用了递归的思想，上一级then返回Promsie对象来延续下一级的then，因此需要在then函数中构造一个新的Promise对象并返回，在新的Promise对象中通过当前阶段的回调函数值决定下一步操作&lt;br&gt;
-②x可能是传入的普通值，也可能是Promise对象，因此要用一个函数来判断x的类型并进行相应的处理&lt;/p&gt;
+①代码运用了递归的思想，上一级&lt;code&gt;then&lt;/code&gt;返回&lt;code&gt;Promsie&lt;/code&gt;对象来延续下一级的&lt;code&gt;then&lt;/code&gt;，因此需要在&lt;code&gt;then&lt;/code&gt;函数中构造一个新的&lt;code&gt;Promise&lt;/code&gt;对象并返回，在新的&lt;code&gt;Promise&lt;/code&gt;对象中通过当前阶段的回调函数值决定下一步操作&lt;br&gt;
+②&lt;code&gt;x&lt;/code&gt;可能是传入的普通值，也可能是&lt;code&gt;Promise&lt;/code&gt;对象，因此要用一个函数来判断x的类型并进行相应的处理&lt;/p&gt;
 &lt;p&gt;综上，写出的代码如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Promise {
             constructor(executor) {
@@ -2834,8 +3025,8 @@ this.onResolvedCallbacks.push(onFulfilled）
 &lt;p&gt;400&lt;br&gt;
 200&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;接下来我们来完善Promise其他剩余的内容：&lt;/p&gt;
-&lt;p&gt;#五、剩余内容完善&lt;/p&gt;
+&lt;p&gt;接下来我们来完善&lt;code&gt;Promise&lt;/code&gt;其他剩余的内容：&lt;/p&gt;
+&lt;h1 id=&#34;五-剩余内容完善&#34;&gt;五、剩余内容完善&lt;/h1&gt;
 &lt;p&gt;1、循环调用&amp;amp;&amp;amp;异常捕获&lt;br&gt;
 &lt;strong&gt;问题：&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;const p = new Promise((resolve, reject) =&amp;gt; {
@@ -2847,12 +3038,12 @@ const p2 = p.then((data)=&amp;gt;{
             return p2
         })
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;其中，第一个p2等价于promise2，第二个p2等价于x(promise2,x的定义详见前文),显然promise2不可能等于x&lt;br&gt;
+&lt;p&gt;其中，第一个&lt;code&gt;p2&lt;/code&gt;等价于&lt;code&gt;promise2&lt;/code&gt;，第二个&lt;code&gt;p2&lt;/code&gt;等价于&lt;code&gt;x&lt;/code&gt;(&lt;code&gt;promise2&lt;/code&gt;,&lt;code&gt;x&lt;/code&gt;的定义详见前文),显然&lt;code&gt;promise2&lt;/code&gt;不可能等于&lt;code&gt;x&lt;/code&gt;&lt;br&gt;
 &lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
-①通过判断语句来解决以上矛盾(写在resolvePromsie和rejectPromsie中)&lt;br&gt;
-②使用&lt;em&gt;try catch&lt;/em&gt;语法来捕获错误&lt;/p&gt;
+①通过判断语句来解决以上矛盾(写在&lt;code&gt;resolvePromsie&lt;/code&gt;和&lt;code&gt;rejectPromsie&lt;/code&gt;中)&lt;br&gt;
+②使用&lt;code&gt;try catch&lt;/code&gt;语法来捕获错误&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;br&gt;
-①由于resolvePromsie和rejectPromsie写在promise2的内部，因此导入方法的promise2是不准确的，&lt;em&gt;此处需要使用异步操作（setTimeout（（）=&amp;gt;{},0））来解决问题&lt;/em&gt;&lt;/p&gt;
+①由于&lt;code&gt;resolvePromsie&lt;/code&gt;和&lt;code&gt;rejectPromsie&lt;/code&gt;写在&lt;code&gt;promise2&lt;/code&gt;的内部，因此导入方法的&lt;code&gt;promise2&lt;/code&gt;是不准确的，&lt;font color=&#34;red&#34;&gt;此处需要使用异步操作（setTimeout（（）=&amp;gt;{},0））来解决问题&lt;/font&gt;&lt;/p&gt;
 &lt;p&gt;综上，写出的代码如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Promise {
             constructor(executor) {
@@ -2978,9 +3169,9 @@ const p2 = p.then((data)=&amp;gt;{
             }
         }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;2、将then中的参数变为可选&lt;br&gt;
+&lt;p&gt;2、将&lt;code&gt;then&lt;/code&gt;中的参数变为可选&lt;br&gt;
 &lt;strong&gt;问题：&lt;/strong&gt;&lt;br&gt;
-上面我们处理 then 方法的时候都是默认传入 onFulfilled、onRejected 两个回调函数，但是实际上原生 Promise 是可以选择参数的单传或者不传，都不会影响执行&lt;/p&gt;
+上面我们处理 &lt;code&gt;then&lt;/code&gt; 方法的时候都是默认传入 &lt;code&gt;onFulfilled&lt;/code&gt;、&lt;code&gt;onRejected&lt;/code&gt; 两个回调函数，但是实际上原生 &lt;code&gt;Promise&lt;/code&gt; 是可以选择参数的单传或者不传，都不会影响执行&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;const promise = new Promise((resolve, reject) =&amp;gt; {
   resolve(400)
 })
@@ -2989,7 +3180,7 @@ promise.then().then(value =&amp;gt; console.log(value))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;需求：&lt;/strong&gt;&lt;br&gt;
 ①通过判断语句,将没有传入参数变为默认函数&lt;/p&gt;
-&lt;p&gt;综上，写出的then方法代码如下：&lt;/p&gt;
+&lt;p&gt;综上，写出的&lt;code&gt;then&lt;/code&gt;方法代码如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;then(onFulfilled, onRejected) {
                 if (typeof onFulfilled != &#39;function&#39;) {
                     onFulfilled = function (value) {
@@ -3007,7 +3198,7 @@ promise.then().then(value =&amp;gt; console.log(value))
                 return promise2
             }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;3、实现resolve和reject的静态调用&lt;/p&gt;
+&lt;p&gt;3、实现&lt;code&gt;resolve&lt;/code&gt;和&lt;code&gt;reject&lt;/code&gt;的静态调用&lt;/p&gt;
 &lt;p&gt;比较简单，直接上代码&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// resolve 静态方法
         Promise.resolve = function(value) {
@@ -3032,8 +3223,9 @@ promise.then().then(value =&amp;gt; console.log(value))
 
         4、剩余方法
 
-        ①finally：(比较少用)
-        功能：无论传入的是resolve还是reject都会输出
+        ①`finally`：(比较少用)
+        功能：无论传入的是`resolve`还是`reject`都会输出
+        (一般用于`Promise`出错后的善后措施，如某些计时器的关闭等)
         ```
         finally(fn) {
                 return this.then(
@@ -3056,8 +3248,8 @@ promise.then().then(value =&amp;gt; console.log(value))
             };
         ```
 
-        ③all：
-        功能：接受一个promise数组，当所有promise状态resolve后，执行resolve
+        ③`all`：
+        功能：接受一个`Promise`数组，当所有`Promise`状态`resolve`后，执行`resolve`
         ```
         Promise.all = function (promises) {
             return new Promise((resolve, reject) =&amp;gt; {
@@ -3085,8 +3277,8 @@ promise.then().then(value =&amp;gt; console.log(value))
         };
         ```
 
-        ④race：
-        功能：接受一个promise数组，当有一个promise状态resolve后，执行resolve(谁快谁先执行)
+        ④`race`：
+        功能：接受一个`promise`数组，当有一个`promise`状态`resolve`后，执行`resolve`(谁快谁先执行)
         ```
         Promise.race = function (promises) {
             return new Promise((resolve, reject) =&amp;gt; {
@@ -3110,7 +3302,7 @@ promise.then().then(value =&amp;gt; console.log(value))
         };
         ```
 
-        以上，Promise的大致功能就写完了🤤🤤🤤
+        以上，`Promise`的大致功能就写完了🤤🤤🤤
 
         下面是最后整理好的代码：
         ```
@@ -3337,8 +3529,8 @@ promise.then().then(value =&amp;gt; console.log(value))
             }
         }
         ```
-Promise的手写部分基本大功告成 🎉🎉🎉
-在后续还会通过 Promise A+ 规范对我们的代码进行校验，来更加完善我们的代码👊👊👊
+`Promise`的手写部分基本大功告成 🎉🎉🎉
+在后续还会通过 `Promise A+` 规范对我们的代码进行校验，来更加完善我们的代码👊👊👊
 
 &lt;/code&gt;&lt;/pre&gt;
 ">Promise手写</a>
