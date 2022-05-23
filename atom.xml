@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-16T09:14:03.876Z</updated>
+    <updated>2022-05-23T03:52:25.415Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -1047,7 +1047,7 @@ promise.then().then(value =&gt; console.log(value))
         </link>
         <updated>2022-05-10T02:19:41.000Z</updated>
         <content type="html"><![CDATA[<p>定义：<br>
-①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；<br>
+①类方法：也叫函数方法(在<code>js</code>中可以为函数添加属性以及方法)；<br>
 ②对象方法：包括构造函数中的方法以及其原型上面的方法<font color="red">(对象方法包含了原型方法)；</font><br>
 ③原型方法：一般用于对象实例共享，为避免内存复用而在原型上添加方法；</p>
 <p><strong>js中的function作为构造函数时，被视为一个类。可以通过new xxx来得到一个实例对象</strong><br>

@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652692439034">
+<link rel="shortcut icon" href="/favicon.ico?v=1653277935217">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -2181,7 +2181,7 @@ promise.then().then(value =&amp;gt; console.log(value))
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/"" data-c="
           &lt;p&gt;定义：&lt;br&gt;
-①类方法：也叫函数方法(在js中可以为函数添加属性以及方法)；&lt;br&gt;
+①类方法：也叫函数方法(在&lt;code&gt;js&lt;/code&gt;中可以为函数添加属性以及方法)；&lt;br&gt;
 ②对象方法：包括构造函数中的方法以及其原型上面的方法&lt;font color=&#34;red&#34;&gt;(对象方法包含了原型方法)；&lt;/font&gt;&lt;br&gt;
 ③原型方法：一般用于对象实例共享，为避免内存复用而在原型上添加方法；&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;js中的function作为构造函数时，被视为一个类。可以通过new xxx来得到一个实例对象&lt;/strong&gt;&lt;br&gt;
@@ -2216,12 +2216,12 @@ Uaena.learn();         //原型方法需要通过实例化对象去调用
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/axios-de-er-ci-feng-zhuang/"" data-c="
-          &lt;p&gt;意义： api统一管理,不管接口有多少,所有的接口都可以非常清晰,容易维护&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;为了理解axios的二次封装过程思路，博主通过简述的方式来走一遍二次封装的全过程&lt;/strong&gt;&lt;/p&gt;
+          &lt;p&gt;意义：&lt;code&gt;api&lt;/code&gt;统一管理,不管接口有多少,所有的接口都可以非常清晰,容易维护&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为了理解&lt;code&gt;axios&lt;/code&gt;的二次封装过程思路，博主通过简述的方式来走一遍二次封装的全过程&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;①文件创建：&lt;br&gt;
 在src目录下创建“api”文件夹，在文件夹里创建http.js，api.js，vote.js等文件&lt;/p&gt;
 &lt;p&gt;②第一次封装：&lt;br&gt;
-在http.js文件中添加axios的默认配置,对Get、Post等方法以及各类拦截器进行封装&lt;/p&gt;
+在http.js文件中添加&lt;code&gt;axios&lt;/code&gt;的默认配置,对&lt;code&gt;Get&lt;/code&gt;、&lt;code&gt;Post&lt;/code&gt;等方法以及各类拦截器进行封装&lt;/p&gt;
 &lt;p&gt;③第二次封装——引用http.js进行相关接口方法的编写：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import axios from &#39;./http&#39;;
 
@@ -2245,7 +2245,7 @@ export default{
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;注：api.js的作用是统一存放所有的接口，便于后续的管理和调试&lt;/p&gt;
 &lt;p&gt;⑤接口的调用——main.js:&lt;br&gt;
-&lt;strong&gt;将封装好的axios放入Vue原型对象的$api上（这个操作可以减少很多的码量）&lt;/strong&gt;&lt;/p&gt;
+&lt;strong&gt;将封装好的&lt;code&gt;axios&lt;/code&gt;放入&lt;code&gt;Vue&lt;/code&gt;原型对象的&lt;code&gt;$api&lt;/code&gt;上（这个操作可以减少很多的码量）&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import api from &#39;./api/api&#39;
 Vue.prototype.$api = api
 &lt;/code&gt;&lt;/pre&gt;
@@ -2257,30 +2257,30 @@ Vue.prototype.$api = api
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;至此，axios的二次封装直至运用就结束了&lt;/p&gt;
+&lt;p&gt;至此，&lt;code&gt;axios&lt;/code&gt;的二次封装直至运用就结束了&lt;/p&gt;
 ">axios的二次封装</a>
       </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/Promise_then()/"" data-c="
-          &lt;p&gt;then()方法表示异步执行&lt;br&gt;
-即then()前面的函数执行之后再执行then()内部的函数 ----&amp;gt;作用：避免出现数据未获取的问题&lt;/p&gt;
-&lt;p&gt;语法：promise.then(onCompleted, onRejected);&lt;/p&gt;
+          &lt;p&gt;&lt;code&gt;then()&lt;/code&gt;方法表示异步执行&lt;br&gt;
+即&lt;code&gt;then()&lt;/code&gt;前面的函数执行之后再执行&lt;code&gt;then()&lt;/code&gt;内部的函数 —— 作用：避免出现数据未获取的问题&lt;/p&gt;
+&lt;p&gt;语法：&lt;code&gt;promise.then(onCompleted, onRejected)&lt;/code&gt;;&lt;/p&gt;
 &lt;p&gt;参数：&lt;br&gt;
-①promise：Promise对象&lt;br&gt;
-②onCompleted：请求成功时执行的函数&lt;br&gt;
-③onRejected：请求失败是执行的函数&lt;/p&gt;
+①&lt;code&gt;promise&lt;/code&gt;：Promise对象&lt;br&gt;
+②&lt;code&gt;onCompleted&lt;/code&gt;：请求成功时执行的函数&lt;br&gt;
+③&lt;code&gt;onRejected&lt;/code&gt;：请求失败是执行的函数&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;fetch(&amp;quot;./json/test.json&amp;quot;).then(res=&amp;gt;{
            return res.json()
        }).then(res=&amp;gt;{
            console.log(res)
        })
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;此时难免会生出一个问题：&lt;strong&gt;都有catch()方法了，为何还要有onRejected呢？&lt;/strong&gt;&lt;br&gt;
-其实onRejected一般是不写的，catch()的管辖范围大于onRejected&lt;br&gt;
-onRejected：promise执行失败时调用&lt;br&gt;
-catch：promise或onCompleted执行失败时调用&lt;font color=&#34;red&#34;&gt;(全局捕获)&lt;/font&gt;&lt;br&gt;
-——&amp;gt;因此，我们一般都用catch而不用onRejected！&lt;/p&gt;
+&lt;p&gt;此时难免会生出一个问题：&lt;strong&gt;都有&lt;code&gt;catch()&lt;/code&gt;方法了，为何还要有&lt;code&gt;onRejected&lt;/code&gt;呢？&lt;/strong&gt;&lt;br&gt;
+其实&lt;code&gt;onRejected&lt;/code&gt;一般是不写的，&lt;code&gt;catch()&lt;/code&gt;的管辖范围大于&lt;code&gt;onRejected&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;onRejected&lt;/code&gt;：&lt;code&gt;promise&lt;/code&gt;执行失败时调用&lt;br&gt;
+&lt;code&gt;catch&lt;/code&gt;：&lt;code&gt;promise&lt;/code&gt;或&lt;code&gt;onCompleted&lt;/code&gt;执行失败时调用&lt;font color=&#34;red&#34;&gt;(全局捕获)&lt;/font&gt;&lt;br&gt;
+=&amp;gt;因此，我们一般都用&lt;code&gt;catch&lt;/code&gt;而不用&lt;code&gt;onRejected&lt;/code&gt;！&lt;/p&gt;
 ">Promise中的then()函数</a>
       </div>
       
