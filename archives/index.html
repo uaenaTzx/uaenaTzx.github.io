@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1653306196663">
+<link rel="shortcut icon" href="/favicon.ico?v=1653311543708">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -170,7 +170,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">6</span>
+        <span class="site-item-stat-count">8</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -226,7 +226,7 @@
   <div class="archive-timeline-box">
     <div class="archive-timeline-title">
       
-        <h2 class="language" data-lan="archives" data-count="6">非常好！目前共计6篇文章，继续努力！</h2>
+        <h2 class="language" data-lan="archives" data-count="8">非常好！目前共计8篇文章，继续努力！</h2>
       
     </div>
     
@@ -236,6 +236,32 @@
           <h2 class="tag-year">2022</h2>
         </div>    
         
+      
+      <a href="https://uaenaTzx.github.io/post/css-de-wei-lei/">
+        <div class="motion-warpper tag-archive-node">
+          <div class="tag-node">
+            <h1>
+              05-23
+              <small>css的伪类和伪元素</small>
+            </h1>
+          </div>  
+      </div>
+      </a>
+    
+      
+      
+      <a href="https://uaenaTzx.github.io/post/class-shu-xing-neng-fou-yong-you-duo-ge-shu-xing-zhi/">
+        <div class="motion-warpper tag-archive-node">
+          <div class="tag-node">
+            <h1>
+              05-23
+              <small>class属性能否拥有多个属性值？</small>
+            </h1>
+          </div>  
+      </div>
+      </a>
+    
+      
       
       <a href="https://uaenaTzx.github.io/post/css-gao-du-ta-xian-de-jie-jue/">
         <div class="motion-warpper tag-archive-node">
@@ -1166,6 +1192,49 @@ jQuery(document).ready(function($) {
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-de-wei-lei/"" data-c="
+          &lt;p&gt;1&lt;/p&gt;
+">css的伪类和伪元素</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/class-shu-xing-neng-fou-yong-you-duo-ge-shu-xing-zhi/"" data-c="
+          &lt;p&gt;答案是肯定的，但是当&lt;code&gt;class&lt;/code&gt;拥有多个属性值时，会出现什么变化呢？&lt;br&gt;
+简而言之，多个样式&lt;font color=&#34;red&#34;&gt;(用空格分开)&lt;/font&gt;定义最终会叠加在一起应用到当前元素👦，这样就把复杂的样式拆分开来，便于后续的修改调整。&lt;/p&gt;
+&lt;p&gt;比较常用的就有&lt;code&gt;clearfix&lt;/code&gt;操作(此处参考《css高度塌陷的解决》)&lt;br&gt;
+代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;box1 clearfix&amp;quot;&amp;gt;
+    &amp;lt;div class=&amp;quot;box2&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+.box1 {
+  border: 10px red solid;
+}
+
+.box2 {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  float: left;
+}
+
+/* 要加的属性 */
+.clearfix:after {
+  content: &amp;quot;&amp;quot;; /* 添加内容为空 */
+  clear: both; /* 清楚两侧浮动 */
+  display: block; /* 转换元素类型为块元素 */
+  height: 0;
+  overflow: hidden; /* 溢出隐藏属性 */
+  visibility: hidden; /* 隐藏属性 */
+}
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以观察到&lt;code&gt;&amp;lt;div class=&amp;quot;box1 clearfix&amp;quot;&amp;gt;&lt;/code&gt;中，两个class的属性值得样式最后会合并，巧妙地解决了高度塌陷问题&lt;/p&gt;
+">class属性能否拥有多个属性值？</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-gao-du-ta-xian-de-jie-jue/"" data-c="
           &lt;h1 id=&#34;一-什么是高度塌陷&#34;&gt;一、什么是高度塌陷？&lt;/h1&gt;
 &lt;p&gt;当父元素不设置高度&lt;font color=&#34;red&#34;&gt;(由子元素高度决定)&lt;/font&gt;且子元素浮动后，父元素就会高度塌陷，这样会导致整个页面的布局混乱。&lt;/p&gt;
@@ -1183,32 +1252,32 @@ jQuery(document).ready(function($) {
 &lt;p&gt;⑤通过&lt;code&gt;:after&lt;/code&gt;伪类元素添加一个空白的块元素，同时给父类元素加上clear_fix的类名&lt;br&gt;
 =&amp;gt; 推荐使用，几乎没有弊端&lt;br&gt;
 相关代码如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;   	&amp;lt;div class=&amp;quot;box1 clear_fix&amp;quot;&amp;gt;
-   		&amp;lt;div class=&amp;quot;box2&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-   	&amp;lt;/div&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;box1 clearfix&amp;quot;&amp;gt;
+   &amp;lt;div class=&amp;quot;box2&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
 
-       &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
-   		.box1 {
-   			border: 10px red solid;
-   		}
+&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+.box1 {
+ border: 10px red solid;
+}
 
-   		.box2 {
-   			width: 100px;
-   			height: 100px;
-   			background-color: blue;
-   			float: left;
-   		}
+.box2 {
+ width: 100px;
+ height: 100px;
+ background-color: blue;
+ float: left;
+}
 
-           /* 要加的属性 */
-   		.clear_fix:after { 
-   			content: &amp;quot;&amp;quot;; /* 添加内容为空 */
-   			clear: both; /* 清楚两侧浮动 */
-   			display: block; /* 转换元素类型为块元素 */
-   			height: 0;
-   			overflow: hidden; /* 溢出隐藏属性 */
-   			visibility: hidden;/* 隐藏属性 */
-   		}
-   	&amp;lt;/style&amp;gt;
+/* 要加的属性 */
+.clearfix:after {
+ content: &amp;quot;&amp;quot;; /* 添加内容为空 */
+ clear: both; /* 清楚两侧浮动 */
+ display: block; /* 转换元素类型为块元素 */
+ height: 0;
+ overflow: hidden; /* 溢出隐藏属性 */
+ visibility: hidden; /* 隐藏属性 */
+}
+&amp;lt;/style&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;代码至此，又出现了很多可以去学习的问题，如伪类的使用、&lt;code&gt;class&lt;/code&gt;带多属性值、&lt;code&gt;visibility&lt;/code&gt;与&lt;code&gt;display&lt;/code&gt;的区别。这三个问题将会在后续的文章中一一提及。&lt;/p&gt;
 ">css高度塌陷的解决</a>
