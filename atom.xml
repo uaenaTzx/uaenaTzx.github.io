@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-23T13:12:29.439Z</updated>
+    <updated>2022-05-23T13:44:11.332Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -10,15 +10,6 @@
     <logo>https://uaenaTzx.github.io/images/avatar.png</logo>
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
-    <entry>
-        <title type="html"><![CDATA[css的伪类和伪元素]]></title>
-        <id>https://uaenaTzx.github.io/post/css-de-wei-lei/</id>
-        <link href="https://uaenaTzx.github.io/post/css-de-wei-lei/">
-        </link>
-        <updated>2022-05-23T12:36:31.000Z</updated>
-        <content type="html"><![CDATA[<p>1</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[class属性能否拥有多个属性值？]]></title>
         <id>https://uaenaTzx.github.io/post/class-shu-xing-neng-fou-yong-you-duo-ge-shu-xing-zhi/</id>
@@ -109,6 +100,217 @@
 &lt;/style&gt;
 </code></pre>
 <p>代码至此，又出现了很多可以去学习的问题，如伪类的使用、<code>class</code>带多属性值、<code>visibility</code>与<code>display</code>的区别。这三个问题将会在后续的文章中一一提及。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[async、await函数的原理解析]]></title>
+        <id>https://uaenaTzx.github.io/post/asyncawait-han-shu-de-yuan-li-jie-xi/</id>
+        <link href="https://uaenaTzx.github.io/post/asyncawait-han-shu-de-yuan-li-jie-xi/">
+        </link>
+        <updated>2022-05-15T14:28:17.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="什么是async-await函数">什么是async、await函数</h1>
+<p>简而言之，<code>async/await</code>是针对js异步问题的一种强有力的处理方法。</p>
+<p>如果将<code>async</code>放在函数声明之前，则表明该函数是一个会返回<code>Promise</code>对象的异步函数。<br>
+<code>await</code>必须和<code>async</code>一起使用<font color="red">(有<code>await</code>必有<code>async</code>，有<code>async</code>不一定有<code>await</code>🌞)</font><br>
+如果我们将<code>await</code>放在异步函数调用之前，则当代码执行到此处的时候，代码将会暂停，等到异步函数执行完成后，才会继续向下执行——<font color="red">这样就实现了异步函数的同步执行~</font></p>
+<p>接下来我们用代码来演示一遍<code>async</code>和<code>await</code>的使用（红绿灯案例）</p>
+<pre><code>        function timer(color, delay) {
+            //返回一个Promise对象
+            return new Promise((reslove, reject) =&gt; {
+                console.log(color)
+                setTimeout(() =&gt; {
+                    reslove()
+                }, delay)
+            })
+        }
+
+        async function light() {
+            await timer('green', 1000)
+            await timer('yellow', 2000)
+            await timer('red', 3000)
+
+            await light()
+        }
+        light()
+</code></pre>
+<p>这样就实现了一个简单的的红绿灯系统，通过运行，我们可以发现整个函数是以同步的方式向下执行的。<br>
+而要深究其中的原理，我们发现<code>Generator</code>函数可以实现这个过程</p>
+<h1 id="什么是generator函数">什么是Generator函数</h1>
+<p><code>Generator</code>函数是由ES6语法提供的一种异步编程解决方案。</p>
+<p>如何理解<code>Generator</code>呢？<br>
+<code>Generator</code>函数在自己的函数内部有多个“断点”，必须手动的调用next()方法才能执行下一步，这样的模式允许我们自如地去暂停/执行函数里面的代码(可以与“挤牙膏”进行类比)</p>
+<p>下面我们来聊一下<code>Generator</code>函数的特征：</p>
+<p>① function关键字和函数名之间有一个*<br>
+(function* generatorDemo() {})<br>
+② 内部使用<code>yield</code>进行状态控制<br>
+③ 使用<code>next</code>执行下一步操作直到遇到<code>yield</code>关键字或者<code>return</code></p>
+<p>我们通过简单的代码来展示一下</p>
+<pre><code>function* generatorLight() {
+        let value1 = yield 'green'
+        let value2 = yield 'yellow'
+        let value3 = yield 'red'
+        console.log(value1 + ' ' + value2 +  ' ' + value3)
+    }
+
+    let light = generatorLight();
+    console.log(light.next()) 
+    console.log(light.next())
+    console.log(light.next())
+    console.log(light.next()) 
+</code></pre>
+<p>在上方代码中，我们调用<code>generatorLight()</code>并不是执行了该函数，而是返回了一个指向内部状态的<font color="red">指针对象</font>。通过<code>next()</code>方法来使指针指向下一个状态。</p>
+<p>每一次next方法会返回一个对象：</p>
+<pre><code>    {
+        value: xxx
+        done:  true/false //指针是否指向了函数末尾 即函数是否执行完毕
+    },
+</code></pre>
+<p>其中，<code>value</code>代表<code>yield</code>后面表达式返回的值，如果遇到<code>return</code>，则将<code>return</code>后跟的表达式的值作为<code>value</code>的值。(如果函数没有<code>return</code>, 则<code>value</code>的值为<code>undefined</code>)<br>
+<code>done</code>表示指针是否遍历完所有的<code>yield</code>对象，遇到<code>return</code>或者函数结束时，返回<code>true</code>(其余都为<code>false</code>)。</p>
+<p>however，通过执行代码，我们可以发现<code>console.log(value1 + ' ' + value2 + ' ' + value3);</code>的输出结果是“undefined undefined undefined”。这是因为<code>yield</code>本身的返回值是<code>undefined</code>。 如果我们需要上一步的<code>yield</code>的返回值，我们需要将上一步的返回值传入<code>next()</code>中</p>
+<pre><code>function* generatorLight() {
+        let value1 = yield 'green'
+        let value2 = yield 'yellow'
+        let value3 = yield 'red'
+        console.log(value1 + ' ' + value2 +  ' ' + value3)
+    }
+
+    let light = generatorLight()
+    let res1 = light.next()
+    let res2 = light.next(res1.value)
+    let res3 = light.next(res2.value)
+    light.next(res3.value)
+</code></pre>
+<p>这样就可以得到这样的结果：“green yellow red”</p>
+<p>可是我们发现，<code>Generator</code>需要我们手动的去一次次执行，但刚刚实现的红绿灯系统却可以自动执行，为了让<code>Generator</code>也能够自动执行，我们应该引入<code>Thunk</code>函数的思想</p>
+<h1 id="什么是thunk函数">什么是Thunk函数</h1>
+<p><code>Thunk</code>函数是指将一个多参数函数替换成一个只接受<font color="red">回调函数</font>作为参数的单参数函数。</p>
+<p>下面通过一个例子来体现<code>Thunk</code>函数的思想</p>
+<pre><code> // 原函数
+    readFile(fileName, callback)
+
+    // thunk函数
+    function thunk(fileName) {
+        return function(callback) {
+            return readFile(fileName, callback)
+        }
+    }
+
+    let file = thunk('a.text')
+    file(callback)
+</code></pre>
+<p>这个例子只是仅仅说明<code>thunk</code>的思想， 接下来我们要用<code>thunk</code>的思想来包装<code>Generator</code>函数，使它可以自动执行。</p>
+<pre><code>         // Generator函数
+        function* generatorLight() {
+        let value1 = yield 'green'
+        let value2 = yield 'yellow'
+        let value3 = yield 'red'
+        console.log(value1 + ' ' + value2 +  ' ' + value3)
+    }
+
+        // thunk包装
+        function Thunk(fn) {
+            const light = fn()
+
+            function next(data) {
+                let res = light.next(data)
+                if (res.done) {
+                    return res.value
+                }
+                next(res.value)
+            }
+            next(undefined)
+        }
+
+        Thunk(generatorLight)
+</code></pre>
+<p>我们在<code>Thunk</code>内部定义了一个<code>next</code>函数。通过递归来进行自动执行</p>
+<h1 id="实现asyncawait">实现async/await</h1>
+<p>接下来我们使用<code>Generator</code>函数来实现<code>async/await</code></p>
+<p>首先，我们再来回顾一下之前的代码</p>
+<pre><code>        function timer(color, delay) {
+            //返回一个Promise对象
+            return new Promise((reslove, reject) =&gt; {
+                console.log(color)
+                setTimeout(() =&gt; {
+                    reslove()
+                }, delay)
+            })
+        }
+
+        async function light() {
+            await timer('green', 1000)
+            await timer('yellow', 2000)
+            await timer('red', 3000)
+
+            await light()
+        }
+        light()
+</code></pre>
+<p>我们先将<code>light</code>函数改造成<code>Generator</code>函数</p>
+<pre><code>function* light() {
+             yield timer('green', 1000)
+             yield timer('yellow', 2000)
+             yield timer('red', 3000)
+
+             light()
+        }
+</code></pre>
+<p>接着，我们再来实现<code>Thunk</code>函数</p>
+<pre><code>   function Thunk(fn) {
+       return new Promise((resolve, reject) =&gt; {
+           const light = fn()
+           function next(data) {
+               let res = light.next(data)
+               if (res.done) {
+                   return resolve(res.value)
+               }
+               Promise.resolve(res.value).then(res =&gt; {
+                   next(res)
+               })
+           }
+           next(undefined)
+       })
+   }
+</code></pre>
+<p>到这里，我们就可以实现<code>async、await</code>的功能了，要注意的是，<font color="red"><code>light</code>的递归需要使用Thunk(light)!</font><br>
+完整代码如下</p>
+<pre><code>function timer(color, delay) {
+            //返回一个Promise对象
+            return new Promise((reslove, reject) =&gt; {
+                console.log(color)
+                setTimeout(() =&gt; {
+                    reslove()
+                }, delay)
+            })
+        }
+
+       function* light() {
+             yield timer('green', 1000)
+             yield timer('yellow', 2000)
+             yield timer('red', 3000)
+             //light递归
+             Thunk(light)
+        }
+
+    function Thunk(fn) {
+       return new Promise((resolve, reject) =&gt; {
+           const light = fn()
+           function next(data) {
+               let res = light.next(data)
+               if (res.done) {
+                   return resolve(res.value)
+               }
+               Promise.resolve(res.value).then(res =&gt; {
+                   next(res)
+               })
+           }
+           next(undefined)
+       })
+   }
+
+   Thunk(light)
+</code></pre>
 ]]></content>
     </entry>
 </feed>
