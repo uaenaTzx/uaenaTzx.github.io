@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>关于 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1653277935217">
+<link rel="shortcut icon" href="/favicon.ico?v=1653305880223">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -187,7 +187,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-count">6</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1664,6 +1664,55 @@ jQuery(document).ready(function($) {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-gao-du-ta-xian-de-jie-jue/"" data-c="
+          &lt;h1 id=&#34;一-什么是高度塌陷&#34;&gt;一、什么是高度塌陷？&lt;/h1&gt;
+&lt;p&gt;当父元素不设置高度&lt;font color=&#34;red&#34;&gt;(由子元素高度决定)&lt;/font&gt;且子元素浮动后，父元素就会高度塌陷，这样会导致整个页面的布局混乱。&lt;/p&gt;
+&lt;h1 id=&#34;二-如何解决高度塌陷&#34;&gt;二、如何解决高度塌陷？&lt;/h1&gt;
+&lt;p&gt;以下，总结了几种方法：&lt;/p&gt;
+&lt;p&gt;①给父元素设置固定的高度&lt;br&gt;
+=&amp;gt; 弊端：无法使父元素高度自适应&lt;/p&gt;
+&lt;p&gt;②给父元素设置&lt;code&gt;overflow：hidden&lt;/code&gt;，解决高度塌陷并能实现高度自适应的方法&lt;br&gt;
+=&amp;gt; 弊端：当内容超出父元素以外时，超出的内容就会被隐藏！&lt;/p&gt;
+&lt;p&gt;③添加一个空元素，并且给他设置清除浮动的属性(&lt;code&gt;clear:both&lt;/code&gt;)&lt;br&gt;
+=&amp;gt; 弊端：会添加很多空标记，增加结构负担，产生代码冗余；&lt;br&gt;
+&lt;strong&gt;注：布局时可以通过空元素(如：el-col)巧妙地进行占位，可以对边框设置&lt;code&gt;border:1px solid white&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;④将父元素类型转换为表格(给父元素添加&lt;code&gt;display：table&lt;/code&gt;)&lt;br&gt;
+=&amp;gt; 弊端：会改变当前元素的元素类型，引发其他问题&lt;/p&gt;
+&lt;p&gt;⑤通过&lt;code&gt;:after&lt;/code&gt;伪类元素添加一个空白的块元素，同时给父类元素加上clear_fix的类名&lt;br&gt;
+=&amp;gt; 推荐使用，几乎没有弊端&lt;br&gt;
+相关代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   	&amp;lt;div class=&amp;quot;box1 clear_fix&amp;quot;&amp;gt;
+   		&amp;lt;div class=&amp;quot;box2&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+   	&amp;lt;/div&amp;gt;
+
+       &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+   		.box1 {
+   			border: 10px red solid;
+   		}
+
+   		.box2 {
+   			width: 100px;
+   			height: 100px;
+   			background-color: blue;
+   			float: left;
+   		}
+
+           /* 要加的属性 */
+   		.clear_fix:after { 
+   			content: &amp;quot;&amp;quot;; /* 添加内容为空 */
+   			clear: both; /* 清楚两侧浮动 */
+   			display: block; /* 转换元素类型为块元素 */
+   			height: 0;
+   			overflow: hidden; /* 溢出隐藏属性 */
+   			visibility: hidden;/* 隐藏属性 */
+   		}
+   	&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;代码至此，又出现了很多可以去学习的问题，如伪类的使用、&lt;code&gt;class&lt;/code&gt;带多属性值、&lt;code&gt;visibility&lt;/code&gt;与&lt;code&gt;display&lt;/code&gt;的区别。这三个问题将会在后续的文章中一一提及。&lt;/p&gt;
+">css高度塌陷的解决</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/asyncawait-han-shu-de-yuan-li-jie-xi/"" data-c="

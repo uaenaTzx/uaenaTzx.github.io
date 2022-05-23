@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-23T03:52:25.415Z</updated>
+    <updated>2022-05-23T11:38:02.943Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -10,6 +10,58 @@
     <logo>https://uaenaTzx.github.io/images/avatar.png</logo>
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[css高度塌陷的解决]]></title>
+        <id>https://uaenaTzx.github.io/post/css-gao-du-ta-xian-de-jie-jue/</id>
+        <link href="https://uaenaTzx.github.io/post/css-gao-du-ta-xian-de-jie-jue/">
+        </link>
+        <updated>2022-05-23T06:24:45.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-什么是高度塌陷">一、什么是高度塌陷？</h1>
+<p>当父元素不设置高度<font color="red">(由子元素高度决定)</font>且子元素浮动后，父元素就会高度塌陷，这样会导致整个页面的布局混乱。</p>
+<h1 id="二-如何解决高度塌陷">二、如何解决高度塌陷？</h1>
+<p>以下，总结了几种方法：</p>
+<p>①给父元素设置固定的高度<br>
+=&gt; 弊端：无法使父元素高度自适应</p>
+<p>②给父元素设置<code>overflow：hidden</code>，解决高度塌陷并能实现高度自适应的方法<br>
+=&gt; 弊端：当内容超出父元素以外时，超出的内容就会被隐藏！</p>
+<p>③添加一个空元素，并且给他设置清除浮动的属性(<code>clear:both</code>)<br>
+=&gt; 弊端：会添加很多空标记，增加结构负担，产生代码冗余；<br>
+<strong>注：布局时可以通过空元素(如：el-col)巧妙地进行占位，可以对边框设置<code>border:1px solid white</code></strong></p>
+<p>④将父元素类型转换为表格(给父元素添加<code>display：table</code>)<br>
+=&gt; 弊端：会改变当前元素的元素类型，引发其他问题</p>
+<p>⑤通过<code>:after</code>伪类元素添加一个空白的块元素，同时给父类元素加上clear_fix的类名<br>
+=&gt; 推荐使用，几乎没有弊端<br>
+相关代码如下：</p>
+<pre><code>   	&lt;div class=&quot;box1 clear_fix&quot;&gt;
+   		&lt;div class=&quot;box2&quot;&gt;&lt;/div&gt;
+   	&lt;/div&gt;
+
+       &lt;style type=&quot;text/css&quot;&gt;
+   		.box1 {
+   			border: 10px red solid;
+   		}
+
+   		.box2 {
+   			width: 100px;
+   			height: 100px;
+   			background-color: blue;
+   			float: left;
+   		}
+
+           /* 要加的属性 */
+   		.clear_fix:after { 
+   			content: &quot;&quot;; /* 添加内容为空 */
+   			clear: both; /* 清楚两侧浮动 */
+   			display: block; /* 转换元素类型为块元素 */
+   			height: 0;
+   			overflow: hidden; /* 溢出隐藏属性 */
+   			visibility: hidden;/* 隐藏属性 */
+   		}
+   	&lt;/style&gt;
+</code></pre>
+<p>代码至此，又出现了很多可以去学习的问题，如伪类的使用、<code>class</code>带多属性值、<code>visibility</code>与<code>display</code>的区别。这三个问题将会在后续的文章中一一提及。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[async、await函数的原理解析]]></title>
         <id>https://uaenaTzx.github.io/post/asyncawait-han-shu-de-yuan-li-jie-xi/</id>
@@ -1037,45 +1089,6 @@ promise.then().then(value =&gt; console.log(value))
 `Promise`的手写部分基本大功告成 🎉🎉🎉
 在后续还会通过 `Promise A+` 规范对我们的代码进行校验，来更加完善我们的代码👊👊👊
 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[JavaScript中的类方法、对象方法、原型方法]]></title>
-        <id>https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/</id>
-        <link href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/">
-        </link>
-        <updated>2022-05-10T02:19:41.000Z</updated>
-        <content type="html"><![CDATA[<p>定义：<br>
-①类方法：也叫函数方法(在<code>js</code>中可以为函数添加属性以及方法)；<br>
-②对象方法：包括构造函数中的方法以及其原型上面的方法<font color="red">(对象方法包含了原型方法)；</font><br>
-③原型方法：一般用于对象实例共享，为避免内存复用而在原型上添加方法；</p>
-<p><strong>js中的function作为构造函数时，被视为一个类。可以通过new xxx来得到一个实例对象</strong><br>
-以下是一个示例代码，来厘清以上三者的区别：</p>
-<pre><code>function People(name){ 
-  this.name=name; 
-  //对象方法 (实例方法)
-  //每个对象实例都有的方法
-  //只有对象实例才能调用的方法
-  this.Name=function(){
-    console.log(&quot;My name is &quot;+this.name); 
-  } 
-} 
-//类方法 
-//只有原型才能调用的方法
-People.Sleep=function(){ 
-  console.log(&quot;People need sleep&quot;); 
-} 
-//原型方法 
-//所有对象实例共享的方法
-//原型可通过People.prototype.learn()调用
-People.prototype.learn=function(){ 
-  console.log('learning'); 
-}
-var Uaena =new People(&quot;Uaena&quot;); 
-Uaena.Name();         //对象方法需要通过实例化对象去调用 
-People.Sleep();        //类方法不需要通过实例化对象去调用 
-Uaena.learn();         //原型方法需要通过实例化对象去调用
 </code></pre>
 ]]></content>
     </entry>
