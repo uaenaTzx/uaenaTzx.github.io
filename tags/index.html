@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1653313448721">
+<link rel="shortcut icon" href="/favicon.ico?v=1653382104761">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -169,7 +169,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">7</span>
+        <span class="site-item-stat-count">8</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -237,9 +237,7 @@
       
         
           
-        
-          
-        
+            
       
         
           
@@ -266,10 +264,16 @@
         
       
         
+          
+        
+          
+        
       
         
       
-      <a class="cloud-tag" href="https://uaenaTzx.github.io/tag/FetAAAg9s/" rel="2">css</a>
+        
+      
+      <a class="cloud-tag" href="https://uaenaTzx.github.io/tag/FetAAAg9s/" rel="3">css</a>
     
       
       
@@ -316,12 +320,24 @@
             
       
         
+          
+        
+          
+            
       
         
       
-      <a class="cloud-tag" href="https://uaenaTzx.github.io/tag/888Nsy-do/" rel="7">Gridea</a>
+        
+      
+      <a class="cloud-tag" href="https://uaenaTzx.github.io/tag/888Nsy-do/" rel="8">Gridea</a>
     
       
+      
+        
+          
+        
+          
+        
       
         
           
@@ -393,6 +409,12 @@
       
         
           
+        
+          
+        
+      
+        
+          
             
       
         
@@ -414,6 +436,12 @@
       <a class="cloud-tag" href="https://uaenaTzx.github.io/tag/la3aFx0RN/" rel="1">JavaScript</a>
     
       
+      
+        
+          
+        
+          
+        
       
         
           
@@ -1347,6 +1375,65 @@ jQuery(document).ready(function($) {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-de-wei-lei/"" data-c="
+          &lt;p&gt;什么是伪类和伪元素？&lt;br&gt;
+接下来，文章会从“区分伪类和伪元素”和“部分实用的伪类和伪元素应用”来加深读者对此的认知。&lt;/p&gt;
+&lt;h1 id=&#34;一-区分伪类和伪元素&#34;&gt;一、区分伪类和伪元素&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;CSS3&lt;/code&gt;之后，伪元素才从伪类之中被分类出来，如我们常用的&lt;code&gt;:before&lt;/code&gt;和&lt;code&gt;:after&lt;/code&gt;。&lt;br&gt;
+实际上css3为了区分两者，已经明确规定了伪类用一个冒号来表示，而伪元素则用两个冒号来表示(部分伪元素一个冒号也可行)&lt;br&gt;
+如何区分伪元素和伪类？我们需要记住以下两点：&lt;br&gt;
+①.伪类表示被选择元素的处于的某种状态，最常用的有&lt;code&gt;:hover&lt;/code&gt;、&lt;code&gt;:active&lt;/code&gt;……&lt;br&gt;
+②.伪元素表示目标元素的某个部分，虽然这个部分像是一个独立的元素，但其实是&amp;quot;假元素&amp;quot;，只存在于css中，例如&lt;code&gt;:before&lt;/code&gt;和&lt;code&gt;:after&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;however，由于伪类和伪元素的数量太多了，我们只需要熟练运用部分常用的伪类和伪元素即可，下面我们来尝试运用一下常用的伪类和伪元素。👊👊👊&lt;/p&gt;
+&lt;h1 id=&#34;二-常见伪类和伪元素的基本应用&#34;&gt;二、常见伪类和伪元素的基本应用&lt;/h1&gt;
+&lt;p&gt;①伪元素的应用：&lt;code&gt;before&lt;/code&gt;、&lt;code&gt;after&lt;/code&gt;、&lt;code&gt;first-letter&lt;/code&gt;、&lt;code&gt;first-line&lt;/code&gt;、&lt;code&gt;selection&lt;/code&gt;和&lt;code&gt;placeholder&lt;/code&gt;，分别表示元素内容的前面、元素内容的后面、第一个文字、第一行文字、选中部分以及占位的文本&lt;/p&gt;
+&lt;p&gt;示例代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;div.box1{
+    border: 1px black solid;
+    background: grey;
+    background-clip: content-box;
+    width: 300px;
+    padding: 20px;
+}
+
+/* 伪元素before和after */
+div.box1:before{
+    content: &amp;quot;before&amp;quot;;
+    color: rgb(177, 81, 13);
+}
+div.box1:after{
+    content: &amp;quot;after&amp;quot;;
+    color: rgb(243, 29, 72);
+}
+
+/* 伪元素:first-letter和:first-line*/
+div.box2:first-letter{
+    font-size: 3em;
+    font-weight: bold;
+}
+div.box2:first-line{
+    color: red;
+}
+
+/* 伪元素::section和::placeholder*/
+div.section::selection{
+    color: blue;
+}
+input.placeholder::placeholder{
+    background-color: red;
+    color: blue;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;需要注意的是，&lt;font color=&#34;red&#34;&gt;伪元素的前缀有&amp;quot;:&amp;quot;和&amp;quot;::&amp;quot;&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;②伪类的应用：状态类伪类是最常用的，&lt;code&gt;link&lt;/code&gt;、&lt;code&gt;visited&lt;/code&gt;、&lt;code&gt;hover&lt;/code&gt;、&lt;code&gt;active&lt;/code&gt;和&lt;code&gt;focus&lt;/code&gt;，分别表示正常状态下的链接、点击后、悬停时、被激活时和聚焦时&lt;br&gt;
+注：&lt;br&gt;
+1.&lt;code&gt;focus&lt;/code&gt;表示元素获得光标焦点时的&lt;code&gt;style&lt;/code&gt;，主要用于文本框输入文字时使用（鼠标松开时显示的&lt;code&gt;style&lt;/code&gt;）&lt;br&gt;
+2.&lt;code&gt;link&lt;/code&gt;表示链接在正常情况下显示的颜色&lt;br&gt;
+3.&lt;code&gt;visited&lt;/code&gt;表示链接被点击后显示的颜色&lt;/p&gt;
+">css的伪类和伪元素</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/class-shu-xing-neng-fou-yong-you-duo-ge-shu-xing-zhi/"" data-c="
