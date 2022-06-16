@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-06-16T10:10:53.668Z</updated>
+    <updated>2022-06-16T10:37:42.254Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -15,7 +15,7 @@
         <id>https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/</id>
         <link href="https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/">
         </link>
-        <updated>2022-05-24T15:19:15.000Z</updated>
+        <updated>2022-06-16T15:19:15.000Z</updated>
         <content type="html"><![CDATA[<p>从最基础的开始说，它们的区别在于<code>display:none</code><font color="red">不占用原来的位置</font>，而<code>visibility:hidden</code><font color="red">保留原来的位置。</font><br>
 接下来要补充的，是更多在细节上的区别（只讲述一些稍微常用的知识点）：</p>
 <h1 id="一-displaynone的性质">一、display:none的性质</h1>
@@ -55,7 +55,7 @@
         <id>https://uaenaTzx.github.io/post/tong-guo-js-shi-xian-jian-dan-de-zu-jian-tuo-zhuai-xiao-guo/</id>
         <link href="https://uaenaTzx.github.io/post/tong-guo-js-shi-xian-jian-dan-de-zu-jian-tuo-zhuai-xiao-guo/">
         </link>
-        <updated>2022-05-24T15:18:45.000Z</updated>
+        <updated>2022-06-16T15:18:45.000Z</updated>
         <content type="html"><![CDATA[<p>1</p>
 ]]></content>
     </entry>
