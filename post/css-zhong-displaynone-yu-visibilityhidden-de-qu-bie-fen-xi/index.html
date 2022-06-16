@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
-<title>关于 | Uaena_blog</title>
+<title>css中display:none与visibility:hidden的区别和共性分析 | Uaena_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1655374248232">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,7 +41,7 @@
 
 
 
-  <meta name="description" content="关于" />
+  <meta name="description" content="css中display:none与visibility:hidden的区别和共性分析" />
   <meta name="keywords" content="" />
 </head>
 
@@ -226,14 +226,8 @@
   <div class="toc-wrapper  auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
+<li><a href="#%E4%B8%80-displaynone%E7%9A%84%E6%80%A7%E8%B4%A8">一、display:none的性质</a></li>
+<li><a href="#%E4%BA%8C-visibilityhidden%E7%9A%84%E6%80%A7%E8%B4%A8">二、visibility:hidden的性质</a></li>
 </ul>
 
   </div>
@@ -499,21 +493,21 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://uaenaTzx.github.io/post/about/"> 关于 </a>
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/"> css中display:none与visibility:hidden的区别和共性分析 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-05-08 17:13:37">2022-05-08</span>
+      <span class="publish-time" data-t="2022-05-24 23:19:15">2022-05-24</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >1<span class="language" data-lan="minute"
+        >2<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -522,15 +516,15 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >151<span class="pc-show language" data-lan="words"
+        >458<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
     </span>
       
     <span
-      id="/post/about/"
-      data-flag-title="关于"
+      id="/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/"
+      data-flag-title="css中display:none与visibility:hidden的区别和共性分析"
       class="meta-item pc-show leancloud_visitors"
     >
       <span class="post-meta-divider">|</span>
@@ -546,22 +540,73 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>本站只是博主学习、做项目的时候对碰到的问题的一个笔记汇总，更倾向于细碎的tips或者代码原理。在记录的同时也希望能产生更多的价值。和菜狗博主一起冲冲冲吧👊👊👊</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>博主是一个很那啥那啥的男娃子🙅‍♂</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>这个就很多了啊。这个这个，还有那个那个……</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>扣扣：3131496501<br>
-Wechat：Tongzixin2003<br>
-有想要交流的大佬们可以随时来我🤞🤞🤞</p>
+              <p>从最基础的开始说，它们的区别在于<code>display:none</code><font color="red">不占用原来的位置</font>，而<code>visibility:hidden</code><font color="red">保留原来的位置。</font><br>
+接下来要补充的，是更多在细节上的区别（只讲述一些稍微常用的知识点）：</p>
+<h1 id="一-displaynone的性质">一、display:none的性质</h1>
+<p>1.父元素为<code>display:none</code>，子孙元素也会被设置为<code>display:none</code></p>
+<pre><code>.hidden{
+  display: none;
+}
+.visible{
+  display: block;//元素显示在页面上，它是块模式显示，和周围的元素不在一行,自己单独一行
+}
+&lt;div class=&quot;hidden&quot;&gt;
+  father
+  &lt;div class=&quot;visible&quot;&gt; son&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>结果显示son没有被渲染到页面上</p>
+<p>2.无法获取焦点<br>
+由于在盒子模型中就没有出现目标元素，何谈获取焦点呢🤡</p>
+<p>3.<code>display:none</code>的元素也无法响应事件，诸如捕获、命中目标和冒泡阶段(因为父元素没了，子元素也凉凉)</p>
+<p>4.不妨碍<code>form</code>表单的提交</p>
+<h1 id="二-visibilityhidden的性质">二、visibility:hidden的性质</h1>
+<p>在此之前，先补充一下<code>visibility</code>的四个有效值：<br>
+①<code>.visible</code>：在界面上显示<br>
+②<code>.hidden</code>：在界面上不可视，但保留元素原来占有的位置<br>
+③<code>.collapse</code>：用于表格子元素(如tr,tbody,col,colgroup)时，效果和<code>display:none</code>一样，用于其他元素上时则效果与<code>visibility:hidden</code>一样(几乎不使用)<br>
+④<code>.inherit</code>：使元素继承父元素的<code>visibility</code>值</p>
+<p>接下来开始讲讲<code>visibility:hidden</code>的性质：<br>
+1.父元素为<code>visibility:hidden</code>时，子孙元素可以设置为<code>visibility:visible</code>并且生效</p>
+<p>2.同样的，<code>visibility:hidden</code>也不能获取焦点</p>
+<p>3.可以响应冒泡~</p>
+<p>4.不妨碍<code>form</code>表单的提交</p>
+<p>合理的理解两者的区别可以更好地帮助我们设计布局，避免出现重构等问题，还有更多的细节会在之后陆续补充。</p>
 
             </div>
             
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Uaena
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/" title="css中display:none与visibility:hidden的区别和共性分析">https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="通过js实现简单的组件拖拽效果" href="https://uaenaTzx.github.io/post/tong-guo-js-shi-xian-jian-dan-de-zu-jian-tuo-zhuai-xiao-guo/">通过js实现简单的组件拖拽效果</a>
+        <a class="nav-mobile-next" title="通过js实现简单的组件拖拽效果" href="https://uaenaTzx.github.io/post/tong-guo-js-shi-xian-jian-dan-de-zu-jian-tuo-zhuai-xiao-guo/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
             
             
   <script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>

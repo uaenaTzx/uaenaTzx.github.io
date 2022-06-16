@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>async、await函数的原理解析 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1653388370985">
+<link rel="shortcut icon" href="/favicon.ico?v=1655374248232">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -187,7 +187,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">8</span>
+        <span class="site-item-stat-count">11</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1902,6 +1902,55 @@ jQuery(document).ready(function($) {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/"" data-c="
+          &lt;p&gt;从最基础的开始说，它们的区别在于&lt;code&gt;display:none&lt;/code&gt;&lt;font color=&#34;red&#34;&gt;不占用原来的位置&lt;/font&gt;，而&lt;code&gt;visibility:hidden&lt;/code&gt;&lt;font color=&#34;red&#34;&gt;保留原来的位置。&lt;/font&gt;&lt;br&gt;
+接下来要补充的，是更多在细节上的区别（只讲述一些稍微常用的知识点）：&lt;/p&gt;
+&lt;h1 id=&#34;一-displaynone的性质&#34;&gt;一、display:none的性质&lt;/h1&gt;
+&lt;p&gt;1.父元素为&lt;code&gt;display:none&lt;/code&gt;，子孙元素也会被设置为&lt;code&gt;display:none&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.hidden{
+  display: none;
+}
+.visible{
+  display: block;//元素显示在页面上，它是块模式显示，和周围的元素不在一行,自己单独一行
+}
+&amp;lt;div class=&amp;quot;hidden&amp;quot;&amp;gt;
+  father
+  &amp;lt;div class=&amp;quot;visible&amp;quot;&amp;gt; son&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结果显示son没有被渲染到页面上&lt;/p&gt;
+&lt;p&gt;2.无法获取焦点&lt;br&gt;
+由于在盒子模型中就没有出现目标元素，何谈获取焦点呢🤡&lt;/p&gt;
+&lt;p&gt;3.&lt;code&gt;display:none&lt;/code&gt;的元素也无法响应事件，诸如捕获、命中目标和冒泡阶段(因为父元素没了，子元素也凉凉)&lt;/p&gt;
+&lt;p&gt;4.不妨碍&lt;code&gt;form&lt;/code&gt;表单的提交&lt;/p&gt;
+&lt;h1 id=&#34;二-visibilityhidden的性质&#34;&gt;二、visibility:hidden的性质&lt;/h1&gt;
+&lt;p&gt;在此之前，先补充一下&lt;code&gt;visibility&lt;/code&gt;的四个有效值：&lt;br&gt;
+①&lt;code&gt;.visible&lt;/code&gt;：在界面上显示&lt;br&gt;
+②&lt;code&gt;.hidden&lt;/code&gt;：在界面上不可视，但保留元素原来占有的位置&lt;br&gt;
+③&lt;code&gt;.collapse&lt;/code&gt;：用于表格子元素(如tr,tbody,col,colgroup)时，效果和&lt;code&gt;display:none&lt;/code&gt;一样，用于其他元素上时则效果与&lt;code&gt;visibility:hidden&lt;/code&gt;一样(几乎不使用)&lt;br&gt;
+④&lt;code&gt;.inherit&lt;/code&gt;：使元素继承父元素的&lt;code&gt;visibility&lt;/code&gt;值&lt;/p&gt;
+&lt;p&gt;接下来开始讲讲&lt;code&gt;visibility:hidden&lt;/code&gt;的性质：&lt;br&gt;
+1.父元素为&lt;code&gt;visibility:hidden&lt;/code&gt;时，子孙元素可以设置为&lt;code&gt;visibility:visible&lt;/code&gt;并且生效&lt;/p&gt;
+&lt;p&gt;2.同样的，&lt;code&gt;visibility:hidden&lt;/code&gt;也不能获取焦点&lt;/p&gt;
+&lt;p&gt;3.可以响应冒泡~&lt;/p&gt;
+&lt;p&gt;4.不妨碍&lt;code&gt;form&lt;/code&gt;表单的提交&lt;/p&gt;
+&lt;p&gt;合理的理解两者的区别可以更好地帮助我们设计布局，避免出现重构等问题，还有更多的细节会在之后陆续补充。&lt;/p&gt;
+">css中display:none与visibility:hidden的区别和共性分析</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/tong-guo-js-shi-xian-jian-dan-de-zu-jian-tuo-zhuai-xiao-guo/"" data-c="
+          &lt;p&gt;1&lt;/p&gt;
+">通过js实现简单的组件拖拽效果</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/elementui-zhong-backtop-hui-dao-ding-bu-zu-jian-de-yuan-ma-fen-xi/"" data-c="
+          &lt;p&gt;1&lt;/p&gt;
+">elementUi中BackTop回到顶部组件的源码分析</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-de-wei-lei/"" data-c="

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-05-24T10:32:54.247Z</updated>
+    <updated>2022-06-16T10:10:53.668Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -11,105 +11,52 @@
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
     <entry>
-        <title type="html"><![CDATA[css的伪类和伪元素]]></title>
-        <id>https://uaenaTzx.github.io/post/css-de-wei-lei/</id>
-        <link href="https://uaenaTzx.github.io/post/css-de-wei-lei/">
+        <title type="html"><![CDATA[css中display:none与visibility:hidden的区别和共性分析]]></title>
+        <id>https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/</id>
+        <link href="https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/">
         </link>
-        <updated>2022-05-23T12:36:31.000Z</updated>
-        <content type="html"><![CDATA[<p>什么是伪类和伪元素？<br>
-接下来，文章会从“区分伪类和伪元素”和“部分实用的伪类和伪元素应用”来加深读者对此的认知。</p>
-<h1 id="一-区分伪类和伪元素">一、区分伪类和伪元素</h1>
-<p><code>CSS3</code>之后，伪元素才从伪类之中被分类出来，如我们常用的<code>:before</code>和<code>:after</code>。<br>
-实际上css3为了区分两者，已经明确规定了伪类用一个冒号来表示，而伪元素则用两个冒号来表示(部分伪元素一个冒号也可行)<br>
-如何区分伪元素和伪类？我们需要记住以下两点：<br>
-①.伪类表示被选择元素的处于的某种状态，最常用的有<code>:hover</code>、<code>:active</code>……<br>
-②.伪元素表示目标元素的某个部分，虽然这个部分像是一个独立的元素，但其实是&quot;假元素&quot;，只存在于css中，例如<code>:before</code>和<code>:after</code></p>
-<p>however，由于伪类和伪元素的数量太多了，我们只需要熟练运用部分常用的伪类和伪元素即可，下面我们来尝试运用一下常用的伪类和伪元素。👊👊👊</p>
-<h1 id="二-常见伪类和伪元素的基本应用">二、常见伪类和伪元素的基本应用</h1>
-<p>①伪元素的应用：<code>before</code>、<code>after</code>、<code>first-letter</code>、<code>first-line</code>、<code>selection</code>和<code>placeholder</code>，分别表示元素内容的前面、元素内容的后面、第一个文字、第一行文字、选中部分以及占位的文本</p>
-<p>示例代码如下：</p>
-<pre><code>div.box1{
-    border: 1px black solid;
-    background: grey;
-    background-clip: content-box;
-    width: 300px;
-    padding: 20px;
+        <updated>2022-05-24T15:19:15.000Z</updated>
+        <content type="html"><![CDATA[<p>从最基础的开始说，它们的区别在于<code>display:none</code><font color="red">不占用原来的位置</font>，而<code>visibility:hidden</code><font color="red">保留原来的位置。</font><br>
+接下来要补充的，是更多在细节上的区别（只讲述一些稍微常用的知识点）：</p>
+<h1 id="一-displaynone的性质">一、display:none的性质</h1>
+<p>1.父元素为<code>display:none</code>，子孙元素也会被设置为<code>display:none</code></p>
+<pre><code>.hidden{
+  display: none;
 }
-
-/* 伪元素before和after */
-div.box1:before{
-    content: &quot;before&quot;;
-    color: rgb(177, 81, 13);
+.visible{
+  display: block;//元素显示在页面上，它是块模式显示，和周围的元素不在一行,自己单独一行
 }
-div.box1:after{
-    content: &quot;after&quot;;
-    color: rgb(243, 29, 72);
-}
-
-/* 伪元素:first-letter和:first-line*/
-div.box2:first-letter{
-    font-size: 3em;
-    font-weight: bold;
-}
-div.box2:first-line{
-    color: red;
-}
-
-/* 伪元素::section和::placeholder*/
-div.section::selection{
-    color: blue;
-}
-input.placeholder::placeholder{
-    background-color: red;
-    color: blue;
-}
+&lt;div class=&quot;hidden&quot;&gt;
+  father
+  &lt;div class=&quot;visible&quot;&gt; son&lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
-<p>需要注意的是，<font color="red">伪元素的前缀有&quot;:&quot;和&quot;::&quot;</font></p>
-<p>②伪类的应用：状态类伪类是最常用的，<code>link</code>、<code>visited</code>、<code>hover</code>、<code>active</code>和<code>focus</code>，分别表示正常状态下的链接、点击后、悬停时、被激活时和聚焦时<br>
-注：<br>
-1.<code>focus</code>表示元素获得光标焦点时的<code>style</code>，主要用于文本框输入文字时使用（鼠标松开时显示的<code>style</code>）<br>
-2.<code>link</code>表示链接在正常情况下显示的颜色<br>
-3.<code>visited</code>表示链接被点击后显示的颜色</p>
+<p>结果显示son没有被渲染到页面上</p>
+<p>2.无法获取焦点<br>
+由于在盒子模型中就没有出现目标元素，何谈获取焦点呢🤡</p>
+<p>3.<code>display:none</code>的元素也无法响应事件，诸如捕获、命中目标和冒泡阶段(因为父元素没了，子元素也凉凉)</p>
+<p>4.不妨碍<code>form</code>表单的提交</p>
+<h1 id="二-visibilityhidden的性质">二、visibility:hidden的性质</h1>
+<p>在此之前，先补充一下<code>visibility</code>的四个有效值：<br>
+①<code>.visible</code>：在界面上显示<br>
+②<code>.hidden</code>：在界面上不可视，但保留元素原来占有的位置<br>
+③<code>.collapse</code>：用于表格子元素(如tr,tbody,col,colgroup)时，效果和<code>display:none</code>一样，用于其他元素上时则效果与<code>visibility:hidden</code>一样(几乎不使用)<br>
+④<code>.inherit</code>：使元素继承父元素的<code>visibility</code>值</p>
+<p>接下来开始讲讲<code>visibility:hidden</code>的性质：<br>
+1.父元素为<code>visibility:hidden</code>时，子孙元素可以设置为<code>visibility:visible</code>并且生效</p>
+<p>2.同样的，<code>visibility:hidden</code>也不能获取焦点</p>
+<p>3.可以响应冒泡~</p>
+<p>4.不妨碍<code>form</code>表单的提交</p>
+<p>合理的理解两者的区别可以更好地帮助我们设计布局，避免出现重构等问题，还有更多的细节会在之后陆续补充。</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[class属性能否拥有多个属性值？]]></title>
-        <id>https://uaenaTzx.github.io/post/class-shu-xing-neng-fou-yong-you-duo-ge-shu-xing-zhi/</id>
-        <link href="https://uaenaTzx.github.io/post/class-shu-xing-neng-fou-yong-you-duo-ge-shu-xing-zhi/">
+        <title type="html"><![CDATA[通过js实现简单的组件拖拽效果]]></title>
+        <id>https://uaenaTzx.github.io/post/tong-guo-js-shi-xian-jian-dan-de-zu-jian-tuo-zhuai-xiao-guo/</id>
+        <link href="https://uaenaTzx.github.io/post/tong-guo-js-shi-xian-jian-dan-de-zu-jian-tuo-zhuai-xiao-guo/">
         </link>
-        <updated>2022-05-23T11:59:24.000Z</updated>
-        <content type="html"><![CDATA[<p>答案是肯定的，但是当<code>class</code>拥有多个属性值时，会出现什么变化呢？<br>
-简而言之，多个样式<font color="red">(用空格分开)</font>定义最终会叠加在一起应用到当前元素👦，这样就把复杂的样式拆分开来，便于后续的修改调整。</p>
-<p>比较常用的就有<code>clearfix</code>操作(此处参考《css高度塌陷的解决》)<br>
-代码如下：</p>
-<pre><code>&lt;div class=&quot;box1 clearfix&quot;&gt;
-    &lt;div class=&quot;box2&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;style type=&quot;text/css&quot;&gt;
-.box1 {
-  border: 10px red solid;
-}
-
-.box2 {
-  width: 100px;
-  height: 100px;
-  background-color: blue;
-  float: left;
-}
-
-/* 要加的属性 */
-.clearfix:after {
-  content: &quot;&quot;; /* 添加内容为空 */
-  clear: both; /* 清楚两侧浮动 */
-  display: block; /* 转换元素类型为块元素 */
-  height: 0;
-  overflow: hidden; /* 溢出隐藏属性 */
-  visibility: hidden; /* 隐藏属性 */
-}
-&lt;/style&gt;
-</code></pre>
-<p>可以观察到<code>&lt;div class=&quot;box1 clearfix&quot;&gt;</code>中，两个class的属性值得样式最后会合并，巧妙地解决了高度塌陷问题</p>
+        <updated>2022-05-24T15:18:45.000Z</updated>
+        <content type="html"><![CDATA[<p>1</p>
 ]]></content>
     </entry>
 </feed>
