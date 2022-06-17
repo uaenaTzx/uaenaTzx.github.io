@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1655376531689">
+<link rel="shortcut icon" href="/favicon.ico?v=1655458665805">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -228,6 +228,25 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
+      
+      <a href="https://uaenaTzx.github.io/post/css_display_visibility/">
+        <div class="motion-warpper">
+          <div class="tag-post-node">
+            <h1>
+              06-16
+              <small>css中display:none与visibility:hidden的区别和共性分析</small>
+            </h1>
+          </div>
+        </div>
+      </a>
+      
+      
+      
+      
+      
+      
       
       
       
@@ -1157,7 +1176,7 @@ jQuery(document).ready(function($) {
     <div class="result" id="result">
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-zhong-displaynone-yu-visibilityhidden-de-qu-bie-fen-xi/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css_display_visibility/"" data-c="
           &lt;p&gt;从最基础的开始说，它们的区别在于&lt;code&gt;display:none&lt;/code&gt;&lt;font color=&#34;red&#34;&gt;不占用原来的位置&lt;/font&gt;，而&lt;code&gt;visibility:hidden&lt;/code&gt;&lt;font color=&#34;red&#34;&gt;保留原来的位置。&lt;/font&gt;&lt;br&gt;
 接下来要补充的，是更多在细节上的区别（只讲述一些稍微常用的知识点）：&lt;/p&gt;
 &lt;h1 id=&#34;一-displaynone的性质&#34;&gt;一、display:none的性质&lt;/h1&gt;
@@ -1194,8 +1213,93 @@ jQuery(document).ready(function($) {
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/tong-guo-js-shi-xian-jian-dan-de-zu-jian-tuo-zhuai-xiao-guo/"" data-c="
-          &lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;C:/Users/86183/Desktop/Photos/markdown.jpg&#34; alt=&#34;盒子模型&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/js_tuozhuai/"" data-c="
+          &lt;p&gt;&lt;img src=&#34;C:/Users/86183/Desktop/Photos/markdown.jpg&#34; alt=&#34;盒子模型&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+本文通过js来实现简单的拖拽效果&lt;br&gt;
+首先是整体的设计思路：&lt;br&gt;
+①鼠标点击：获取拖拽对象，准备拖动&lt;br&gt;
+②鼠标拖动：改变页面布局&lt;br&gt;
+③鼠标抬起：停止拖动，改变布局结束&lt;/p&gt;
+&lt;p&gt;实现代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var o = document.querySelector(&#39;div&#39;);
+  
+        //鼠标按下
+        o.onmousedown = function (e) {
+            //鼠标相对于盒子的位置
+            var offsetX = e.clientX - o.offsetLeft;
+            var offsetY = e.clientY - o.offsetTop;
+            //鼠标移动
+            document.onmousemove = function (e) {
+                o.style.left = e.clientX - offsetX + &amp;quot;px&amp;quot;;
+                o.style.top = e.clientY - offsetY + &amp;quot;px&amp;quot;;
+            }
+            //鼠标松开
+            document.onmouseup = function () {
+                //当鼠标松开时，将元素固定在当前位置，取消document的onmousemove事件
+                document.onmousemove = null;
+                //onmouseup事件只需要执行一次
+                document.onmouseup = null;
+            }
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对以上代码，需对部分参数做解释：&lt;br&gt;
+①offsetLeft：是一个只读属性，返回当前元素相对于 offsetParent （被定位的最近祖先元素）节点左边界的偏移像素值(offsetTop同理)&lt;br&gt;
+②e.clientX：返回当事件被触发时鼠标指针相对于浏览器页面的水平坐标（clientY同理）&lt;br&gt;
+相似的还有clientLeft、clientTop&lt;br&gt;
+③o.style.left：事件对象的left样式属性，它的值代表目标元素距离浏览器页面左侧的值（o.style.top）同理&lt;/p&gt;
+&lt;p&gt;这样的设计会出现一些问题，比如盒子中存在文字，或盒子自身为图片，由于浏览器的默认行为（文字和图片本身就可以拖拽），我们可以设置return false来阻止它的默认行为，但这种拦截默认行为在IE低版本中并不适用，因此我们可以使用全局捕获来解决这类问题。（注：全局捕获仅适用于IE低版本浏览器）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;button&amp;gt;btn1&amp;lt;/button&amp;gt;
+    &amp;lt;button&amp;gt;btn2&amp;lt;/button&amp;gt;
+    &amp;lt;script&amp;gt;
+        var bts = document.querySelectorAll(&#39;button&#39;)
+ 
+        bts[0].onclick = function () {
+            console.log(1);
+        }
+        bts[1].onclick = function () {
+            console.log(2);
+        }
+ 
+         bts[0].setCapture()  //添加全局捕获
+         bts[0].releaseCapture() ;//释放全局捕获
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一旦为指定节点添加全局捕获，则页面中其它元素就不会触发同类型事件,在这个代码案例中，只会触发btn1的点击事件。&lt;br&gt;
+setCapture作用是将所有的鼠标事件捕获到当前文档的指定的对象，可以通过alert 或者 窗口失去焦点 或者 releaseCapture 来结束捕获，否则将会一直捕获。&lt;/p&gt;
+&lt;p&gt;将全局捕获的思想加入到之前的代码，得到如下完整代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var o = document.querySelector(&#39;div&#39;);
+  
+        //鼠标按下
+        o.onmousedown = function (e) {
+			//在高级浏览器中没有setCapture()和releaseCapture()方法
+			//所以调用会导致浏览器报错
+            if (o.setCapture) {   //IE低版本
+                o.setCapture()
+            }
+			//obj.setCapture &amp;amp;&amp;amp; obj.setCapture(); 简写方式
+
+            e = e || window.event
+            //鼠标相对于盒子的位置
+            var offsetX = e.clientX - o.offsetLeft;
+            var offsetY = e.clientY - o.offsetTop;
+            //鼠标移动
+            document.onmousemove = function (e) {
+                e = e || window.event
+                o.style.left = e.clientX - offsetX + &amp;quot;px&amp;quot;;
+                o.style.top = e.clientY - offsetY + &amp;quot;px&amp;quot;;
+            }
+            //鼠标抬起
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                if (o.releaseCapture) {
+                    o.releaseCapture();//释放全局捕获   
+                }
+            }
+            return false;//标准浏览器的默认行为
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;至此，一个完整拖拽功能的代码就实现了🌝&lt;/p&gt;
 ">通过js实现简单的组件拖拽效果</a>
       </div>
       

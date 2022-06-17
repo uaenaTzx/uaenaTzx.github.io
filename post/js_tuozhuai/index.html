@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
-<title>Uaena_blog</title>
+<title>通过js实现简单的组件拖拽效果 | Uaena_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1655458665805">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,6 +41,8 @@
 
 
 
+  <meta name="description" content="通过js实现简单的组件拖拽效果" />
+  <meta name="keywords" content="JavaScript,Gridea" />
 </head>
 
 <body>
@@ -155,10 +157,25 @@
   <div class="main-continer">
     
     <div
-      class="section-layout  gemini">
+      class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -202,125 +219,335 @@
   </div>
 
 </div>
+          
+        
+      </div>
+    </div>
+  
 </div>
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    jQuery.Velocity(hideElement, 'stop');
+    jQuery.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        jQuery.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
       }
-    });
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
   }
-  </script>
-        <div class="section-box tag-line box-shadow-wrapper">
-          <section class="section tags-section posts-expand bg-color">
-            <div class="padding-wrapper">
-  <div class="tag-timeline-box">
-    <div class="tag-timeline-wrapper">
-      <div class="tag-timeline-title">
-        <h2>
-          JavaScript
-          <small class="language" data-lan="tag">标签</small>
-        </h2>
-      </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://uaenaTzx.github.io/post/js_tuozhuai/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              06-16
-              <small>通过js实现简单的组件拖拽效果</small>
-            </h1>
-          </div>
-        </div>
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/js_tuozhuai/"> 通过js实现简单的组件拖拽效果 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-06-16 23:18:45">2022-06-16</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://uaenaTzx.github.io/tag/la3aFx0RN/"> <span>JavaScript</span> </a>、   
+      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
+        <span>Gridea</span>
       </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >4<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >780<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
       
+    <span
+      id="/post/js_tuozhuai/"
+      data-flag-title="通过js实现简单的组件拖拽效果"
+      class="meta-item pc-show leancloud_visitors"
+    >
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-eye"></i>
+      <span
+        ><span class="language" data-lan="view">浏览量:</span>:<span
+          class="leancloud-visitors-count"
+        ></span
+      ></span>
+    </span>
+    
+  </div>
+</section>
+
+            <div class="post-body next-md-body" id="post_body">
+              <p><img src="C:/Users/86183/Desktop/Photos/markdown.jpg" alt="盒子模型" loading="lazy"><br>
+本文通过js来实现简单的拖拽效果<br>
+首先是整体的设计思路：<br>
+①鼠标点击：获取拖拽对象，准备拖动<br>
+②鼠标拖动：改变页面布局<br>
+③鼠标抬起：停止拖动，改变布局结束</p>
+<p>实现代码如下：</p>
+<pre><code>var o = document.querySelector('div');
+  
+        //鼠标按下
+        o.onmousedown = function (e) {
+            //鼠标相对于盒子的位置
+            var offsetX = e.clientX - o.offsetLeft;
+            var offsetY = e.clientY - o.offsetTop;
+            //鼠标移动
+            document.onmousemove = function (e) {
+                o.style.left = e.clientX - offsetX + &quot;px&quot;;
+                o.style.top = e.clientY - offsetY + &quot;px&quot;;
+            }
+            //鼠标松开
+            document.onmouseup = function () {
+                //当鼠标松开时，将元素固定在当前位置，取消document的onmousemove事件
+                document.onmousemove = null;
+                //onmouseup事件只需要执行一次
+                document.onmouseup = null;
+            }
+        }
+</code></pre>
+<p>对以上代码，需对部分参数做解释：<br>
+①offsetLeft：是一个只读属性，返回当前元素相对于 offsetParent （被定位的最近祖先元素）节点左边界的偏移像素值(offsetTop同理)<br>
+②e.clientX：返回当事件被触发时鼠标指针相对于浏览器页面的水平坐标（clientY同理）<br>
+相似的还有clientLeft、clientTop<br>
+③o.style.left：事件对象的left样式属性，它的值代表目标元素距离浏览器页面左侧的值（o.style.top）同理</p>
+<p>这样的设计会出现一些问题，比如盒子中存在文字，或盒子自身为图片，由于浏览器的默认行为（文字和图片本身就可以拖拽），我们可以设置return false来阻止它的默认行为，但这种拦截默认行为在IE低版本中并不适用，因此我们可以使用全局捕获来解决这类问题。（注：全局捕获仅适用于IE低版本浏览器）</p>
+<pre><code>&lt;button&gt;btn1&lt;/button&gt;
+    &lt;button&gt;btn2&lt;/button&gt;
+    &lt;script&gt;
+        var bts = document.querySelectorAll('button')
+ 
+        bts[0].onclick = function () {
+            console.log(1);
+        }
+        bts[1].onclick = function () {
+            console.log(2);
+        }
+ 
+         bts[0].setCapture()  //添加全局捕获
+         bts[0].releaseCapture() ;//释放全局捕获
+&lt;/script&gt;
+</code></pre>
+<p>一旦为指定节点添加全局捕获，则页面中其它元素就不会触发同类型事件,在这个代码案例中，只会触发btn1的点击事件。<br>
+setCapture作用是将所有的鼠标事件捕获到当前文档的指定的对象，可以通过alert 或者 窗口失去焦点 或者 releaseCapture 来结束捕获，否则将会一直捕获。</p>
+<p>将全局捕获的思想加入到之前的代码，得到如下完整代码：</p>
+<pre><code>var o = document.querySelector('div');
+  
+        //鼠标按下
+        o.onmousedown = function (e) {
+			//在高级浏览器中没有setCapture()和releaseCapture()方法
+			//所以调用会导致浏览器报错
+            if (o.setCapture) {   //IE低版本
+                o.setCapture()
+            }
+			//obj.setCapture &amp;&amp; obj.setCapture(); 简写方式
+
+            e = e || window.event
+            //鼠标相对于盒子的位置
+            var offsetX = e.clientX - o.offsetLeft;
+            var offsetY = e.clientY - o.offsetTop;
+            //鼠标移动
+            document.onmousemove = function (e) {
+                e = e || window.event
+                o.style.left = e.clientX - offsetX + &quot;px&quot;;
+                o.style.top = e.clientY - offsetY + &quot;px&quot;;
+            }
+            //鼠标抬起
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                if (o.releaseCapture) {
+                    o.releaseCapture();//释放全局捕获   
+                }
+            }
+            return false;//标准浏览器的默认行为
+        }
+</code></pre>
+<p>至此，一个完整拖拽功能的代码就实现了🌝</p>
+
+            </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Uaena
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://uaenaTzx.github.io/post/js_tuozhuai/" title="通过js实现简单的组件拖拽效果">https://uaenaTzx.github.io/post/js_tuozhuai/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://uaenaTzx.github.io/tag/la3aFx0RN/"># JavaScript</a>
+    
+      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/"># Gridea</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
       
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="css中display:none与visibility:hidden的区别和共性分析" href="https://uaenaTzx.github.io/post/css_display_visibility/">css中display:none与visibility:hidden的区别和共性分析</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="css中display:none与visibility:hidden的区别和共性分析" href="https://uaenaTzx.github.io/post/css_display_visibility/">上一篇</a>
       
+    </div>
+    <div class="nav-next">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://uaenaTzx.github.io/post/javascript-zhong-de-lei-fang-fa-dui-xiang-fang-fa-yuan-xing-fang-fa/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              05-10
-              <small>JavaScript中的类方法、对象方法、原型方法</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+        <a class="nav-pc-next" title="elementUi中BackTop回到顶部组件的源码分析" href="https://uaenaTzx.github.io/post/elementui-zhong-backtop-hui-dao-ding-bu-zu-jian-de-yuan-ma-fen-xi/">elementUi中BackTop回到顶部组件的源码分析</a>
+        <a class="nav-mobile-next" title="elementUi中BackTop回到顶部组件的源码分析" href="https://uaenaTzx.github.io/post/elementui-zhong-backtop-hui-dao-ding-bu-zu-jian-de-yuan-ma-fen-xi/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
 </div>
-          </section>
+            
+            
+  <script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
+
+<style>
+  .v .veditor {
+    min-height: 10rem;
+    background-image: url('');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    resize: none;
+  }
+
+  .v .vwrap {
+    border: 1px solid #000 !important;
+  }
+
+  .v .vbtn {
+    padding: .4rem 1.2rem !important;
+    border-color: #fff !important;
+    background-color: #49b1f5 !important;
+    color: #fff !important;
+    font-size: .7rem !important;
+  }
+
+  .v .vcards .vcard .vh .vmeta .vat {
+    padding: 0 .8rem !important;
+    border: 1px solid #00c4b6 !important;
+    border-radius: 5px !important;
+    color: #00c4b6 !important;
+  }
+</style>
+<script>
+  new Valine({
+    el: '#vcomments',
+    appId: '',
+    appKey: '',
+    avatar: 'monsterid',
+    placeholder: '',
+    pageSize: '',
+    lang: 'zh-cn',
+    enableQQ: 'true' === 'true',
+    visitor: 'true' === 'true',
+    highlight: 'true' === 'true',
+    avatarForce: 'true' === 'true',
+    serverURLs: '',
+		recordIP: 'true' === 'true',
+  });
+</script>
+
+          </div>
         </div>
       </div>
     </div>
@@ -1135,6 +1362,223 @@ jQuery(document).ready(function($) {
     parent.insertBefore(aelem, next);
   });
 </script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip"> </p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        jQuery.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        jQuery.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        jQuery.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        jQuery.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      jQuery.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      jQuery.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -2887,6 +3331,5 @@ Wechat：Tongzixin2003&lt;br&gt;
 
   <div class="snow-container"></div>
   <script color="0,205,205" pointer-events="auto" zIndex="-1" opacity='0.7' count="99" src="/media/js/bg/canvas-nest.js"></script>
-
 
 </html>
