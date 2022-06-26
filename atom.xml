@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-06-17T09:37:50.918Z</updated>
+    <updated>2022-06-26T11:11:02.316Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -10,6 +10,55 @@
     <logo>https://uaenaTzx.github.io/images/avatar.png</logo>
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[阻止事件默认行为]]></title>
+        <id>https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/</id>
+        <link href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/">
+        </link>
+        <updated>2022-06-17T09:37:09.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-什么是事件默认行为">一、什么是事件默认行为</h1>
+<p>默认行为，一般是指 <code>HTML</code>元素所自带的行为<br>
+例如：<br>
+①标签<code>a</code>表示跳转链接<br>
+②标签<code>input</code>表示提交表单<br>
+③<code>mousedown</code>事件，鼠标在文本上进行移动，此时默认行为是选择文本；如果是在图片上，则是退拽图片<br>
+……</p>
+<p>但是有的场合不需要我们触发事件默认行为。比如表单数据需要通过<code>ajax</code>来异步发送到服务器时，并不需要提交表单，再比如我们不想拖拽图片后，重新再另外一个窗口中展示该图片。此时，需要通过一些操作来取消事件的默认行为</p>
+<h1 id="二-阻止事件默认行为">二、阻止事件默认行为</h1>
+<p>在此之前，先介绍一个属性<code>cancelable</code>（只读属性），该属性返回一个布尔值，表示事件是否可以取消。返回<code>true</code>时，表示可以取消。否则，表示不可取消</p>
+<pre><code>&lt;a id=&quot;test&quot; href=&quot;https://www.123.com&quot;&gt;123&lt;/a&gt;
+
+var test = document.getElementById(&quot;test&quot;);
+test.onclick = function (event) {
+  console.log(event.cancelable)// true
+}
+</code></pre>
+<p>下面我们来对阻止事件默认行为的方法进行总结：<br>
+①preventDefault 方法<br>
+preventDefault 方法是 DOM 中最常见，也是最标准的取消浏览器默认行为的方式，无返回值</p>
+<pre><code>var test = document.getElementById(&quot;test&quot;);
+test.onclick = function(event){
+  event.preventDefault();
+}
+</code></pre>
+<p>②returnValue 属性<br>
+returnValue 是一个 event 对象上面的属性（可读可写）。默认值是为true，将其设置为 false 就可以取消事件的默认行为（适用于低版本浏览器）</p>
+<pre><code>var test = document.getElementById(&quot;test&quot;);
+test.onclick = function(event){
+  event.returnValue = false;
+}
+</code></pre>
+<p>③return false语句<br>
+该语句写在事件处理函数中也可以阻止默认行为。但是该语句后面的代码将不被运行（return false的管辖范围只在所处的函数中，对外无影响）<br>
+注：并不只是return false 是会取消默认行为，有时候return true也会有同样的效果，只是习惯问题</p>
+<pre><code>var test = document.getElementById(&quot;test&quot;);
+test.onclick = function(){
+  return false;
+}
+</code></pre>
+<p>以上几种方法选一种习惯的即可，其中第二种不是很常用。🙃</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[css中display:none与visibility:hidden的区别和共性分析]]></title>
         <id>https://uaenaTzx.github.io/post/css_display_visibility/</id>
@@ -48,100 +97,6 @@
 <p>3.可以响应冒泡~</p>
 <p>4.不妨碍<code>form</code>表单的提交</p>
 <p>合理的理解两者的区别可以更好地帮助我们设计布局，避免出现重构等问题，还有更多的细节会在之后陆续补充。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[通过js实现简单的组件拖拽效果]]></title>
-        <id>https://uaenaTzx.github.io/post/js_tuozhuai/</id>
-        <link href="https://uaenaTzx.github.io/post/js_tuozhuai/">
-        </link>
-        <updated>2022-06-16T15:18:45.000Z</updated>
-        <content type="html"><![CDATA[<p><img src="C:/Users/86183/Desktop/Photos/markdown.jpg" alt="盒子模型" loading="lazy"><br>
-本文通过js来实现简单的拖拽效果<br>
-首先是整体的设计思路：<br>
-①鼠标点击：获取拖拽对象，准备拖动<br>
-②鼠标拖动：改变页面布局<br>
-③鼠标抬起：停止拖动，改变布局结束</p>
-<p>实现代码如下：</p>
-<pre><code>var o = document.querySelector('div');
-  
-        //鼠标按下
-        o.onmousedown = function (e) {
-            //鼠标相对于盒子的位置
-            var offsetX = e.clientX - o.offsetLeft;
-            var offsetY = e.clientY - o.offsetTop;
-            //鼠标移动
-            document.onmousemove = function (e) {
-                o.style.left = e.clientX - offsetX + &quot;px&quot;;
-                o.style.top = e.clientY - offsetY + &quot;px&quot;;
-            }
-            //鼠标松开
-            document.onmouseup = function () {
-                //当鼠标松开时，将元素固定在当前位置，取消document的onmousemove事件
-                document.onmousemove = null;
-                //onmouseup事件只需要执行一次
-                document.onmouseup = null;
-            }
-        }
-</code></pre>
-<p>对以上代码，需对部分参数做解释：<br>
-①offsetLeft：是一个只读属性，返回当前元素相对于 offsetParent （被定位的最近祖先元素）节点左边界的偏移像素值(offsetTop同理)<br>
-②e.clientX：返回当事件被触发时鼠标指针相对于浏览器页面的水平坐标（clientY同理）<br>
-相似的还有clientLeft、clientTop<br>
-③o.style.left：事件对象的left样式属性，它的值代表目标元素距离浏览器页面左侧的值（o.style.top）同理</p>
-<p>这样的设计会出现一些问题，比如盒子中存在文字，或盒子自身为图片，由于浏览器的默认行为（文字和图片本身就可以拖拽），我们可以设置return false来阻止它的默认行为，但这种拦截默认行为在IE低版本中并不适用，因此我们可以使用全局捕获来解决这类问题。（注：全局捕获仅适用于IE低版本浏览器）</p>
-<pre><code>&lt;button&gt;btn1&lt;/button&gt;
-    &lt;button&gt;btn2&lt;/button&gt;
-    &lt;script&gt;
-        var bts = document.querySelectorAll('button')
- 
-        bts[0].onclick = function () {
-            console.log(1);
-        }
-        bts[1].onclick = function () {
-            console.log(2);
-        }
- 
-         bts[0].setCapture()  //添加全局捕获
-         bts[0].releaseCapture() ;//释放全局捕获
-&lt;/script&gt;
-</code></pre>
-<p>一旦为指定节点添加全局捕获，则页面中其它元素就不会触发同类型事件,在这个代码案例中，只会触发btn1的点击事件。<br>
-setCapture作用是将所有的鼠标事件捕获到当前文档的指定的对象，可以通过alert 或者 窗口失去焦点 或者 releaseCapture 来结束捕获，否则将会一直捕获。</p>
-<p>将全局捕获的思想加入到之前的代码，得到如下完整代码：</p>
-<pre><code>var o = document.querySelector('div');
-  
-        //鼠标按下
-        o.onmousedown = function (e) {
-			//在高级浏览器中没有setCapture()和releaseCapture()方法
-			//所以调用会导致浏览器报错
-            if (o.setCapture) {   //IE低版本
-                o.setCapture()
-            }
-			//obj.setCapture &amp;&amp; obj.setCapture(); 简写方式
-
-            e = e || window.event
-            //鼠标相对于盒子的位置
-            var offsetX = e.clientX - o.offsetLeft;
-            var offsetY = e.clientY - o.offsetTop;
-            //鼠标移动
-            document.onmousemove = function (e) {
-                e = e || window.event
-                o.style.left = e.clientX - offsetX + &quot;px&quot;;
-                o.style.top = e.clientY - offsetY + &quot;px&quot;;
-            }
-            //鼠标抬起
-            document.onmouseup = function () {
-                document.onmousemove = null;
-                document.onmouseup = null;
-                if (o.releaseCapture) {
-                    o.releaseCapture();//释放全局捕获   
-                }
-            }
-            return false;//标准浏览器的默认行为
-        }
-</code></pre>
-<p>至此，一个完整拖拽功能的代码就实现了🌝</p>
 ]]></content>
     </entry>
 </feed>

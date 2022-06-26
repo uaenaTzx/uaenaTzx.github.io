@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>关于 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1655458665805">
+<link rel="shortcut icon" href="/favicon.ico?v=1656241858926">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1666,6 +1666,52 @@ jQuery(document).ready(function($) {
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/"" data-c="
+          &lt;h1 id=&#34;一-什么是事件默认行为&#34;&gt;一、什么是事件默认行为&lt;/h1&gt;
+&lt;p&gt;默认行为，一般是指 &lt;code&gt;HTML&lt;/code&gt;元素所自带的行为&lt;br&gt;
+例如：&lt;br&gt;
+①标签&lt;code&gt;a&lt;/code&gt;表示跳转链接&lt;br&gt;
+②标签&lt;code&gt;input&lt;/code&gt;表示提交表单&lt;br&gt;
+③&lt;code&gt;mousedown&lt;/code&gt;事件，鼠标在文本上进行移动，此时默认行为是选择文本；如果是在图片上，则是退拽图片&lt;br&gt;
+……&lt;/p&gt;
+&lt;p&gt;但是有的场合不需要我们触发事件默认行为。比如表单数据需要通过&lt;code&gt;ajax&lt;/code&gt;来异步发送到服务器时，并不需要提交表单，再比如我们不想拖拽图片后，重新再另外一个窗口中展示该图片。此时，需要通过一些操作来取消事件的默认行为&lt;/p&gt;
+&lt;h1 id=&#34;二-阻止事件默认行为&#34;&gt;二、阻止事件默认行为&lt;/h1&gt;
+&lt;p&gt;在此之前，先介绍一个属性&lt;code&gt;cancelable&lt;/code&gt;（只读属性），该属性返回一个布尔值，表示事件是否可以取消。返回&lt;code&gt;true&lt;/code&gt;时，表示可以取消。否则，表示不可取消&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;a id=&amp;quot;test&amp;quot; href=&amp;quot;https://www.123.com&amp;quot;&amp;gt;123&amp;lt;/a&amp;gt;
+
+var test = document.getElementById(&amp;quot;test&amp;quot;);
+test.onclick = function (event) {
+  console.log(event.cancelable)// true
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;下面我们来对阻止事件默认行为的方法进行总结：&lt;br&gt;
+①preventDefault 方法&lt;br&gt;
+preventDefault 方法是 DOM 中最常见，也是最标准的取消浏览器默认行为的方式，无返回值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var test = document.getElementById(&amp;quot;test&amp;quot;);
+test.onclick = function(event){
+  event.preventDefault();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;②returnValue 属性&lt;br&gt;
+returnValue 是一个 event 对象上面的属性（可读可写）。默认值是为true，将其设置为 false 就可以取消事件的默认行为（适用于低版本浏览器）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var test = document.getElementById(&amp;quot;test&amp;quot;);
+test.onclick = function(event){
+  event.returnValue = false;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;③return false语句&lt;br&gt;
+该语句写在事件处理函数中也可以阻止默认行为。但是该语句后面的代码将不被运行（return false的管辖范围只在所处的函数中，对外无影响）&lt;br&gt;
+注：并不只是return false 是会取消默认行为，有时候return true也会有同样的效果，只是习惯问题&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var test = document.getElementById(&amp;quot;test&amp;quot;);
+test.onclick = function(){
+  return false;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以上几种方法选一种习惯的即可，其中第二种不是很常用。🙃&lt;/p&gt;
+">阻止事件默认行为</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css_display_visibility/"" data-c="
           &lt;p&gt;从最基础的开始说，它们的区别在于&lt;code&gt;display:none&lt;/code&gt;&lt;font color=&#34;red&#34;&gt;不占用原来的位置&lt;/font&gt;，而&lt;code&gt;visibility:hidden&lt;/code&gt;&lt;font color=&#34;red&#34;&gt;保留原来的位置。&lt;/font&gt;&lt;br&gt;
 接下来要补充的，是更多在细节上的区别（只讲述一些稍微常用的知识点）：&lt;/p&gt;
@@ -1791,12 +1837,6 @@ setCapture作用是将所有的鼠标事件捕获到当前文档的指定的对�
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;至此，一个完整拖拽功能的代码就实现了🌝&lt;/p&gt;
 ">通过js实现简单的组件拖拽效果</a>
-      </div>
-      
-      <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/elementui-zhong-backtop-hui-dao-ding-bu-zu-jian-de-yuan-ma-fen-xi/"" data-c="
-          &lt;p&gt;1&lt;/p&gt;
-">elementUi中BackTop回到顶部组件的源码分析</a>
       </div>
       
       <div class="item">
