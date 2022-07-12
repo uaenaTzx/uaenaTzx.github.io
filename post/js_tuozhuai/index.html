@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>通过js实现简单的组件拖拽效果 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1656580169235">
+<link rel="shortcut icon" href="/favicon.ico?v=1657611000899">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -186,7 +186,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">11</span>
+        <span class="site-item-stat-count">13</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -365,8 +365,7 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <p><img src="C:/Users/86183/Desktop/Photos/markdown.jpg" alt="盒子模型" loading="lazy"><br>
-本文通过js来实现简单的拖拽效果<br>
+              <p>本文通过js来实现简单的拖拽效果<br>
 首先是整体的设计思路：<br>
 ①鼠标点击：获取拖拽对象，准备拖动<br>
 ②鼠标拖动：改变页面布局<br>
@@ -397,7 +396,8 @@
 ①offsetLeft：是一个只读属性，返回当前元素相对于 offsetParent （被定位的最近祖先元素）节点左边界的偏移像素值(offsetTop同理)<br>
 ②e.clientX：返回当事件被触发时鼠标指针相对于浏览器页面的水平坐标（clientY同理）<br>
 相似的还有clientLeft、clientTop<br>
-③o.style.left：事件对象的left样式属性，它的值代表目标元素距离浏览器页面左侧的值（o.style.top）同理</p>
+③o.style.left：事件对象的left样式属性，它的值代表目标元素距离浏览器页面左侧的值（o.style.top）同理<br>
+<img src="https://uaenaTzx.github.io/post-images/1657609966456.jpg" alt="" loading="lazy"></p>
 <p>这样的设计会出现一些问题，比如盒子中存在文字，或盒子自身为图片，由于浏览器的默认行为（文字和图片本身就可以拖拽），我们可以设置return false来阻止它的默认行为，但这种拦截默认行为在IE低版本中并不适用，因此我们可以使用全局捕获来解决这类问题。（注：全局捕获仅适用于IE低版本浏览器）</p>
 <pre><code>&lt;button&gt;btn1&lt;/button&gt;
     &lt;button&gt;btn2&lt;/button&gt;
@@ -450,7 +450,7 @@ setCapture作用是将所有的鼠标事件捕获到当前文档的指定的对�
             return false;//标准浏览器的默认行为
         }
 </code></pre>
-<p>至此，一个完整拖拽功能的代码就实现了🌝</p>
+<p>至此，一个完整拖拽功能的代码就实现了😎😎😎</p>
 
             </div>
             
@@ -1598,6 +1598,119 @@ jQuery(document).ready(function($) {
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/"" data-c="
+          &lt;p&gt;本文讲述如何运用CSS绘制多边形&lt;/p&gt;
+&lt;h1 id=&#34;一-基本多边形绘制原理&#34;&gt;一、基本多边形绘制原理&lt;/h1&gt;
+&lt;p&gt;①border：元素的边框，实际上元素的border是由三角形组合而成，并不是矩形&lt;br&gt;
+下面通过例子展示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    div {
+      width: 0;
+      height: 0;
+      border-top: 20px solid lightblue;
+      border-left: 20px solid lawngreen;
+      border-right: 20px solid lightpink;
+      border-bottom: 20px solid lightsalmon;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;效果图：&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657610119266.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;②transparent：border属性的属性值，表示目标边框透明，通过这个属性值可以绘制三角形&lt;br&gt;
+注：border-color的属性值有4个，分别表示上、右、下、左（顺时针）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    div {
+      width: 0;
+      height: 0;
+      border-width: 20px;
+      border-style: solid;
+      border-color: red transparent transparent transparent
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;有代码可知，除上边框为红色，其余透明。&lt;br&gt;
+得到效果图：&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657610386554.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;③none：border属性的属性值，可借此绘制梯形。&lt;br&gt;
+例如：border-buttom:none时，边框的下半部分会消失（不是透明！）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.div{
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-top:none ;
+  border-bottom-color: #140e03;
+  border-left-color: #573d3d;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到效果图：&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657610789853.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;当然，还有另一种写法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    div {
+      width: 0;
+      height: 0;
+      border-top: 20px solid lightblue;
+      border-left: 10px solid transparent;
+      border-right: 10px solid lightblue;
+      /* border-bottom: 10px solid lightblue; */
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到效果图：&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657610971656.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这些是基本的绘制方式，还有更多的请代待后续补充。&lt;/p&gt;
+">CSS绘制多边形</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/"" data-c="
+          &lt;p&gt;本篇文章记录了部分CSS的重要的属性🙉&lt;/p&gt;
+&lt;h1 id=&#34;一-box-sizing&#34;&gt;一、box-sizing&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;box-sizing&lt;/code&gt;属性定义如何计算一个元素的总宽度和总高度，主要设置是否需要加上内边距和边框等。最主要的用法是规定&lt;font color=&#34;red&#34;&gt;容器元素的最终尺寸计算方式&lt;/font&gt;。&lt;/p&gt;
+&lt;p&gt;属性值：&lt;code&gt;border-box&lt;/code&gt;、&lt;code&gt;content-box&lt;/code&gt;&lt;br&gt;
+如果你创造了一个容器元素&lt;font color=&#34;red&#34;&gt;没有&lt;/font&gt;设置&lt;code&gt;box-sizing&lt;/code&gt;属性为&lt;code&gt;border-box&lt;/code&gt;(不设置的话默认值为&lt;code&gt;content-box&lt;/code&gt;)，同时你设置width:100px; border:10px solid red; padding:10px;那么最终div容器的实际宽度为：&lt;br&gt;
+100px(width)+2×10px(padding)+2×10px(border)=140px&lt;br&gt;
+这就导致了容器大小超出设定范围，会导致一些布局问题。&lt;br&gt;
+当属性值设置为&lt;code&gt;border-box&lt;/code&gt;时，那么他的最终宽度即为100px, 那么它的内容部分(content)的有效宽度变成了100px-2×10px-2×10px=60px; 这样有利于整体布局&lt;/p&gt;
+&lt;p&gt;#二、position&lt;br&gt;
+&lt;code&gt;position&lt;/code&gt;属性指定一个元素(静态的，相对的，绝对或固定)的定位方法的类型&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;属性名&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;属性值&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;static&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;默认值。没有定位，元素出现在正常的流中。静态定位的元素不会受到 top, bottom, left, right，z-index影响。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;absolute&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。absolute 定位使元素的位置与文档流无关，因此不占据空间。absolute 定位的元素和其他元素重叠。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;fixed&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;生成固定定位的元素，相对于浏览器窗口进行定位。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;relative&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;生成相对定位的元素，相对于其最初的正常位置进行定位。因此，&amp;quot;left:20&amp;quot; 会向元素最初的的 LEFT 位置添加 20 像素。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;sticky&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;粘性定位，该定位基于用户滚动的位置。它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;inherit&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;规定应该从父元素继承 position 属性的值。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;initial&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置该属性为默认值(static) &lt;em&gt;问&lt;/em&gt;：有了static为什么还会存在此属性，不是多此一举？&lt;em&gt;答&lt;/em&gt;：initial 关键字可用于任何 HTML 元素上的任何 CSS 属性，不是postion特有的&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;unset&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置positon的值为不设置：如果该属性的默认属性是 继承属性(例如字体相关的默认属性基本都是继承)，该值等同于 inherit；如果该属性的默认属性 不是继承属性(例如pisition的默认属性为static)，该值等同于 initial&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;三&#34;&gt;三、&lt;/h1&gt;
+">CSS部分重要属性</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/"" data-c="
           &lt;h1 id=&#34;一-什么是事件默认行为&#34;&gt;一、什么是事件默认行为&lt;/h1&gt;
 &lt;p&gt;默认行为，一般是指 &lt;code&gt;HTML&lt;/code&gt;元素所自带的行为&lt;br&gt;
@@ -1682,8 +1795,7 @@ test.onclick = function(){
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/js_tuozhuai/"" data-c="
-          &lt;p&gt;&lt;img src=&#34;C:/Users/86183/Desktop/Photos/markdown.jpg&#34; alt=&#34;盒子模型&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
-本文通过js来实现简单的拖拽效果&lt;br&gt;
+          &lt;p&gt;本文通过js来实现简单的拖拽效果&lt;br&gt;
 首先是整体的设计思路：&lt;br&gt;
 ①鼠标点击：获取拖拽对象，准备拖动&lt;br&gt;
 ②鼠标拖动：改变页面布局&lt;br&gt;
@@ -1714,7 +1826,8 @@ test.onclick = function(){
 ①offsetLeft：是一个只读属性，返回当前元素相对于 offsetParent （被定位的最近祖先元素）节点左边界的偏移像素值(offsetTop同理)&lt;br&gt;
 ②e.clientX：返回当事件被触发时鼠标指针相对于浏览器页面的水平坐标（clientY同理）&lt;br&gt;
 相似的还有clientLeft、clientTop&lt;br&gt;
-③o.style.left：事件对象的left样式属性，它的值代表目标元素距离浏览器页面左侧的值（o.style.top）同理&lt;/p&gt;
+③o.style.left：事件对象的left样式属性，它的值代表目标元素距离浏览器页面左侧的值（o.style.top）同理&lt;br&gt;
+&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657609966456.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这样的设计会出现一些问题，比如盒子中存在文字，或盒子自身为图片，由于浏览器的默认行为（文字和图片本身就可以拖拽），我们可以设置return false来阻止它的默认行为，但这种拦截默认行为在IE低版本中并不适用，因此我们可以使用全局捕获来解决这类问题。（注：全局捕获仅适用于IE低版本浏览器）&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;button&amp;gt;btn1&amp;lt;/button&amp;gt;
     &amp;lt;button&amp;gt;btn2&amp;lt;/button&amp;gt;
@@ -1767,7 +1880,7 @@ setCapture作用是将所有的鼠标事件捕获到当前文档的指定的对�
             return false;//标准浏览器的默认行为
         }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;至此，一个完整拖拽功能的代码就实现了🌝&lt;/p&gt;
+&lt;p&gt;至此，一个完整拖拽功能的代码就实现了😎😎😎&lt;/p&gt;
 ">通过js实现简单的组件拖拽效果</a>
       </div>
       
@@ -1875,7 +1988,7 @@ input.placeholder::placeholder{
 &lt;p&gt;以下，总结了几种方法：&lt;/p&gt;
 &lt;p&gt;①给父元素设置固定的高度&lt;br&gt;
 =&amp;gt; 弊端：无法使父元素高度自适应&lt;/p&gt;
-&lt;p&gt;②给父元素设置&lt;code&gt;overflow：hidden&lt;/code&gt;，解决高度塌陷并能实现高度自适应的方法&lt;br&gt;
+&lt;p&gt;②给父元素设置&lt;code&gt;overflow:hidden&lt;/code&gt;，解决高度塌陷并能实现高度自适应的方法&lt;br&gt;
 =&amp;gt; 弊端：当内容超出父元素以外时，超出的内容就会被隐藏！&lt;/p&gt;
 &lt;p&gt;③添加一个空元素，并且给他设置清除浮动的属性(&lt;code&gt;clear:both&lt;/code&gt;)&lt;br&gt;
 =&amp;gt; 弊端：会添加很多空标记，增加结构负担，产生代码冗余；&lt;br&gt;

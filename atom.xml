@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-06-30T09:09:41.569Z</updated>
+    <updated>2022-07-12T07:30:03.440Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -11,92 +11,122 @@
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
     <entry>
-        <title type="html"><![CDATA[阻止事件默认行为]]></title>
-        <id>https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/</id>
-        <link href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/">
+        <title type="html"><![CDATA[CSS绘制多边形]]></title>
+        <id>https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/</id>
+        <link href="https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/">
         </link>
-        <updated>2022-06-17T09:37:09.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-什么是事件默认行为">一、什么是事件默认行为</h1>
-<p>默认行为，一般是指 <code>HTML</code>元素所自带的行为<br>
-例如：<br>
-①标签<code>a</code>表示跳转链接<br>
-②标签<code>input</code>表示提交表单<br>
-③<code>mousedown</code>事件，鼠标在文本上进行移动，此时默认行为是选择文本；如果是在图片上，则是退拽图片<br>
-……</p>
-<p>但是有的场合不需要我们触发事件默认行为。比如表单数据需要通过<code>ajax</code>来异步发送到服务器时，并不需要提交表单，再比如我们不想拖拽图片后，重新再另外一个窗口中展示该图片。此时，需要通过一些操作来取消事件的默认行为</p>
-<h1 id="二-阻止事件默认行为">二、阻止事件默认行为</h1>
-<p>在此之前，先介绍一个属性<code>cancelable</code>（只读属性），该属性返回一个布尔值，表示事件是否可以取消。返回<code>true</code>时，表示可以取消。否则，表示不可取消</p>
-<pre><code>&lt;a id=&quot;test&quot; href=&quot;https://www.123.com&quot;&gt;123&lt;/a&gt;
-
-var test = document.getElementById(&quot;test&quot;);
-test.onclick = function (event) {
-  console.log(event.cancelable)// true
+        <updated>2022-07-11T12:36:16.000Z</updated>
+        <content type="html"><![CDATA[<p>本文讲述如何运用CSS绘制多边形</p>
+<h1 id="一-基本多边形绘制原理">一、基本多边形绘制原理</h1>
+<p>①border：元素的边框，实际上元素的border是由三角形组合而成，并不是矩形<br>
+下面通过例子展示：</p>
+<pre><code>    div {
+      width: 0;
+      height: 0;
+      border-top: 20px solid lightblue;
+      border-left: 20px solid lawngreen;
+      border-right: 20px solid lightpink;
+      border-bottom: 20px solid lightsalmon;
+    }
+</code></pre>
+<p>效果图：<img src="https://uaenaTzx.github.io/post-images/1657610119266.png" alt="" loading="lazy"></p>
+<p>②transparent：border属性的属性值，表示目标边框透明，通过这个属性值可以绘制三角形<br>
+注：border-color的属性值有4个，分别表示上、右、下、左（顺时针）</p>
+<pre><code>    div {
+      width: 0;
+      height: 0;
+      border-width: 20px;
+      border-style: solid;
+      border-color: red transparent transparent transparent
+    }
+</code></pre>
+<p>有代码可知，除上边框为红色，其余透明。<br>
+得到效果图：<img src="https://uaenaTzx.github.io/post-images/1657610386554.png" alt="" loading="lazy"></p>
+<p>③none：border属性的属性值，可借此绘制梯形。<br>
+例如：border-buttom:none时，边框的下半部分会消失（不是透明！）</p>
+<pre><code>.div{
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-top:none ;
+  border-bottom-color: #140e03;
+  border-left-color: #573d3d;
 }
 </code></pre>
-<p>下面我们来对阻止事件默认行为的方法进行总结：<br>
-①preventDefault 方法<br>
-preventDefault 方法是 DOM 中最常见，也是最标准的取消浏览器默认行为的方式，无返回值</p>
-<pre><code>var test = document.getElementById(&quot;test&quot;);
-test.onclick = function(event){
-  event.preventDefault();
-}
+<p>得到效果图：<img src="https://uaenaTzx.github.io/post-images/1657610789853.png" alt="" loading="lazy"></p>
+<p>当然，还有另一种写法：</p>
+<pre><code>    div {
+      width: 0;
+      height: 0;
+      border-top: 20px solid lightblue;
+      border-left: 10px solid transparent;
+      border-right: 10px solid lightblue;
+      /* border-bottom: 10px solid lightblue; */
+    }
 </code></pre>
-<p>②returnValue 属性<br>
-returnValue 是一个 event 对象上面的属性（可读可写）。默认值是为true，将其设置为 false 就可以取消事件的默认行为（适用于低版本浏览器）</p>
-<pre><code>var test = document.getElementById(&quot;test&quot;);
-test.onclick = function(event){
-  event.returnValue = false;
-}
-</code></pre>
-<p>③return false语句<br>
-该语句写在事件处理函数中也可以阻止默认行为。但是该语句后面的代码将不被运行（return false的管辖范围只在所处的函数中，对外无影响）<br>
-注：并不只是return false 是会取消默认行为，有时候return true也会有同样的效果，只是习惯问题</p>
-<pre><code>var test = document.getElementById(&quot;test&quot;);
-test.onclick = function(){
-  return false;
-}
-</code></pre>
-<p>以上几种方法选一种习惯的即可，其中第二种不是很常用。🙃</p>
+<p>得到效果图：<img src="https://uaenaTzx.github.io/post-images/1657610971656.png" alt="" loading="lazy"></p>
+<p>这些是基本的绘制方式，还有更多的请代待后续补充。</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[css中display:none与visibility:hidden的区别和共性分析]]></title>
-        <id>https://uaenaTzx.github.io/post/css_display_visibility/</id>
-        <link href="https://uaenaTzx.github.io/post/css_display_visibility/">
+        <title type="html"><![CDATA[CSS部分重要属性]]></title>
+        <id>https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/</id>
+        <link href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">
         </link>
-        <updated>2022-06-16T15:19:15.000Z</updated>
-        <content type="html"><![CDATA[<p>从最基础的开始说，它们的区别在于<code>display:none</code><font color="red">不占用原来的位置</font>，而<code>visibility:hidden</code><font color="red">保留原来的位置。</font><br>
-接下来要补充的，是更多在细节上的区别（只讲述一些稍微常用的知识点）：</p>
-<h1 id="一-displaynone的性质">一、display:none的性质</h1>
-<p>1.父元素为<code>display:none</code>，子孙元素也会被设置为<code>display:none</code></p>
-<pre><code>.hidden{
-  display: none;
-}
-.visible{
-  display: block;//元素显示在页面上，它是块模式显示，和周围的元素不在一行,自己单独一行
-}
-&lt;div class=&quot;hidden&quot;&gt;
-  father
-  &lt;div class=&quot;visible&quot;&gt; son&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<p>结果显示son没有被渲染到页面上</p>
-<p>2.无法获取焦点<br>
-由于在盒子模型中就没有出现目标元素，何谈获取焦点呢🤡</p>
-<p>3.<code>display:none</code>的元素也无法响应事件，诸如捕获、命中目标和冒泡阶段(因为父元素没了，子元素也凉凉)</p>
-<p>4.不妨碍<code>form</code>表单的提交</p>
-<h1 id="二-visibilityhidden的性质">二、visibility:hidden的性质</h1>
-<p>在此之前，先补充一下<code>visibility</code>的四个有效值：<br>
-①<code>.visible</code>：在界面上显示<br>
-②<code>.hidden</code>：在界面上不可视，但保留元素原来占有的位置<br>
-③<code>.collapse</code>：用于表格子元素(如tr,tbody,col,colgroup)时，效果和<code>display:none</code>一样，用于其他元素上时则效果与<code>visibility:hidden</code>一样(几乎不使用)<br>
-④<code>.inherit</code>：使元素继承父元素的<code>visibility</code>值</p>
-<p>接下来开始讲讲<code>visibility:hidden</code>的性质：<br>
-1.父元素为<code>visibility:hidden</code>时，子孙元素可以设置为<code>visibility:visible</code>并且生效</p>
-<p>2.同样的，<code>visibility:hidden</code>也不能获取焦点</p>
-<p>3.可以响应冒泡~</p>
-<p>4.不妨碍<code>form</code>表单的提交</p>
-<p>合理的理解两者的区别可以更好地帮助我们设计布局，避免出现重构等问题，还有更多的细节会在之后陆续补充。</p>
+        <updated>2022-07-10T13:56:07.000Z</updated>
+        <content type="html"><![CDATA[<p>本篇文章记录了部分CSS的重要的属性🙉</p>
+<h1 id="一-box-sizing">一、box-sizing</h1>
+<p><code>box-sizing</code>属性定义如何计算一个元素的总宽度和总高度，主要设置是否需要加上内边距和边框等。最主要的用法是规定<font color="red">容器元素的最终尺寸计算方式</font>。</p>
+<p>属性值：<code>border-box</code>、<code>content-box</code><br>
+如果你创造了一个容器元素<font color="red">没有</font>设置<code>box-sizing</code>属性为<code>border-box</code>(不设置的话默认值为<code>content-box</code>)，同时你设置width:100px; border:10px solid red; padding:10px;那么最终div容器的实际宽度为：<br>
+100px(width)+2×10px(padding)+2×10px(border)=140px<br>
+这就导致了容器大小超出设定范围，会导致一些布局问题。<br>
+当属性值设置为<code>border-box</code>时，那么他的最终宽度即为100px, 那么它的内容部分(content)的有效宽度变成了100px-2×10px-2×10px=60px; 这样有利于整体布局</p>
+<p>#二、position<br>
+<code>position</code>属性指定一个元素(静态的，相对的，绝对或固定)的定位方法的类型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性名</th>
+<th style="text-align:left">属性值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">static</td>
+<td style="text-align:left">默认值。没有定位，元素出现在正常的流中。静态定位的元素不会受到 top, bottom, left, right，z-index影响。</td>
+</tr>
+<tr>
+<td style="text-align:left">absolute</td>
+<td style="text-align:left">生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。absolute 定位使元素的位置与文档流无关，因此不占据空间。absolute 定位的元素和其他元素重叠。</td>
+</tr>
+<tr>
+<td style="text-align:left">fixed</td>
+<td style="text-align:left">生成固定定位的元素，相对于浏览器窗口进行定位。</td>
+</tr>
+<tr>
+<td style="text-align:left">relative</td>
+<td style="text-align:left">生成相对定位的元素，相对于其最初的正常位置进行定位。因此，&quot;left:20&quot; 会向元素最初的的 LEFT 位置添加 20 像素。</td>
+</tr>
+<tr>
+<td style="text-align:left">sticky</td>
+<td style="text-align:left">粘性定位，该定位基于用户滚动的位置。它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。</td>
+</tr>
+<tr>
+<td style="text-align:left">inherit</td>
+<td style="text-align:left">规定应该从父元素继承 position 属性的值。</td>
+</tr>
+<tr>
+<td style="text-align:left">initial</td>
+<td style="text-align:left">设置该属性为默认值(static) <em>问</em>：有了static为什么还会存在此属性，不是多此一举？<em>答</em>：initial 关键字可用于任何 HTML 元素上的任何 CSS 属性，不是postion特有的</td>
+</tr>
+<tr>
+<td style="text-align:left">unset</td>
+<td style="text-align:left">设置positon的值为不设置：如果该属性的默认属性是 继承属性(例如字体相关的默认属性基本都是继承)，该值等同于 inherit；如果该属性的默认属性 不是继承属性(例如pisition的默认属性为static)，该值等同于 initial</td>
+</tr>
+</tbody>
+</table>
+<h1 id="三">三、</h1>
 ]]></content>
     </entry>
 </feed>

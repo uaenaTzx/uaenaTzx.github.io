@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
-<title>css的伪类和伪元素 | Uaena_blog</title>
+<title>CSS绘制多边形 | Uaena_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1657611000899">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,8 +41,8 @@
 
 
 
-  <meta name="description" content="css的伪类和伪元素" />
-  <meta name="keywords" content="css,Gridea" />
+  <meta name="description" content="CSS绘制多边形" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -226,8 +226,7 @@
   <div class="toc-wrapper  auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E5%8C%BA%E5%88%86%E4%BC%AA%E7%B1%BB%E5%92%8C%E4%BC%AA%E5%85%83%E7%B4%A0">一、区分伪类和伪元素</a></li>
-<li><a href="#%E4%BA%8C-%E5%B8%B8%E8%A7%81%E4%BC%AA%E7%B1%BB%E5%92%8C%E4%BC%AA%E5%85%83%E7%B4%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8">二、常见伪类和伪元素的基本应用</a></li>
+<li><a href="#%E4%B8%80-%E5%9F%BA%E6%9C%AC%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%BB%98%E5%88%B6%E5%8E%9F%E7%90%86">一、基本多边形绘制原理</a></li>
 </ul>
 
   </div>
@@ -493,33 +492,21 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://uaenaTzx.github.io/post/css-de-wei-lei/"> css的伪类和伪元素 </a>
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/"> CSS绘制多边形 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-05-23 20:36:31">2022-05-23</span>
+      <span class="publish-time" data-t="2022-07-11 20:36:16">2022-07-11</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">标签:</span>
-       
-      <a href="https://uaenaTzx.github.io/tag/FetAAAg9s/"> <span>css</span> </a>、   
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
-        <span>Gridea</span>
-      </a>
-       
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >3<span class="language" data-lan="minute"
+        >2<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -528,15 +515,15 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >580<span class="pc-show language" data-lan="words"
+        >296<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
     </span>
       
     <span
-      id="/post/css-de-wei-lei/"
-      data-flag-title="css的伪类和伪元素"
+      id="/post/css-zhong-de-san-jiao-xing/"
+      data-flag-title="CSS绘制多边形"
       class="meta-item pc-show leancloud_visitors"
     >
       <span class="post-meta-divider">|</span>
@@ -552,60 +539,56 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <p>什么是伪类和伪元素？<br>
-接下来，文章会从“区分伪类和伪元素”和“部分实用的伪类和伪元素应用”来加深读者对此的认知。</p>
-<h1 id="一-区分伪类和伪元素">一、区分伪类和伪元素</h1>
-<p><code>CSS3</code>之后，伪元素才从伪类之中被分类出来，如我们常用的<code>:before</code>和<code>:after</code>。<br>
-实际上css3为了区分两者，已经明确规定了伪类用一个冒号来表示，而伪元素则用两个冒号来表示(部分伪元素一个冒号也可行)<br>
-如何区分伪元素和伪类？我们需要记住以下两点：<br>
-①.伪类表示被选择元素的处于的某种状态，最常用的有<code>:hover</code>、<code>:active</code>……<br>
-②.伪元素表示目标元素的某个部分，虽然这个部分像是一个独立的元素，但其实是&quot;假元素&quot;，只存在于css中，例如<code>:before</code>和<code>:after</code></p>
-<p>however，由于伪类和伪元素的数量太多了，我们只需要熟练运用部分常用的伪类和伪元素即可，下面我们来尝试运用一下常用的伪类和伪元素。👊👊👊</p>
-<h1 id="二-常见伪类和伪元素的基本应用">二、常见伪类和伪元素的基本应用</h1>
-<p>①伪元素的应用：<code>before</code>、<code>after</code>、<code>first-letter</code>、<code>first-line</code>、<code>selection</code>和<code>placeholder</code>，分别表示元素内容的前面、元素内容的后面、第一个文字、第一行文字、选中部分以及占位的文本</p>
-<p>示例代码如下：</p>
-<pre><code>div.box1{
-    border: 1px black solid;
-    background: grey;
-    background-clip: content-box;
-    width: 300px;
-    padding: 20px;
-}
-
-/* 伪元素before和after */
-div.box1:before{
-    content: &quot;before&quot;;
-    color: rgb(177, 81, 13);
-}
-div.box1:after{
-    content: &quot;after&quot;;
-    color: rgb(243, 29, 72);
-}
-
-/* 伪元素:first-letter和:first-line*/
-div.box2:first-letter{
-    font-size: 3em;
-    font-weight: bold;
-}
-div.box2:first-line{
-    color: red;
-}
-
-/* 伪元素::section和::placeholder*/
-div.section::selection{
-    color: blue;
-}
-input.placeholder::placeholder{
-    background-color: red;
-    color: blue;
+              <p>本文讲述如何运用CSS绘制多边形</p>
+<h1 id="一-基本多边形绘制原理">一、基本多边形绘制原理</h1>
+<p>①border：元素的边框，实际上元素的border是由三角形组合而成，并不是矩形<br>
+下面通过例子展示：</p>
+<pre><code>    div {
+      width: 0;
+      height: 0;
+      border-top: 20px solid lightblue;
+      border-left: 20px solid lawngreen;
+      border-right: 20px solid lightpink;
+      border-bottom: 20px solid lightsalmon;
+    }
+</code></pre>
+<p>效果图：<img src="https://uaenaTzx.github.io/post-images/1657610119266.png" alt="" loading="lazy"></p>
+<p>②transparent：border属性的属性值，表示目标边框透明，通过这个属性值可以绘制三角形<br>
+注：border-color的属性值有4个，分别表示上、右、下、左（顺时针）</p>
+<pre><code>    div {
+      width: 0;
+      height: 0;
+      border-width: 20px;
+      border-style: solid;
+      border-color: red transparent transparent transparent
+    }
+</code></pre>
+<p>有代码可知，除上边框为红色，其余透明。<br>
+得到效果图：<img src="https://uaenaTzx.github.io/post-images/1657610386554.png" alt="" loading="lazy"></p>
+<p>③none：border属性的属性值，可借此绘制梯形。<br>
+例如：border-buttom:none时，边框的下半部分会消失（不是透明！）</p>
+<pre><code>.div{
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-top:none ;
+  border-bottom-color: #140e03;
+  border-left-color: #573d3d;
 }
 </code></pre>
-<p>需要注意的是，<font color="red">伪元素的前缀有&quot;:&quot;和&quot;::&quot;</font></p>
-<p>②伪类的应用：状态类伪类是最常用的，<code>link</code>、<code>visited</code>、<code>hover</code>、<code>active</code>和<code>focus</code>，分别表示正常状态下的链接、点击后、悬停时、被激活时和聚焦时<br>
-注：<br>
-1.<code>focus</code>表示元素获得光标焦点时的<code>style</code>，主要用于文本框输入文字时使用（鼠标松开时显示的<code>style</code>）<br>
-2.<code>link</code>表示链接在正常情况下显示的颜色<br>
-3.<code>visited</code>表示链接被点击后显示的颜色</p>
+<p>得到效果图：<img src="https://uaenaTzx.github.io/post-images/1657610789853.png" alt="" loading="lazy"></p>
+<p>当然，还有另一种写法：</p>
+<pre><code>    div {
+      width: 0;
+      height: 0;
+      border-top: 20px solid lightblue;
+      border-left: 10px solid transparent;
+      border-right: 10px solid lightblue;
+      /* border-bottom: 10px solid lightblue; */
+    }
+</code></pre>
+<p>得到效果图：<img src="https://uaenaTzx.github.io/post-images/1657610971656.png" alt="" loading="lazy"></p>
+<p>这些是基本的绘制方式，还有更多的请代待后续补充。</p>
 
             </div>
             
@@ -618,7 +601,7 @@ input.placeholder::placeholder{
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://uaenaTzx.github.io/post/css-de-wei-lei/" title="css的伪类和伪元素">https://uaenaTzx.github.io/post/css-de-wei-lei/</a>
+      <a href="https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/" title="CSS绘制多边形">https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -627,23 +610,15 @@ input.placeholder::placeholder{
   </ul>
   <div class="tags">
     
-      <a href="https://uaenaTzx.github.io/tag/FetAAAg9s/"># css</a>
-    
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/"># Gridea</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="通过js实现简单的组件拖拽效果" href="https://uaenaTzx.github.io/post/js_tuozhuai/">通过js实现简单的组件拖拽效果</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="通过js实现简单的组件拖拽效果" href="https://uaenaTzx.github.io/post/js_tuozhuai/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="class属性能否拥有多个属性值？" href="https://uaenaTzx.github.io/post/class-shu-xing-neng-fou-yong-you-duo-ge-shu-xing-zhi/">class属性能否拥有多个属性值？</a>
-        <a class="nav-mobile-next" title="class属性能否拥有多个属性值？" href="https://uaenaTzx.github.io/post/class-shu-xing-neng-fou-yong-you-duo-ge-shu-xing-zhi/">下一篇</a>
+        <a class="nav-pc-next" title="CSS部分重要属性" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">CSS部分重要属性</a>
+        <a class="nav-mobile-next" title="CSS部分重要属性" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
