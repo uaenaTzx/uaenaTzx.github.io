@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-07-12T07:33:14.126Z</updated>
+    <updated>2022-07-14T02:51:54.012Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -11,6 +11,121 @@
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
     <entry>
+        <title type="html"><![CDATA[CSS字体相关的属性]]></title>
+        <id>https://uaenaTzx.github.io/post/css-zi-ti-xiang-guan-de-shu-xing/</id>
+        <link href="https://uaenaTzx.github.io/post/css-zi-ti-xiang-guan-de-shu-xing/">
+        </link>
+        <updated>2022-07-12T14:18:16.000Z</updated>
+        <content type="html"><![CDATA[<p>本文主要记录与css字体相关的属性</p>
+<h1 id="一-font-family">一、font-family</h1>
+<p>作用：属性指定一个元素的字体<br>
+可以把多个字体名称作为一个&quot;回退&quot;系统来保存。如果浏览器不支持第一个字体，则会尝试下一个。</p>
+<pre><code>font-family: Arial, Helvetica, sans-serif;
+//当前面的属性值不被浏览器兼容时，使用下一个属性值
+</code></pre>
+<h1 id="二-text-transform">二、text-transform</h1>
+<p>作用：转换不同元素中的文本来控制文本的大小写<br>
+相关属性值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">none</td>
+<td style="text-align:left">默认</td>
+</tr>
+<tr>
+<td style="text-align:left">capitalize</td>
+<td style="text-align:left">文本中的每个单词以大写字母开头</td>
+</tr>
+<tr>
+<td style="text-align:left">uppercase</td>
+<td style="text-align:left">定义仅有大写字母</td>
+</tr>
+<tr>
+<td style="text-align:left">lowercase</td>
+<td style="text-align:left">定义无大写字母，仅有小写字母</td>
+</tr>
+<tr>
+<td style="text-align:left">inherit</td>
+<td style="text-align:left">规定应该从父元素继承text-transform属性的值</td>
+</tr>
+</tbody>
+</table>
+<h1 id="三-font-weight">三、font-weight</h1>
+<p>作用：定义字体的粗细<br>
+相关属性值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">nomorl</td>
+<td style="text-align:left">默认值，定义标准的字符</td>
+</tr>
+<tr>
+<td style="text-align:left">blod</td>
+<td style="text-align:left">粗体</td>
+</tr>
+<tr>
+<td style="text-align:left">bolder</td>
+<td style="text-align:left">更粗</td>
+</tr>
+<tr>
+<td style="text-align:left">lighter</td>
+<td style="text-align:left">更细</td>
+</tr>
+<tr>
+<td style="text-align:left">100-900</td>
+<td style="text-align:left">由细到粗的字体（400：normol；700：blod）</td>
+</tr>
+<tr>
+<td style="text-align:left">inherit</td>
+<td style="text-align:left">规定应该从父元素继承font-weight属性的值</td>
+</tr>
+</tbody>
+</table>
+<h1 id="四-user-select">四、user-select</h1>
+<p>作用：规定是否能选取元素的文本<br>
+在 web 浏览器中，如果您在文本上双击，文本会被选取或高亮显示。此属性用于阻止这种行为。<br>
+相关属性值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">auto</td>
+<td style="text-align:left">默认。如果浏览器允许，则可以选择文本</td>
+</tr>
+<tr>
+<td style="text-align:left">none</td>
+<td style="text-align:left">防止文本选取</td>
+</tr>
+<tr>
+<td style="text-align:left">text</td>
+<td style="text-align:left">文本可被用户选取</td>
+</tr>
+<tr>
+<td style="text-align:left">all</td>
+<td style="text-align:left">单击选取文本，而不是双击</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[CSS绘制多边形]]></title>
         <id>https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/</id>
         <link href="https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/">
@@ -18,7 +133,7 @@
         <updated>2022-07-11T12:36:16.000Z</updated>
         <content type="html"><![CDATA[<p>本文讲述如何运用CSS绘制多边形</p>
 <h1 id="一-基本多边形绘制原理">一、基本多边形绘制原理</h1>
-<p>①border：元素的边框，实际上元素的border是由三角形组合而成，并不是矩形<br>
+<p>①border：元素的边框，实际上元素的<code>border</code>是由三角形组合而成，并不是矩形<br>
 下面通过例子展示：</p>
 <pre><code>    div {
       width: 0;
@@ -30,8 +145,8 @@
     }
 </code></pre>
 <p>效果图：<img src="https://uaenaTzx.github.io/post-images/1657610119266.png" alt="" loading="lazy"></p>
-<p>②transparent：border属性的属性值，表示目标边框透明，通过这个属性值可以绘制三角形<br>
-注：border-color的属性值有4个，分别表示上、右、下、左（顺时针）</p>
+<p>②transparent：<code>border</code>属性的属性值，表示目标边框透明，通过这个属性值可以绘制三角形<br>
+注：<code>border-color</code>的属性值有4个，分别表示上、右、下、左（顺时针）</p>
 <pre><code>    div {
       width: 0;
       height: 0;
@@ -42,7 +157,7 @@
 </code></pre>
 <p>有代码可知，除上边框为红色，其余透明。<br>
 得到效果图：<img src="https://uaenaTzx.github.io/post-images/1657610386554.png" alt="" loading="lazy"></p>
-<p>③none：border属性的属性值，可借此绘制梯形。<br>
+<p>③none：<code>border</code>属性的属性值，可借此绘制梯形。<br>
 例如：border-buttom:none时，边框的下半部分会消失（不是透明！）</p>
 <pre><code>.div{
   width: 0;
@@ -66,67 +181,6 @@
 </code></pre>
 <p>得到效果图：<img src="https://uaenaTzx.github.io/post-images/1657610971656.png" alt="" loading="lazy"></p>
 <p>这些是基本的绘制方式，还有更多的请代待后续补充。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CSS部分重要属性]]></title>
-        <id>https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/</id>
-        <link href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">
-        </link>
-        <updated>2022-07-10T13:56:07.000Z</updated>
-        <content type="html"><![CDATA[<p>本篇文章记录了部分CSS的重要的属性🙉</p>
-<h1 id="一-box-sizing">一、box-sizing</h1>
-<p><code>box-sizing</code>属性定义如何计算一个元素的总宽度和总高度，主要设置是否需要加上内边距和边框等。最主要的用法是规定<font color="red">容器元素的最终尺寸计算方式</font>。</p>
-<p>属性值：<code>border-box</code>、<code>content-box</code><br>
-如果你创造了一个容器元素<font color="red">没有</font>设置<code>box-sizing</code>属性为<code>border-box</code>(不设置的话默认值为<code>content-box</code>)，同时你设置width:100px; border:10px solid red; padding:10px;那么最终div容器的实际宽度为：<br>
-100px(width)+2×10px(padding)+2×10px(border)=140px<br>
-这就导致了容器大小超出设定范围，会导致一些布局问题。<br>
-当属性值设置为<code>border-box</code>时，那么他的最终宽度即为100px, 那么它的内容部分(content)的有效宽度变成了100px-2×10px-2×10px=60px; 这样有利于整体布局</p>
-<p>#二、position<br>
-<code>position</code>属性指定一个元素(静态的，相对的，绝对或固定)的定位方法的类型</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">属性名</th>
-<th style="text-align:left">属性值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">static</td>
-<td style="text-align:left">默认值。没有定位，元素出现在正常的流中。静态定位的元素不会受到 top, bottom, left, right，z-index影响。</td>
-</tr>
-<tr>
-<td style="text-align:left">absolute</td>
-<td style="text-align:left">生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。absolute 定位使元素的位置与文档流无关，因此不占据空间。absolute 定位的元素和其他元素重叠。</td>
-</tr>
-<tr>
-<td style="text-align:left">fixed</td>
-<td style="text-align:left">生成固定定位的元素，相对于浏览器窗口进行定位。</td>
-</tr>
-<tr>
-<td style="text-align:left">relative</td>
-<td style="text-align:left">生成相对定位的元素，相对于其最初的正常位置进行定位。因此，&quot;left:20&quot; 会向元素最初的的 LEFT 位置添加 20 像素。</td>
-</tr>
-<tr>
-<td style="text-align:left">sticky</td>
-<td style="text-align:left">粘性定位，该定位基于用户滚动的位置。它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。</td>
-</tr>
-<tr>
-<td style="text-align:left">inherit</td>
-<td style="text-align:left">规定应该从父元素继承 position 属性的值。</td>
-</tr>
-<tr>
-<td style="text-align:left">initial</td>
-<td style="text-align:left">设置该属性为默认值(static) <em>问</em>：有了static为什么还会存在此属性，不是多此一举？<em>答</em>：initial 关键字可用于任何 HTML 元素上的任何 CSS 属性，不是postion特有的</td>
-</tr>
-<tr>
-<td style="text-align:left">unset</td>
-<td style="text-align:left">设置positon的值为不设置：如果该属性的默认属性是 继承属性(例如字体相关的默认属性基本都是继承)，该值等同于 inherit；如果该属性的默认属性 不是继承属性(例如pisition的默认属性为static)，该值等同于 initial</td>
-</tr>
-</tbody>
-</table>
-<h1 id="三">三、</h1>
 ]]></content>
     </entry>
 </feed>

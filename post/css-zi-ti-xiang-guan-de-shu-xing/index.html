@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
-<title>async、await函数的原理解析 | Uaena_blog</title>
+<title>CSS字体相关的属性 | Uaena_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1657767097791">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,8 +41,8 @@
 
 
 
-  <meta name="description" content="async、await函数的原理解析" />
-  <meta name="keywords" content="Promise,Gridea" />
+  <meta name="description" content="CSS字体相关的属性" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -226,10 +226,10 @@
   <div class="toc-wrapper  auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFasync-await%E5%87%BD%E6%95%B0">什么是async、await函数</a></li>
-<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFgenerator%E5%87%BD%E6%95%B0">什么是Generator函数</a></li>
-<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFthunk%E5%87%BD%E6%95%B0">什么是Thunk函数</a></li>
-<li><a href="#%E5%AE%9E%E7%8E%B0asyncawait">实现async/await</a></li>
+<li><a href="#%E4%B8%80-font-family">一、font-family</a></li>
+<li><a href="#%E4%BA%8C-text-transform">二、text-transform</a></li>
+<li><a href="#%E4%B8%89-font-weight">三、font-weight</a></li>
+<li><a href="#%E5%9B%9B-user-select">四、user-select</a></li>
 </ul>
 
   </div>
@@ -495,33 +495,21 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://uaenaTzx.github.io/post/asyncawait-han-shu-de-yuan-li-jie-xi/"> async、await函数的原理解析 </a>
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/css-zi-ti-xiang-guan-de-shu-xing/"> CSS字体相关的属性 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-05-15 22:28:17">2022-05-15</span>
+      <span class="publish-time" data-t="2022-07-12 22:18:16">2022-07-12</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">标签:</span>
-       
-      <a href="https://uaenaTzx.github.io/tag/QQyiV-fVu/"> <span>Promise</span> </a>、   
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
-        <span>Gridea</span>
-      </a>
-       
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >6<span class="language" data-lan="minute"
+        >2<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -530,15 +518,15 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >1318<span class="pc-show language" data-lan="words"
+        >370<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
     </span>
       
     <span
-      id="/post/asyncawait-han-shu-de-yuan-li-jie-xi/"
-      data-flag-title="async、await函数的原理解析"
+      id="/post/css-zi-ti-xiang-guan-de-shu-xing/"
+      data-flag-title="CSS字体相关的属性"
       class="meta-item pc-show leancloud_visitors"
     >
       <span class="post-meta-divider">|</span>
@@ -554,209 +542,113 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <h1 id="什么是async-await函数">什么是async、await函数</h1>
-<p>简而言之，<code>async/await</code>是针对js异步问题的一种强有力的处理方法。</p>
-<p>如果将<code>async</code>放在函数声明之前，则表明该函数是一个会返回<code>Promise</code>对象的异步函数。<br>
-<code>await</code>必须和<code>async</code>一起使用<font color="red">(有<code>await</code>必有<code>async</code>，有<code>async</code>不一定有<code>await</code>🌞)</font><br>
-如果我们将<code>await</code>放在异步函数调用之前，则当代码执行到此处的时候，代码将会暂停，等到异步函数执行完成后，才会继续向下执行——<font color="red">这样就实现了异步函数的同步执行~</font></p>
-<p>接下来我们用代码来演示一遍<code>async</code>和<code>await</code>的使用（红绿灯案例）</p>
-<pre><code>        function timer(color, delay) {
-            //返回一个Promise对象
-            return new Promise((reslove, reject) =&gt; {
-                console.log(color)
-                setTimeout(() =&gt; {
-                    reslove()
-                }, delay)
-            })
-        }
-
-        async function light() {
-            await timer('green', 1000)
-            await timer('yellow', 2000)
-            await timer('red', 3000)
-
-            await light()
-        }
-        light()
+              <p>本文主要记录与css字体相关的属性</p>
+<h1 id="一-font-family">一、font-family</h1>
+<p>作用：属性指定一个元素的字体<br>
+可以把多个字体名称作为一个&quot;回退&quot;系统来保存。如果浏览器不支持第一个字体，则会尝试下一个。</p>
+<pre><code>font-family: Arial, Helvetica, sans-serif;
+//当前面的属性值不被浏览器兼容时，使用下一个属性值
 </code></pre>
-<p>这样就实现了一个简单的的红绿灯系统，通过运行，我们可以发现整个函数是以同步的方式向下执行的。<br>
-而要深究其中的原理，我们发现<code>Generator</code>函数可以实现这个过程</p>
-<h1 id="什么是generator函数">什么是Generator函数</h1>
-<p><code>Generator</code>函数是由ES6语法提供的一种异步编程解决方案。</p>
-<p>如何理解<code>Generator</code>呢？<br>
-<code>Generator</code>函数在自己的函数内部有多个“断点”，必须手动的调用next()方法才能执行下一步，这样的模式允许我们自如地去暂停/执行函数里面的代码(可以与“挤牙膏”进行类比)</p>
-<p>下面我们来聊一下<code>Generator</code>函数的特征：</p>
-<p>① function关键字和函数名之间有一个*<br>
-(function* generatorDemo() {})<br>
-② 内部使用<code>yield</code>进行状态控制<br>
-③ 使用<code>next</code>执行下一步操作直到遇到<code>yield</code>关键字或者<code>return</code></p>
-<p>我们通过简单的代码来展示一下</p>
-<pre><code>function* generatorLight() {
-        let value1 = yield 'green'
-        let value2 = yield 'yellow'
-        let value3 = yield 'red'
-        console.log(value1 + ' ' + value2 +  ' ' + value3)
-    }
-
-    let light = generatorLight();
-    console.log(light.next()) 
-    console.log(light.next())
-    console.log(light.next())
-    console.log(light.next()) 
-</code></pre>
-<p>在上方代码中，我们调用<code>generatorLight()</code>并不是执行了该函数，而是返回了一个指向内部状态的<font color="red">指针对象</font>。通过<code>next()</code>方法来使指针指向下一个状态。</p>
-<p>每一次next方法会返回一个对象：</p>
-<pre><code>    {
-        value: xxx
-        done:  true/false //指针是否指向了函数末尾 即函数是否执行完毕
-    },
-</code></pre>
-<p>其中，<code>value</code>代表<code>yield</code>后面表达式返回的值，如果遇到<code>return</code>，则将<code>return</code>后跟的表达式的值作为<code>value</code>的值。(如果函数没有<code>return</code>, 则<code>value</code>的值为<code>undefined</code>)<br>
-<code>done</code>表示指针是否遍历完所有的<code>yield</code>对象，遇到<code>return</code>或者函数结束时，返回<code>true</code>(其余都为<code>false</code>)。</p>
-<p>however，通过执行代码，我们可以发现<code>console.log(value1 + ' ' + value2 + ' ' + value3);</code>的输出结果是“undefined undefined undefined”。这是因为<code>yield</code>本身的返回值是<code>undefined</code>。 如果我们需要上一步的<code>yield</code>的返回值，我们需要将上一步的返回值传入<code>next()</code>中</p>
-<pre><code>function* generatorLight() {
-        let value1 = yield 'green'
-        let value2 = yield 'yellow'
-        let value3 = yield 'red'
-        console.log(value1 + ' ' + value2 +  ' ' + value3)
-    }
-
-    let light = generatorLight()
-    let res1 = light.next()
-    let res2 = light.next(res1.value)
-    let res3 = light.next(res2.value)
-    light.next(res3.value)
-</code></pre>
-<p>这样就可以得到这样的结果：“green yellow red”</p>
-<p>可是我们发现，<code>Generator</code>需要我们手动的去一次次执行，但刚刚实现的红绿灯系统却可以自动执行，为了让<code>Generator</code>也能够自动执行，我们应该引入<code>Thunk</code>函数的思想</p>
-<h1 id="什么是thunk函数">什么是Thunk函数</h1>
-<p><code>Thunk</code>函数是指将一个多参数函数替换成一个只接受<font color="red">回调函数</font>作为参数的单参数函数。</p>
-<p>下面通过一个例子来体现<code>Thunk</code>函数的思想</p>
-<pre><code> // 原函数
-    readFile(fileName, callback)
-
-    // thunk函数
-    function thunk(fileName) {
-        return function(callback) {
-            return readFile(fileName, callback)
-        }
-    }
-
-    let file = thunk('a.text')
-    file(callback)
-</code></pre>
-<p>这个例子只是仅仅说明<code>thunk</code>的思想， 接下来我们要用<code>thunk</code>的思想来包装<code>Generator</code>函数，使它可以自动执行。</p>
-<pre><code>         // Generator函数
-        function* generatorLight() {
-        let value1 = yield 'green'
-        let value2 = yield 'yellow'
-        let value3 = yield 'red'
-        console.log(value1 + ' ' + value2 +  ' ' + value3)
-    }
-
-        // thunk包装
-        function Thunk(fn) {
-            const light = fn()
-
-            function next(data) {
-                let res = light.next(data)
-                if (res.done) {
-                    return res.value
-                }
-                next(res.value)
-            }
-            next(undefined)
-        }
-
-        Thunk(generatorLight)
-</code></pre>
-<p>我们在<code>Thunk</code>内部定义了一个<code>next</code>函数。通过递归来进行自动执行</p>
-<h1 id="实现asyncawait">实现async/await</h1>
-<p>接下来我们使用<code>Generator</code>函数来实现<code>async/await</code></p>
-<p>首先，我们再来回顾一下之前的代码</p>
-<pre><code>        function timer(color, delay) {
-            //返回一个Promise对象
-            return new Promise((reslove, reject) =&gt; {
-                console.log(color)
-                setTimeout(() =&gt; {
-                    reslove()
-                }, delay)
-            })
-        }
-
-        async function light() {
-            await timer('green', 1000)
-            await timer('yellow', 2000)
-            await timer('red', 3000)
-
-            await light()
-        }
-        light()
-</code></pre>
-<p>我们先将<code>light</code>函数改造成<code>Generator</code>函数</p>
-<pre><code>function* light() {
-             yield timer('green', 1000)
-             yield timer('yellow', 2000)
-             yield timer('red', 3000)
-
-             light()
-        }
-</code></pre>
-<p>接着，我们再来实现<code>Thunk</code>函数</p>
-<pre><code>   function Thunk(fn) {
-       return new Promise((resolve, reject) =&gt; {
-           const light = fn()
-           function next(data) {
-               let res = light.next(data)
-               if (res.done) {
-                   return resolve(res.value)
-               }
-               Promise.resolve(res.value).then(res =&gt; {
-                   next(res)
-               })
-           }
-           next(undefined)
-       })
-   }
-</code></pre>
-<p>到这里，我们就可以实现<code>async、await</code>的功能了，要注意的是，<font color="red"><code>light</code>的递归需要使用Thunk(light)!</font><br>
-完整代码如下</p>
-<pre><code>function timer(color, delay) {
-            //返回一个Promise对象
-            return new Promise((reslove, reject) =&gt; {
-                console.log(color)
-                setTimeout(() =&gt; {
-                    reslove()
-                }, delay)
-            })
-        }
-
-       function* light() {
-             yield timer('green', 1000)
-             yield timer('yellow', 2000)
-             yield timer('red', 3000)
-             //light递归
-             Thunk(light)
-        }
-
-    function Thunk(fn) {
-       return new Promise((resolve, reject) =&gt; {
-           const light = fn()
-           function next(data) {
-               let res = light.next(data)
-               if (res.done) {
-                   return resolve(res.value)
-               }
-               Promise.resolve(res.value).then(res =&gt; {
-                   next(res)
-               })
-           }
-           next(undefined)
-       })
-   }
-
-   Thunk(light)
-</code></pre>
+<h1 id="二-text-transform">二、text-transform</h1>
+<p>作用：转换不同元素中的文本来控制文本的大小写<br>
+相关属性值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">none</td>
+<td style="text-align:left">默认</td>
+</tr>
+<tr>
+<td style="text-align:left">capitalize</td>
+<td style="text-align:left">文本中的每个单词以大写字母开头</td>
+</tr>
+<tr>
+<td style="text-align:left">uppercase</td>
+<td style="text-align:left">定义仅有大写字母</td>
+</tr>
+<tr>
+<td style="text-align:left">lowercase</td>
+<td style="text-align:left">定义无大写字母，仅有小写字母</td>
+</tr>
+<tr>
+<td style="text-align:left">inherit</td>
+<td style="text-align:left">规定应该从父元素继承text-transform属性的值</td>
+</tr>
+</tbody>
+</table>
+<h1 id="三-font-weight">三、font-weight</h1>
+<p>作用：定义字体的粗细<br>
+相关属性值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">nomorl</td>
+<td style="text-align:left">默认值，定义标准的字符</td>
+</tr>
+<tr>
+<td style="text-align:left">blod</td>
+<td style="text-align:left">粗体</td>
+</tr>
+<tr>
+<td style="text-align:left">bolder</td>
+<td style="text-align:left">更粗</td>
+</tr>
+<tr>
+<td style="text-align:left">lighter</td>
+<td style="text-align:left">更细</td>
+</tr>
+<tr>
+<td style="text-align:left">100-900</td>
+<td style="text-align:left">由细到粗的字体（400：normol；700：blod）</td>
+</tr>
+<tr>
+<td style="text-align:left">inherit</td>
+<td style="text-align:left">规定应该从父元素继承font-weight属性的值</td>
+</tr>
+</tbody>
+</table>
+<h1 id="四-user-select">四、user-select</h1>
+<p>作用：规定是否能选取元素的文本<br>
+在 web 浏览器中，如果您在文本上双击，文本会被选取或高亮显示。此属性用于阻止这种行为。<br>
+相关属性值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">auto</td>
+<td style="text-align:left">默认。如果浏览器允许，则可以选择文本</td>
+</tr>
+<tr>
+<td style="text-align:left">none</td>
+<td style="text-align:left">防止文本选取</td>
+</tr>
+<tr>
+<td style="text-align:left">text</td>
+<td style="text-align:left">文本可被用户选取</td>
+</tr>
+<tr>
+<td style="text-align:left">all</td>
+<td style="text-align:left">单击选取文本，而不是双击</td>
+</tr>
+</tbody>
+</table>
 
             </div>
             
@@ -769,7 +661,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://uaenaTzx.github.io/post/asyncawait-han-shu-de-yuan-li-jie-xi/" title="async、await函数的原理解析">https://uaenaTzx.github.io/post/asyncawait-han-shu-de-yuan-li-jie-xi/</a>
+      <a href="https://uaenaTzx.github.io/post/css-zi-ti-xiang-guan-de-shu-xing/" title="CSS字体相关的属性">https://uaenaTzx.github.io/post/css-zi-ti-xiang-guan-de-shu-xing/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -778,23 +670,15 @@
   </ul>
   <div class="tags">
     
-      <a href="https://uaenaTzx.github.io/tag/QQyiV-fVu/"># Promise</a>
-    
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/"># Gridea</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="css高度塌陷的解决" href="https://uaenaTzx.github.io/post/css-gao-du-ta-xian-de-jie-jue/">css高度塌陷的解决</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="css高度塌陷的解决" href="https://uaenaTzx.github.io/post/css-gao-du-ta-xian-de-jie-jue/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Promise手写" href="https://uaenaTzx.github.io/post/Promise-handwriting/">Promise手写</a>
-        <a class="nav-mobile-next" title="Promise手写" href="https://uaenaTzx.github.io/post/Promise-handwriting/">下一篇</a>
+        <a class="nav-pc-next" title="CSS绘制多边形" href="https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/">CSS绘制多边形</a>
+        <a class="nav-mobile-next" title="CSS绘制多边形" href="https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

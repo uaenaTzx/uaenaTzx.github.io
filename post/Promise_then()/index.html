@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Promise中的then()函数 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1657611000899">
+<link rel="shortcut icon" href="/favicon.ico?v=1657767097791">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -186,7 +186,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">13</span>
+        <span class="site-item-stat-count">14</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1526,10 +1526,122 @@ jQuery(document).ready(function($) {
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-zi-ti-xiang-guan-de-shu-xing/"" data-c="
+          &lt;p&gt;本文主要记录与css字体相关的属性&lt;/p&gt;
+&lt;h1 id=&#34;一-font-family&#34;&gt;一、font-family&lt;/h1&gt;
+&lt;p&gt;作用：属性指定一个元素的字体&lt;br&gt;
+可以把多个字体名称作为一个&amp;quot;回退&amp;quot;系统来保存。如果浏览器不支持第一个字体，则会尝试下一个。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;font-family: Arial, Helvetica, sans-serif;
+//当前面的属性值不被浏览器兼容时，使用下一个属性值
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;二-text-transform&#34;&gt;二、text-transform&lt;/h1&gt;
+&lt;p&gt;作用：转换不同元素中的文本来控制文本的大小写&lt;br&gt;
+相关属性值：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;值&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;none&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;默认&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;capitalize&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;文本中的每个单词以大写字母开头&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;uppercase&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;定义仅有大写字母&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;lowercase&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;定义无大写字母，仅有小写字母&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;inherit&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;规定应该从父元素继承text-transform属性的值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;三-font-weight&#34;&gt;三、font-weight&lt;/h1&gt;
+&lt;p&gt;作用：定义字体的粗细&lt;br&gt;
+相关属性值：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;值&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;nomorl&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;默认值，定义标准的字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;blod&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;粗体&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;bolder&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;更粗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;lighter&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;更细&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;100-900&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;由细到粗的字体（400：normol；700：blod）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;inherit&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;规定应该从父元素继承font-weight属性的值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;四-user-select&#34;&gt;四、user-select&lt;/h1&gt;
+&lt;p&gt;作用：规定是否能选取元素的文本&lt;br&gt;
+在 web 浏览器中，如果您在文本上双击，文本会被选取或高亮显示。此属性用于阻止这种行为。&lt;br&gt;
+相关属性值：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;值&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;auto&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;默认。如果浏览器允许，则可以选择文本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;none&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;防止文本选取&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;text&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;文本可被用户选取&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;all&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;单击选取文本，而不是双击&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+">CSS字体相关的属性</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-zhong-de-san-jiao-xing/"" data-c="
           &lt;p&gt;本文讲述如何运用CSS绘制多边形&lt;/p&gt;
 &lt;h1 id=&#34;一-基本多边形绘制原理&#34;&gt;一、基本多边形绘制原理&lt;/h1&gt;
-&lt;p&gt;①border：元素的边框，实际上元素的border是由三角形组合而成，并不是矩形&lt;br&gt;
+&lt;p&gt;①border：元素的边框，实际上元素的&lt;code&gt;border&lt;/code&gt;是由三角形组合而成，并不是矩形&lt;br&gt;
 下面通过例子展示：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;    div {
       width: 0;
@@ -1541,8 +1653,8 @@ jQuery(document).ready(function($) {
     }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;效果图：&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657610119266.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;②transparent：border属性的属性值，表示目标边框透明，通过这个属性值可以绘制三角形&lt;br&gt;
-注：border-color的属性值有4个，分别表示上、右、下、左（顺时针）&lt;/p&gt;
+&lt;p&gt;②transparent：&lt;code&gt;border&lt;/code&gt;属性的属性值，表示目标边框透明，通过这个属性值可以绘制三角形&lt;br&gt;
+注：&lt;code&gt;border-color&lt;/code&gt;的属性值有4个，分别表示上、右、下、左（顺时针）&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;    div {
       width: 0;
       height: 0;
@@ -1553,7 +1665,7 @@ jQuery(document).ready(function($) {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;有代码可知，除上边框为红色，其余透明。&lt;br&gt;
 得到效果图：&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657610386554.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;③none：border属性的属性值，可借此绘制梯形。&lt;br&gt;
+&lt;p&gt;③none：&lt;code&gt;border&lt;/code&gt;属性的属性值，可借此绘制梯形。&lt;br&gt;
 例如：border-buttom:none时，边框的下半部分会消失（不是透明！）&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;.div{
   width: 0;
@@ -1582,15 +1694,32 @@ jQuery(document).ready(function($) {
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/"" data-c="
-          &lt;p&gt;本篇文章记录了部分CSS的重要的属性🙉&lt;/p&gt;
-&lt;h1 id=&#34;一-box-sizing&#34;&gt;一、box-sizing&lt;/h1&gt;
+          &lt;p&gt;本篇文章记录了部分CSS的重要的属性与方法🙉&lt;/p&gt;
+&lt;h1 id=&#34;一-box-sizing属性&#34;&gt;一、box-sizing属性&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;box-sizing&lt;/code&gt;属性定义如何计算一个元素的总宽度和总高度，主要设置是否需要加上内边距和边框等。最主要的用法是规定&lt;font color=&#34;red&#34;&gt;容器元素的最终尺寸计算方式&lt;/font&gt;。&lt;/p&gt;
 &lt;p&gt;属性值：&lt;code&gt;border-box&lt;/code&gt;、&lt;code&gt;content-box&lt;/code&gt;&lt;br&gt;
 如果你创造了一个容器元素&lt;font color=&#34;red&#34;&gt;没有&lt;/font&gt;设置&lt;code&gt;box-sizing&lt;/code&gt;属性为&lt;code&gt;border-box&lt;/code&gt;(不设置的话默认值为&lt;code&gt;content-box&lt;/code&gt;)，同时你设置width:100px; border:10px solid red; padding:10px;那么最终div容器的实际宽度为：&lt;br&gt;
 100px(width)+2×10px(padding)+2×10px(border)=140px&lt;br&gt;
 这就导致了容器大小超出设定范围，会导致一些布局问题。&lt;br&gt;
 当属性值设置为&lt;code&gt;border-box&lt;/code&gt;时，那么他的最终宽度即为100px, 那么它的内容部分(content)的有效宽度变成了100px-2×10px-2×10px=60px; 这样有利于整体布局&lt;/p&gt;
-&lt;p&gt;#二、position&lt;br&gt;
+&lt;h1 id=&#34;二-calc方法&#34;&gt;二、calc()方法&lt;/h1&gt;
+&lt;p&gt;功能：动态计算元素的长度值（最终作用与box-sizing相当）&lt;br&gt;
+应用举例：自动调整表单域的大小以适应其容器的大小&lt;br&gt;
+用来确保一个表单域的大小适合当前的可用空间，而不会在保持合适的外边距的同时，因挤压超出其容器的边缘。&lt;br&gt;
+以下实例中，form 元素自身使用了窗口可用宽度的 1/6，然后，为了让 form 元素内部的 input 元素保持合适的大小，我们再一次使用了&lt;code&gt;calc()&lt;/code&gt;，让它的宽度为其容器的宽度减 1em。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;input {
+  padding: 2px;
+  display: block;
+  width: calc(100% - 1em);
+}
+ 
+#formbox {
+  width: calc(100% / 6);
+  border: 1px solid black;
+  padding: 4px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;#三、position属性&lt;br&gt;
 &lt;code&gt;position&lt;/code&gt;属性指定一个元素(静态的，相对的，绝对或固定)的定位方法的类型&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1634,8 +1763,23 @@ jQuery(document).ready(function($) {
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h1 id=&#34;三&#34;&gt;三、&lt;/h1&gt;
-">CSS部分重要属性</a>
+&lt;p&gt;#四、top属性&lt;br&gt;
+&lt;code&gt;top&lt;/code&gt;属性规定元素的顶部边缘。该属性定义了一个定位元素的&lt;font color=&#34;red&#34;&gt;上外边距边界&lt;/font&gt;与其&lt;font color=&#34;red&#34;&gt;包含块上边界&lt;/font&gt;之间的偏移。&lt;br&gt;
+偏移存在两种情况：&lt;br&gt;
+①向上偏移：偏移量&amp;lt;0&lt;br&gt;
+②向下偏移：偏移量&amp;gt;0&lt;br&gt;
+注：对于相对定义元素，如果&lt;code&gt;top&lt;/code&gt;和&lt;code&gt;bottom&lt;/code&gt;都是&lt;code&gt;auto&lt;/code&gt;，其计算值则都是0；如果其中之一为&lt;code&gt;auto&lt;/code&gt;，则取另一个值的相反数；如果二者都不是&lt;code&gt;auto&lt;/code&gt;，&lt;code&gt;bottom&lt;/code&gt;将取&lt;code&gt;top&lt;/code&gt;值的相反数。&lt;/p&gt;
+&lt;h1 id=&#34;五-transition属性&#34;&gt;五、transition属性&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;transition&lt;/code&gt;属性设置元素当过渡效果&lt;br&gt;
+例：将鼠标悬停在一个 div 元素上，2s内逐步改变表格的宽度从 100px 到 300px&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;div{
+    width:100px;
+    transition: width 2s;
+    -webkit-transition: width 2s; /* Safari */
+}
+div:hover {width:300px;}
+&lt;/code&gt;&lt;/pre&gt;
+">CSS部分重要属性与方法</a>
       </div>
       
       <div class="item">
