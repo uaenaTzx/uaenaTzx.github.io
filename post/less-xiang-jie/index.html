@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
-<title>阻止事件默认行为 | Uaena_blog</title>
+<title>Less的基本运用 | Uaena_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1658404412791">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,8 +41,8 @@
 
 
 
-  <meta name="description" content="阻止事件默认行为" />
-  <meta name="keywords" content="JavaScript,Gridea" />
+  <meta name="description" content="Less的基本运用" />
+  <meta name="keywords" content="css,Gridea" />
 </head>
 
 <body>
@@ -226,8 +226,7 @@
   <div class="toc-wrapper  auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA">一、什么是事件默认行为</a></li>
-<li><a href="#%E4%BA%8C-%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA">二、阻止事件默认行为</a></li>
+<li><a href="#%E4%B8%80-%E5%8F%98%E9%87%8F">一、变量</a></li>
 </ul>
 
   </div>
@@ -493,14 +492,14 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/"> 阻止事件默认行为 </a>
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/less-xiang-jie/"> Less的基本运用 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-06-17 17:37:09">2022-06-17</span>
+      <span class="publish-time" data-t="2022-06-30 17:08:47">2022-06-30</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -508,7 +507,7 @@
       <i class="fa fa-folder-o"></i>
       <span class="pc-show language" data-lan="category-in">标签:</span>
        
-      <a href="https://uaenaTzx.github.io/tag/la3aFx0RN/"> <span>JavaScript</span> </a>、   
+      <a href="https://uaenaTzx.github.io/tag/FetAAAg9s/"> <span>css</span> </a>、   
       <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
         <span>Gridea</span>
       </a>
@@ -519,7 +518,7 @@
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >3<span class="language" data-lan="minute"
+        >4<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -528,15 +527,15 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >540<span class="pc-show language" data-lan="words"
+        >750<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
     </span>
       
     <span
-      id="/post/zu-zhi-shi-jian-mo-ren-xing-wei/"
-      data-flag-title="阻止事件默认行为"
+      id="/post/less-xiang-jie/"
+      data-flag-title="Less的基本运用"
       class="meta-item pc-show leancloud_visitors"
     >
       <span class="post-meta-divider">|</span>
@@ -552,47 +551,200 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <h1 id="一-什么是事件默认行为">一、什么是事件默认行为</h1>
-<p>默认行为，一般是指 <code>HTML</code>元素所自带的行为<br>
-例如：<br>
-①标签<code>a</code>表示跳转链接<br>
-②标签<code>input</code>表示提交表单<br>
-③<code>mousedown</code>事件，鼠标在文本上进行移动，此时默认行为是选择文本；如果是在图片上，则是退拽图片<br>
-……</p>
-<p>但是有的场合不需要我们触发事件默认行为。比如表单数据需要通过<code>ajax</code>来异步发送到服务器时，并不需要提交表单，再比如我们不想拖拽图片后，重新再另外一个窗口中展示该图片。此时，需要通过一些操作来取消事件的默认行为</p>
-<h1 id="二-阻止事件默认行为">二、阻止事件默认行为</h1>
-<p>在此之前，先介绍一个属性<code>cancelable</code>（只读属性），该属性返回一个布尔值，表示事件是否可以取消。返回<code>true</code>时，表示可以取消。否则，表示不可取消</p>
-<pre><code>&lt;a id=&quot;test&quot; href=&quot;https://www.123.com&quot;&gt;123&lt;/a&gt;
+              <p>众所周知，<code>CSS</code>最大的短板就是毫无逻辑，不像编程该有的样子。为了让<code>CSS</code>富有逻辑性，短板不那么严重，涌现出了 一些神奇的预处理语言。它们让 <code>CSS</code>彻底变成一门可以使用变量 、循环 、继承 、自定义方法等多种特性的标记语言。比如：<code>Sass</code>、<code>Less</code> 、<code>Stylus</code></p>
+<p>其中，<code>Less</code> 没有去掉任何 <code>CSS</code> 的功能，而是在现有的语法上，增添了许多额外的功能特性，所以学习 <code>Less</code>并不困难。接下来，将会介绍有关<code>Less</code>的基本运运用</p>
+<p>首先是导入<code>Less</code><br>
+导入<code>Less</code>有两种方式<br>
+①在页面中 引入 Less.js<br>
+需要在官网下载文件，此处省略步骤<br>
+②在命令行，使用<code>npm</code>安装</p>
+<pre><code>npm install -g less
+</code></pre>
+<p>下面是<code>Less</code>的功能特性</p>
+<h1 id="一-变量">一、变量</h1>
+<p>①值变量<br>
+以<code>@</code>开头定义变量，使用时直接输入<code>@</code>名称。</p>
+<pre><code>/* Less */
+@color: #999;
 
-var test = document.getElementById(&quot;test&quot;);
-test.onclick = function (event) {
-  console.log(event.cancelable)// true
+#wrap {
+  color: @color;
+}
+
+/* 生成后的 CSS */
+#wrap {
+  color: #999;
+
 }
 </code></pre>
-<p>下面我们来对阻止事件默认行为的方法进行总结：<br>
-①preventDefault 方法<br>
-preventDefault 方法是 DOM 中最常见，也是最标准的取消浏览器默认行为的方式，无返回值</p>
-<pre><code>var test = document.getElementById(&quot;test&quot;);
-test.onclick = function(event){
-  event.preventDefault();
+<p>在平时工作中，我们就可以把常用的变量封装到一个文件中，这样利于代码组织维护。</p>
+<pre><code>@lightPrimaryColor: #c5cae9;
+@textPrimaryColor: #fff;
+@accentColor: rgb(99, 137, 185);
+@primaryTextColor: #646464;
+@secondaryTextColor: #000;
+@dividerColor: #b6b6b6;
+@borderColor: #dadada;
+</code></pre>
+<p>②选择器变量</p>
+<pre><code>/* Less */
+@mySelector: #wrap;
+@Wrap: wrap;
+@{mySelector}{ //变量名 必须使用大括号包裹
+  color: #999;
+  width: 50%;
+}
+.@{Wrap}{
+  color:#ccc;
+}
+#@{Wrap}{
+  color:#666;
+}
+
+/* 生成的 CSS */
+#wrap{
+  color: #999;
+  width: 50%;
+}
+.wrap{
+  color:#ccc;
+}
+#wrap{
+  color:#666;
 }
 </code></pre>
-<p>②returnValue 属性<br>
-returnValue 是一个 event 对象上面的属性（可读可写）。默认值是为true，将其设置为 false 就可以取消事件的默认行为（适用于低版本浏览器）</p>
-<pre><code>var test = document.getElementById(&quot;test&quot;);
-test.onclick = function(event){
-  event.returnValue = false;
+<p>③属性变量</p>
+<pre><code>/* Less */
+@borderStyle: border-style;
+@Soild:solid;
+#wrap{
+  @{borderStyle}: @Soild;//变量名 必须使用大括号包裹
+}
+
+/* 生成的 CSS */
+#wrap{
+  border-style:solid;
 }
 </code></pre>
-<p>③return false语句<br>
-该语句写在事件处理函数中也可以阻止默认行为。但是该语句后面的代码将不被运行（return false的管辖范围只在所处的函数中，对外无影响）<br>
-注：并不只是return false 是会取消默认行为，有时候return true也会有同样的效果，只是习惯问题</p>
-<pre><code>var test = document.getElementById(&quot;test&quot;);
-test.onclick = function(){
-  return false;
+<p>④url 变量<br>
+项目结构改变时，修改其变量即可。</p>
+<pre><code>/* Less */
+@images: &quot;../img&quot;;//需要加引号
+body {
+  background: url(&quot;@{images}/dog.png&quot;);//变量名 必须使用大括号包裹
+}
+
+/* 生成的 CSS */
+body {
+  background: url(&quot;../img/dog.png&quot;);
 }
 </code></pre>
-<p>以上几种方法选一种习惯的即可，其中第二种不是很常用。🙃</p>
+<p>⑤声明变量<br>
+当作对象处理<br>
+结构：@name: { 属性: 值 ;};<br>
+使用：@name();</p>
+<pre><code>/* Less */
+@background: {background:red;};
+#main{
+    @background();
+}
+@Rules:{
+    width: 200px;
+    height: 200px;
+    border: solid 1px red;
+};
+#con{
+  @Rules();
+}
+
+/* 生成的 CSS */
+#main{
+  background:red;
+}
+#con{
+  width: 200px;
+  height: 200px;
+  border: solid 1px red;
+}
+</code></pre>
+<p>⑥变量的运算<br>
+<code>Less</code>的运算非常强大，加减法时，以第一个数据的单位为基准；乘除法时，注意<font sytle="red">单位一定要统一！</font></p>
+<pre><code>/* Less */
+@width:300px;
+@color:#222;
+#wrap{
+  width:@width-20;
+  height:@width-20*5;
+  margin:(@width-20)*5;
+  color:@color*2;
+  background-color:@color + #111;
+}
+
+/* 生成的 CSS */
+#wrap{
+  width:280px;
+  height:200px;
+  margin:1400px;
+  color:#444;
+  background-color:#333;
+}
+</code></pre>
+<p>⑦变量作用域<br>
+就近原则！！！</p>
+<pre><code>/* Less */
+@var: @a;
+@a: 100%;
+#wrap {
+  width: @var;
+  @a: 9%;
+}
+
+/* 生成的 CSS */
+#wrap {
+  width: 9%;
+}
+</code></pre>
+<p>⑧用变量去定义变量</p>
+<pre><code>/* Less */
+@fnord:  &quot;I am fnord.&quot;;
+@var:    &quot;fnord&quot;;
+#wrap::after{
+  content: @@var; //将@var替换为其值 content:@fnord;
+}
+/* 生成的 CSS */
+#wrap::after{
+  content: &quot;I am fnord.&quot;;
+}
+</code></pre>
+<p>#二、嵌套<br>
+①<code>&amp;</code>的妙用<br>
+<code>&amp;</code>代表的上一层选择器的名字</p>
+<pre><code>/* Less */
+#header{
+  &amp;:after{
+    content:&quot;Less is more!&quot;;
+  }
+  .title{
+    font-weight:bold;
+  }
+  &amp;_content{//理解方式：直接把 &amp; 替换成 #header
+    margin:20px;
+  }
+}
+/* 生成的 CSS */
+#header::after{
+  content:&quot;Less is more!&quot;;
+}
+#header .title{ //嵌套了
+  font-weight:bold;
+}
+#header_content{//没有嵌套！
+    margin:20px;
+}
+</code></pre>
+<p>此例中，<code>&amp;</code>即为<code>header</code></p>
+<p>②媒体查询</p>
+<p>目前适用的方法先到这里，以后继续补充</p>
 
             </div>
             
@@ -605,7 +757,7 @@ test.onclick = function(){
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/" title="阻止事件默认行为">https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/</a>
+      <a href="https://uaenaTzx.github.io/post/less-xiang-jie/" title="Less的基本运用">https://uaenaTzx.github.io/post/less-xiang-jie/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -614,7 +766,7 @@ test.onclick = function(){
   </ul>
   <div class="tags">
     
-      <a href="https://uaenaTzx.github.io/tag/la3aFx0RN/"># JavaScript</a>
+      <a href="https://uaenaTzx.github.io/tag/FetAAAg9s/"># css</a>
     
       <a href="https://uaenaTzx.github.io/tag/888Nsy-do/"># Gridea</a>
     
@@ -623,14 +775,14 @@ test.onclick = function(){
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Less的基本运用" href="https://uaenaTzx.github.io/post/less-xiang-jie/">Less的基本运用</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Less的基本运用" href="https://uaenaTzx.github.io/post/less-xiang-jie/">上一篇</a>
+        <a class="nav-pc-next" title="CSS部分重要属性与方法" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">CSS部分重要属性与方法</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="CSS部分重要属性与方法" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="css中display:none与visibility:hidden的区别和共性分析" href="https://uaenaTzx.github.io/post/css_display_visibility/">css中display:none与visibility:hidden的区别和共性分析</a>
-        <a class="nav-mobile-next" title="css中display:none与visibility:hidden的区别和共性分析" href="https://uaenaTzx.github.io/post/css_display_visibility/">下一篇</a>
+        <a class="nav-pc-next" title="阻止事件默认行为" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/">阻止事件默认行为</a>
+        <a class="nav-mobile-next" title="阻止事件默认行为" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Promise中的then()函数 | Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1658404392208">
+<link rel="shortcut icon" href="/favicon.ico?v=1658404412791">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -186,7 +186,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">15</span>
+        <span class="site-item-stat-count">16</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1842,6 +1842,205 @@ div:hover {width:300px;}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;关于transition的更多细节会在后续详述&lt;/p&gt;
 ">CSS部分重要属性与方法</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/less-xiang-jie/"" data-c="
+          &lt;p&gt;众所周知，&lt;code&gt;CSS&lt;/code&gt;最大的短板就是毫无逻辑，不像编程该有的样子。为了让&lt;code&gt;CSS&lt;/code&gt;富有逻辑性，短板不那么严重，涌现出了 一些神奇的预处理语言。它们让 &lt;code&gt;CSS&lt;/code&gt;彻底变成一门可以使用变量 、循环 、继承 、自定义方法等多种特性的标记语言。比如：&lt;code&gt;Sass&lt;/code&gt;、&lt;code&gt;Less&lt;/code&gt; 、&lt;code&gt;Stylus&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;其中，&lt;code&gt;Less&lt;/code&gt; 没有去掉任何 &lt;code&gt;CSS&lt;/code&gt; 的功能，而是在现有的语法上，增添了许多额外的功能特性，所以学习 &lt;code&gt;Less&lt;/code&gt;并不困难。接下来，将会介绍有关&lt;code&gt;Less&lt;/code&gt;的基本运运用&lt;/p&gt;
+&lt;p&gt;首先是导入&lt;code&gt;Less&lt;/code&gt;&lt;br&gt;
+导入&lt;code&gt;Less&lt;/code&gt;有两种方式&lt;br&gt;
+①在页面中 引入 Less.js&lt;br&gt;
+需要在官网下载文件，此处省略步骤&lt;br&gt;
+②在命令行，使用&lt;code&gt;npm&lt;/code&gt;安装&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm install -g less
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;下面是&lt;code&gt;Less&lt;/code&gt;的功能特性&lt;/p&gt;
+&lt;h1 id=&#34;一-变量&#34;&gt;一、变量&lt;/h1&gt;
+&lt;p&gt;①值变量&lt;br&gt;
+以&lt;code&gt;@&lt;/code&gt;开头定义变量，使用时直接输入&lt;code&gt;@&lt;/code&gt;名称。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+@color: #999;
+
+#wrap {
+  color: @color;
+}
+
+/* 生成后的 CSS */
+#wrap {
+  color: #999;
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在平时工作中，我们就可以把常用的变量封装到一个文件中，这样利于代码组织维护。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@lightPrimaryColor: #c5cae9;
+@textPrimaryColor: #fff;
+@accentColor: rgb(99, 137, 185);
+@primaryTextColor: #646464;
+@secondaryTextColor: #000;
+@dividerColor: #b6b6b6;
+@borderColor: #dadada;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;②选择器变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+@mySelector: #wrap;
+@Wrap: wrap;
+@{mySelector}{ //变量名 必须使用大括号包裹
+  color: #999;
+  width: 50%;
+}
+.@{Wrap}{
+  color:#ccc;
+}
+#@{Wrap}{
+  color:#666;
+}
+
+/* 生成的 CSS */
+#wrap{
+  color: #999;
+  width: 50%;
+}
+.wrap{
+  color:#ccc;
+}
+#wrap{
+  color:#666;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;③属性变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+@borderStyle: border-style;
+@Soild:solid;
+#wrap{
+  @{borderStyle}: @Soild;//变量名 必须使用大括号包裹
+}
+
+/* 生成的 CSS */
+#wrap{
+  border-style:solid;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;④url 变量&lt;br&gt;
+项目结构改变时，修改其变量即可。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+@images: &amp;quot;../img&amp;quot;;//需要加引号
+body {
+  background: url(&amp;quot;@{images}/dog.png&amp;quot;);//变量名 必须使用大括号包裹
+}
+
+/* 生成的 CSS */
+body {
+  background: url(&amp;quot;../img/dog.png&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;⑤声明变量&lt;br&gt;
+当作对象处理&lt;br&gt;
+结构：@name: { 属性: 值 ;};&lt;br&gt;
+使用：@name();&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+@background: {background:red;};
+#main{
+    @background();
+}
+@Rules:{
+    width: 200px;
+    height: 200px;
+    border: solid 1px red;
+};
+#con{
+  @Rules();
+}
+
+/* 生成的 CSS */
+#main{
+  background:red;
+}
+#con{
+  width: 200px;
+  height: 200px;
+  border: solid 1px red;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;⑥变量的运算&lt;br&gt;
+&lt;code&gt;Less&lt;/code&gt;的运算非常强大，加减法时，以第一个数据的单位为基准；乘除法时，注意&lt;font sytle=&#34;red&#34;&gt;单位一定要统一！&lt;/font&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+@width:300px;
+@color:#222;
+#wrap{
+  width:@width-20;
+  height:@width-20*5;
+  margin:(@width-20)*5;
+  color:@color*2;
+  background-color:@color + #111;
+}
+
+/* 生成的 CSS */
+#wrap{
+  width:280px;
+  height:200px;
+  margin:1400px;
+  color:#444;
+  background-color:#333;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;⑦变量作用域&lt;br&gt;
+就近原则！！！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+@var: @a;
+@a: 100%;
+#wrap {
+  width: @var;
+  @a: 9%;
+}
+
+/* 生成的 CSS */
+#wrap {
+  width: 9%;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;⑧用变量去定义变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+@fnord:  &amp;quot;I am fnord.&amp;quot;;
+@var:    &amp;quot;fnord&amp;quot;;
+#wrap::after{
+  content: @@var; //将@var替换为其值 content:@fnord;
+}
+/* 生成的 CSS */
+#wrap::after{
+  content: &amp;quot;I am fnord.&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;#二、嵌套&lt;br&gt;
+①&lt;code&gt;&amp;amp;&lt;/code&gt;的妙用&lt;br&gt;
+&lt;code&gt;&amp;amp;&lt;/code&gt;代表的上一层选择器的名字&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Less */
+#header{
+  &amp;amp;:after{
+    content:&amp;quot;Less is more!&amp;quot;;
+  }
+  .title{
+    font-weight:bold;
+  }
+  &amp;amp;_content{//理解方式：直接把 &amp;amp; 替换成 #header
+    margin:20px;
+  }
+}
+/* 生成的 CSS */
+#header::after{
+  content:&amp;quot;Less is more!&amp;quot;;
+}
+#header .title{ //嵌套了
+  font-weight:bold;
+}
+#header_content{//没有嵌套！
+    margin:20px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此例中，&lt;code&gt;&amp;amp;&lt;/code&gt;即为&lt;code&gt;header&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;②媒体查询&lt;/p&gt;
+&lt;p&gt;目前适用的方法先到这里，以后继续补充&lt;/p&gt;
+">Less的基本运用</a>
       </div>
       
       <div class="item">
