@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1658404412791">
+<link rel="shortcut icon" href="/favicon.ico?v=1658483147355">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -259,7 +259,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >550<span class="pc-show language" data-lan="words"
+        >538<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -342,7 +342,7 @@
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >2<span class="language" data-lan="minute"
+        >3<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -351,7 +351,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >370<span class="pc-show language" data-lan="words"
+        >688<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -380,9 +380,9 @@
               
             
             
-              <p><p>本文主要记录与css字体相关的属性</p>
+              <p><!-- more -->
+<p>本文主要记录与css字体相关的属性（兼带一些其他小属性）</p>
 <h1 id="一-font-family">一、font-family</h1>
-<p>作用：属性指定一个元素的字体<br>
 
                 
               <p>
@@ -1337,8 +1337,8 @@ div:hover {width:300px;}
 &lt;p&gt;以下是部分属性适用的属性值：&lt;/p&gt;
 &lt;h1 id=&#34;二-transition-property&#34;&gt;二、transition-property&lt;/h1&gt;
 &lt;p&gt;①color:通过红、绿、蓝和透明度组件变换（每个数值处理）如：background-color,border-color,color,outline-color等css属性；&lt;br&gt;
-②length: 真实的数字 如：word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,line-height,height等属性；&lt;br&gt;
-③percentage:真实的数字 如：word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,line-height,height等属性；&lt;br&gt;
+②length: word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,line-height,height等属性；&lt;br&gt;
+③percentage:word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,line-height,height等属性；&lt;br&gt;
 ……&lt;/p&gt;
 &lt;h1 id=&#34;三-transition-timing-function&#34;&gt;三、transition-timing-function&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;linear&lt;/code&gt;：指定以相同速度开始至结束的过渡效果，等同于cubic-bezier(0,0,1,1))&lt;br&gt;
@@ -1355,7 +1355,8 @@ div:hover {width:300px;}
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-zi-ti-xiang-guan-de-shu-xing/"" data-c="
-          &lt;p&gt;本文主要记录与css字体相关的属性&lt;/p&gt;
+          &lt;!-- more --&gt;
+&lt;p&gt;本文主要记录与css字体相关的属性（兼带一些其他小属性）&lt;/p&gt;
 &lt;h1 id=&#34;一-font-family&#34;&gt;一、font-family&lt;/h1&gt;
 &lt;p&gt;作用：属性指定一个元素的字体&lt;br&gt;
 可以把多个字体名称作为一个&amp;quot;回退&amp;quot;系统来保存。如果浏览器不支持第一个字体，则会尝试下一个。&lt;/p&gt;
@@ -1434,7 +1435,7 @@ div:hover {width:300px;}
 &lt;/table&gt;
 &lt;h1 id=&#34;四-user-select&#34;&gt;四、user-select&lt;/h1&gt;
 &lt;p&gt;作用：规定是否能选取元素的文本&lt;br&gt;
-在 web 浏览器中，如果您在文本上双击，文本会被选取或高亮显示。此属性用于阻止这种行为。&lt;br&gt;
+在web浏览器中，如果您在文本上双击，文本会被选取或高亮显示。此属性用于阻止这种行为。&lt;br&gt;
 相关属性值：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1462,6 +1463,98 @@ div:hover {width:300px;}
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h1 id=&#34;五-line-height&#34;&gt;五、line-height&lt;/h1&gt;
+&lt;p&gt;作用：设置行高&lt;br&gt;
+相关属性值：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;值&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;nomorl&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;默认，设置合理的行间距&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;number&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置数字，此数字会与当前的字体尺寸相乘来设置行间距&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;length&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置固定的行间距&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;%&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;基于当前字体尺寸的百分比行间距&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;inherit&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;规定应该从父元素继承line-height属性的值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;六-cursor&#34;&gt;六、cursor&lt;/h1&gt;
+&lt;p&gt;作用：设置区域内光标样式&lt;br&gt;
+详细说明见https://www.runoob.com/cssref/pr-class-cursor.html&lt;/p&gt;
+&lt;h1 id=&#34;七-text-decoration&#34;&gt;七、text-decoration&lt;/h1&gt;
+&lt;p&gt;作用：规定添加到文本的修饰，下划线、上划线、删除线&lt;br&gt;
+&lt;code&gt;text-decoration&lt;/code&gt;属性是以下三种属性的简写：&lt;br&gt;
+&lt;code&gt;text-decoration-line&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;text-decoration-color&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;text-decoration-style&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/*关键值*/
+text-decoration: none;                     /*没有文本装饰*/
+text-decoration: underline red;            /*红色下划线*/
+text-decoration: underline wavy red;       /*红色波浪形下划线*/
+
+/*全局值*/
+text-decoration: inherit;
+text-decoration: initial;
+text-decoration: unset;
+
+/*虚线与波浪线*/
+text-decoration: underline overline dotted red;
+text-decoration: underline overline wavy blue;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;相关属性值：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;值&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;none&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;默认，定义标准的文本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;underline&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;定义文本下的一条线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;overline&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;定义文本上的一条线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;line-through&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;定义穿过文本下的一条线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;blink&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;定义闪烁的文本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;inherit&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;规定应该从父元素继承text-decoration属性的值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;八&#34;&gt;八、&lt;/h1&gt;
 ">CSS字体相关的属性</a>
       </div>
       
@@ -1608,6 +1701,18 @@ div:hover {width:300px;}
 div:hover {width:300px;}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;关于transition的更多细节会在后续详述&lt;/p&gt;
+&lt;h1 id=&#34;六-background-image属性&#34;&gt;六、background-image属性&lt;/h1&gt;
+&lt;p&gt;作用：设置一个元素的背景图像，背景是元素的总大小，包括填充和边界（但不包括边距）&lt;br&gt;
+默认情况下，background-image放置在元素的左上角，并重复垂直和水平方向。&lt;br&gt;
+提示：请设置一种可用的背景颜色，这样的话，假如背景图像不可用，可以使用背景色带代替。&lt;br&gt;
+详细的属性值以及属性值对应的方法语法见链接：&lt;br&gt;
+https://www.runoob.com/cssref/pr-background-image.html&lt;/p&gt;
+&lt;h1 id=&#34;七-repeating-linear-gradient方法&#34;&gt;七、repeating-linear-gradient()方法&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;repeating-linear-gradient&lt;/code&gt;，看名字就能知道是重复线性渐变，它能更方便的实现隔行变色的功能，如果你想画一个背景，它是重复、隔行的，那么用它就没错了；&lt;br&gt;
+基础用法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;background-image: repeating-linear-gradient(90deg, red 0, red 50px, blue 0, blue 200px);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对代码内容的理解：90deg表示转角；red 0, red 100px表示0到100px的位置渲染绿色，blue 0, blue 200px表示0到200px的位置渲染红色，然后重复，所以红色实际看到的是150px；&lt;/p&gt;
 ">CSS部分重要属性与方法</a>
       </div>
       
