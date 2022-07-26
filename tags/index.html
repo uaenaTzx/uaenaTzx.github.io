@@ -9,7 +9,7 @@
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
 <title>Uaena_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1658659308075">
+<link rel="shortcut icon" href="/favicon.ico?v=1658835900450">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -169,7 +169,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">16</span>
+        <span class="site-item-stat-count">17</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -226,6 +226,8 @@
   <div class="tag-cloud-list" id="tags">
     
       
+      
+        
       
         
           
@@ -312,6 +314,8 @@
       <a class="cloud-tag" href="https://uaenaTzx.github.io/tag/FetAAAg9s/" rel="9">css</a>
     
       
+      
+        
       
         
           
@@ -418,6 +422,8 @@
       
       
         
+      
+        
           
         
           
@@ -516,6 +522,8 @@
       
       
         
+      
+        
           
         
           
@@ -612,6 +620,8 @@
       <a class="cloud-tag" href="https://uaenaTzx.github.io/tag/QQyiV-fVu/" rel="3">Promise</a>
     
       
+      
+        
       
         
           
@@ -1601,6 +1611,88 @@ jQuery(document).ready(function($) {
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/css-yin-ying-xiao-guo-de-sao-cao-zuo-you-hua/"" data-c="
+          &lt;p&gt;首先，我们要了解控制阴影的属性之一：&lt;code&gt;box-shadow&lt;/code&gt;&lt;br&gt;
+语法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;box-shadow: h-shadow v-shadow blur spread color inset;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;相关属性值：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;值&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;h-shadow&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;必需的。水平阴影的位置。允许负值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;v-shadow&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;必需的。垂直阴影的位置。允许负值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;blur&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;可选。模糊距离&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;spread&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;可选。阴影的扩散范围&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;color	可选。阴影的颜色&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;inset&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;可选。将外阴影转化为内阴影。这个属性也可以卸载offset-x前面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;其中，blur可以使阴影变得更模糊，更加真实；spread可以增加阴影的扩散范围，阴影会往四个方向增加尺寸&lt;br&gt;
+下面还有inset效果图&lt;br&gt;
+&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1658763904968.png&#34; alt=&#34;&#34; width=&#34;250&#34; height=&#34;250&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;那么接下来就是我们的阴影的骚操作优化了！😮😮😮&lt;/p&gt;
+&lt;h1 id=&#34;一-阴影的骚操作优化协调全局&#34;&gt;一、阴影的骚操作优化——协调全局&lt;/h1&gt;
+&lt;p&gt;在自然界中，阴影是从光源投射而来的。阴影的方向取决于光的位置，在一个页面之中，所有的组件公用一个光源。当光源从一致的方向投射时，所有组件出现的x、y阴影偏移量比值是相同的。&lt;br&gt;
+同时，我们可以做个实验，观察手的阴影，会发现提高手的高度时，阴影的模糊半径和透明度都在增加，当我们需要做出高度区分时，这样的效果更符合视觉！&lt;br&gt;
+总结一下：&lt;br&gt;
+1.设置相同的全局x、y偏移量比值&lt;br&gt;
+2.拔高元素时，提高模糊半径和透明度&lt;br&gt;
+3.调整的时候大可以相信直觉！&lt;/p&gt;
+&lt;h1 id=&#34;二-阴影的骚操作优化阴影堆叠&#34;&gt;二、阴影的骚操作优化——阴影堆叠&lt;/h1&gt;
+&lt;p&gt;考虑到Web阴影算法的简陋性，我们可以通过叠加多个阴影来增加我们阴影的真实性&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.blur &amp;gt; .squareA {
+  position: relative;
+  top: 80px;
+  left: 40px;
+  // text-align: center;
+  width: 80px;
+  height: 80px;
+  background-color: rgb(224, 224, 224);
+  box-shadow: 
+  1px 1px 5px rgba(14, 124, 250, 0.5),
+    6px 6px 5px rgba(14, 124, 250, 0.5), 
+    3px 3px 5px rgba(14, 124, 250, 0.5),
+    10px 10px 5px rgba(14, 124, 250, 0.5);
+  border-radius: 8px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;效果如下（stack）：&lt;br&gt;
+&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1658829801530.png&#34; alt=&#34;&#34; width=&#34;250&#34; height=&#34;250&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;三-阴影的骚操作优化补充色彩&#34;&gt;三、阴影的骚操作优化——补充色彩&lt;/h1&gt;
+&lt;p&gt;一般情况下，我们所有的阴影都使用了半透明的黑色，这实际上并不理想。当我们在背景颜色上叠加黑色时，不仅会使它变暗;也会使它变得不饱和&lt;br&gt;
+因此，我们使用颜色与&lt;code&gt;background-color&lt;/code&gt;较接近的阴影，这样效果会更加真实！&lt;br&gt;
+往往的，阴影颜色要比&lt;code&gt;background-color&lt;/code&gt;的饱和度更高一点（即颜色更深一点）&lt;br&gt;
+下面，我们来看看效果图：&lt;br&gt;
+&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1658830354769.png&#34; alt=&#34;&#34; width=&#34;250&#34; height=&#34;250&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;结合以上三种操作，相信我们对阴影的绘制肯定会更加强大的！⛹&lt;/p&gt;
+">CSS阴影效果的骚操作优化</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://uaenaTzx.github.io/post/transition-de-dong-hua-bi-keng-zhi-nan/"" data-c="
           &lt;p&gt;&lt;code&gt;transition&lt;/code&gt;属性设置元素当过渡效果&lt;br&gt;
 例：将鼠标悬停在一个 div 元素上，2s内逐步改变表格的宽度从 100px 到 300px&lt;/p&gt;
@@ -2012,7 +2104,9 @@ div:hover {width:300px;}
 &lt;h1 id=&#34;六-animation属性&#34;&gt;六、animation属性&lt;/h1&gt;
 &lt;p&gt;在官方的介绍上介绍这个属性是transition属性的扩展，弥补了transition的很多不足，我理解为animation是由多个transition的效果叠加，并且可操作性更强，能够做出复杂酷炫的效果(前提是你爱折腾)&lt;br&gt;
 具体的属性作用见链接：&lt;br&gt;
-https://juejin.cn/post/6844903615920898056&lt;/p&gt;
+https://juejin.cn/post/6844903615920898056&lt;br&gt;
+另外，与之相映衬的@keyframes规则的相关链接：&lt;br&gt;
+https://www.runoob.com/cssref/css3-pr-animation-keyframes.html&lt;/p&gt;
 &lt;h1 id=&#34;七-background-image属性&#34;&gt;七、background-image属性&lt;/h1&gt;
 &lt;p&gt;作用：设置一个元素的背景图像，背景是元素的总大小，包括填充和边界（但不包括边距）&lt;br&gt;
 默认情况下，background-image放置在元素的左上角，并重复垂直和水平方向。&lt;br&gt;
@@ -2344,7 +2438,7 @@ test.onclick = function(){
 ②e.clientX：返回当事件被触发时鼠标指针相对于浏览器页面的水平坐标（clientY同理）&lt;br&gt;
 相似的还有clientLeft、clientTop&lt;br&gt;
 ③o.style.left：事件对象的left样式属性，它的值代表目标元素距离浏览器页面左侧的值（o.style.top）同理&lt;br&gt;
-&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657609966456.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://uaenaTzx.github.io/post-images/1657609966456.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;500&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这样的设计会出现一些问题，比如盒子中存在文字，或盒子自身为图片，由于浏览器的默认行为（文字和图片本身就可以拖拽），我们可以设置return false来阻止它的默认行为，但这种拦截默认行为在IE低版本中并不适用，因此我们可以使用全局捕获来解决这类问题。（注：全局捕获仅适用于IE低版本浏览器）&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;button&amp;gt;btn1&amp;lt;/button&amp;gt;
     &amp;lt;button&amp;gt;btn2&amp;lt;/button&amp;gt;
