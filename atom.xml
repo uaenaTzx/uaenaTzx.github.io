@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-08-09T08:42:06.350Z</updated>
+    <updated>2022-08-09T09:22:27.135Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -10,6 +10,24 @@
     <logo>https://uaenaTzx.github.io/images/avatar.png</logo>
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[前端学习外链]]></title>
+        <id>https://uaenaTzx.github.io/post/vue-zai-css-zhong-yin-ru-js-bian-liang/</id>
+        <link href="https://uaenaTzx.github.io/post/vue-zai-css-zhong-yin-ru-js-bian-liang/">
+        </link>
+        <updated>2022-08-07T08:16:02.000Z</updated>
+        <content type="html"><![CDATA[<p>①Vue在CSS中引入JS变量<br>
+https://juejin.cn/post/6856668819344392206#heading-12</p>
+<p>②Vue动画<br>
+https://juejin.cn/post/6844904050203295751</p>
+<p>③canvas<br>
+https://juejin.cn/post/7119495608938790942</p>
+<p>④SVG<br>
+https://juejin.cn/post/7124312346947764260</p>
+<p>⑤Js中this的原理<br>
+https://www.ruanyifeng.com/blog/2018/06/javascript-this.html</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CSS阴影效果的骚操作优化]]></title>
         <id>https://uaenaTzx.github.io/post/dox-shadow/</id>
@@ -93,70 +111,6 @@
 下面，我们来看看效果图：<br>
 <img src="https://uaenaTzx.github.io/post-images/1658830354769.png" alt="" width="250" height="250" loading="lazy"></p>
 <p>结合以上三种操作，相信我们对阴影的绘制肯定会更加强大的！⛹</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[transition的动画避坑指南]]></title>
-        <id>https://uaenaTzx.github.io/post/transition-de-dong-hua-bi-keng-zhi-nan/</id>
-        <link href="https://uaenaTzx.github.io/post/transition-de-dong-hua-bi-keng-zhi-nan/">
-        </link>
-        <updated>2022-07-18T03:33:48.000Z</updated>
-        <content type="html"><![CDATA[<p><code>transition</code>属性设置元素当过渡效果<br>
-例：将鼠标悬停在一个 div 元素上，2s内逐步改变表格的宽度从 100px 到 300px</p>
-<pre><code>div{
-    width:100px;
-    transition: width 2s;
-    -webkit-transition: width 2s; /* Safari */
-}
-div:hover {width:300px;}
-</code></pre>
-<p>下面是关于transition的详细要点以及避坑点的说明：</p>
-<h1 id="一-transition的详细要点">一、transition的详细要点</h1>
-<p>transition 属性是一个简写属性，用于设置四个过渡属性：<br>
-<code>transition-property</code>、<code>transition-duration</code>、<code>transition-timing-function</code>、<code>transition-delay</code><br>
-注：请始终设置<code>transition-duration</code>属性，否则时长为 0，就不会产生过渡效果。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">值</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">transition-property</td>
-<td style="text-align:left">规定设置过渡效果的 CSS 属性的名称</td>
-</tr>
-<tr>
-<td style="text-align:left">transition-duration</td>
-<td style="text-align:left">规定完成过渡效果需要多少秒或毫秒</td>
-</tr>
-<tr>
-<td style="text-align:left">transition-timing-function</td>
-<td style="text-align:left">规定速度效果的速度曲线</td>
-</tr>
-<tr>
-<td style="text-align:left">transition-delay</td>
-<td style="text-align:left">定义过渡效果何时开始</td>
-</tr>
-</tbody>
-</table>
-<p>以下是部分属性适用的属性值：</p>
-<h1 id="二-transition-property">二、transition-property</h1>
-<p>①color:通过红、绿、蓝和透明度组件变换（每个数值处理）如：background-color,border-color,color,outline-color等css属性；<br>
-②length: word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,line-height,height等属性；<br>
-③percentage:word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,line-height,height等属性；<br>
-……</p>
-<h1 id="三-transition-timing-function">三、transition-timing-function</h1>
-<p><code>linear</code>：指定以相同速度开始至结束的过渡效果，等同于cubic-bezier(0,0,1,1))<br>
-<code>ease</code>： 指定以慢速开始，然后加快，最后慢慢结束的过渡效果，等同于cubic-bezier(0.25,0.1,0.25,1)<br>
-<code>ease-in</code>：指定以慢速开始，然后逐渐加快(淡入效果)的过渡效果，等同于cubic-bezier(0.42,0,1,1)<br>
-<code>ease-out</code>：指定已慢速结束(淡出效果)的过渡效果，等于cubic-bezier(0,0,0.58,1)<br>
-<code>ease-in-out</code>：指定以慢速开始和结束的过渡效果，等同于cubic-bezier(0.42,0,0.58,1)<br>
-<code>cubic-bezier(n,n,n,n)</code>：定义用于加速或者减速的贝赛尔曲线的形状，它们的值在0~1</p>
-<h1 id="四-避坑小tip">四、避坑小tip</h1>
-<p>①动画无效的原因：原本的元素没带有相应的<code>transition-property</code>属性值（:hover有的它没有）<br>
-②鼠标放于某些区域导致来回抽搐：外包裹相同style的div标签，将:hover转到div标签上</p>
 ]]></content>
     </entry>
 </feed>
