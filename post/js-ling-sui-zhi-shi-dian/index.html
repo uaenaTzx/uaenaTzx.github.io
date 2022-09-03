@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
-<title>Less的基本运用 | Uaena_blog</title>
+<title>JS零碎知识点 | Uaena_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1662174249868">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,8 +41,8 @@
 
 
 
-  <meta name="description" content="Less的基本运用" />
-  <meta name="keywords" content="css,Gridea" />
+  <meta name="description" content="JS零碎知识点" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -226,7 +226,8 @@
   <div class="toc-wrapper  auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E5%8F%98%E9%87%8F">一、变量</a></li>
+<li><a href="#%E4%B8%80-thisrefs">一、this.$refs</a></li>
+<li><a href="#%E4%BA%8C-location%E5%AF%B9%E8%B1%A1">二、Location对象</a></li>
 </ul>
 
   </div>
@@ -492,33 +493,21 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://uaenaTzx.github.io/post/less-xiang-jie/"> Less的基本运用 </a>
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/js-ling-sui-zhi-shi-dian/"> JS零碎知识点 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-06-30 17:08:47">2022-06-30</span>
+      <span class="publish-time" data-t="2022-08-10 13:55:15">2022-08-10</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">标签:</span>
-       
-      <a href="https://uaenaTzx.github.io/tag/FetAAAg9s/"> <span>css</span> </a>、   
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
-        <span>Gridea</span>
-      </a>
-       
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >4<span class="language" data-lan="minute"
+        >2<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -527,15 +516,15 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >750<span class="pc-show language" data-lan="words"
+        >242<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
     </span>
       
     <span
-      id="/post/less-xiang-jie/"
-      data-flag-title="Less的基本运用"
+      id="/post/js-ling-sui-zhi-shi-dian/"
+      data-flag-title="JS零碎知识点"
       class="meta-item pc-show leancloud_visitors"
     >
       <span class="post-meta-divider">|</span>
@@ -551,200 +540,30 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <p>众所周知，<code>CSS</code>最大的短板就是毫无逻辑，不像编程该有的样子。为了让<code>CSS</code>富有逻辑性，短板不那么严重，涌现出了 一些神奇的预处理语言。它们让 <code>CSS</code>彻底变成一门可以使用变量 、循环 、继承 、自定义方法等多种特性的标记语言。比如：<code>Sass</code>、<code>Less</code> 、<code>Stylus</code></p>
-<p>其中，<code>Less</code> 没有去掉任何 <code>CSS</code> 的功能，而是在现有的语法上，增添了许多额外的功能特性，所以学习 <code>Less</code>并不困难。接下来，将会介绍有关<code>Less</code>的基本运运用</p>
-<p>首先是导入<code>Less</code><br>
-导入<code>Less</code>有两种方式<br>
-①在页面中 引入 Less.js<br>
-需要在官网下载文件，此处省略步骤<br>
-②在命令行，使用<code>npm</code>安装</p>
-<pre><code>npm install -g less
-</code></pre>
-<p>下面是<code>Less</code>的功能特性</p>
-<h1 id="一-变量">一、变量</h1>
-<p>①值变量<br>
-以<code>@</code>开头定义变量，使用时直接输入<code>@</code>名称。</p>
-<pre><code>/* Less */
-@color: #999;
+              <p>本篇文章记录了部分JS的重要的对象与方法🙉</p>
+<h1 id="一-thisrefs">一、this.$refs</h1>
+<p>在vue中<code>ref</code>可以以属性的形式添加给标签或者组件<br>
+<code>ref</code>写在标签上时：<code>this.$refs.ipt</code> 获取的是添加了<code>ref=&quot;ipt&quot;</code>标签对应的dom元素<br>
+<code>ref</code>写在组件上时：<code>this.$refs['component']</code> 获取到的是添加了<code>ref=&quot;component&quot;</code>属性的这个组件</p>
+<pre><code>&lt;template&gt;
+ //给标签使用
+    &lt;input type=&quot;text&quot; ref=&quot;ipt&quot;/&gt;
+ //给组件使用
+    &lt;comp-detail ref=&quot;component&quot;&gt;&lt;/list-detail&gt;
+    &lt;button @click=&quot;confirm&quot;&gt;确定&lt;/button&gt;
+&lt;/template&gt;
 
-#wrap {
-  color: @color;
-}
-
-/* 生成后的 CSS */
-#wrap {
-  color: #999;
-
+methods:{
+    confirm(){
+        console.log(this.$refs.ipt.value)  //打印出输入框中的value值
+        this.$refs['component'].init()     //调用组件comp-detail中的init()方法
+     }
 }
 </code></pre>
-<p>在平时工作中，我们就可以把常用的变量封装到一个文件中，这样利于代码组织维护。</p>
-<pre><code>@lightPrimaryColor: #c5cae9;
-@textPrimaryColor: #fff;
-@accentColor: rgb(99, 137, 185);
-@primaryTextColor: #646464;
-@secondaryTextColor: #000;
-@dividerColor: #b6b6b6;
-@borderColor: #dadada;
-</code></pre>
-<p>②选择器变量</p>
-<pre><code>/* Less */
-@mySelector: #wrap;
-@Wrap: wrap;
-@{mySelector}{ //变量名 必须使用大括号包裹
-  color: #999;
-  width: 50%;
-}
-.@{Wrap}{
-  color:#ccc;
-}
-#@{Wrap}{
-  color:#666;
-}
-
-/* 生成的 CSS */
-#wrap{
-  color: #999;
-  width: 50%;
-}
-.wrap{
-  color:#ccc;
-}
-#wrap{
-  color:#666;
-}
-</code></pre>
-<p>③属性变量</p>
-<pre><code>/* Less */
-@borderStyle: border-style;
-@Soild:solid;
-#wrap{
-  @{borderStyle}: @Soild;//变量名 必须使用大括号包裹
-}
-
-/* 生成的 CSS */
-#wrap{
-  border-style:solid;
-}
-</code></pre>
-<p>④url 变量<br>
-项目结构改变时，修改其变量即可。</p>
-<pre><code>/* Less */
-@images: &quot;../img&quot;;//需要加引号
-body {
-  background: url(&quot;@{images}/dog.png&quot;);//变量名 必须使用大括号包裹
-}
-
-/* 生成的 CSS */
-body {
-  background: url(&quot;../img/dog.png&quot;);
-}
-</code></pre>
-<p>⑤声明变量<br>
-当作对象处理<br>
-结构：@name: { 属性: 值 ;};<br>
-使用：@name();</p>
-<pre><code>/* Less */
-@background: {background:red;};
-#main{
-    @background();
-}
-@Rules:{
-    width: 200px;
-    height: 200px;
-    border: solid 1px red;
-};
-#con{
-  @Rules();
-}
-
-/* 生成的 CSS */
-#main{
-  background:red;
-}
-#con{
-  width: 200px;
-  height: 200px;
-  border: solid 1px red;
-}
-</code></pre>
-<p>⑥变量的运算<br>
-<code>Less</code>的运算非常强大，加减法时，以第一个数据的单位为基准；乘除法时，注意<font sytle="red">单位一定要统一！</font></p>
-<pre><code>/* Less */
-@width:300px;
-@color:#222;
-#wrap{
-  width:@width-20;
-  height:@width-20*5;
-  margin:(@width-20)*5;
-  color:@color*2;
-  background-color:@color + #111;
-}
-
-/* 生成的 CSS */
-#wrap{
-  width:280px;
-  height:200px;
-  margin:1400px;
-  color:#444;
-  background-color:#333;
-}
-</code></pre>
-<p>⑦变量作用域<br>
-就近原则！！！</p>
-<pre><code>/* Less */
-@var: @a;
-@a: 100%;
-#wrap {
-  width: @var;
-  @a: 9%;
-}
-
-/* 生成的 CSS */
-#wrap {
-  width: 9%;
-}
-</code></pre>
-<p>⑧用变量去定义变量</p>
-<pre><code>/* Less */
-@fnord:  &quot;I am fnord.&quot;;
-@var:    &quot;fnord&quot;;
-#wrap::after{
-  content: @@var; //将@var替换为其值 content:@fnord;
-}
-/* 生成的 CSS */
-#wrap::after{
-  content: &quot;I am fnord.&quot;;
-}
-</code></pre>
-<p>#二、嵌套<br>
-①<code>&amp;</code>的妙用<br>
-<code>&amp;</code>代表的上一层选择器的名字</p>
-<pre><code>/* Less */
-#header{
-  &amp;:after{
-    content:&quot;Less is more!&quot;;
-  }
-  .title{
-    font-weight:bold;
-  }
-  &amp;_content{//理解方式：直接把 &amp; 替换成 #header
-    margin:20px;
-  }
-}
-/* 生成的 CSS */
-#header::after{
-  content:&quot;Less is more!&quot;;
-}
-#header .title{ //嵌套了
-  font-weight:bold;
-}
-#header_content{//没有嵌套！
-    margin:20px;
-}
-</code></pre>
-<p>此例中，<code>&amp;</code>即为<code>header</code></p>
-<p>②媒体查询</p>
-<p>目前适用的方法先到这里，以后继续补充</p>
+<h1 id="二-location对象">二、Location对象</h1>
+<p><code>Location</code>对象包含有关当前URL的信息。<br>
+<code>Location</code>对象<code>window</code>对象的一部分，可通过window.location.xxx格式的相关属性对其进行访问。<br>
+相关属性和方法：https://www.runoob.com/jsref/obj-location.html</p>
 
             </div>
             
@@ -757,7 +576,7 @@ body {
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://uaenaTzx.github.io/post/less-xiang-jie/" title="Less的基本运用">https://uaenaTzx.github.io/post/less-xiang-jie/</a>
+      <a href="https://uaenaTzx.github.io/post/js-ling-sui-zhi-shi-dian/" title="JS零碎知识点">https://uaenaTzx.github.io/post/js-ling-sui-zhi-shi-dian/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -766,23 +585,19 @@ body {
   </ul>
   <div class="tags">
     
-      <a href="https://uaenaTzx.github.io/tag/FetAAAg9s/"># css</a>
-    
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/"># Gridea</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="CSS部分重要属性与方法" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">CSS部分重要属性与方法</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="CSS部分重要属性与方法" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">上一篇</a>
+        <a class="nav-pc-next" title="MDN JS学习笔记(基础1)" href="https://uaenaTzx.github.io/post/mdn-js-xue-xi-bi-ji/">MDN JS学习笔记(基础1)</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="MDN JS学习笔记(基础1)" href="https://uaenaTzx.github.io/post/mdn-js-xue-xi-bi-ji/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="阻止事件默认行为" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/">阻止事件默认行为</a>
-        <a class="nav-mobile-next" title="阻止事件默认行为" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/">下一篇</a>
+        <a class="nav-pc-next" title="CSS阴影效果的骚操作优化" href="https://uaenaTzx.github.io/post/dox-shadow/">CSS阴影效果的骚操作优化</a>
+        <a class="nav-mobile-next" title="CSS阴影效果的骚操作优化" href="https://uaenaTzx.github.io/post/dox-shadow/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

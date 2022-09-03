@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="菜狗tzx的笔记博客🐕">
 <meta name="theme-color" content="#000">
-<title>Less的基本运用 | Uaena_blog</title>
+<title>MDN JS学习笔记(基础1) | Uaena_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1662174249868">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,8 +41,8 @@
 
 
 
-  <meta name="description" content="Less的基本运用" />
-  <meta name="keywords" content="css,Gridea" />
+  <meta name="description" content="MDN JS学习笔记(基础1)" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -226,7 +226,153 @@
   <div class="toc-wrapper  auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E5%8F%98%E9%87%8F">一、变量</a></li>
+<li><a href="#%E4%B8%80-%E5%89%8D%E8%A8%80">一、前言</a></li>
+<li><a href="#%E4%BA%8C-%E8%AF%AD%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">二、语法和数据类型</a>
+<ul>
+<li><a href="#1%E5%9F%BA%E7%A1%80">1.基础</a></li>
+<li><a href="#2%E6%B3%A8%E9%87%8A">2.注释</a></li>
+<li><a href="#3%E5%A3%B0%E6%98%8E">3.声明</a>
+<ul>
+<li><a href="#31%E5%8F%98%E9%87%8F">3.1变量</a></li>
+<li><a href="#32%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F">3.2声明变量</a></li>
+<li><a href="#33%E5%8F%98%E9%87%8F%E6%B1%82%E5%80%BC">3.3变量求值</a></li>
+<li><a href="#34%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">3.4变量的作用域</a></li>
+<li><a href="#35%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87">3.5变量提升</a></li>
+<li><a href="#36%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87">3.6函数提升</a></li>
+<li><a href="#37%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F">3,7全局变量</a></li>
+<li><a href="#38%E5%B8%B8%E9%87%8F">3.8常量</a></li>
+</ul>
+</li>
+<li><a href="#4%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%B1%BB%E5%9E%8B">4.数据结构和类型</a>
+<ul>
+<li><a href="#41%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">4.1数据结构</a></li>
+<li><a href="#42%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2">4.2数据类型的转换</a></li>
+<li><a href="#43%E6%95%B0%E5%AD%97%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2">4.3数字转换为字符串</a></li>
+<li><a href="#44%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E5%AD%97">4.4字符串转换为数字</a></li>
+</ul>
+</li>
+<li><a href="#5%E5%AD%97%E9%9D%A2%E9%87%8F">5.字面量</a>
+<ul>
+<li><a href="#51%E6%95%B0%E7%BB%84%E5%AD%97%E9%9D%A2%E9%87%8F">5.1数组字面量</a>
+<ul>
+<li><a href="#%E6%95%B0%E7%BB%84%E5%AD%97%E9%9D%A2%E5%80%BC%E4%B8%AD%E7%9A%84%E5%A4%9A%E4%BD%99%E9%80%97%E5%8F%B7">数组字面值中的多余逗号</a></li>
+</ul>
+</li>
+<li><a href="#52%E5%B8%83%E5%B0%94%E5%AD%97%E9%9D%A2%E9%87%8F%E5%8D%B3%E9%80%BB%E8%BE%91%E5%AD%97%E9%9D%A2%E9%87%8F">5.2布尔字面量（即：逻辑字面量）</a></li>
+<li><a href="#53%E6%95%B0%E5%AD%97%E5%AD%97%E9%9D%A2%E9%87%8F">5.3数字字面量</a>
+<ul>
+<li><a href="#%E6%95%B4%E6%95%B0%E5%AD%97%E9%9D%A2%E9%87%8F">整数字面量</a></li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%97%E9%9D%A2%E9%87%8F">浮点数字面量</a></li>
+</ul>
+</li>
+<li><a href="#54%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F">5.4对象字面量</a>
+<ul>
+<li><a href="#%E5%A2%9E%E5%BC%BA%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F">增强的对象字面量</a></li>
+</ul>
+</li>
+<li><a href="#55regexp%E5%AD%97%E9%9D%A2%E5%80%BC">5.5RegExp字面值</a></li>
+<li><a href="#56%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%97%E9%9D%A2%E9%87%8F">5.6字符串字面量</a>
+<ul>
+<li><a href="#%E5%9C%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">在字符串中使用的特殊字符</a></li>
+<li><a href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6">转义字符</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E4%B8%8E%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86">三、流程控制与错误处理</a>
+<ul>
+<li><a href="#1%E8%AF%AD%E5%8F%A5%E5%9D%97">1.语句块</a></li>
+<li><a href="#2%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5">2.条件判断语句</a>
+<ul>
+<li><a href="#21ifelse-%E8%AF%AD%E5%8F%A5">2.1if...else 语句</a></li>
+<li><a href="#22switch-%E8%AF%AD%E5%8F%A5">2.2switch 语句</a></li>
+</ul>
+</li>
+<li><a href="#3%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E8%AF%AD%E5%8F%A5">3.异常处理语句</a>
+<ul>
+<li><a href="#31%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B">3.1异常类型</a></li>
+<li><a href="#32throw-%E8%AF%AD%E5%8F%A5">3.2throw 语句</a></li>
+<li><a href="#33trycatch-%E8%AF%AD%E5%8F%A5">3.3try...catch 语句</a>
+<ul>
+<li><a href="#catch-%E5%9D%97">catch 块</a></li>
+<li><a href="#finally%E5%9D%97">finally块</a></li>
+<li><a href="#%E5%B5%8C%E5%A5%97-trycatch-%E8%AF%AD%E5%8F%A5">嵌套 try...catch 语句</a></li>
+</ul>
+</li>
+<li><a href="#34%E4%BD%BF%E7%94%A8error%E5%AF%B9%E8%B1%A1">3.4使用Error对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3">四、循环与迭代</a>
+<ul>
+<li><a href="#1for-%E8%AF%AD%E5%8F%A5">1.for 语句</a></li>
+<li><a href="#2dowhile-%E8%AF%AD%E5%8F%A5">2.do...while 语句</a></li>
+<li><a href="#3while-%E8%AF%AD%E5%8F%A5">3.while 语句</a></li>
+<li><a href="#4label-%E8%AF%AD%E5%8F%A5">4.label 语句</a></li>
+<li><a href="#5break-%E8%AF%AD%E5%8F%A5">5.break 语句</a></li>
+<li><a href="#6continue-%E8%AF%AD%E5%8F%A5">6.continue 语句</a></li>
+<li><a href="#7forin-%E8%AF%AD%E5%8F%A5">7.for...in 语句</a>
+<ul>
+<li><a href="#71%E6%95%B0%E7%BB%84">7.1数组</a></li>
+</ul>
+</li>
+<li><a href="#8forof-%E8%AF%AD%E5%8F%A5">8.for...of 语句</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E5%87%BD%E6%95%B0">五、函数</a>
+<ul>
+<li><a href="#1%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0">1.定义函数</a>
+<ul>
+<li><a href="#11%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E">1.1函数声明</a></li>
+<li><a href="#12%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F">1.2函数表达式</a></li>
+</ul>
+</li>
+<li><a href="#2%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0">2.调用函数</a></li>
+<li><a href="#3%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F">3.函数作用域</a></li>
+<li><a href="#4%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%87%BD%E6%95%B0%E5%A0%86%E6%A0%88">4.作用域和函数堆栈</a>
+<ul>
+<li><a href="#41%E9%80%92%E5%BD%92">4.1递归</a></li>
+<li><a href="#42%E5%B5%8C%E5%A5%97%E5%87%BD%E6%95%B0%E5%92%8C%E9%97%AD%E5%8C%85">4.2嵌套函数和闭包</a></li>
+<li><a href="#43%E4%BF%9D%E5%AD%98%E5%8F%98%E9%87%8F">4.3保存变量</a></li>
+<li><a href="#44%E5%A4%9A%E5%B1%82%E5%B5%8C%E5%A5%97%E5%87%BD%E6%95%B0">4.4多层嵌套函数</a></li>
+<li><a href="#45%E5%91%BD%E5%90%8D%E5%86%B2%E7%AA%81">4.5命名冲突</a></li>
+</ul>
+</li>
+<li><a href="#5%E9%97%AD%E5%8C%85">5.闭包</a></li>
+<li><a href="#6%E4%BD%BF%E7%94%A8arguments%E5%AF%B9%E8%B1%A1">6.使用arguments对象</a></li>
+<li><a href="#7%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0">7.函数参数</a>
+<ul>
+<li><a href="#71%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0">7.1默认参数</a></li>
+<li><a href="#72%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0">7.2剩余参数</a></li>
+</ul>
+</li>
+<li><a href="#8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0">8.箭头函数</a>
+<ul>
+<li><a href="#81%E6%9B%B4%E7%AE%80%E6%B4%81%E7%9A%84%E5%87%BD%E6%95%B0">8.1更简洁的函数</a></li>
+<li><a href="#82this%E7%9A%84%E8%AF%8D%E6%B3%95">8.2this的词法</a></li>
+</ul>
+</li>
+<li><a href="#9%E9%A2%84%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0">9.预定义函数</a>
+<ul>
+<li><a href="#91eval">9.1eval()</a></li>
+<li><a href="#92uneval">9.2uneval()</a></li>
+<li><a href="#93isfinite">9.3isFinite()</a></li>
+<li><a href="#94isnan">9.4isNaN()</a></li>
+<li><a href="#95parsefloat">9.5parseFloat()</a></li>
+<li><a href="#96parseintstring-radix">9.6parseInt(string, radix)</a></li>
+<li><a href="#97encodeuriuri">9.7encodeURI(URI)</a></li>
+<li><a href="#98encodeuricomponent">9.8encodeURIComponent()</a></li>
+<li><a href="#99decodeuri">9.9decodeURI()</a></li>
+<li><a href="#910decodeuricomponent">9.10decodeURIComponent()</a></li>
+<li><a href="#911escape-%E5%B7%B2%E5%BC%83%E7%94%A8">9.11escape() 已弃用</a></li>
+<li><a href="#912unescape-%E5%B7%B2%E5%BC%83%E7%94%A8">9.12unescape() 已弃用</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
   </div>
@@ -492,33 +638,21 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://uaenaTzx.github.io/post/less-xiang-jie/"> Less的基本运用 </a>
+    <a class="post-title-link" href="https://uaenaTzx.github.io/post/mdn-js-xue-xi-bi-ji/"> MDN JS学习笔记(基础1) </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-06-30 17:08:47">2022-06-30</span>
+      <span class="publish-time" data-t="2022-09-01 14:54:13">2022-09-01</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">标签:</span>
-       
-      <a href="https://uaenaTzx.github.io/tag/FetAAAg9s/"> <span>css</span> </a>、   
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/">
-        <span>Gridea</span>
-      </a>
-       
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >4<span class="language" data-lan="minute"
+        >58<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -527,15 +661,15 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >750<span class="pc-show language" data-lan="words"
+        >14363<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
     </span>
       
     <span
-      id="/post/less-xiang-jie/"
-      data-flag-title="Less的基本运用"
+      id="/post/mdn-js-xue-xi-bi-ji/"
+      data-flag-title="MDN JS学习笔记(基础1)"
       class="meta-item pc-show leancloud_visitors"
     >
       <span class="post-meta-divider">|</span>
@@ -551,200 +685,1252 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <p>众所周知，<code>CSS</code>最大的短板就是毫无逻辑，不像编程该有的样子。为了让<code>CSS</code>富有逻辑性，短板不那么严重，涌现出了 一些神奇的预处理语言。它们让 <code>CSS</code>彻底变成一门可以使用变量 、循环 、继承 、自定义方法等多种特性的标记语言。比如：<code>Sass</code>、<code>Less</code> 、<code>Stylus</code></p>
-<p>其中，<code>Less</code> 没有去掉任何 <code>CSS</code> 的功能，而是在现有的语法上，增添了许多额外的功能特性，所以学习 <code>Less</code>并不困难。接下来，将会介绍有关<code>Less</code>的基本运运用</p>
-<p>首先是导入<code>Less</code><br>
-导入<code>Less</code>有两种方式<br>
-①在页面中 引入 Less.js<br>
-需要在官网下载文件，此处省略步骤<br>
-②在命令行，使用<code>npm</code>安装</p>
-<pre><code>npm install -g less
+              <h1 id="一-前言">一、前言</h1>
+<p>文章记录了本人在MDN上学习JS的全过程，冲冲冲👊👊👊</p>
+<p>首先是初阶的基础内容</p>
+<h1 id="二-语法和数据类型">二、语法和数据类型</h1>
+<h2 id="1基础">1.基础</h2>
+<p>①来源：借鉴了Java的大部分语法，单同时也受到Awk，Perl和Python的影响<br>
+②大小写：JS是区分大小写的，并使用Unicode字符集<br>
+③语句分隔：大部分的语言，语句之间用分号（;）进行分隔，但是JS对之并不严格。如果一条语句独占一行的话，那么分号是可以省略的。但如果一行中有多条语句，那么这些语句必须以分号分开。<br>
+注：建议都加分号，避免不必要的意外bug<br>
+④源码形式：JS源码从左往右被扫描并转换成一系列由 token 、控制字符、行终止符、注释和空白字符组成的输入元素。空白字符指的是空格、制表符和换行符等。</p>
+<h2 id="2注释">2.注释</h2>
+<pre><code>//单行注释
+/*多行
+注释
+*/
 </code></pre>
-<p>下面是<code>Less</code>的功能特性</p>
-<h1 id="一-变量">一、变量</h1>
-<p>①值变量<br>
-以<code>@</code>开头定义变量，使用时直接输入<code>@</code>名称。</p>
-<pre><code>/* Less */
-@color: #999;
-
-#wrap {
-  color: @color;
-}
-
-/* 生成后的 CSS */
-#wrap {
-  color: #999;
-
-}
+<p>在代码执行过程中，注释将被自动跳过（不执行）<br>
+<font color="red">不可嵌套注释！！！</font><br>
+注： 你可能会在一些 JavaScript 脚本中见到像这样#!/usr/bin/env node的第三种注释<br>
+这种注释我们称为hashbang 注释 (hashbang comment)，这种注释被用来指定执行 JaveScript 脚本的引擎的路径，后续会有进一步说明</p>
+<h2 id="3声明">3.声明</h2>
+<p>JS有三种声明方式<br>
+①var：声明一个变量，可选初始化一个值<br>
+②let：声明一个块作用域的局部变量，可选初始化一个值<br>
+③const：声明一个块作用域的只读常量</p>
+<h3 id="31变量">3.1变量</h3>
+<p>在应用程序中，使用变量来作为值的载体，变量又称标识符，需要遵守一定的规则：<br>
+一个 JavaScript 标识符必须以字母、下划线（_）或者美元符号（$）开头</p>
+<p>你可以使用大部分 ISO 8859-1 或 Unicode 编码的字符作标识符，例如 å 和 ü。你也可以使用 Unicode 转义字符 作标识符。</p>
+<p>合法的标识符示例：<code>Number_hits</code>，<code>temp99</code>，<code>$credit</code> 和 <code>_name</code>。</p>
+<h3 id="32声明变量">3.2声明变量</h3>
+<p>你可以用以下三种方式声明变量<br>
+①使用关键词<code>var</code>。例如：var x = 42。这个语法可以用来声明局部变量和全局变量<br>
+②直接赋值。例如 x = 42。在函数外使用这种形式赋值，会产生一个<font color="red">全局变量</font>。在严格模式下会产生错误（因此不推荐这种方式）<br>
+③使用关键词<code>let</code>。例如： let y = 13。这个语法可以用来声明块作用域的局部变量</p>
+<p>你可以使用解构赋值将对象字面量的属性绑定到变量。就像这样let { bar } = foo。这会创建一个名为bar的变量，并且将foo对像中属性名与之相同的属性的值赋给它。</p>
+<p>你也可以直接给属性赋值。像这样x = 42。这种声明方式将会创建一个未声明全局变量。这样做还会产生 JavaScript 警告。因为未声明的全局变量常常导致预期之外的行为，所以不建议使用。</p>
+<h3 id="33变量求值">3.3变量求值</h3>
+<p>用<code>var</code>或<code>let</code>语句声明的变量，如果没有赋初始值，则其值为<code>undefined</code>（在布尔类型环境中会被当作 <code>false</code>）</p>
+<p>如果访问一个未声明的变量会导致抛出一个引用错误（ReferenceError）异常：</p>
+<p>数值类型环境中 <code>undefined</code> 值会被转换为<code>NaN</code></p>
+<pre><code>var a;
+a + 2;    // 计算为 NaN
 </code></pre>
-<p>在平时工作中，我们就可以把常用的变量封装到一个文件中，这样利于代码组织维护。</p>
-<pre><code>@lightPrimaryColor: #c5cae9;
-@textPrimaryColor: #fff;
-@accentColor: rgb(99, 137, 185);
-@primaryTextColor: #646464;
-@secondaryTextColor: #000;
-@dividerColor: #b6b6b6;
-@borderColor: #dadada;
+<p>当你对一个 <code>null</code> 变量求值时，空值 <code>null</code> 在数值类型环境中会被当作 0 来对待，而布尔类型环境中会被当作 <code>false</code>。例如：</p>
+<pre><code>var n = null;
+console.log(n * 32); // 在控制台中会显示 0
 </code></pre>
-<p>②选择器变量</p>
-<pre><code>/* Less */
-@mySelector: #wrap;
-@Wrap: wrap;
-@{mySelector}{ //变量名 必须使用大括号包裹
-  color: #999;
-  width: 50%;
+<h3 id="34变量的作用域">3.4变量的作用域</h3>
+<p>在函数之外声明的变量，叫做全局变量，因为它可被当前文档中的任何其他代码所访问。在函数内部声明的变量，叫做局部变量，因为它只能在当前函数的内部访问。</p>
+<p>ES6之前的JS没有语句块作用域。语句块中声明的变量将成为语句块所在函数（或全局作用域）的局部变量。例如，如下的代码将在控制台输出 5，因为 x 的作用域是声明了 x 的那个函数（或全局范围），而不是 if 语句块。</p>
+<pre><code>if (true) {
+  var x = 5;
 }
-.@{Wrap}{
-  color:#ccc;
+console.log(x); // 5
+</code></pre>
+<p>如果使用ES6中的<code>let</code>声明，则会出现下述变化：</p>
+<pre><code>if (true) {
+  let y = 5;
 }
-#@{Wrap}{
-  color:#666;
+console.log(y); // ReferenceError: y 没有被声明
+</code></pre>
+<h3 id="35变量提升">3.5变量提升</h3>
+<p>JS存在一个奇妙的特性：你可以先使用变量稍后再声明变量。这一概念被称之为”变量提升“。但是，提升后的变量将返回<code>undefined</code>值</p>
+<pre><code>/**
+ * 例子 1
+ */
+console.log(x === undefined); // true
+var x = 3;
+
+/**
+ * 例子 2
+ */
+// will return a value of undefined
+var myvar = &quot;my value&quot;;
+
+(function() {
+  console.log(myvar); // undefined
+  var myvar = &quot;local value&quot;;
+})();
+</code></pre>
+<p>由于存在变量提升，一个函数中所有的<code>var</code>语句应尽可能地放在接近函数顶部的地方（增加代码清晰度）</p>
+<p>在ES6中，<code>let</code>和<code>const</code>同样会被提升变量到代码块的顶部但是不会被赋予初始值。在变量声明之前引用这个变量，将抛出引用错误（ReferenceError）。这个变量将从代码块一开始的时候就处在一个“暂时性死区”，直到这个变量被声明为止。</p>
+<pre><code>console.log(x); // ReferenceError
+let x = 3;
+</code></pre>
+<h3 id="36函数提升">3.6函数提升</h3>
+<p>对于函数来说，只有函数声明会被提升到顶部，然而函数表达式不会被提升</p>
+<pre><code>/* 函数声明 */
+foo(); // &quot;bar&quot;
+
+function foo() {
+  console.log(&quot;bar&quot;);
 }
 
-/* 生成的 CSS */
-#wrap{
-  color: #999;
-  width: 50%;
-}
-.wrap{
-  color:#ccc;
-}
-#wrap{
-  color:#666;
-}
-</code></pre>
-<p>③属性变量</p>
-<pre><code>/* Less */
-@borderStyle: border-style;
-@Soild:solid;
-#wrap{
-  @{borderStyle}: @Soild;//变量名 必须使用大括号包裹
-}
+/* 函数表达式 */
+baz(); // 类型错误：baz 不是一个函数
 
-/* 生成的 CSS */
-#wrap{
-  border-style:solid;
-}
-</code></pre>
-<p>④url 变量<br>
-项目结构改变时，修改其变量即可。</p>
-<pre><code>/* Less */
-@images: &quot;../img&quot;;//需要加引号
-body {
-  background: url(&quot;@{images}/dog.png&quot;);//变量名 必须使用大括号包裹
-}
-
-/* 生成的 CSS */
-body {
-  background: url(&quot;../img/dog.png&quot;);
-}
-</code></pre>
-<p>⑤声明变量<br>
-当作对象处理<br>
-结构：@name: { 属性: 值 ;};<br>
-使用：@name();</p>
-<pre><code>/* Less */
-@background: {background:red;};
-#main{
-    @background();
-}
-@Rules:{
-    width: 200px;
-    height: 200px;
-    border: solid 1px red;
+var baz = function() {
+  console.log(&quot;bar2&quot;);
 };
-#con{
-  @Rules();
+</code></pre>
+<h3 id="37全局变量">3,7全局变量</h3>
+<p>实际上，全局变量是全局对象的属性。在网页中，全局对象是 window ，所以你可以用形如 window.*variable *的语法来设置和访问全局变量。</p>
+<p>因此，你可以通过指定 window 或 frame 的名字，在当前 window 或 frame 访问另一个 window 或 frame 中声明的变量。例如，在文档里声明一个叫 phoneNumber 的变量，那么你就可以在子框架里使用 parent.phoneNumber 的方式来引用它。</p>
+<p>注：window和frame都是以窗口界面的形式展现，前者占窗口的100%，而frame则是根据需要占据窗口的一部分。通常frame都会在window上打开，各frame之间进行组合或切换</p>
+<h3 id="38常量">3.8常量</h3>
+<p>你可以用关键字 const 创建一个只读的常量。常量标识符的命名规则和变量相同。</p>
+<p>常量不可以改变值，也不可以在代码运行时重新声明。</p>
+<p>常量的作用域规则与 let 块级作用域变量相同。若省略const关键字，则该标识符将被视为变量。</p>
+<p>在同一作用域中，不能使用与变量名或函数名相同的名字来命名常量。例如：</p>
+<pre><code>// 这会造成错误
+function f() {};
+const f = 5;
+
+// 这也会造成错误
+function f() {
+  const g = 5;
+  var g;
+
+  //语句
+}
+</code></pre>
+<p>然而，对象属性和数组被赋值为常量是不受保护的</p>
+<pre><code>const MY_OBJECT = {&quot;key&quot;: &quot;value&quot;};
+MY_OBJECT.key = &quot;otherValue&quot;;
+
+const MY_ARRAY = ['HTML','CSS'];
+MY_ARRAY.push('JAVASCRIPT');
+console.log(MY_ARRAY); //logs ['HTML','CSS','JAVASCRIPT'];
+
+//结果是可行的
+</code></pre>
+<h2 id="4数据结构和类型">4.数据结构和类型</h2>
+<h3 id="41数据结构">4.1数据结构</h3>
+<p>最新的ES标准定义了8种数据类型：<br>
+①布尔值（Boolean），有 2 个值分别是：true 和 false.<br>
+②null ， 一个表明 null 值的特殊关键字<br>
+③undefined ，和 null 一样是一个特殊的关键字，undefined 表示变量未赋值时的属性。<br>
+④数字（Number），整数或浮点数，例如： 42 或者 3.14159。<br>
+⑤任意精度的整数 (BigInt) ，可以安全地存储和操作大整数，甚至可以超过数字的安全整数限制。<br>
+⑥字符串（String），字符串是一串表示文本值的字符序列，例如：&quot;Howdy&quot; 。<br>
+⑦代表（Symbol）( 在 ECMAScript 6 中新添加的类型).。一种<font color="red">实例是唯一且不可改变的</font>数据类型。<br>
+⑧对象（Object）</p>
+<p>虽然这些数据类型相对来说比较少，但是通过他们你可以在程序中开发有用的功能。对象（Objects）和函数（functions）是这门语言的另外两个基本元素。你可以把对象当作存放值的一个命名容器，然后将函数当作你的程序能够执行的步骤。</p>
+<h3 id="42数据类型的转换">4.2数据类型的转换</h3>
+<p>JavaScript 是一种动态类型语言。这意味着你在声明变量时可以不必指定数据类型，而数据类型会在代码执行时会根据需要自动转换。因此，你可以按照如下方式来定义变量：</p>
+<pre><code>var answer = 42;
+answer = &quot;Thanks for all the fish...&quot;;
+//不会报错
+</code></pre>
+<h3 id="43数字转换为字符串">4.3数字转换为字符串</h3>
+<p>在包含的数字和字符串的表达式中使用加法运算符，JS会把数字转换成字符串，例如：</p>
+<pre><code>x = &quot;The answer is &quot; + 42 // &quot;The answer is 42&quot;
+</code></pre>
+<p>在涉及到其他运算符时，JS不会把数字转换为字符串，例如</p>
+<pre><code>&quot;37&quot; - 7 // 30
+&quot;37&quot; + 7 // &quot;377&quot;
+</code></pre>
+<h3 id="44字符串转换为数字">4.4字符串转换为数字</h3>
+<p>有一些方法可以将内存中表示一个数字的字符串转换为对应的数字。<br>
+parseInt() (en-US)<br>
+parseFloat()<br>
+parseInt 方法只能返回整数，所以使用它会丢失小数部分。另外，调用 parseInt 时最好总是带上进制 (radix) 参数，这个参数用于指定使用哪一种进制。</p>
+<p>还有一种方法是使用一元加法运算符</p>
+<pre><code>&quot;1.1&quot; + &quot;1.1&quot; = &quot;1.11.1&quot;
+(+&quot;1.1&quot;) + (+&quot;1.1&quot;) = 2.2
+// 注意：加入括号为清楚起见，不是必需的。
+</code></pre>
+<h2 id="5字面量">5.字面量</h2>
+<p>字面量是由语法表达式定义的常量（或，通过由一定字词组成的语词表达式定义的常量）<br>
+在 JS 中，你可以使用各种字面量。这些字面量是脚本中按字面意思给出的固定的值，而不是变量。<br>
+如：false，3.1415，thisIsStringOfHelloworld，invokedFunction: myFunction(&quot;myArgument&quot;)</p>
+<h3 id="51数组字面量">5.1数组字面量</h3>
+<p>数组字面值是一个封闭在方括号对 ([]) 中的包含有零个或多个表达式的列表，其中每个表达式代表数组的一个元素。当你使用数组字面值创建一个数组时，该数组将会以指定的值作为其元素进行初始化，而其长度被设定为元素的个数。</p>
+<p>下面的示例用 3 个元素生成数组<code>coffees</code>，它的长度是 3。</p>
+<pre><code>var coffees = [&quot;French Roast&quot;, &quot;Colombian&quot;, &quot;Kona&quot;];
+
+var a=[3];
+
+console.log(a.length); // 1
+
+console.log(a[0]); // 3
+</code></pre>
+<p>若在顶层（全局）脚本里用字面值创建数组，JS语言将会在每次对包含该数组字面值的表达式求值时解释该数组。另一方面，在函数中使用的数组，将在每次调用函数时都会被创建一次。<br>
+注：数组字面值同时也是数组对象</p>
+<h4 id="数组字面值中的多余逗号">数组字面值中的多余逗号</h4>
+<p>声明时，不必列举数组字面值中的所有元素。若你在同一行中连写两个逗号（,），数组中就会产生一个没有被指定的元素，其初始值是undefined。以下示例创建了一个名为fish的数组：</p>
+<pre><code>var fish = [&quot;Lion&quot;, , &quot;Angel&quot;];
+</code></pre>
+<p>在这个数组中，有两个已被赋值的元素和一个空元素。如果你在元素列表的尾部添加了一个逗号，它将会被忽略<br>
+再看一个例子。在这里，该数组的长度是 4，元素myList[1]和myList[3]被漏掉了。但是只有最后的那个逗号被忽略。</p>
+<pre><code>var myList = ['home', , 'school', , ];
+</code></pre>
+<p>理解多余的逗号（在脚本运行时会被如何处理）的含义，对于从语言层面理解JS是十分重要的。但是，在你自己写代码时：显式地将缺失的元素声明为undefined，将大大提高你的代码的清晰度和可维护性。</p>
+<h3 id="52布尔字面量即逻辑字面量">5.2布尔字面量（即：逻辑字面量）</h3>
+<p>布尔类型有两种字面量：<code>true</code>和<code>false</code></p>
+<p>不要混淆作为布尔对象的真和假与布尔类型的原始值 true 和 false。布尔对象是原始布尔数据类型的一个包装器</p>
+<h3 id="53数字字面量">5.3数字字面量</h3>
+<p>JS数字字面量包括多种基数的整数字面量和以 10 为基数的浮点数字面量</p>
+<p>值得一提的是，语言标准要求数字字面量必须是无符号的。但是像-123.4这样的代码片段还是没有问题的，会被解释为一元操作符-应用于数字字面量123.4</p>
+<h4 id="整数字面量">整数字面量</h4>
+<p>整数可以用十进制（基数为 10）、十六进制（基数为 16）、八进制（基数为 8）以及二进制（基数为 2）表示。<br>
+①十进制整数字面量由一串数字序列组成，且没有前缀 0。<br>
+②八进制的整数以 0（或 0O、0o）开头，只能包括数字 0-7。<br>
+③十六进制整数以 0x（或 0X）开头，可以包含数字（0-9）和字母 a~f 或 A~F。<br>
+④二进制整数以 0b（或 0B）开头，只能包含数字 0 和 1。<br>
+严格模式下，八进制整数字面量必须以 0o 或 0O 开头，而不能以 0 开头。<br>
+例如：</p>
+<pre><code>0, 117 and -345 (十进制，基数为 10)
+015, 0001 and -0o77 (八进制，基数为 8)
+0x1123, 0x00111 and -0xF1A7 (十六进制，基数为 16 或&quot;hex&quot;)
+0b11, 0b0011 and -0b11 (二进制，基数为 2)
+</code></pre>
+<h4 id="浮点数字面量">浮点数字面量</h4>
+<p>浮点数字面值可以有以下的组成部分：<br>
+①一个十进制整数，可以带正负号（即前缀“+”或“ - ”），<br>
+②小数点（“.”），<br>
+③小数部分（由一串十进制数表示），<br>
+④指数部分。<br>
+指数部分以“e”或“E”开头，后面跟着一个整数，可以有正负号（即前缀“+”或“-”）。浮点数字面量至少有一位数字，而且必须带小数点或者“e”（大写“E”也可）。<br>
+例如：</p>
+<pre><code>3.14
+-.2345789 // -0.23456789
+-3.12e+12  // -3.12*10^12
+.1e-23    // 0.1*10^(-23)=10^(-24)=1e-24
+</code></pre>
+<h3 id="54对象字面量">5.4对象字面量</h3>
+<p>对象字面值是封闭在花括号对 ({}) 中的一个对象的零个或多个&quot;属性名 - 值&quot;对的（元素）列表。<br>
+注：你不能在一条语句的开头就使用对象字面值，这将导致错误或产生超出预料的行为， 因为此时左花括号（{）会被认为是一个语句块的起始符号。</p>
+<p>以下是一个对象字面值的例子。对象car的第一个元素定义了属性myCar；第二个元素，属性getCar，引用了一个函数调用（即 CarTypes(&quot;Honda&quot;)）；第三个元素，属性special，使用了一个已有的变量（即 Sales）。</p>
+<pre><code>var Sales = &quot;Toyota&quot;;
+
+function CarTypes(name) {
+  return (name === &quot;Honda&quot;) ?
+    name :
+    &quot;Sorry, we don't sell &quot; + name + &quot;.&quot; ;
 }
 
-/* 生成的 CSS */
-#main{
-  background:red;
+var car = { myCar: &quot;Saturn&quot;, getCar: CarTypes(&quot;Honda&quot;), special: Sales };
+
+console.log(car.myCar);   // Saturn
+console.log(car.getCar);  // Honda
+console.log(car.special); // Toyota
+</code></pre>
+<p>更进一步的，你可以使用数字或字符串字面值作为属性的名字，或者在另一个字面值内嵌套上一个字面值。如下的示例中使用了这些可选项。</p>
+<pre><code>var car = { manyCars: {a: &quot;Saab&quot;, &quot;b&quot;: &quot;Jeep&quot;}, 7: &quot;Mazda&quot; };
+
+console.log(car.manyCars.b); // Jeep
+console.log(car[7]); // Mazda
+</code></pre>
+<p>对象属性名字可以是任意字符串，包括空串。如果对象属性名字不是合法的 javascript 标识符，它必须用&quot;&quot;包裹。属性的名字不合法，那么便不能用。访问属性值，而是通过类数组标记 (&quot;[]&quot;) 访问和赋值。</p>
+<pre><code>var unusualPropertyNames = {
+  &quot;&quot;: &quot;An empty string&quot;,
+  &quot;!&quot;: &quot;Bang!&quot;
 }
-#con{
-  width: 200px;
-  height: 200px;
-  border: solid 1px red;
+console.log(unusualPropertyNames.&quot;&quot;);   // 语法错误: Unexpected string
+console.log(unusualPropertyNames[&quot;&quot;]);  // An empty string
+console.log(unusualPropertyNames.!);    // 语法错误: Unexpected token !
+console.log(unusualPropertyNames[&quot;!&quot;]); // Bang!
+</code></pre>
+<h4 id="增强的对象字面量">增强的对象字面量</h4>
+<p>在 ES2015，对象字面值扩展支持在创建时设置原型，简写了 foo: foo 形式的属性赋值，方法定义，支持父方法调用，以及使用表达式动态计算属性名。总之，这些也使对象字面值和类声明更加紧密地联系起来，让基于对象的设计从这些便利中更加受益。</p>
+<pre><code>var obj = {
+    // __proto__
+    __proto__: theProtoObj,
+    // Shorthand for ‘handler: handler’
+    handler,
+    // Methods
+    toString() {
+     // Super calls
+     return &quot;d &quot; + super.toString();
+    },
+    // Computed (dynamic) property names
+    [ 'prop_' + (() =&gt; 42)() ]: 42
+};
+</code></pre>
+<p>请注意：</p>
+<pre><code>var foo = {a: &quot;alpha&quot;, 2: &quot;two&quot;};
+console.log(foo.a);    // alpha
+console.log(foo[2]);   // two
+//console.log(foo.2);  // SyntaxError: missing ) after argument list
+//console.log(foo[a]); // ReferenceError: a is not defined
+console.log(foo[&quot;a&quot;]); // alpha
+console.log(foo[&quot;2&quot;]); // two
+</code></pre>
+<h3 id="55regexp字面值">5.5RegExp字面值</h3>
+<p>一个正则表达式是字符被斜线（/）围成的表达式。<br>
+下面是一个正则表达式文字的一个例子:</p>
+<pre><code>var re = /ab+c/;
+</code></pre>
+<h3 id="56字符串字面量">5.6字符串字面量</h3>
+<p>字符串字面量是由双引号（&quot;）对或单引号（'）括起来的零个或多个字符。字符串被限定在同种引号之间；也就是说，必须是成对单引号或成对双引号。下面的例子都是字符串字面值：</p>
+<pre><code>&quot;foo&quot;
+'bar'
+&quot;one line \n another line&quot;
+</code></pre>
+<p>你可以在字符串字面值上使用字符串对象的所有方法——JS 会自动将字符串字面值转换为一个临时字符串对象，调用该方法，然后废弃掉那个临时的字符串对象。你也能用对字符串字面值使用类似 String.length 的属性：</p>
+<pre><code>console.log(&quot;John's cat&quot;.length)
+// 将打印字符串中的字符个数（包括空格）
+// 结果为：10
+</code></pre>
+<p>在 ES2015 中，还提供了一种模板字面量，模板字符串提供了一些语法糖来帮你构造字符串。除此之外，你可以在通过模板字符串前添加一个 tag 来自定义模板字符串的解析过程，这可以用来防止注入攻击，或者用来建立基于字符串的高级数据抽象。</p>
+<pre><code>// Basic literal string creation
+`In JavaScript '\n' is a line-feed.`
+
+// Multiline strings
+`In JavaScript this is
+ not legal.`
+
+// String interpolation
+var name = &quot;Bob&quot;, time = &quot;today&quot;;
+`Hello ${name}, how are you ${time}?`
+
+// Construct an HTTP request prefix is used to interpret the replacements and construction
+POST`http://foo.org/bar?a=${a}&amp;b=${b}
+     Content-Type: application/json
+     X-Credentials: ${credentials}
+     { &quot;foo&quot;: ${foo},
+       &quot;bar&quot;: ${bar}}`(myOnReadyStateChangeHandler);
+</code></pre>
+<h4 id="在字符串中使用的特殊字符">在字符串中使用的特殊字符</h4>
+<p>作为一般字符的扩展，你可以在字符串中使用特殊字符，如下例所示:</p>
+<pre><code>&quot;one line \n another line&quot;
+</code></pre>
+<h4 id="转义字符">转义字符</h4>
+<p>通过在引号前加上反斜线''，可以在字符串中插入引号，这就是引号转义。例如：</p>
+<pre><code>var quote = &quot;He read \&quot;The Cremation of Sam McGee\&quot; by R.W. Service.&quot;;
+console.log(quote);
+//He read &quot;The Cremation of Sam McGee&quot; by R.W. Service.
+</code></pre>
+<p>要在字符串中插入''字面值，必须转义反斜线。例如，要把文件路径 c:\temp 赋值给一个字符串，可以采用如下方式：</p>
+<pre><code>var home = &quot;c:\\temp&quot;;
+</code></pre>
+<p>也可以在换行之前加上反斜线以转义换行（实际上就是一条语句拆成多行书写），这样反斜线和换行都不会出现在字符串的值中。</p>
+<pre><code>var str = &quot;this string \
+is broken \
+across multiple\
+lines.&quot;
+console.log(str);   // this string is broken across multiplelines.
+</code></pre>
+<p>ECMAScript 2015 增加了一种新的字面量，叫做模板字面量 **template literals。**它包含一些新特征，包括了多行字符串！</p>
+<pre><code>var poem =
+`Roses are red,
+Violets are blue.
+Sugar is sweet,
+and so is foo.`
+</code></pre>
+<h1 id="三-流程控制与错误处理">三、流程控制与错误处理</h1>
+<p>JavaScript 提供一套灵活的语句集，特别是控制流语句，你可以用它在你的应用程序中实现大量的交互性功能（在 JavaScript 中，任何表达式  都可以看作一条语句）</p>
+<h2 id="1语句块">1.语句块</h2>
+<p>最基本的语句是用于组合语句的语句块。该块由一对大括号界定：</p>
+<pre><code>{
+   statement_1;
+   statement_2;
+   statement_3;
+   .
+   .
+   .
+   statement_n;
 }
 </code></pre>
-<p>⑥变量的运算<br>
-<code>Less</code>的运算非常强大，加减法时，以第一个数据的单位为基准；乘除法时，注意<font sytle="red">单位一定要统一！</font></p>
-<pre><code>/* Less */
-@width:300px;
-@color:#222;
-#wrap{
-  width:@width-20;
-  height:@width-20*5;
-  margin:(@width-20)*5;
-  color:@color*2;
-  background-color:@color + #111;
+<p>语句块通常用于流程控制，如if，for，while等等。</p>
+<pre><code>while (x &lt; 10) {
+  x++;
+}
+</code></pre>
+<p>这里{ x++; }就是语句块。</p>
+<p>注：在 ECMAScript 6 标准之前，Javascript 没有块作用域。在一个块中引入的变量的作用域是包含函数或脚本，并且设置它们的效果会延续到块之外。换句话说，块语句不定义范围。JavaScript 中的“独立”块会产生与 C 或 Java 中完全不同的结果。示例：</p>
+<pre><code>var x = 1;
+{
+  var x = 2;
+}
+alert(x); // 输出的结果为 2
+</code></pre>
+<p>这段代码的输出是2，这是因为块级作用域中的 var x 变量声明与之前的声明在同一个作用域内。在 C 语言或是 Java 语言中，同样的代码输出的结果是 1。</p>
+<p>从 ECMAScript 2015 开始，使用 let 和const变量是块作用域的。 更多信息请参考 let 和 const。</p>
+<h2 id="2条件判断语句">2.条件判断语句</h2>
+<p>条件判断语句指的是根据指定的条件所返回的结果（真或假或其它预定义的），来执行特定的语句。JavaScript 支持两种条件判断语句：if...else和switch。</p>
+<h3 id="21ifelse-语句">2.1if...else 语句</h3>
+<p>当一个逻辑条件为真，用 if 语句执行一个语句。当这个条件为假，使用可选择的 else 从句来执行这个语句。if 语句如下所示：</p>
+<pre><code>if (condition) {
+  statement_1;
+}else {
+  statement_2;
+} //推荐使用严格的语句块模式，语句 else 可选
+</code></pre>
+<p>条件可以是任何返回结果被计算为 true 或 false 的表达式。如果条件表达式返回的是 true，statement_1 语句会被执行；否则，statement_2 被执行。statement_1 和 statement_2 可以是任何语句，甚至你可以将另一个 if 语句嵌套其中。</p>
+<p>你也可以组合语句通过使用 else if 来测试连续多种条件判断，就像下面一样：</p>
+<pre><code>if (condition_1) {
+  statement_1;
+}else if (condition_2) {
+  statement_2;
+}else if (condition_n_1) {
+  statement_n;
+}else {
+  statement_last;
+}
+</code></pre>
+<p>要执行多个语句，可以使用语句块 ({ ... }) 来分组这些语句。通常，总是使用语句块是一个好的习惯，特别是在代码涉及比较多的 if 语句时：</p>
+<pre><code>if (条件) {
+  当条件为真的时候，执行语句 1;
+  当条件为真的时候，执行语句 2;
+} else {
+  当条件为假的时候，执行语句 3;
+  当条件为假的时候，执行语句 4;
+}
+</code></pre>
+<p>不建议在条件表达式中使用赋值语句，因为在快速查阅代码时容易把它看成等值比较。例如，不要使用下面的代码：</p>
+<pre><code>  if(x = y){
+    /*  语句  */
+  }
+</code></pre>
+<p>如果你需要在条件表达式中使用赋值，通常在赋值语句前后额外添加一对括号。例如：</p>
+<pre><code>if ((x = y)) {
+  /* statements here */
+}
+</code></pre>
+<p>错误的值<br>
+下面这些值将被计算出 false:<br>
+false<br>
+undefined<br>
+null<br>
+0<br>
+NaN<br>
+空字符串（&quot;&quot;）<br>
+当传递给条件语句所有其他的值，包括所有对象会被计算为真 。</p>
+<p>请不要混淆原始的布尔值true和false 与 Boolean对象的真和假。例如：</p>
+<pre><code>var b = new Boolean(false);
+if (b) //结果视为真
+if (b == true) // 结果视为假
+</code></pre>
+<p>在以下示例中，如果Text对象中的字符数为 3，函数checkData将返回true；否则，显示警报并返回false。</p>
+<pre><code>function checkData() {
+  if (document.form1.threeChar.value.length == 3) {
+    return true;
+  } else {
+    alert(&quot;Enter exactly three characters. &quot; +
+      document.form1.threeChar.value + &quot; is not valid.&quot;);
+    return false;
+  }
+}
+</code></pre>
+<h3 id="22switch-语句">2.2switch 语句</h3>
+<p>switch 语句允许一个程序求一个表达式的值并且尝试去匹配表达式的值到一个 case 标签。如果匹配成功，这个程序执行相关的语句。switch 语句如下所示：</p>
+<pre><code>switch (expression) {
+   case label_1:
+      statements_1
+      [break;]
+   case label_2:
+      statements_2
+      [break;]
+   ...
+   default:
+      statements_def
+      [break;]
+}
+</code></pre>
+<p>程序首先查找一个与 expression 匹配的 case 语句，然后将控制权转移到该子句，执行相关的语句。如果没有匹配值， 程序会去找 default 语句，如果找到了，控制权转移到该子句，执行相关的语句。如果没有找到 default，程序会继续执行 switch 语句后面的语句。default 语句通常出现在 switch 语句里的最后面，当然这不是必须的。</p>
+<p>可选的 break 语句与每个 case 语句相关联， 保证在匹配的语句被执行后程序可以跳出 switch 并且继续执行 switch 后面的语句。如果 break 被忽略，则程序将继续执行 switch 语句中的下一条语句。</p>
+<p>示例 在如下示例中，如果 fruittype 等于 &quot;Bananas&quot;, 程序匹配到对应 &quot;Bananas&quot; 的case 语句，并执行相关语句。 当执行到 break 时，程序结束了 switch 并执行 switch 后面的语句。 如果不写 break ，那么程序将会执行 case &quot;Cherries&quot; 下的语句。</p>
+<pre><code>switch (fruittype) {
+   case &quot;Oranges&quot;:
+      document.write(&quot;Oranges are $0.59 a pound.&lt;br&gt;&quot;);
+      break;
+   case &quot;Apples&quot;:
+      document.write(&quot;Apples are $0.32 a pound.&lt;br&gt;&quot;);
+      break;
+   case &quot;Bananas&quot;:
+      document.write(&quot;Bananas are $0.48 a pound.&lt;br&gt;&quot;);
+      break;
+   case &quot;Cherries&quot;:
+      document.write(&quot;Cherries are $3.00 a pound.&lt;br&gt;&quot;);
+      break;
+   case &quot;Mangoes&quot;:
+   case &quot;Papayas&quot;:
+      document.write(&quot;Mangoes and papayas are $2.79 a pound.&lt;br&gt;&quot;);
+      break;
+   default:
+      document.write(&quot;Sorry, we are out of &quot; + fruittype + &quot;.&lt;br&gt;&quot;);
+}
+document.write(&quot;Is there anything else you'd like?&lt;br&gt;&quot;);
+</code></pre>
+<h2 id="3异常处理语句">3.异常处理语句</h2>
+<p>你可以用 throw 语句抛出一个异常并且用 try...catch 语句捕获处理它。</p>
+<h3 id="31异常类型">3.1异常类型</h3>
+<p>JavaScript 可以抛出任意对象。然而，不是所有对象能产生相同的结果。尽管抛出数值或者字母串作为错误信息十分常见，但是通常用下列其中一种异常类型来创建目标更为高效：</p>
+<p>ECMAScript exceptions<br>
+DOMException and DOMError</p>
+<h3 id="32throw-语句">3.2throw 语句</h3>
+<p>使用throw语句抛出一个异常。当你抛出异常，你规定一个含有值的表达式要被抛出。</p>
+<pre><code>throw expression;
+</code></pre>
+<p>你可以抛出任意表达式而不是特定一种类型的表达式。下面的代码抛出了几个不同类型的表达式：</p>
+<pre><code>throw &quot;Error2&quot;;   // String type
+throw 42;         // Number type
+throw true;       // Boolean type
+throw {toString: function() { return &quot;I'm an object!&quot;; } };
+</code></pre>
+<p>备注： 你可以在抛出异常时声明一个对象。那你就可以在 catch 块中查询到对象的属性。</p>
+<pre><code>// Create an object type UserException
+function UserException (message){
+  this.message=message;
+  this.name=&quot;UserException&quot;;
 }
 
-/* 生成的 CSS */
-#wrap{
-  width:280px;
-  height:200px;
-  margin:1400px;
-  color:#444;
-  background-color:#333;
-}
-</code></pre>
-<p>⑦变量作用域<br>
-就近原则！！！</p>
-<pre><code>/* Less */
-@var: @a;
-@a: 100%;
-#wrap {
-  width: @var;
-  @a: 9%;
+// Make the exception convert to a pretty string when used as
+// a string (e.g. by the error console)
+UserException.prototype.toString = function (){
+  return this.name + ': &quot;' + this.message + '&quot;';
 }
 
-/* 生成的 CSS */
-#wrap {
-  width: 9%;
-}
+// Create an instance of the object type and throw it
+throw new UserException(&quot;Value too high&quot;);
 </code></pre>
-<p>⑧用变量去定义变量</p>
-<pre><code>/* Less */
-@fnord:  &quot;I am fnord.&quot;;
-@var:    &quot;fnord&quot;;
-#wrap::after{
-  content: @@var; //将@var替换为其值 content:@fnord;
-}
-/* 生成的 CSS */
-#wrap::after{
-  content: &quot;I am fnord.&quot;;
-}
-</code></pre>
-<p>#二、嵌套<br>
-①<code>&amp;</code>的妙用<br>
-<code>&amp;</code>代表的上一层选择器的名字</p>
-<pre><code>/* Less */
-#header{
-  &amp;:after{
-    content:&quot;Less is more!&quot;;
-  }
-  .title{
-    font-weight:bold;
-  }
-  &amp;_content{//理解方式：直接把 &amp; 替换成 #header
-    margin:20px;
+<h3 id="33trycatch-语句">3.3try...catch 语句</h3>
+<p>try...catch 语句标记一块待尝试的语句，并规定一个以上的响应应该有一个异常被抛出。如果我们抛出一个异常，try...catch语句就捕获它。</p>
+<p>try...catch 语句有一个包含一条或者多条语句的 try 代码块，0 个或 1 个的catch代码块，catch 代码块中的语句会在 try 代码块中抛出异常时执行。 换句话说，如果你在 try 代码块中的代码如果没有执行成功，那么你希望将执行流程转入 catch 代码块。如果 try 代码块中的语句（或者try 代码块中调用的方法）一旦抛出了异常，那么执行流程会立即进入catch 代码块。如果 try 代码块没有抛出异常，catch 代码块就会被跳过。finally 代码块总会紧跟在 try 和 catch 代码块之后执行，但会在 try 和 catch 代码块之后的其他代码之前执行。</p>
+<p>下面的例子使用了try...catch语句。示例调用了一个函数用于从一个数组中根据传递值来获取一个月份名称。如果该值与月份数值不相符，会抛出一个带有&quot;InvalidMonthNo&quot;值的异常，然后在捕捉块语句中设monthName变量为unknown。</p>
+<pre><code>function getMonthName(mo) {
+  mo = mo - 1; // Adjust month number for array index (1 = Jan, 12 = Dec)
+  var months = [&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,
+                &quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;];
+  if (months[mo]) {
+    return months[mo];
+  } else {
+    throw &quot;InvalidMonthNo&quot;; //throw keyword is used here
   }
 }
-/* 生成的 CSS */
-#header::after{
-  content:&quot;Less is more!&quot;;
+
+try { // statements to try
+  monthName = getMonthName(myMonth); // function could throw exception
 }
-#header .title{ //嵌套了
-  font-weight:bold;
-}
-#header_content{//没有嵌套！
-    margin:20px;
+catch (e) {
+  monthName = &quot;unknown&quot;;
+  logMyErrors(e); // pass exception object to error handler -&gt; your own function
 }
 </code></pre>
-<p>此例中，<code>&amp;</code>即为<code>header</code></p>
-<p>②媒体查询</p>
-<p>目前适用的方法先到这里，以后继续补充</p>
+<h4 id="catch-块">catch 块</h4>
+<p>你可以使用catch块来处理所有可能在try块中产生的异常。</p>
+<pre><code>catch (catchID) {
+  statements
+}
+</code></pre>
+<p>捕捉块指定了一个标识符（上述语句中的catchID）来存放抛出语句指定的值；你可以用这个标识符来获取抛出的异常信息。在插入throw块时 JavaScript 创建这个标识符；标识符只存在于catch块的存续期间里；当catch块执行完成时，标识符不再可用。</p>
+<p>举个例子，下面代码抛出了一个异常。当异常出现时跳到catch块。</p>
+<pre><code>try {
+   throw &quot;myException&quot; // generates an exception
+}
+catch (e) {
+// statements to handle any exceptions
+   logMyErrors(e) // pass exception object to error handler
+}
+</code></pre>
+<h4 id="finally块">finally块</h4>
+<p>finally块包含了在 try 和 catch 块完成后、下面接着 try...catch 的语句之前执行的语句。finally块无论是否抛出异常都会执行。如果抛出了一个异常，就算没有异常处理，finally块里的语句也会执行。</p>
+<p>你可以用finally块来令你的脚本在异常发生时优雅地退出；举个例子，你可能需要在绑定的脚本中释放资源。接下来的例子用文件处理语句打开了一个文件（服务端的 JavaScript 允许你进入文件）。如果在文件打开时一个异常抛出，finally块会在脚本错误之前关闭文件。</p>
+<pre><code>openMyFile();
+try {
+    writeMyFile(theData); //This may throw a error
+}catch(e){
+    handleError(e); // If we got a error we handle it
+}finally {
+    closeMyFile(); // always close the resource
+}
+</code></pre>
+<p>如果finally块返回一个值，该值会是整个try-catch-finally流程的返回值，不管在try和catch块中语句返回了什么：</p>
+<pre><code>function f() {
+  try {
+    console.log(0);
+    throw &quot;bogus&quot;;
+  } catch(e) {
+    console.log(1);
+    return true; // this return statement is suspended
+                 // until finally block has completed
+    console.log(2); // not reachable
+  } finally {
+    console.log(3);
+    return false; // overwrites the previous &quot;return&quot;
+    console.log(4); // not reachable
+  }
+  // &quot;return false&quot; is executed now
+  console.log(5); // not reachable
+}
+f(); // console 0, 1, 3; returns false
+</code></pre>
+<p>用finally块覆盖返回值也适用于在catch块内抛出或重新抛出的异常：</p>
+<pre><code>function f() {
+  try {
+    throw 'bogus';
+  } catch(e) {
+    console.log('caught inner &quot;bogus&quot;');
+    throw e; // this throw statement is suspended until
+             // finally block has completed
+  } finally {
+    return false; // overwrites the previous &quot;throw&quot;
+  }
+  // &quot;return false&quot; is executed now
+}
+
+try {
+  f();
+} catch(e) {
+  // this is never reached because the throw inside
+  // the catch is overwritten
+  // by the return in finally
+  console.log('caught outer &quot;bogus&quot;');
+}
+
+// OUTPUT
+// caught inner &quot;bogus&quot;
+</code></pre>
+<h4 id="嵌套-trycatch-语句">嵌套 try...catch 语句</h4>
+<p>你可以嵌套一个或多个try ... catch语句。如果一个内部try ... catch语句没有catch块，它需要有一个finally块，并且封闭的try ... catch语句的catch块被检查匹配。有关更多信息，请参阅try... catch参考页上的嵌套 try-blocks。</p>
+<h3 id="34使用error对象">3.4使用Error对象</h3>
+<p>根据错误类型，你也许可以用'name'和'message'获取更精炼的信息。'name'提供了常规的错误类（如 'DOMException' 或 'Error'），而'message'通常提供了一条从错误对象转换成字符串的简明信息。</p>
+<p>在抛出你个人所为的异常时，为了充分利用那些属性（比如你的catch块不能分辨是你个人所为的异常还是系统的异常时），你可以使用 Error 构造函数。比如：</p>
+<pre><code>function doSomethingErrorProne () {
+  if (ourCodeMakesAMistake()) {
+    throw (new Error('The message'));
+  } else {
+    doSomethingToGetAJavascriptError();
+  }
+}
+....
+try {
+  doSomethingErrorProne();
+}
+catch (e) {
+  console.log(e.name); // logs 'Error'
+  console.log(e.message); // logs 'The message' or a JavaScript error message)
+}
+</code></pre>
+<h1 id="四-循环与迭代">四、循环与迭代</h1>
+<p>循环提供了一种快速和简单的方式去做一些重复的事</p>
+<h2 id="1for-语句">1.for 语句</h2>
+<h2 id="2dowhile-语句">2.do...while 语句</h2>
+<h2 id="3while-语句">3.while 语句</h2>
+<h2 id="4label-语句">4.label 语句</h2>
+<p>一个 label 提供了一个让你在程序中其他位置引用它的标识符。例如，你可以用 label 标识一个循环， 然后使用 break 或者 continue 来指出程序是否该停止循环还是继续循环。</p>
+<p>label 语句的语法看起来像这样：</p>
+<pre><code>label :
+   statement
+</code></pre>
+<p>label 的值可以是任何的非保留字的 JavaScript 标识符， statement 可以是任意你想要标识的语句（块）。</p>
+<p>在这个例子里，标记 markLoop 标识了一个 while 循环。</p>
+<pre><code>markLoop:
+while (theMark == true) {
+   doSomething();
+}
+</code></pre>
+<p>举一个比较典型的例子，看完后即明白 Label 的应用：</p>
+<p>未添加 Label：</p>
+<pre><code>var num = 0;
+for (var i = 0 ; i &lt; 10 ; i++) {   // i 循环
+  for (var j = 0 ; j &lt; 10 ; j++) { // j 循环
+    if( i == 5 &amp;&amp; j == 5 ) {
+       break; // i = 5，j = 5 时，会跳出 j 循环
+    } // 但 i 循环会继续执行，等于跳出之后又继续执行更多次 j 循环
+  num++;
+  }
+}
+
+alert(num); // 输出 95
+</code></pre>
+<p>添加 Label 后：</p>
+<pre><code>var num = 0;
+outPoint:
+for (var i = 0 ; i &lt; 10 ; i++){
+  for (var j = 0 ; j &lt; 10 ; j++){
+    if( i == 5 &amp;&amp; j == 5 ){
+      break outPoint; // 在 i = 5，j = 5 时，跳出所有循环，
+                      // 返回到整个 outPoint 下方，继续执行
+    }
+    num++;
+  }
+}
+
+alert(num); // 输出 55
+</code></pre>
+<p>使用 continue 语句，则可达到与未添加 label 相同的效果，但在这种有多层循环的情况下，循环的跳出进入流程<font color="red">更为明晰一些</font>：</p>
+<pre><code>var num = 0;
+outPoint:
+for(var i = 0; i &lt; 10; i++) {
+  for(var j = 0; j &lt; 10; j++) {
+    if(i == 5 &amp;&amp; j == 5) {
+      continue outPoint;
+    }
+    num++;
+  }
+}
+alert(num);  // 95
+</code></pre>
+<p>从 alert(num) 的值可以看出，continue outPoint; 语句的作用是跳出当前循环，并跳转到 outPoint（标签）下的 for 循环继续执行。</p>
+<h2 id="5break-语句">5.break 语句</h2>
+<p>使用 break 语句来终止循环，switch， 或者是链接到 label 语句。</p>
+<p>当你使用不带 label 的 break 时， 它会立即终止当前所在的 while，do-while，for，或者 switch 并把控制权交回这些结构后面的语句。<br>
+当你使用带 label 的 break 时，它会终止指定的带标记（label）的语句。<br>
+break 语句的语法看起来像这样：</p>
+<pre><code>break [label];
+</code></pre>
+<p>在语法中，被 [] 包裹的内容是可省略的，也就是 label 可以省略。若省略，则终止当前所在的循环或 switch；若不省略，则终止指定的 label 语句。</p>
+<p>例子 1<br>
+下面的例子循环数组里的元素，直到找到一个等于 theValue 的值：</p>
+<pre><code>for (i = 0; i &lt; a.length; i++) {
+  if (a[i] == theValue) {
+    break;
+  }
+}
+</code></pre>
+<p>例子 2: 终止一个 label</p>
+<pre><code>var x = 0;
+var z = 0
+labelCancelLoops: while (true) {
+  console.log(&quot;外部循环: &quot; + x);
+  x += 1;
+  z = 1;
+  while (true) {
+    console.log(&quot;内部循环: &quot; + z);
+    z += 1;
+    if (z === 10 &amp;&amp; x === 10) {
+      break labelCancelLoops;
+    } else if (z === 10) {
+      break;
+    }
+  }
+}
+</code></pre>
+<h2 id="6continue-语句">6.continue 语句</h2>
+<p>continue 语句可以用来继续执行（跳过代码块的剩余部分并进入下一循环）一个 while、do-while、for，或者 label 语句。</p>
+<p>当你使用不带 label 的 continue 时， 它终止当前 while，do-while，或者 for 语句到结尾的这次的循环并且继续执行下一次循环。<br>
+当你使用带 label 的 continue 时， 它会应用被 label 标识的循环语句。</p>
+<pre><code>var i = 0;
+var j = 10;
+checkiandj:
+  while (i &lt; 4) {
+    console.log(i);
+    i += 1;
+    checkj:
+      while (j &gt; 4) {
+        console.log(j);
+        j -= 1;
+        if ((j % 2) == 0) {
+          continue checkj;
+        }
+        console.log(j + ' 是奇数。');
+      }
+      console.log('i = ' + i);
+      console.log('j = ' + j);
+  }
+</code></pre>
+<h2 id="7forin-语句">7.for...in 语句</h2>
+<p>for...in 语句循环一个指定的变量来循环一个对象所有可枚举的属性。JavaScript 会为每一个不同的属性执行指定的语句。</p>
+<pre><code>for (variable in object) {
+  statements
+}
+</code></pre>
+<p>下面的函数通过它的参数得到一个对象和这个对象的名字。然后循环这个对象的所有属性并且返回一个列出属性名和该属性值的字符串。</p>
+<pre><code>function dump_props(obj, obj_name) {
+  var result = &quot;&quot;;
+  for (var i in obj) {
+    result += obj_name + &quot;.&quot; + i + &quot; = &quot; + obj[i] + &quot;&lt;br&gt;&quot;;
+  }
+  result += &quot;&lt;hr&gt;&quot;;
+  return result;
+}
+</code></pre>
+<p>对于一个拥有 make 和 model 属性的 car 对象来说，执行结果 result 是：</p>
+<pre><code>car.make = Ford
+car.model = Mustang
+</code></pre>
+<h3 id="71数组">7.1数组</h3>
+<p>虽然使用 for...in 来迭代数组 Array 元素听起来很诱人，但是它返回的东西除了数字索引外，还有可能是你自定义的属性名字。因此还是用带有数字索引的传统的 for 循环来迭代一个数组比较好，因为，如果你想改变数组对象，比如添加属性或者方法，for...in 语句迭代的是自定义的属性，而不是数组的元素。（下面的 for...of 语句，和 forEach()，也是理想的选择。）</p>
+<h2 id="8forof-语句">8.for...of 语句</h2>
+<p>for...of 语句在可迭代对象（包括Array、Map、Set、arguments 等等）上创建了一个循环，对值的每一个独特属性调用一次迭代。</p>
+<pre><code>for (variable of object) {
+  statement
+}
+</code></pre>
+<p>下面的这个例子展示了 for...of 和 for...in 两种循环语句之间的区别。 for...in 循环遍历的结果是数组元素的下标，而 for...of 遍历的结果是元素的值：</p>
+<pre><code>let arr = [3, 5, 7];
+arr.foo = &quot;hello&quot;;
+
+for (let i in arr) {
+   console.log(i); // 输出 &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;foo&quot;
+}
+
+for (let i of arr) {
+   console.log(i); // 输出 &quot;3&quot;, &quot;5&quot;, &quot;7&quot;
+}
+</code></pre>
+<h1 id="五-函数">五、函数</h1>
+<p>函数是 JavaScript 中的基本组件之一。<br>
+一个 JavaScript 函数用function关键字定义，后面跟着函数名和圆括号。</p>
+<h2 id="1定义函数">1.定义函数</h2>
+<h3 id="11函数声明">1.1函数声明</h3>
+<p>一个函数定义（也称为函数声明，或函数语句）由一系列的function关键字组成，依次为：<br>
+①函数的名称。<br>
+②函数参数列表，包围在括号中并由逗号分隔。<br>
+③定义函数的 JavaScript 语句，用大括号{}括起来。<br>
+例如，以下的代码定义了一个简单的square函数：</p>
+<pre><code>function square(number) {
+  return number * number;
+}
+</code></pre>
+<p>原始参数（比如一个具体的数字）被作为值传递给函数；值被传递给函数，如果被调用函数改变了这个参数的值，这样的改变不会影响到全局或调用函数。(不考虑this)</p>
+<p>如果你传递一个对象（即一个非原始值，例如Array或用户自定义的对象）作为参数，而函数改变了这个对象的属性，这样的改变对函数外部是可见的，如下面的例子所示：</p>
+<pre><code>function myFunc(theObject) {
+  theObject.make = &quot;Toyota&quot;;
+}
+
+var mycar = {make: &quot;Honda&quot;, model: &quot;Accord&quot;, year: 1998};
+var x, y;
+
+x = mycar.make;     // x 获取的值为 &quot;Honda&quot;
+
+myFunc(mycar);
+y = mycar.make;     // y 获取的值为 &quot;Toyota&quot;
+                    // (make 属性被函数改变了)
+</code></pre>
+<h3 id="12函数表达式">1.2函数表达式</h3>
+<p>虽然上面的函数声明在语法上是一个语句，但函数也可以由函数表达式创建。这样的函数可以是匿名的；它不必有一个名称。例如，函数square也可这样来定义：</p>
+<pre><code>const square = function(number) { return number * number; };
+var x = square(4); // x gets the value 16
+</code></pre>
+<p>然而，函数表达式也可以提供函数名，并且可以用于在函数内部代指其本身，或者在调试器堆栈跟踪中识别该函数：</p>
+<pre><code>const factorial = function fac(n) {return n&lt;2 ? 1 : n*fac(n-1)};
+
+console.log(factorial(3));
+</code></pre>
+<p>当将函数作为参数传递给另一个函数时，函数表达式很方便。下面的例子演示了一个叫map的函数如何被定义，而后使用一个表达式函数作为其第一个参数进行调用：</p>
+<pre><code>function map(f,a) {
+  let result = []; // 创建一个数组
+  let i; // 声明一个值，用来循环
+  for (i = 0; i != a.length; i++)
+    result[i] = f(a[i]);
+  return result;
+}
+</code></pre>
+<p>除了上述的定义函数方法外，你也可以在运行时用 Function 构造器由一个字符串来创建一个函数 ，很像 eval() 函数。</p>
+<p>当一个函数是一个对象的属性时，** 称之为方法 **。</p>
+<h2 id="2调用函数">2.调用函数</h2>
+<p>定义一个函数并不会自动的执行它。定义了函数仅仅是赋予函数以名称并明确函数被调用时该做些什么。调用函数才会以给定的参数真正执行这些动作。例如，一旦你定义了函数square，你可以如下这样调用它：</p>
+<pre><code>square(5);
+</code></pre>
+<p>函数一定要处于调用它们的域中，但是函数的声明可以被提升 (出现在调用语句之后)，如下例：</p>
+<pre><code>console.log(square(5));
+/* ... */
+function square(n) { return n*n }
+</code></pre>
+<p>函数域是指函数声明时的所在的地方，或者函数在顶层被声明时指整个程序。</p>
+<p>注：函数提升仅适用于函数声明，而不适用于函数表达式。</p>
+<p>函数的参数并不局限于字符串或数字。你也可以将整个对象传递给函数</p>
+<p>函数可以被递归，就是说函数可以调用其本身。例如，下面这个函数就是用递归计算阶乘：</p>
+<pre><code>function factorial(n){
+  if ((n == 0) || (n == 1))
+    return 1;
+  else
+    return (n * factorial(n - 1));
+}
+</code></pre>
+<p>还有其它的方式来调用函数。常见的一些情形是某些地方需要动态调用函数，或者函数的实参数量是变化的，或者调用函数的上下文需要指定为在运行时确定的特定对象。显然，函数本身就是对象，因此这些对象也有方法。作为此中情形之一，apply()方法可以实现这些目的。</p>
+<h2 id="3函数作用域">3.函数作用域</h2>
+<p>在函数内定义的变量不能在函数之外的任何地方访问，因为变量仅仅在该函数的域的内部有定义。相对应的，一个函数可以访问定义在其范围内的任何变量和函数。换言之，定义在全局域中的函数可以访问所有定义在全局域中的变量。在另一个函数中定义的函数也可以访问在其父函数中定义的所有变量和父函数有权访问的任何其他变量。</p>
+<h2 id="4作用域和函数堆栈">4.作用域和函数堆栈</h2>
+<h3 id="41递归">4.1递归</h3>
+<p>一个函数可以指向并调用自身。有三种方法可以达到这个目的：<br>
+①函数名<br>
+②arguments.callee<br>
+③作用域下的一个指向该函数的变量名<br>
+例如，思考一下如下的函数定义：</p>
+<pre><code>var foo = function bar() {
+   // statements go here
+};
+</code></pre>
+<p>在这个函数体内，以下的语句是等价的：</p>
+<pre><code>bar()
+arguments.callee() （ES5 禁止在严格模式下使用此属性）
+foo()
+</code></pre>
+<p>调用自身的函数我们称之为递归函数。在某种意义上说，递归近似于循环。两者都重复执行相同的代码，并且两者都需要一个终止条件（避免无限循环或者无限递归）</p>
+<pre><code>function loop(x) {
+  if (x &gt;= 10) // &quot;x &gt;= 10&quot; 是退出条件（等同于 &quot;!(x &lt; 10)&quot;）
+    return;
+  // 做些什么
+  loop(x + 1); // 递归调用
+}
+loop(0);
+</code></pre>
+<p>不过，有些算法并不能简单的用迭代来实现。例如，获取树结构中所有的节点时，使用递归实现要容易得多：</p>
+<pre><code>function walkTree(node) {
+  if (node == null) //
+    return;
+  // do something with node
+  for (var i = 0; i &lt; node.childNodes.length; i++) {
+    walkTree(node.childNodes[i]);
+  }
+}
+</code></pre>
+<p>跟loop函数相比，这里每个递归调用都产生了更多的递归。</p>
+<p>将递归算法转换为非递归算法是可能的，不过逻辑上通常会更加复杂，而且需要使用堆栈。事实上，递归函数就使用了堆栈：函数堆栈。</p>
+<p>这种类似堆栈的行为可以在下例中看到：</p>
+<pre><code>function foo(i) {
+  if (i &lt; 0)
+    return;
+  console.log('begin:' + i);
+  foo(i - 1);
+  console.log('end:' + i);
+}
+foo(3);
+
+// 输出：
+
+// begin:3
+// begin:2
+// begin:1
+// begin:0
+// end:0
+// end:1
+// end:2
+// end:3
+</code></pre>
+<h3 id="42嵌套函数和闭包">4.2嵌套函数和闭包</h3>
+<p>你可以在一个函数里面嵌套另外一个函数。嵌套（内部）函数对其容器（外部）函数是私有的。它自身也形成了一个闭包。一个闭包是一个可以自己拥有独立的环境与变量的表达式（通常是函数）。</p>
+<p>既然嵌套函数是一个闭包，就意味着一个嵌套函数可以”继承“容器函数的参数和变量。换句话说，内部函数包含外部函数的作用域。</p>
+<p>可以总结如下：<br>
+①内部函数只可以在外部函数中访问。<br>
+②内部函数形成了一个闭包：它可以访问外部函数的参数和变量，但是外部函数却不能使用它的参数和变量。<br>
+下面的例子展示了嵌套函数：</p>
+<pre><code>function addSquares(a, b) {
+  function square(x) {
+    return x * x;
+  }
+  return square(a) + square(b);
+}
+a = addSquares(2, 3); // returns 13
+b = addSquares(3, 4); // returns 25
+c = addSquares(4, 5); // returns 41
+</code></pre>
+<p>由于内部函数形成了闭包，因此你可以调用外部函数并为外部函数和内部函数指定参数：</p>
+<pre><code>function outside(x) {
+  function inside(y) {
+    return x + y;
+  }
+  return inside;
+}
+fn_inside = outside(3); // 可以这样想：给一个函数，使它的值加 3
+result = fn_inside(5); // returns 8
+
+result1 = outside(3)(5); // returns 8
+
+console.log(fn_inside)// inside(y) {return x + y;}
+</code></pre>
+<h3 id="43保存变量">4.3保存变量</h3>
+<p>注意到上例中 inside 被返回时 x 是怎么被保留下来的。一个闭包必须保存它可见作用域中所有参数和变量。因为每一次调用传入的参数都可能不同，每一次对外部函数的调用实际上重新创建了一遍这个闭包。只有当返回的 inside 没有再被引用时，内存才会被释放。</p>
+<p>这与在其他对象中存储引用没什么不同，但是通常不太明显，因为<font color="red">并不能直接设置引用，也不能检查它们</font>。</p>
+<h3 id="44多层嵌套函数">4.4多层嵌套函数</h3>
+<p>函数可以被多层嵌套。例如，函数 A 可以包含函数 B，函数 B 可以再包含函数 C。B 和 C 都形成了闭包，所以 B 可以访问 A，C 可以访问 B 和 A。因此，闭包可以包含多个作用域；他们递归式的包含了所有包含它的函数作用域。这个称之为作用域链。（稍后会详细解释）</p>
+<pre><code>function A(x) {
+  function B(y) {
+    function C(z) {
+      console.log(x + y + z);
+    }
+    C(3);
+  }
+  B(2);
+}
+A(1); //6
+</code></pre>
+<h3 id="45命名冲突">4.5命名冲突</h3>
+<p>当同一个闭包作用域下两个参数或者变量同名时，就会产生命名冲突。更近的作用域有更高的优先权，所以最近的优先级最高，最远的优先级最低。这就是作用域链。链的第一个元素就是最里面的作用域，最后一个元素便是最外层的作用域。</p>
+<pre><code>function outside() {
+  var x = 5;
+  function inside(x) {
+    return x * 2;
+  }
+  return inside;
+}
+
+outside()(10); // returns 20 instead of 10
+</code></pre>
+<p>命名冲突发生在return x上，inside的参数x和outside变量x发生了冲突。这里的作用链域是{inside, outside, 全局对象}。因此inside的x具有最高优先权，返回了 20（inside的x）而不是 10（outside的x）。</p>
+<h2 id="5闭包">5.闭包</h2>
+<p>闭包是 JavaScript 中最强大的特性之一。JavaScript 允许函数嵌套，并且内部函数可以访问定义在外部函数中的所有变量和函数，以及外部函数能访问的所有变量和函数。</p>
+<p>但是，外部函数却不能够访问定义在内部函数中的变量和函数。这给内部函数的变量提供了一定的安全性。</p>
+<p>此外，由于内部函数可以访问外部函数的作用域，因此当内部函数生存周期大于外部函数时，外部函数中定义的变量和函数的生存周期将比内部函数执行时间长。当内部函数以某一种方式被任何一个外部函数作用域访问时，一个闭包就产生了。</p>
+<pre><code>var pet = function(name) {          //外部函数定义了一个变量&quot;name&quot;
+  var getName = function() {
+    //内部函数可以访问 外部函数定义的&quot;name&quot;
+    return name;
+  }
+  //返回这个内部函数，从而将其暴露在外部函数作用域
+  return getName;
+};
+myPet = pet(&quot;Vivie&quot;);
+
+myPet();                            // 返回结果 &quot;Vivie&quot;
+</code></pre>
+<p>实际上可能会比上面的代码复杂的多。在下面这种情形中，返回了一个包含可以操作外部函数的内部变量方法的对象。</p>
+<pre><code>var createPet = function(name) {
+  var sex;
+
+  return {
+    setName: function(newName) {
+      name = newName;
+    },
+
+    getName: function() {
+      return name;
+    },
+
+    getSex: function() {
+      return sex;
+    },
+
+    setSex: function(newSex) {
+      if(typeof newSex == &quot;string&quot;
+        &amp;&amp; (newSex.toLowerCase() == &quot;male&quot; || newSex.toLowerCase() == &quot;female&quot;)) {
+        sex = newSex;
+      }
+    }
+  }
+}
+
+var pet = createPet(&quot;Vivie&quot;);
+pet.getName();                  // Vivie
+
+pet.setName(&quot;Oliver&quot;);
+pet.setSex(&quot;male&quot;);
+pet.getSex();                   // male
+pet.getName();                  // Oliver
+</code></pre>
+<p>在上面的代码中，外部函数的name变量对内嵌函数来说是可取得的，而除了通过内嵌函数本身，没有其它任何方法可以取得内嵌的变量。内嵌函数的内嵌变量就像内嵌函数的保险柜。它们会为内嵌函数保留“稳定”——而又安全——的数据参与运行。而这些内嵌函数甚至不会被分配给一个变量，或者不必一定要有名字。</p>
+<pre><code>var getCode = (function(){
+  var secureCode = &quot;0]Eal(eh&amp;2&quot;;    // A code we do not want outsiders to be able to modify...
+
+  return function () {
+    return secureCode;
+  };
+})();
+
+getCode();    // Returns the secret code
+</code></pre>
+<p>注：小心命名冲突！</p>
+<h2 id="6使用arguments对象">6.使用arguments对象</h2>
+<p>函数的实际参数会被保存在一个类似数组的 arguments 对象中。在函数内，你可以按如下方式找出传入的参数：</p>
+<pre><code>arguments[i]
+</code></pre>
+<p>其中i是参数的数组索引，以 0 开始。所以第一个传来的参数会是arguments[0]。参数的数量由arguments.length表示。</p>
+<p>使用 arguments 对象，你可以处理比声明的更多的参数来调用函数。这在你事先不知道会需要将多少参数传递给函数时十分有用。你可以用arguments.length来获得实际传递给函数的参数的数量，然后用arguments对象来取得每个参数。</p>
+<p>例如，设想有一个用来连接字符串的函数。唯一事先确定的参数是在连接后的字符串中用来分隔各个连接部分的字符（译注：比如例子里的分号“；”）。该函数定义如下：</p>
+<pre><code>function myConcat(separator) {
+   var result = ''; // 把值初始化成一个字符串，这样就可以用来保存字符串了！！
+   var i;
+   // iterate through arguments
+   for (i = 1; i &lt; arguments.length; i++) {
+      result += arguments[i] + separator;
+   }
+   return result;
+}
+</code></pre>
+<p>你可以给这个函数传递任意数量的参数，它会将各个参数连接成一个字符串“列表”：</p>
+<pre><code>// returns &quot;red, orange, blue, &quot;
+myConcat(&quot;, &quot;, &quot;red&quot;, &quot;orange&quot;, &quot;blue&quot;);
+
+// returns &quot;elephant; giraffe; lion; cheetah; &quot;
+myConcat(&quot;; &quot;, &quot;elephant&quot;, &quot;giraffe&quot;, &quot;lion&quot;, &quot;cheetah&quot;);
+
+// returns &quot;sage. basil. oregano. pepper. parsley. &quot;
+myConcat(&quot;. &quot;, &quot;sage&quot;, &quot;basil&quot;, &quot;oregano&quot;, &quot;pepper&quot;, &quot;parsley&quot;);
+</code></pre>
+<p>注： arguments 变量只是“类数组对象”，并不是一个数组。称其为类数组对象是说它有一个索引编号和length属性。尽管如此，它并不拥有全部的 Array 对象的操作方法。</p>
+<h2 id="7函数参数">7.函数参数</h2>
+<p>从 ES6 开始，有两个新的类型的参数：默认参数，剩余参数</p>
+<h3 id="71默认参数">7.1默认参数</h3>
+<p>在 JavaScript 中，函数参数的默认值是undefined。然而，在某些情况下设置不同的默认值是有用的。这时默认参数可以提供帮助。</p>
+<p>在过去，用于设定默认参数的一般策略是在函数的主体中测试参数值是否为undefined，如果是则赋予这个参数一个默认值。如果在下面的例子中，调用函数时没有实参传递给b，那么它的值就是undefined，于是计算a*b得到、函数返回的是 NaN。但是，在下面的例子中，这个已经被第二行获取处理：</p>
+<pre><code>function multiply(a, b) {
+  b = (typeof b !== 'undefined') ?  b : 1;
+
+  return a*b;
+}
+
+multiply(5); // 5
+</code></pre>
+<p>使用默认参数，在函数体的检查就不再需要了。现在，你可以在函数头简单地把 1 设定为b的默认值：</p>
+<pre><code>function multiply(a, b = 1) {
+  return a*b;
+}
+
+multiply(5); // 5
+</code></pre>
+<h3 id="72剩余参数">7.2剩余参数</h3>
+<p>剩余参数语法允许将不确定数量的参数表示为数组。在下面的例子中，使用剩余参数收集从第二个到最后参数。然后，我们将这个数组的每一个数与第一个参数相乘。这个例子是使用了一个箭头函数，这将在下一节介绍。</p>
+<pre><code>function multiply(multiplier, ...theArgs) {
+  return theArgs.map(x =&gt; multiplier * x);
+}
+
+var arr = multiply(2, 1, 2, 3);
+console.log(arr); // [2, 4, 6]
+</code></pre>
+<h2 id="8箭头函数">8.箭头函数</h2>
+<p>箭头函数表达式（也称胖箭头函数）相比函数表达式具有较短的语法并以词法的方式绑定 this。箭头函数<font color="red">总是匿名的</font>。</p>
+<p>有两个因素会影响引入箭头函数：更简洁的函数和 this。</p>
+<h3 id="81更简洁的函数">8.1更简洁的函数</h3>
+<p>在一些函数模式中，更简洁的函数很受欢迎。对比一下：</p>
+<pre><code>var a = [
+  &quot;Hydrogen&quot;,
+  &quot;Helium&quot;,
+  &quot;Lithium&quot;,
+  &quot;Beryllium&quot;
+];
+
+var a2 = a.map(function(s){ return s.length });
+
+console.log(a2); // logs [ 8, 6, 7, 9 ]
+
+var a3 = a.map( s =&gt; s.length );
+
+console.log(a3); // logs [ 8, 6, 7, 9 ]
+</code></pre>
+<h3 id="82this的词法">8.2this的词法</h3>
+<p>在箭头函数出现之前，每一个新函数都重新定义了自己的 this 值（在构造函数中是一个新的对象；在严格模式下是未定义的；在作为“对象方法”调用的函数中指向这个对象；等等）。以面向对象的编程风格，这样着实有点恼人。</p>
+<pre><code>function Person() {
+  // 构造函数 Person() 将`this`定义为自身
+  this.age = 0;
+
+  setInterval(function growUp() {
+    // 在非严格模式下，growUp() 函数将`this`定义为“全局对象”，
+    // 这与 Person() 定义的`this`不同，
+    // 所以下面的语句不会起到预期的效果。
+    this.age++;
+  }, 1000);
+}
+
+var p = new Person();
+</code></pre>
+<p>在 ECMAScript 3/5 里，通过把this的值赋值给一个变量可以修复这个问题。</p>
+<pre><code>function Person() {
+  var self = this; // 有的人习惯用`that`而不是`self`，
+                   // 无论你选择哪一种方式，请保持前后代码的一致性
+  self.age = 0;
+
+  setInterval(function growUp() {
+    // 以下语句可以实现预期的功能
+    self.age++;
+  }, 1000);
+}
+</code></pre>
+<p>另外，创建一个约束函数可以使得 this值被正确传递给 growUp() 函数。</p>
+<p>箭头函数捕捉闭包上下文的this值，所以下面的代码工作正常。</p>
+<pre><code>function Person(){
+  this.age = 0;
+
+  setInterval(() =&gt; {
+    this.age++; // 这里的`this`正确地指向 person 对象
+  }, 1000);
+}
+
+var p = new Person();
+</code></pre>
+<h2 id="9预定义函数">9.预定义函数</h2>
+<p>JavaScript 语言有好些个预定义的内建函数：</p>
+<h3 id="91eval">9.1eval()</h3>
+<p>**eval()**函数会将传入的字符串当做 JavaScript 代码进行执行。</p>
+<pre><code>console.log(eval('2 + 2'));
+// expected output: 4
+
+console.log(eval(new String('2 + 2')));
+// expected output: 2 + 2
+
+console.log(eval('2 + 2') === eval('4'));
+// expected output: true
+
+console.log(eval('2 + 2') === eval(new String('2 + 2')));
+// expected output: false
+</code></pre>
+<h3 id="92uneval">9.2uneval()</h3>
+<p>**uneval()**方法返回输入对象的源代码的字符串表示。</p>
+<h3 id="93isfinite">9.3isFinite()</h3>
+<p>**isFinite()**函数判断传入的值是否是有限的数值。 如果需要的话，其参数首先被转换为一个数值。</p>
+<pre><code>function div(x) {
+  if (isFinite(1000 / x)) {
+    return 'Number is NOT Infinity.';
+  }
+  return 'Number is Infinity!';
+}
+
+console.log(div(0));
+// expected output: &quot;Number is Infinity!&quot;&quot;
+
+console.log(div(1));
+// expected output: &quot;Number is NOT Infinity.&quot;
+</code></pre>
+<h3 id="94isnan">9.4isNaN()</h3>
+<p>**isNaN()**函数判断一个值是否是NaN。注意：isNaN函数内部的强制转换规则十分有趣； 另一个可供选择的是 ECMAScript 6 中定义Number.isNaN() , 或者使用 typeof来判断数值类型。</p>
+<h3 id="95parsefloat">9.5parseFloat()</h3>
+<p>parseFloat() 函数解析字符串参数，并返回一个浮点数。</p>
+<pre><code>function circumference(r) {
+  return parseFloat(r) * 2.0 * Math.PI;
+}
+
+console.log(circumference(4.567));
+// expected output: 28.695307297889173
+
+console.log(circumference('4.567abcdefgh'));
+// expected output: 28.695307297889173
+
+console.log(circumference('abcdefgh'));
+// expected output: NaN
+</code></pre>
+<h3 id="96parseintstring-radix">9.6parseInt(string, radix)</h3>
+<p>parseInt() 函数解析字符串参数，并返回指定基数的十进制整数，radix 是 2-36 之间的整数，表示被解析字符串的基数(进制数)。如果超出这个范围，将返回 NaN。假如指定 0 或未指定，基数将会根据字符串的值进行推算。注意，推算的结果不会永远是默认值 10！</p>
+<pre><code>function roughScale(x, base) {
+  const parsed = parseInt(x, base);
+  if (isNaN(parsed)) { return 0; }
+  return parsed * 100;
+}
+
+console.log(roughScale(' 0xF', 16));
+// expected output: 1500
+
+console.log(roughScale('321', 2));
+// expected output: 0
+</code></pre>
+<h3 id="97encodeuriuri">9.7encodeURI(URI)</h3>
+<p>**encodeURI()**方法通过用以一个，两个，三个或四个转义序列表示字符的 UTF-8 编码替换统一资源标识符（URI）的某些字符来进行编码（标准化）。<br>
+返回值：一个新字符串，表示提供的字符串编码为统一资源标识符 (URI)</p>
+<h3 id="98encodeuricomponent">9.8encodeURIComponent()</h3>
+<p>encodeURIComponent() 方法通过用以一个，两个，三个或四个转义序列表示字符的 UTF-8 编码替换统一资源标识符（URI）的每个字符来进行编码（每个字符对应四个转义序列，这四个序列组了两个”替代“字符）。<br>
+注：和前者的区别——整体和局部</p>
+<pre><code>// encodes characters such as ?,=,/,&amp;,:
+console.log(`?x=${encodeURIComponent('test?')}`);
+// expected output: &quot;?x=test%3F&quot;
+
+console.log(`?x=${encodeURIComponent('шеллы')}`);
+// expected output: &quot;?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B&quot;
+</code></pre>
+<h3 id="99decodeuri">9.9decodeURI()</h3>
+<p>decodeURI() 函数对先前经过encodeURI函数或者其他类似方法编码过的字符串进行解码。</p>
+<h3 id="910decodeuricomponent">9.10decodeURIComponent()</h3>
+<p>**decodeURIComponent()**方法对先前经过encodeURIComponent函数或者其他类似方法编码过的字符串进行解码。</p>
+<h3 id="911escape-已弃用">9.11escape() 已弃用</h3>
+<p>已废弃的 escape() 方法计算生成一个新的字符串，其中的某些字符已被替换为十六进制转义序列。使用 encodeURI或者encodeURIComponent替代本方法。</p>
+<h3 id="912unescape-已弃用">9.12unescape() 已弃用</h3>
+<p>已废弃的 unescape() 方法计算生成一个新的字符串，其中的十六进制转义序列将被其表示的字符替换。上述的转义序列就像escape里介绍的一样。因为 unescape 已经废弃，建议使用decodeURI()或者decodeURIComponent 替代本方法。</p>
 
             </div>
             
@@ -757,7 +1943,7 @@ body {
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://uaenaTzx.github.io/post/less-xiang-jie/" title="Less的基本运用">https://uaenaTzx.github.io/post/less-xiang-jie/</a>
+      <a href="https://uaenaTzx.github.io/post/mdn-js-xue-xi-bi-ji/" title="MDN JS学习笔记(基础1)">https://uaenaTzx.github.io/post/mdn-js-xue-xi-bi-ji/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -766,23 +1952,15 @@ body {
   </ul>
   <div class="tags">
     
-      <a href="https://uaenaTzx.github.io/tag/FetAAAg9s/"># css</a>
-    
-      <a href="https://uaenaTzx.github.io/tag/888Nsy-do/"># Gridea</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="CSS部分重要属性与方法" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">CSS部分重要属性与方法</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="CSS部分重要属性与方法" href="https://uaenaTzx.github.io/post/css-chong-yao-shu-xing/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="阻止事件默认行为" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/">阻止事件默认行为</a>
-        <a class="nav-mobile-next" title="阻止事件默认行为" href="https://uaenaTzx.github.io/post/zu-zhi-shi-jian-mo-ren-xing-wei/">下一篇</a>
+        <a class="nav-pc-next" title="JS零碎知识点" href="https://uaenaTzx.github.io/post/js-ling-sui-zhi-shi-dian/">JS零碎知识点</a>
+        <a class="nav-mobile-next" title="JS零碎知识点" href="https://uaenaTzx.github.io/post/js-ling-sui-zhi-shi-dian/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
