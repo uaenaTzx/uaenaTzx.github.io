@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2022-09-07T02:08:52.349Z</updated>
+    <updated>2022-09-07T02:12:57.780Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -10,6 +10,1287 @@
     <logo>https://uaenaTzx.github.io/images/avatar.png</logo>
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Uaena_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[MDN JS学习笔记(基础2)]]></title>
+        <id>https://uaenaTzx.github.io/post/mdn-js-xue-xi-bi-ji-er/</id>
+        <link href="https://uaenaTzx.github.io/post/mdn-js-xue-xi-bi-ji-er/">
+        </link>
+        <updated>2022-09-01T09:07:54.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-前言">一、前言</h1>
+<p>本章继上一篇的基础1进行，继续坚持！👊</p>
+<h1 id="二-表达式与运算符">二、表达式与运算符</h1>
+<p>本章描述了 JavaScript 的表达式和运算符，包括了赋值，比较，算数，位运算，逻辑，字符串，三元等等。</p>
+<h2 id="1运算符">1.运算符</h2>
+<p>JavaScript 拥有二元和一元运算符， 和一个特殊的三元运算符（条件运算符）。<br>
+一个二元运算符需要两个操作数，分别在运算符的前面和后面：</p>
+<pre><code>操作数 1 运算符 操作数 2
+//例如，3+4 或 x*y。
+</code></pre>
+<p>一个一元运算符需要一个操作数，在运算符前面或后面：</p>
+<pre><code>运算符 操作数
+操作数 运算符
+//例如，x++ 或 ++x。
+</code></pre>
+<h3 id="11赋值运算符">1.1赋值运算符</h3>
+<p>一个 赋值运算符 (assignment operator) (en-US) 将它右边操作数的值赋给它左边的操作数。最简单的赋值运算符是等于（=）。还有些更复杂的如（+=、&gt;&gt;= ……）</p>
+<h4 id="解构">解构</h4>
+<p>对于更复杂的赋值，解构赋值语法是一个能从数组或对象对应的数组结构或对象字面量里提取数据的 Javascript 表达式。</p>
+<pre><code>var foo = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;];
+
+// 不使用解构
+var one   = foo[0];
+var two   = foo[1];
+var three = foo[2];
+
+// 使用解构
+var [one, two, three] = foo;
+</code></pre>
+<h3 id="12比较运算符">1.2比较运算符</h3>
+<p>比较运算符比较它的操作数并返回一个基于表达式是否为真的逻辑值。操作数可以是数字，字符串，逻辑，对象值。字符串比较是基于标准的字典顺序，使用 Unicode 值。在多数情况下，如果两个操作数不是相同的类型， JavaScript 会尝试转换它们为恰当的类型来比较。这种行为通常发生在数字作为操作数的比较。类型转换的例外是使用 === 和 !== 操作符，它们会执行严格的相等和不相等比较。这些运算符不会在检查相等之前转换操作数的类型。</p>
+<h3 id="13算术运算符">1.3.算术运算符</h3>
+<p>算术运算符使用数值 (字面量或者变量) 作为操作数并返回一个数值。标准的算术运算符就是加减乘除 (+ - * /)。当操作数是浮点数时，这些运算符表现得跟它们在大多数编程语言中一样（特殊要注意的是，除零会产生Infinity——<font color="red">无穷大数</font>）。<br>
+注：指数运算符——**</p>
+<h3 id="14位运算符">1.4位运算符</h3>
+<p>位运算符将它的操作数视为 32 位元的二进制串（0 和 1 组成）而非十进制八进制或十六进制数。例如：十进制数字 9 用二进制表示为 1001，位运算符就是在这个二进制表示上执行运算，但是返回结果是标准的 JavaScript 数值。<br>
+下表总结了 JavaScript 的位运算符:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Operator</th>
+<th style="text-align:left">Usage</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">与</td>
+<td style="text-align:left">a &amp; b</td>
+<td style="text-align:left">在 a,b 的位表示中，每一个对应的位都为 1 则返回 1， 否则返回 0</td>
+</tr>
+<tr>
+<td style="text-align:left">或</td>
+<td style="text-align:left">a  | b</td>
+<td style="text-align:left">在 a,b 的位表示中，每一个对应的位，只要有一个为 1 则返回 1， 否则返回 0</td>
+</tr>
+<tr>
+<td style="text-align:left">异或</td>
+<td style="text-align:left">a ^ b</td>
+<td style="text-align:left">在 a,b 的位表示中，每一个对应的位，两个不相同则返回 1，相同则返回 0.</td>
+</tr>
+<tr>
+<td style="text-align:left">非</td>
+<td style="text-align:left">~ a</td>
+<td style="text-align:left">反转被操作数的位</td>
+</tr>
+<tr>
+<td style="text-align:left">左移</td>
+<td style="text-align:left">a &lt;&lt; b</td>
+<td style="text-align:left">将 a 的二进制串向左移动 b 位，右边移入 0.</td>
+</tr>
+<tr>
+<td style="text-align:left">右移</td>
+<td style="text-align:left">a &gt;&gt; b</td>
+<td style="text-align:left">把 a 的二进制表示向右移动 b 位，丢弃被移出的所有位。(算术右移左边空出的位是根据最高位是 0 和 1 来进行填充的)</td>
+</tr>
+<tr>
+<td style="text-align:left">无符号右移</td>
+<td style="text-align:left">a &gt;&gt;&gt; b</td>
+<td style="text-align:left">把 a 的二进制表示向右移动 b 位，丢弃被移出的所有位，并把左边空出的位都填充为 0</td>
+</tr>
+</tbody>
+</table>
+<p>其中，前四者属于<font color="red">位逻辑运算符</font>,后三者属于<font color="red">移位运算符</font></p>
+<h3 id="15逻辑运算符">1.5.逻辑运算符</h3>
+<p>①逻辑与 &amp;&amp;<br>
+②逻辑或 ||<br>
+③逻辑非 ！</p>
+<h4 id="短路求值">短路求值</h4>
+<p>作为逻辑表达式进行求值是从左到右</p>
+<p>false &amp;&amp; anything // 被短路求值为 false<br>
+true || anything // 被短路求值为 true<br>
+上述表达式的anything部分不会被求值，所以这样做不会产生任何副作用。</p>
+<h3 id="16字符串运算符">1.6字符串运算符</h3>
+<p>除了比较操作符，它可以在字符串值中使用，连接操作符（+）连接两个字符串值相连接，返回另一个字符串，它是两个操作数串的结合。</p>
+<pre><code>console.log(&quot;my &quot; + &quot;string&quot;); // &quot;my string&quot;.
+
+var myString = &quot;alpha&quot;;
+myString += &quot;bet&quot;; // 返回 &quot;alphabet&quot;
+</code></pre>
+<h3 id="17条件三元运算符">1.7条件（三元）运算符</h3>
+<p>条件运算符是 JavaScript 中唯一需要三个操作数的运算符。运算的结果根据给定条件在两个值中取其一。</p>
+<pre><code>条件 ? 值 1 : 值 2
+
+var status = (age &gt;= 18) ? &quot;adult&quot; : &quot;minor&quot;;
+</code></pre>
+<p>如果条件为真，则结果取值 1。否则为值 2。你能够在任何允许使用标准运算符的地方使用条件运算符。</p>
+<h3 id="18逗号操作符">1.8逗号操作符</h3>
+<p>逗号操作符（,）对两个操作数进行求值并返回最终操作数的值。它常常用在 for 循环中，在每次循环时对多个变量进行更新。</p>
+<pre><code>//输出二维数组的对角线元素
+var x = [0,1,2,3,4,5,6,7,8,9]
+var a = [x, x, x, x, x];
+
+for (var i = 0, j = 9; i &lt;= j; i++, j--)
+  console.log('a[' + i + '][' + j + ']= ' + a[i][j]);
+</code></pre>
+<h3 id="19一元操作符">1.9一元操作符</h3>
+<p>一元操作符仅对应一个操作数。</p>
+<h4 id="delete">delete</h4>
+<p>delete操作符，删除一个对象的属性或者一个数组中某一个键值。语法如下：</p>
+<pre><code>delete objectName.property;
+delete objectName[index];
+delete property;
+</code></pre>
+<p>objectName是一个对象名，property 是一个已经存在的属性，index是数组中的一个已经存在的键值的索引值。</p>
+<p>第三行的形式只在with声明的状态下是合法的， 从对象中删除一个属性。</p>
+<p>你能使用 delete 删除各种各样的隐式声明， <font color="red">但是被var声明的除外</font>。</p>
+<p>如果 delete 操作成功，属性或者元素会变成 undefined。如果 delete可行会返回true，如果不成功返回false。</p>
+<pre><code>x = 42;
+var y = 43;
+myobj = new Number();
+myobj.h = 4;    // create property h
+delete x;       // returns true (can delete if declared implicitly)
+delete y;       // returns false (cannot delete if declared with var)
+delete Math.PI; // returns false (cannot delete predefined properties)
+delete myobj.h; // returns true (can delete user-defined properties)
+delete myobj;   // returns true (can delete if declared implicitly)
+</code></pre>
+<p>注：删除数组中的元素时，数组的长度是不变的，例如删除a[3], a[4]，a[4]和 a[3] 仍然存在，只是变成了undefined。</p>
+<h4 id="typeof">typeof</h4>
+<p>typeof 操作符 可通过下面 2 种方式使用：</p>
+<pre><code>typeof operand
+typeof (operand)
+</code></pre>
+<p>typeof 操作符返回一个表示 operand 类型的字符串值。operand 可为字符串、变量、关键词或对象，其类型将被返回。operand 两侧的括号为可选。</p>
+<p>假设你定义了如下的变量：</p>
+<pre><code>var myFun = new Function(&quot;5 + 2&quot;);
+var shape = &quot;round&quot;;
+var size = 1;
+var today = new Date();
+</code></pre>
+<p>typeof 操作符将会返回如下的结果：</p>
+<pre><code>typeof myFun;     // returns &quot;function&quot;
+typeof shape;     // returns &quot;string&quot;
+typeof size;      // returns &quot;number&quot;
+typeof today;     // returns &quot;object&quot;
+typeof dontExist; // returns &quot;undefined&quot;
+
+//额外的
+typeof true; // returns &quot;boolean&quot;
+typeof null; // returns &quot;object&quot;
+</code></pre>
+<p>对于预定义的对象，typeof 操作符将会返回如下结果：</p>
+<pre><code>typeof Date;     // returns &quot;function&quot;
+typeof Function; // returns &quot;function&quot;
+typeof Math;     // returns &quot;object&quot;
+typeof Option;   // returns &quot;function&quot;
+typeof String;   // returns &quot;function&quot;
+</code></pre>
+<h4 id="void">void</h4>
+<p>void 运算符运用方法如下：</p>
+<pre><code>void (expression)
+void expression
+</code></pre>
+<p>void 运算符，表明一个运算没有返回值。expression 是 javaScript 表达式，括号中的表达式是一个可选项，当然使用该方式是一种好的形式。</p>
+<p>你可以使用 void 运算符指明一个超文本链接。该表达式是有效的，但是并不会在当前文档中进行加载。</p>
+<p>如下创建了一个超链接文本，当用户单击该文本时，不会有任何效果。</p>
+<pre><code>&lt;a href=&quot;javascript:void(0)&quot;&gt;Click here to do nothing&lt;/a&gt;
+</code></pre>
+<p>下面的代码创建了一个超链接，当用户单击它时，提交一个表单。</p>
+<pre><code>&lt;a href=&quot;javascript:void(document.form.submit())&quot;&gt;
+Click here to submit&lt;/a&gt;
+</code></pre>
+<h3 id="110关系运算符">1.10关系运算符</h3>
+<p>关系运算符对操作数进行比较，根据比较结果真或假，返回相应的布尔值。</p>
+<h4 id="in">in</h4>
+<p>in操作符，如果所指定的属性确实存在于所指定的对象中，则会返回true，语法如下：</p>
+<pre><code>propNameOrNumber in objectName
+</code></pre>
+<p>在这里 propNameOrNumber可以是一个代表着属性名的字符串或者是一个代表着<font color = "red">数组索引</font>的数值表达式，而objectName则是一个对象名。</p>
+<p>下面的例子是 in 操作的常见用法。</p>
+<pre><code>// Arrays
+var trees = new Array(&quot;redwood&quot;, &quot;bay&quot;, &quot;cedar&quot;, &quot;oak&quot;, &quot;maple&quot;);
+0 in trees;        // returns true
+3 in trees;        // returns true
+6 in trees;        // returns false
+&quot;bay&quot; in trees;    // returns false (you must specify the index number,
+                   // not the value at that index)
+&quot;length&quot; in trees; // returns true (length is an Array property)
+
+// Predefined objects
+&quot;PI&quot; in Math;          // returns true
+var myString = new String(&quot;coral&quot;);
+&quot;length&quot; in myString;  // returns true
+
+// Custom objects
+var mycar = {make: &quot;Honda&quot;, model: &quot;Accord&quot;, year: 1998};
+&quot;make&quot; in mycar;  // returns true
+&quot;model&quot; in mycar; // returns true
+</code></pre>
+<h4 id="instanceof">instanceof</h4>
+<p>如果所判别的对象确实是所指定的类型，则返回true。其语法如下：</p>
+<pre><code>objectName instanceof objectType
+</code></pre>
+<p>objectName 是需要做判别的对象的名称，而objectType是假定的对象的类型，例如Date或 Array。</p>
+<p>当你需要确认一个对象在运行时的类型时，可使用instanceof. 例如，需要 catch 异常时，你可以针对抛出异常的类型，来做不同的异常处理。</p>
+<p>例如，下面的代码使用instanceof去判断 theDay是否是一个 Date 对象。因为 theDay是一个Date对象，所以 if中的代码会执行。</p>
+<pre><code>var theDay = new Date(1995, 12, 17);
+if (theDay instanceof Date) {
+  // statements to execute
+}
+</code></pre>
+<h3 id="111运算符优先级">1.11运算符优先级</h3>
+<p>运算符的优先级，用于确定一个表达式的计算顺序。在你不能确定优先级时，可以通过使用括号显式声明运算符的优先级。</p>
+<p>下表列出了描述符的优先级，从最高到最低。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Operator type</th>
+<th style="text-align:left">Individual operators</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">member</td>
+<td style="text-align:left">. []</td>
+</tr>
+<tr>
+<td style="text-align:left">call / create instance</td>
+<td style="text-align:left">() new</td>
+</tr>
+<tr>
+<td style="text-align:left">negation/increment</td>
+<td style="text-align:left">! ~ - + ++ -- typeof void delete</td>
+</tr>
+<tr>
+<td style="text-align:left">multiply/divide</td>
+<td style="text-align:left">* / %</td>
+</tr>
+<tr>
+<td style="text-align:left">addition/subtraction</td>
+<td style="text-align:left">+ -</td>
+</tr>
+<tr>
+<td style="text-align:left">bitwise shift</td>
+<td style="text-align:left">&lt;&lt; &gt;&gt; &gt;&gt;&gt;</td>
+</tr>
+<tr>
+<td style="text-align:left">relational</td>
+<td style="text-align:left">&lt; &lt;= &gt; &gt;= in instanceof</td>
+</tr>
+<tr>
+<td style="text-align:left">equality</td>
+<td style="text-align:left">== != === !==</td>
+</tr>
+<tr>
+<td style="text-align:left">bitwise-and</td>
+<td style="text-align:left">&amp;</td>
+</tr>
+<tr>
+<td style="text-align:left">bitwise-xor</td>
+<td style="text-align:left">^</td>
+</tr>
+<tr>
+<td style="text-align:left">bitwise-or</td>
+<td style="text-align:left">\</td>
+</tr>
+<tr>
+<td style="text-align:left">logical-and</td>
+<td style="text-align:left">&amp;&amp;</td>
+</tr>
+<tr>
+<td style="text-align:left">logical-or</td>
+<td style="text-align:left">|\</td>
+</tr>
+<tr>
+<td style="text-align:left">conditional</td>
+<td style="text-align:left">?:</td>
+</tr>
+<tr>
+<td style="text-align:left">assignment</td>
+<td style="text-align:left">= += -= *= /= %= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^=</td>
+</tr>
+<tr>
+<td style="text-align:left">comma</td>
+<td style="text-align:left">,</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2表达式">2.表达式</h2>
+<p>表达式是一组代码的集合，它返回一个值。</p>
+<p>每一个合法的表达式都能计算成某个值，但从概念上讲，有两种类型的表达式：有副作用的（比如赋值）和单纯计算求值的。</p>
+<p>JavaScript 有以下表达式类型：<br>
+①算数：得出一个数字，例如 3.14159。（通常使用算数运算符）<br>
+②字符串：得出一个字符串，例如，&quot;Fred&quot; 或 &quot;234&quot;。（通常使用字符串运算符。）<br>
+③逻辑值：得出 true 或者 false。（经常涉及到逻辑运算符。）<br>
+④基本表达式: javascript 中基本的关键字和一般表达式。<br>
+⑤左值表达式：分配给左值。</p>
+<h3 id="21基本表达式">2.1基本表达式</h3>
+<h4 id="this">this</h4>
+<p>this关键字被用于指代当前的对象，通常，this指代的是方法中正在被调用的对象。用法如下：</p>
+<pre><code>this[&quot;propertyName&quot;]
+this.propertyName
+</code></pre>
+<p>假设一个用于验证对象value属性的validate函数，传参有对象，最高值和最低值。</p>
+<pre><code>假设一个用于验证对象value属性的validate函数，传参有对象，最高值和最低值。
+</code></pre>
+<p>你可以在任何表单元素的onchange事件处理中调用validat函数，用this来指代当前的表单元素，用例如下：</p>
+<pre><code>&lt;p&gt;Enter a number between 18 and 99:&lt;/p&gt;
+&lt;input type=&quot;text&quot; name=&quot;age&quot; size=3 onChange=&quot;validate(this, 18, 99);&quot;&gt;
+</code></pre>
+<h4 id="分组操作符">分组操作符</h4>
+<p>分组操作符（）控制了表达式中计算的优先级。举例来说，你可以改变先乘除后加减的顺序，转而先计算加法。</p>
+<h4 id="数值推导">数值推导</h4>
+<p>Comprehensions 是一个带有实验性质的 JavaScript 特性，计划将在未来的 ECMAScript 版本中加入该特性。有两种类型的 comprehensions:<br>
+①[for (x of y) x] 数列数值推导（非标准用法）</p>
+<p>②(for (x of y) y)生成器数值推导</p>
+<p>Comprehensions 特性被许多编程语言所采用，该特性能够使你快速地通过一个已有的数组来创建出一个新的数组，比如：</p>
+<pre><code>[for (i of [ 1, 2, 3 ]) i*i ];
+// [ 1, 4, 9 ]
+
+var abc = [ &quot;A&quot;, &quot;B&quot;, &quot;C&quot; ];
+[for (letters of abc) letters.toLowerCase()];
+// [ &quot;a&quot;, &quot;b&quot;, &quot;c&quot; ]
+</code></pre>
+<h3 id="22左值表达式">2.2左值表达式</h3>
+<p>左值可以作为赋值的目标。</p>
+<h4 id="new">new</h4>
+<p>你可以使用new operator 创建一个自定义类型或者是预置类型的对象实例。用法如下：</p>
+<pre><code>var objectName = new objectType([param1, param2, ..., paramN]);
+</code></pre>
+<h4 id="super">super</h4>
+<p>super 关键字可以用来调用一个对象父类的函数，它在用来调用一个类的父类的构造函数时非常有用，比如：</p>
+<pre><code>super([arguments]); // calls the parent constructor. super.functionOnParent([arguments]);
+</code></pre>
+<h4 id="扩展语句">扩展语句</h4>
+<p>扩展语句符允许一个表达式在原地展开， 当需要多个参数 (比如函数调用时) 或者多个值 (比如字面量数组) 。</p>
+<p>例如：现在你有一个数组，你想创建一个新数组，并将刚才那个作为它的一部分，用 array 的字面语法是不够的，你不得不写一些代码实现它，比如用些push, splice, concat 等等。但是用扩展语句 就没问题了：</p>
+<pre><code>var parts = ['shoulder', 'knees'];
+var lyrics = ['head', ...parts, 'and', 'toes'];
+</code></pre>
+<p>类似的，扩展语句也可以用在函数调用的时候：</p>
+<pre><code>function f(x, y, z) { }
+var args = [0, 1, 2];
+f(...args);
+</code></pre>
+<h1 id="三-数字和日期">三、数字和日期</h1>
+<p>本章节介绍了在 JavaScript 中使用数字和日期来处理和执行计算的概念，对象和函数。</p>
+<h2 id="1数字">1.数字</h2>
+<p>在 JavaScript 里面，数字均为双精度浮点类型，即一个介于 ±2^−1023 和 ±2^+1024 之间的数字，或约为 ±10^−308 到 ±10^+308，数字精度为 53 位。整数数值仅在 ±(2^53 - 1) 的范围内可以表示准确。</p>
+<p>除了能够表示浮点数，数字类型也还能表示三种符号值：+Infinity（正无穷）、-Infinity（负无穷）和 NaN (非数字)。</p>
+<p>JavaScript 最近添加了 BigInt 的支持，能够用于表示极大的数字。使用 BigInt 的时候有一些注意事项，例如，你不能让 BigInt 和 Number 直接进行运算，你也不能用 Math 对象去操作 BigInt 数字。</p>
+<p>可以使用四种数字进制：十进制，二进制，八进制和十六进制。（具体不再详细介绍）<br>
+指数形式：</p>
+<pre><code>1E3   // 1000
+2e6   // 2000000
+0.1e2 // 10
+</code></pre>
+<h2 id="2数字对象">2.数字对象</h2>
+<p>内置的Number对象有一些有关数字的常量属性，如最大值、不是一个数字和无穷大的。你不能改变这些属性，但可以按下边的方式使用它们：</p>
+<pre><code>var biggestNum = Number.MAX_VALUE;
+var smallestNum = Number.MIN_VALUE;
+var infiniteNum = Number.POSITIVE_INFINITY;
+var negInfiniteNum = Number.NEGATIVE_INFINITY;
+var notANum = Number.NaN;
+</code></pre>
+<p>注：你永远只用从 Number 对象引用上边显示的属性，而不是你自己创建的 Number 对象的属性。</p>
+<h3 id="21数字的属性">2.1数字的属性</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Number.MAX_VALUE</td>
+<td style="text-align:left">可表示的最大值</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.MIN_VALUE</td>
+<td style="text-align:left">可表示的最小值</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.NaN</td>
+<td style="text-align:left">特指”非数字“</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.NEGATIVE_INFINITY</td>
+<td style="text-align:left">特指“负无穷”;在溢出时返回</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.POSITIVE_INFINITY</td>
+<td style="text-align:left">特指“正无穷”;在溢出时返回</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.EPSILON</td>
+<td style="text-align:left">表示 1 和比最接近 1 且大于 1 的最小Number之间的差别</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.MIN_SAFE_INTEGER</td>
+<td style="text-align:left">JavaScript 最小安全整数。</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.MAX_SAFE_INTEGER</td>
+<td style="text-align:left">JavaScript 最大安全整数。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Number.parseFloat()</td>
+<td style="text-align:left">把字符串参数解析成浮点数， 和全局方法 parseFloat() 作用一致。</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.parseInt()</td>
+<td style="text-align:left">把字符串解析成特定基数对应的整型数字，和全局方法 parseInt() 作用一致。</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.isFinite()</td>
+<td style="text-align:left">判断传递的值是否为有限数字。</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.isInteger()</td>
+<td style="text-align:left">判断传递的值是否为整数。</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.isNaN()</td>
+<td style="text-align:left">判断传递的值是否为 NaN. More robust version of the original</td>
+</tr>
+<tr>
+<td style="text-align:left">Number.isSafeInteger()</td>
+<td style="text-align:left">判断传递的值是否为安全整数。</td>
+</tr>
+</tbody>
+</table>
+<p>数字的类型提供了不同格式的方法以从数字对象中检索信息。以下表格总结了 数字类型原型上的方法。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">toExponential()</td>
+<td style="text-align:left">返回一个数字的指数形式的字符串，形如：1.23e+2</td>
+</tr>
+<tr>
+<td style="text-align:left">toFixed()</td>
+<td style="text-align:left">返回指定小数位数的表示形式，var a=123,b=a.toFixed(2)//b=&quot;123.00&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">toPrecision()</td>
+<td style="text-align:left">返回一个指定精度的数字。如下例子中，a=123 中，3 会由于精度限制消失 var a=123,b=a.toPrecision(2)//b=&quot;1.2e+2&quot;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3数字对象math">3.数字对象（Math）</h2>
+<p>对于内置的Math数学常项和函数也有一些属性和方法。 比方说， Math 对象的 PI 属性会有属性值 pi (3.141...)，你可以像这样调用它：</p>
+<pre><code>Math.PI // π
+</code></pre>
+<p>同理，标准数学函数也是 Math 的方法。 这些包括三角函数 ​​，对数，指数，和其他函数。比方说你想使用三角函数 sin， 你可以这么写：</p>
+<pre><code>Math.sin(1.56)
+</code></pre>
+<p>需要注意的是 Math 的所有三角函数参数都是弧度制。</p>
+<p>下面的表格总结了 Math 对象的方法。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">abs()</td>
+<td style="text-align:left">绝对值</td>
+</tr>
+<tr>
+<td style="text-align:left">sin(), cos(), tan()</td>
+<td style="text-align:left">标准三角函数;参数为弧度</td>
+</tr>
+<tr>
+<td style="text-align:left">asin(), acos(), atan(), atan2()</td>
+<td style="text-align:left">反三角函数; 返回值为弧度</td>
+</tr>
+<tr>
+<td style="text-align:left">sinh(), cosh(), tanh()</td>
+<td style="text-align:left">双曲三角函数; 参数为弧度。</td>
+</tr>
+<tr>
+<td style="text-align:left">asinh(), acosh(), atanh()</td>
+<td style="text-align:left">反双曲三角函数;返回值为弧度。</td>
+</tr>
+<tr>
+<td style="text-align:left">pow(), exp(), expm1(), log10(), log1p(), log2()</td>
+<td style="text-align:left">指数与对数函数</td>
+</tr>
+<tr>
+<td style="text-align:left">floor(), ceil()</td>
+<td style="text-align:left">返回小于等于参数的最大整数；返回大于等于参数的最小整数</td>
+</tr>
+<tr>
+<td style="text-align:left">min(), max()</td>
+<td style="text-align:left">返回一个以逗号间隔的数字参数列表中的较小或较大值 (分别地)</td>
+</tr>
+<tr>
+<td style="text-align:left">random()</td>
+<td style="text-align:left">返回 0 和 1 之间的随机数。</td>
+</tr>
+<tr>
+<td style="text-align:left">round(), fround(), trunc(),</td>
+<td style="text-align:left">四舍五入和截断函数</td>
+</tr>
+<tr>
+<td style="text-align:left">sqrt(), cbrt(), hypot()</td>
+<td style="text-align:left">平方根，立方根，所有参数平方和的平方根两个参数平方和的平方根</td>
+</tr>
+<tr>
+<td style="text-align:left">sign()</td>
+<td style="text-align:left">数字的符号，说明数字是否为正、负、零。</td>
+</tr>
+<tr>
+<td style="text-align:left">clz32(), imul()</td>
+<td style="text-align:left">在 32 位 2 进制表示中，开头的 0 的数量。返回传入的两个参数相乘结果的类 C 的 32 位表现形式</td>
+</tr>
+</tbody>
+</table>
+<p>和其他对象不同，你不能够创建一个自己的 Math 对象。你只能使用内置的 Math 对象。</p>
+<h2 id="4日期对象">4.日期对象</h2>
+<p>JavaScript 没有日期数据类型。但是你可以在你的程序里使用 Date 对象和其方法来处理日期和时间。Date 对象有大量的设置、获取和操作日期的方法。 <font color="red">它并不含有任何属性</font>。<br>
+与java相似，两种语言有许多一样的方法，也都是以以 1970 年 1 月 1 日 00:00:00 以来的毫秒数来储存数据类型的。（Date 对象的范围是相对距离 UTC 1970 年 1 月 1 日 的前后 100,000,000 天。）</p>
+<p>创建一个日期对象：</p>
+<pre><code>var dateObjectName = new Date([parameters]);
+</code></pre>
+<p>这里的 dateObjectName 对象是所创建的 Date 对象的一个名字，它可以成为一个新的对象或者已存在的其他对象的一个属性。</p>
+<p>不使用 new 关键字来调用 Date 对象将返回当前时间和日期的字符串</p>
+<p>前边的语法中的参数（parameters）可以是一下任何一种：<br>
+①无参数 : 创建今天的日期和时间，例如： today = new Date();.<br>
+②一个符合以下格式的表示日期的字符串: &quot;月 日，年 时：分:秒.&quot; 例如： var Xmas95 = new Date(&quot;December 25, 1995 13:30:00&quot;)。如果你省略时、分、秒，那么他们的值将被设置为 0。<br>
+③一个年，月，日的整型值的集合，例如： var Xmas95 = new Date(1995, 11, 25)。<br>
+④一个年，月，日，时，分，秒的集合，例如： var Xmas95 = new Date(1995, 11, 25, 9, 30, 0);.<br>
+###4.1Date 对象的方法<br>
+处理日期时间的 Date 对象方法可分为以下几类：<br>
+①&quot;set&quot; 方法，用于设置 Date 对象的日期和时间的值。<br>
+②&quot;get&quot; 方法，用于获取 Date 对象的日期和时间的值。<br>
+③&quot;to&quot; 方法，用于返回 Date 对象的字符串格式的值。<br>
+④parse 和 UTC 方法，用于解析 Date 字符串。</p>
+<p>通过“get”和“set”方法，你可以分别设置和获取秒，分，时，日，星期，月份，年。这里有个 getDay 方法可以返回星期，但是没有相应的 setDay 方法用来设置星期，因为星期是自动设置的。</p>
+<p>例如，假设你定义了如下日期：</p>
+<pre><code>var Xmas95 = new Date(&quot;December 25, 1995&quot;);
+
+Xmas95.getMonth()//11
+Xmas95.getFullYear()//1995
+</code></pre>
+<p>getTime 和 setTime 方法对于比较日期是非常有用的。getTime方法返回从 1970 年 1 月 1 日 00:00:00 的毫秒数。这些方法用整数来代表以下这些值：<br>
+秒，分： 0 至 59<br>
+时： 0 至 23<br>
+星期： 0 (周日) 至 6 (周六)<br>
+日期：1 至 31<br>
+<strong>月份： 0 (一月) to 11 (十二月)</strong><br>
+年份： 从 1900 开始的年数</p>
+<p>例如，以下代码展示了今年剩下的天数：</p>
+<pre><code>var today = new Date();
+var endYear = new Date(1995, 11, 31, 23, 59, 59, 999); // 设置日和月，注意，月份是 0-11
+endYear.setFullYear(today.getFullYear()); // 把年设置为今年
+var msPerDay = 24 * 60 * 60 * 1000; // 每天的毫秒数
+var daysLeft = (endYear.getTime() - today.getTime()) / msPerDay;
+var daysLeft = Math.round(daysLeft); //返回今年剩下的天数
+</code></pre>
+<h4 id="parse方法">parse方法</h4>
+<p>prase方法用于分析一个包含日期的字符串，并返回毫秒数<br>
+parse 方法对于从日期字符串赋值给现有的 Date 对象很有用，例如：以下代码使用parse和setTime分配了一个日期值给IPOdate对象：</p>
+<pre><code>var IPOdate = new Date();
+IPOdate.setTime(Date.parse(&quot;Aug 9, 1995&quot;));
+</code></pre>
+<p>在下边的例子中，JSClock() 函数返回了用数字时钟格式的时间：</p>
+<pre><code>function JSClock() {
+  var time = new Date();
+  var hour = time.getHours();
+  var minute = time.getMinutes();
+  var second = time.getSeconds();
+  var temp = &quot;&quot; + ((hour &gt; 12) ? hour - 12 : hour);
+  if (hour == 0)
+    temp = &quot;12&quot;;
+  temp += ((minute &lt; 10) ? &quot;:0&quot; : &quot;:&quot;) + minute;
+  temp += ((second &lt; 10) ? &quot;:0&quot; : &quot;:&quot;) + second;
+  temp += (hour &gt;= 12) ? &quot; P.M.&quot; : &quot; A.M.&quot;;
+  return temp;
+}
+</code></pre>
+<h1 id="四-文本格式化">四、文本格式化</h1>
+<p>本章介绍在 Javascript 中如何使用字符串与文本内容。</p>
+<h2 id="1字符串">1.字符串</h2>
+<p>JavaScript 中的 String 类型用于表示文本型的数据。它是由无符号整数值（16bit）作为元素而组成的集合。字符串中的每个元素在字符串中占据一个位置，第一个元素的 index 值是 0，下一个元素的 index 值是 1。你可以通过 String 字面值或者 String 对象两种方式创建一个字符串。</p>
+<h3 id="11string字面量">1.1String字面量</h3>
+<p>可以使用单引号或双引号创建简单的字符串：</p>
+<pre><code>'foo'
+&quot;bar&quot;
+</code></pre>
+<p>可以使用转义序列来创建更复杂的字符串：</p>
+<h4 id="16-进制转义序列">16 进制转义序列</h4>
+<p>\x 之后的数值将被认为是一个 16 进制数。</p>
+<pre><code>'\xA9' // &quot;©&quot;
+</code></pre>
+<h4 id="unicode-转义序列">Unicode 转义序列</h4>
+<p>Unicode 转义序列在\u 之后需要至少 4 个字符。</p>
+<pre><code>'\u00A9' // &quot;©&quot;
+</code></pre>
+<h4 id="unicode-字元逸出">Unicode 字元逸出</h4>
+<p>这是 ECMAScript 6 中的新特性。有了 Unicode 字元逸出，任何字符都可以用 16 进制数转义，这使得通过 Unicode 转义表示大于0x10FFFF的字符成为可能。使用简单的 Unicode 转义时通常需要分别写字符相应的两个部分（大于 0x10FFFF 的字符需要拆分为相应的两个小于 0x10FFFF 的部分）来达到同样的效果。</p>
+<pre><code>'\u{2F804}'
+
+// the same with simple Unicode escapes
+'\uD87E\uDC04'
+</code></pre>
+<h3 id="12字符串对象">1.2字符串对象</h3>
+<p>String 对象是对原始 string 类型的封装</p>
+<pre><code>const foo = new String('foo'); // 创建一个 String 对象
+console.log(foo); // 输出: [String: 'foo']
+typeof foo; // 返回 'object'
+</code></pre>
+<p>你可以在 String 字面值上使用 String 对象的任何方法。JavaScript 自动把 String 字面值转换为一个临时的 String 对象，然后调用其相应方法，最后丢弃此临时对象。</p>
+<p>除非必要， 应该尽量使用 String 字面值，因为 String 对象的某些行为可能并不与直觉一致。举例：</p>
+<pre><code>const firstString = '2 + 2'; //创建一个字符串字面量
+const secondString = new String('2 + 2'); // 创建一个字符串对象
+eval(firstString); // 返回数字 4
+eval(secondString); // 返回包含 &quot;2 + 2&quot; 的字符串对象
+</code></pre>
+<p>String 对象有一个属性 length，标识了字符串中 UTF-16 的码点个数。举例，下面的代码把 13 赋值给了helloLength，因为 &quot;Hello, World!&quot; 包含 13 个字符，每个字符用一个 UTF-16 码点表示。你可以通过数组的方式访问每一个码点，但你不能修改每个字符，因为字符串是不变的类数组对象：</p>
+<pre><code>const hello = 'Hello, World!';
+const helloLength = hello.length;
+hello[0] = 'L'; // 无效，因为字符串是不变的
+hello[0]; // 返回 &quot;H&quot;
+</code></pre>
+<p>String对象有许多方法：举例来说有些方法返回字符串本身的变体，如 和.substringtoUpperCase</p>
+<p>下表总结了 String 对象的方法。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">charAt， charCodeAt， codePointAt</td>
+<td style="text-align:left">返回字符串指定位置的字符或者字符编码。</td>
+</tr>
+<tr>
+<td style="text-align:left">indexOf, lastIndexOf</td>
+<td style="text-align:left">分别返回字符串中指定子串的位置或最后位置。</td>
+</tr>
+<tr>
+<td style="text-align:left">startsWith, endsWith, includes</td>
+<td style="text-align:left">返回字符串是否以指定字符串开始、结束或包含指定字符串。</td>
+</tr>
+<tr>
+<td style="text-align:left">concat</td>
+<td style="text-align:left">连接两个字符串并返回新的字符串。</td>
+</tr>
+<tr>
+<td style="text-align:left">fromCharCode, fromCodePoint</td>
+<td style="text-align:left">从指定的 Unicode 值序列构造一个字符串。这是一个 String 类方法，不是实例方法。</td>
+</tr>
+<tr>
+<td style="text-align:left">split</td>
+<td style="text-align:left">通过将字符串分离成一个个子串来把一个 String 对象分裂到一个字符串数组中。</td>
+</tr>
+<tr>
+<td style="text-align:left">slice</td>
+<td style="text-align:left">从一个字符串提取片段并作为新字符串返回。</td>
+</tr>
+<tr>
+<td style="text-align:left">substring, substr</td>
+<td style="text-align:left">分别通过指定起始和结束位置，起始位置和长度来返回字符串的指定子集。</td>
+</tr>
+<tr>
+<td style="text-align:left">match, replace, search</td>
+<td style="text-align:left">通过正则表达式来工作。</td>
+</tr>
+<tr>
+<td style="text-align:left">toLowerCase, toUpperCase</td>
+<td style="text-align:left">分别返回字符串的小写表示和大写表示</td>
+</tr>
+<tr>
+<td style="text-align:left">normalize</td>
+<td style="text-align:left">按照指定的一种 Unicode 正规形式将当前字符串正规化。</td>
+</tr>
+<tr>
+<td style="text-align:left">repeat</td>
+<td style="text-align:left">将字符串内容重复指定次数后返回。</td>
+</tr>
+<tr>
+<td style="text-align:left">trim</td>
+<td style="text-align:left">去掉字符串开头和结尾的空白字符。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13多行模板字符串">1.3多行模板字符串</h3>
+<p>模板字符串是一种允许内嵌表达式的 String 字面值。可以用它实现多行字符串或者字符串内插等特性。</p>
+<p>模板字符串使用反勾号 (<code></code>) (grave accent) 包裹内容而不是单引号或双引号。模板字符串可以包含占位符. 占位符用美元符号和花括号标识 (${expression})</p>
+<h4 id="多行">多行</h4>
+<p>源代码中插入的任何新行开始字符都作为模板字符串的内容。使用一般的字符串时，为了创建多行的字符串不得不用如下语法：</p>
+<pre><code>console.log(&quot;string text line 1\n\
+string text line 2&quot;);
+// &quot;string text line 1
+// string text line 2&quot;
+</code></pre>
+<p>为了实现同样效果的多行字符串，现在可以写成如下形式：</p>
+<pre><code>console.log(`string text line 1
+string text line 2`);
+// &quot;string text line 1
+// string text line 2&quot;
+</code></pre>
+<h4 id="嵌入表达式">嵌入表达式</h4>
+<p>为了在一般的字符串中嵌入表达式，需要使用如下语法：</p>
+<pre><code>const five = 5;
+const ten = 10;
+console.log('Fifteen is ' + (five + ten) + ' and not ' + (2 * five + ten) + '.');
+// &quot;Fifteen is 15 and not 20.&quot;
+</code></pre>
+<p>现在，使用模板字符串，可以使用语法糖让类似功能的实现代码更具可读性：</p>
+<pre><code>const five = 5;
+const ten = 10;
+console.log(`Fifteen is ${five + ten} and not ${2 * five + ten}.`);
+// &quot;Fifteen is 15 and not 20.&quot;
+</code></pre>
+<h2 id="2国际化">2.国际化</h2>
+<p>Intl 对象是 ECMAScript 国际化 API 的命名空间，它提供了语言敏感的字符串比较，数字格式化和日期时间格式化功能. Collator, NumberFormat, 和 DateTimeFormat 对象的构造函数是Intl对象的属性。</p>
+<h3 id="21日期和时间格式化">2.1日期和时间格式化</h3>
+<p>DateTimeFormat 对象在日期和时间的格式化方面很有用。下面的代码把一个日期格式化为美式英语格式.(不同时区结果不同)</p>
+<pre><code>const msPerDay = 24 * 60 * 60 * 1000;
+
+// July 17, 2014 00:00:00 UTC.
+const july172014 = new Date(msPerDay * (44 * 365 + 11 + 197));
+//2014-1970=44 年
+//这样创建日期真是醉人。。。还要自己计算天数。。。11 是闰年中多出的天数。。。
+//197 是 6×30+16(7 月的 16 天)+3(3 个大月)-2(2 月少 2 天)
+
+const options = { year: &quot;2-digit&quot;, 
+                            month: &quot;2-digit&quot;,
+                            day: &quot;2-digit&quot;,
+                            hour: &quot;2-digit&quot;, 
+                            minute: &quot;2-digit&quot;, 
+                            timeZoneName: &quot;short&quot; 
+                            };
+const americanDateTime = new Intl.DateTimeFormat(&quot;en-US&quot;, options).format;
+
+console.log(americanDateTime(july172014)); // 07/16/14, 5:00 PM PDT
+</code></pre>
+<h3 id="22数字格式化">2.2数字格式化</h3>
+<p>NumberFormat 对象在数字的格式化方面很有用，比如货币数量值。</p>
+<pre><code>var gasPrice = new Intl.NumberFormat(&quot;en-US&quot;,
+                        { style: &quot;currency&quot;, currency: &quot;USD&quot;,
+                          minimumFractionDigits: 3 });
+
+console.log(gasPrice.format(5.259)); // $5.259
+
+var hanDecimalRMBInChina = new Intl.NumberFormat(&quot;zh-CN-u-nu-hanidec&quot;,
+                        { style: &quot;currency&quot;, currency: &quot;CNY&quot; });
+
+console.log(hanDecimalRMBInChina.format(1314.25)); // ￥ 一，三一四。二五
+</code></pre>
+<h3 id="23定序">2.3定序</h3>
+<p>Collator 对象在字符串比较和排序方面很有用。</p>
+<p>举例，德语中有两种不同的排序方式 电话本（phonebook） 和 字典（dictionary）. 电话本排序强调发音，比如在排序前 “ä”, “ö”等被扩展为 “ae”, “oe”等发音。</p>
+<pre><code>var names = [&quot;Hochberg&quot;, &quot;Hönigswald&quot;, &quot;Holzman&quot;];
+
+var germanPhonebook = new Intl.Collator(&quot;de-DE-u-co-phonebk&quot;);
+
+// as if sorting [&quot;Hochberg&quot;, &quot;Hoenigswald&quot;, &quot;Holzman&quot;]:
+console.log(names.sort(germanPhonebook.compare).join(&quot;, &quot;));
+// logs &quot;Hochberg, Hönigswald, Holzman&quot;
+</code></pre>
+<p>有些德语词包含变音，所以在字典中忽略变音进行排序是合理的 (除非待排序的单词只有变音部分不同：schon 先于 schön).</p>
+<pre><code>var germanDictionary = new Intl.Collator(&quot;de-DE-u-co-dict&quot;);
+
+// as if sorting [&quot;Hochberg&quot;, &quot;Honigswald&quot;, &quot;Holzman&quot;]:
+console.log(names.sort(germanDictionary.compare).join(&quot;, &quot;));
+// logs &quot;Hochberg, Holzman, Hönigswald&quot;
+</code></pre>
+<p>国际化的内容看看就好😀</p>
+<h1 id="五-正则表达式">五、正则表达式</h1>
+<p>正则表达式是用于匹配字符串中字符组合的模式。在 JavaScript 中，正则表达式也是对象。这些模式被用于 RegExp 的 exec 和 test 方法，以及 String 的 match、matchAll、replace、search 和 split 方法。</p>
+<h2 id="1创建一个正则表达式">1.创建一个正则表达式</h2>
+<p>你可以使用以下两种方法构建一个正则表达式：<br>
+①使用一个正则表达式字面量，其由包含在斜杠之间的模式组成，如下所示：</p>
+<pre><code>var re = /ab+c/;
+</code></pre>
+<p>脚本加载后，正则表达式字面量就会被编译。当正则表达式<font color="red">保持不变</font>时，使用此方法可获得更好的性能。</p>
+<p>②调用RegExp对象的构造函数，如下所示：</p>
+<pre><code>var re = new RegExp(&quot;ab+c&quot;);
+</code></pre>
+<p>在脚本运行过程中，用构造函数创建的正则表达式会被编译。如果正则表达式将会改变，或者它将会从用户输入等来源中动态地产生，就需要使用构造函数来创建正则表达式。</p>
+<h2 id="2编写一个正则表达式的模式">2.编写一个正则表达式的模式</h2>
+<p>一个正则表达式模式是由简单的字符所构成的，比如 /abc/；或者是简单和特殊字符的组合，比如 /ab*c/ 或 /Chapter (\d+).\d*/。</p>
+<h3 id="21使用简单模式">2.1使用简单模式</h3>
+<p>是由你想直接找到的字符构成。比如，/abc/ 这个模式就<font color="red">能且仅能</font>匹配 &quot;abc&quot; 字符按照顺序同时出现的情况。例如在 &quot;Hi, do you know your abc's?&quot; 和 &quot;The latest airplane designs evolved from slabcraft.&quot; 中会匹配成功。在上述两个例子中，匹配的子字符串是 &quot;abc&quot;。但是在 &quot;Grab crab&quot; 中会匹配失败，因为它虽然包含子字符串 &quot;ab c&quot;，但并不是准确的 &quot;abc&quot;。</p>
+<h3 id="22使用特殊字符">2.2使用特殊字符</h3>
+<p>当你需要匹配一个不确定的字符串时，比如寻找一个或多个 &quot;b&quot;，或者寻找空格，可以在模式中使用特殊字符。比如，你可以使用 /ab*c/ 去匹配一个单独的 &quot;a&quot; 后面跟了零个或者多个 &quot;b&quot;，同时后面跟着 &quot;c&quot; 的字符串：*的意思是前一项出现零次或者多次。在字符串 &quot;cbbabbbbcdebc&quot; 中，这个模式匹配了子字符串 &quot;abbbbc&quot;。</p>
+<p>正则表达式中可以利用的特殊字符的完整列表和描述 可以通过查阅相关文章获取</p>
+<h4 id="使用转义字符">使用转义字符</h4>
+<p>如果你需要使用任何特殊字符的字面值（例如，搜索字符'*'），你必须通过在它前面放一个反斜杠来转义它。 例如，要搜索'a'后跟'*'后跟'b'，你应该使用/a\<em>b/- 反斜杠“转义”字符'</em>'，使其成为文字而非特殊符号。</p>
+<p>类似地，如果您正在编写正则表达式文字并且需要匹配斜杠（'/'），那么需要转义它（否则，斜杠是正则终止符）。 例如，要搜索字符串“/ example /”后跟一个或多个字母字符，您需要使用//example/[a-z]+/i——每个斜杠之前使用反斜杠使它们成为普通字符。</p>
+<p>要匹配文本符号反斜杠，您需要转义反斜杠。 例如，要匹配字符串“C:\”，其中“C”可以是任何字母，您将使用/[A-Z]:\/ —— 第一个反斜杠转义后面的那个反斜杠，因此表达式搜索单个普通字符反斜杠。</p>
+<p>如果将 RegExp 构造函数与字符串文字一起使用，请记住反斜杠是字符串文字中的转义，因此要在正则表达式中使用它，您需要在字符串文字级别转义它。 /a\*b/ 和new RegExp(&quot;a\*b&quot;)创建的表达式是相同的，搜索“a”后跟文字“*”后跟“b”。</p>
+<p>将用户输入转义为正则表达式中的一个字面字符串，可以通过简单的替换来实现：</p>
+<pre><code>function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, &quot;\\$&amp;&quot;);
+  //$&amp;表示整个被匹配的字符串
+}
+</code></pre>
+<p>正则表达式后的&quot;g&quot;是一个表示全局搜索选项或标记，将在整个字符串查找并返回所有匹配结果。这将在下面的通过标志进行高级搜索详述。</p>
+<h3 id="23使用插入语">2.3使用插入语</h3>
+<p>任何正则表达式的插入语都会使这部分匹配的副字符串被记忆。一旦被记忆，这个副字符串就可以被调用于其它用途。</p>
+<p>比如， /Chapter (\d+).\d*/ 解释了额外转义的和特殊的字符，并说明了这部分 pattern 应该被记忆。它精确地匹配后面跟着一个以上数字字符的字符 'Chapter ' (\d 意为任何数字字符，+ 意为 1 次以上)，跟着一个小数点（在这个字符中本身也是一个特殊字符；小数点前的 \ 意味着这个 pattern 必须寻找字面字符 '.')，跟着任何数字字符 0 次以上。 (\d 意为数字字符， * 意为 0 次以上)。另外，插入语也用来记忆第一个匹配的数字字符。</p>
+<p>此模式可以匹配字符串&quot;Open Chapter 4.3, paragraph 6&quot;，并且'4'将会被记住。此模式并不能匹配&quot;Chapter 3 and 4&quot;，因为在这个字符串中'3'的后面没有点号'.'。</p>
+<p>括号中的&quot;?:&quot;，这种模式匹配的子字符串将不会被记住。比如，(?:\d+) 匹配一次或多次数字字符，但是不能记住匹配的字符。</p>
+<h1 id="3使用正则表达式">3.使用正则表达式</h1>
+<p>正则表达式可以被用于 RegExp 的 exec 和 test 方法以及 String 的 match、replace、search 和 split 方法。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">exec</td>
+<td style="text-align:left">一个在字符串中执行查找匹配的 RegExp 方法，它返回一个数组（未匹配到则返回 null）。</td>
+</tr>
+<tr>
+<td style="text-align:left">test</td>
+<td style="text-align:left">一个在字符串中测试是否匹配的 RegExp 方法，它返回 true 或 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">match</td>
+<td style="text-align:left">一个在字符串中执行查找匹配的 String 方法，它返回一个数组，在未匹配到时会返回 null。</td>
+</tr>
+<tr>
+<td style="text-align:left">matchAll</td>
+<td style="text-align:left">一个在字符串中执行查找所有匹配的 String 方法，它返回一个迭代器（iterator）。</td>
+</tr>
+<tr>
+<td style="text-align:left">search</td>
+<td style="text-align:left">一个在字符串中测试匹配的 String 方法，它返回匹配到的位置索引，或者在失败时返回-1。</td>
+</tr>
+<tr>
+<td style="text-align:left">replace</td>
+<td style="text-align:left">一个在字符串中执行查找匹配的 String 方法，并且使用替换字符串替换掉匹配到的子字符串。</td>
+</tr>
+<tr>
+<td style="text-align:left">split</td>
+<td style="text-align:left">一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的 String 方法。</td>
+</tr>
+</tbody>
+</table>
+<p>当你想要知道在一个字符串中的一个匹配是否被找到，你可以使用 test 或 search 方法；想得到更多的信息（但是比较慢）则可以使用 exec 或 match 方法。如果你使用 exec 或 match 方法并且匹配成功了，那么这些方法将返回一个数组并且更新相关的正则表达式对象的属性和预定义的正则表达式对象（详见下）。如果匹配失败，那么 exec 方法返回 null（也就是 false）。</p>
+<p>在接下来的例子中，脚本将使用 exec 方法在一个字符串中查找一个匹配。</p>
+<pre><code>var myRe = /d(b+)d/g;
+var myArray = myRe.exec(&quot;cdbbdbsbz&quot;);
+</code></pre>
+<p>如果你不需要访问正则表达式的属性，这个脚本通过另一个方法来创建 myArray：</p>
+<pre><code>var myArray = /d(b+)d/g.exec(&quot;cdbbdbsbz&quot;);
+// 和 &quot;cdbbdbsbz&quot;.match(/d(b+)d/g); 相似。
+// 但是 &quot;cdbbdbsbz&quot;.match(/d(b+)d/g) 输出数组 [ &quot;dbbd&quot; ]，
+// 而 /d(b+)d/g.exec('cdbbdbsbz') 输出数组 [ &quot;dbbd&quot;, &quot;bb&quot;, index: 1, input: &quot;cdbbdbsbz&quot; ].
+</code></pre>
+<p>如果你想通过一个字符串构建正则表达式，那么这个脚本还有另一种方法：</p>
+<pre><code>var myRe = new RegExp(&quot;d(b+)d&quot;, &quot;g&quot;);
+var myArray = myRe.exec(&quot;cdbbdbsbz&quot;);
+</code></pre>
+<p>通过这些脚本，匹配成功后将返回一个数组并且更新正则表达式的属性。</p>
+<p>如这个例子中的第二种形式所示，你可以使用对象初始器创建一个正则表达式实例，但不分配给变量。如果你这样做，那么，每一次使用时都会创建一个新的正则表达式实例。因此，如果你不把正则表达式实例分配给一个变量，你以后将不能访问这个正则表达式实例的属性。例如，假如你有如下脚本：</p>
+<pre><code>var myRe = /d(b+)d/g;
+var myArray = myRe.exec(&quot;cdbbdbsbz&quot;);
+console.log(&quot;The value of lastIndex is &quot; + myRe.lastIndex);
+</code></pre>
+<p>这个脚本输出如下：</p>
+<pre><code>The value of lastIndex is 5
+</code></pre>
+<p>然而，如果你有如下脚本：</p>
+<pre><code>var myArray = /d(b+)d/g.exec(&quot;cdbbdbsbz&quot;);
+console.log(&quot;The value of lastIndex is &quot; + /d(b+)d/g.lastIndex);
+</code></pre>
+<p>它显示为：</p>
+<pre><code>The value of lastIndex is 0
+</code></pre>
+<p>当发生/d(b+)d/g 使用两个不同状态的正则表达式对象，lastIndex 属性会得到不同的值。如果你需要访问一个正则表达式的属性，则需要创建一个对象初始化生成器，你应该首先把它赋值给一个变量。</p>
+<h3 id="31使用括号的子字符串匹配">3.1使用括号的子字符串匹配</h3>
+<p>一个正则表达式模式使用括号，将导致相应的子匹配被记住。例如，/a(b)c /可以匹配字符串“abc”，并且记得“b”。回调这些括号中匹配的子串，使用数组元素 [1],……[n]。</p>
+<p>使用括号匹配的子字符串的数量是无限的。返回的数组中保存所有被发现的子匹配。下面的例子说明了如何使用括号的子字符串匹配。</p>
+<p>下面的脚本使用 replace() 方法来转换字符串中的单词。在匹配到的替换文本中，脚本使用替代的$ 1,$ 2 表示第一个和第二个括号的子字符串匹配。</p>
+<pre><code>var re = /(\w+)\s(\w+)/;
+var str = &quot;John Smith&quot;;
+var newstr = str.replace(re, &quot;$2, $1&quot;);
+console.log(newstr);//&quot;Smith, John&quot;
+</code></pre>
+<h3 id="32通过标志进行高级搜索">3.2通过标志进行高级搜索</h3>
+<p>正则表达式有六个可选参数 (flags) 允许全局和不分大小写搜索等。这些参数既可以单独使用也能以任意顺序一起使用，并且被包含在正则表达式实例中。<br>
+①g	全局搜索。<br>
+②i	不区分大小写搜索。<br>
+③m	多行搜索。<br>
+④s	允许 . 匹配换行符。<br>
+⑤u	使用 unicode 码的模式进行匹配。<br>
+⑥y	执行“粘性 (sticky)”搜索，匹配从目标字符串的当前位置开始。<br>
+语法如下：</p>
+<pre><code>var re = /pattern/flags;
+//或者
+var re = new RegExp(&quot;pattern&quot;, &quot;flags&quot;);
+</code></pre>
+<p>值得注意的是，标志是一个正则表达式的一部分，它们在接下来的时间将不能添加或删除。</p>
+<p>例如，re = /\w+\s/g 将创建一个查找一个或多个字符后有一个空格的正则表达式，或者组合起来像此要求的字符串。</p>
+<pre><code>var re = /\w+\s/g;  //等价于var re = new RegExp(&quot;\\w+\\s&quot;, &quot;g&quot;);
+var str = &quot;fee fi fo fum&quot;;
+var myArray = str.match(re);
+console.log(myArray);
+
+// [&quot;fee &quot;, &quot;fi &quot;, &quot;fo &quot;]
+</code></pre>
+<h1 id="六-索引类集合">六、索引类集合</h1>
+<p>这个章节主要介绍了以索引进行排序的数据集合。包括数组以及类似于数组的数据结构，如 Array 、TypedArray 。</p>
+<h2 id="1数组对象">1.数组对象</h2>
+<p>数组 (array) 是一个<font color="red">有序</font>的数据集合，我们可以通过数组名称和索引进行访问。</p>
+<p>JavaScript 中没有明确的数组数据类型。但是，我们可以通过使用内置 Array 对象和它的方法对数组进行操作。</p>
+<h3 id="11创建数组">1.1创建数组</h3>
+<p>以下的语句皆可以创建等效的数组：</p>
+<pre><code>var arr = new Array(element0, element1, ..., elementN);
+var arr = Array(element0, element1, ..., elementN);
+var arr = [element0, element1, ..., elementN];
+
+//  var arr=[4] 和 var arr=new Array(4) 是不等效的，
+// 后者 4 指数组长度，所以使用字面值 (literal) 的方式应该不仅仅是便捷，同时也不易踩坑
+</code></pre>
+<p>为了创建一个长度不为 0，但是又没有任何元素的数组，可选以下任何一种方式：</p>
+<pre><code>var arr = new Array(arrayLength);
+var arr = Array(arrayLength);
+
+// 这样有同样的效果
+var arr = [];
+arr.length = arrayLength;
+</code></pre>
+<p>注：以上代码，数组长度（arrayLength）必须为一个数字。否则，将会创建一个只有单个（所输入的）元素的数组。 调用 arr.length 会返回数组长度，但是数组实际上包含了空的（undefined）元素。 因此在数组上使用 for...in 循环，将不会返回任何的值 。</p>
+<p>除了如上所示创建新定义的变量，数组 (array) 也可以作为一个属性 (property) 分配给一个新的或者已存在的对象 (object)：</p>
+<pre><code>var obj = {};
+// ...
+obj.prop = [element0, element1, ..., elementN];
+
+// OR
+var obj = {prop: [element0, element1, ...., elementN]}
+</code></pre>
+<p>如果你希望用单个元素初始化一个数组，而这个元素恰好又是数字 (Number)，那么你必须使用括号语法。当单个的数字 (Number) 传递给 Array() 构造函数时，将会被解释为数组长度，并非单个元素。</p>
+<pre><code>var arr = [42];      // 创建一个只有唯一元素的数组：
+
+var arr = Array(42); // 创建一个没有元素的数组，
+                     // 但是数组的长度被设置成 42.
+
+// 上面的代码与下面的代码等价
+var arr = [];
+arr.length = 42;
+</code></pre>
+<p>如果 N 不是一个整数，调用Array(N)将会报RangeError错误</p>
+<pre><code>var arr = Array(9.3);  // RangeError: Invalid array length
+</code></pre>
+<p>如果你需要创建任意类型的单元素数组，安全的方式是使用字面值。或者在向数组添加单个元素之前先创建一个空的数组。</p>
+<h3 id="12填充数组">1.2填充数组</h3>
+<p>你可以通过给元素赋值来填充数组，例如：</p>
+<pre><code>var emp = [];
+emp[0] = &quot;Casey Jones&quot;;
+emp[1] = &quot;Phil Lesh&quot;;
+emp[2] = &quot;August West&quot;;
+</code></pre>
+<p>注：如果你在以上代码中给数组操作符的是一个非整形数值，那么将作为一个代表数组的对象的属性 (property) 创建，而非作为数组的元素。</p>
+<pre><code>var arr = [];
+arr[3.4] = &quot;Oranges&quot;;
+console.log(arr);  //[3.4:&quot;Oranges&quot;]
+console.log(arr.length);  // 0
+console.log(arr.hasOwnProperty(3.4));   // true
+</code></pre>
+<p>你也可以在创建数组的时候去填充数组：</p>
+<pre><code>var myArray = new Array(&quot;Hello&quot;, myVar, 3.14159);
+
+var myArray = [&quot;Mango&quot;, &quot;Apple&quot;, &quot;Orange&quot;]
+</code></pre>
+<h3 id="13引用数组元素">1.3引用数组元素</h3>
+<p>你通过可以使用元素的序号来引用数组的元素。例如，假设你定义了如下数组：</p>
+<pre><code>var myArray = [&quot;Wind&quot;, &quot;Rain&quot;, &quot;Fire&quot;];
+</code></pre>
+<p>你可以用 myArray[0]引用第一个元素，myArray[1]引用第二个元素。元素的索引是从0开始的。</p>
+<p>注： 数组操作符（[ ]）也可以用来访问数组的属性 (在 JavaScript 中，数组也是对象)。例如：</p>
+<pre><code>var arr = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;];
+arr[2];  // three
+arr[&quot;length&quot;];  // 3
+</code></pre>
+<h4 id="理解length">理解length</h4>
+<p>在实施层面， JavaScript 实际上是将元素作为标准的对象属性来存储，把数组索引作为属性名。长度属性是特殊的，它总是返回最后一个元素的索引值加 1(下例中， Dusty 的索引是 30，所以 cats.length 返回 30 + 1)。</p>
+<pre><code>var cats = [];
+cats[30] = ['Dusty'];
+console.log(cats[0]);//undefined
+console.log(cats.length); // 31
+</code></pre>
+<p>你也可以分配length属性。写一个小于数组元素数量的值会缩短数组，写 0 会彻底清空数组：</p>
+<pre><code>var cats = ['Dusty', 'Misty', 'Twiggy'];
+console.log(cats.length); // 3
+
+cats.length = 2;
+console.log(cats); // logs &quot;Dusty,Misty&quot; - Twiggy has been removed
+
+cats.length = 0;
+console.log(cats); // logs nothing; the cats array is empty
+
+cats.length = 3;
+console.log(cats); // [undefined, undefined, undefined]
+</code></pre>
+<p>注：<font color="red">一定是小于！！！</font></p>
+<h3 id="14遍历数组">1.4遍历数组</h3>
+<p>遍历数组元素并以某种方式处理每个元素是一个常见的操作。以下是最简单的方式：</p>
+<pre><code>var colors = ['red', 'green', 'blue'];
+for (var i = 0; i &lt; colors.length; i++) {
+  console.log(colors[i]);
+}
+</code></pre>
+<p><font color="red">前方高能！</font>👊<br>
+如果你确定数组中没有一个元素的求值是 false —— 如果你的数组只包含DOM节点，如下，你可以选择一个更高效的土法子：</p>
+<pre><code>var divs = document.getElementsByTagName('div');
+for (var i = 0, div; div = divs[i]; i++) {
+  /* Process div in some way */
+}
+</code></pre>
+<p>这样避免了检测数组长度的开销，额外的好处是确保了 div 变量当前在每次循环中都被重新赋值为当前项。</p>
+<p>forEach() 方法提供了遍历数组元素的其他方法：</p>
+<pre><code>var colors = ['red', 'green', 'blue'];
+colors.forEach(function(color) {
+  console.log(color);
+});
+</code></pre>
+<p>被传递给 forEach 的函数会在数组的每个元素上执行一次，元素作为参数传递给该函数。未赋值的值不会在 forEach 循环迭代。</p>
+<p>注意，在数组定义时省略的元素不会在 forEach 遍历时被列出，但是手动赋值为 undefined 的元素是会被列出的：</p>
+<pre><code>var array = ['first', 'second', , 'fourth'];
+
+// returns ['first', 'second', 'fourth'];
+array.forEach(function(element) {
+  console.log(element);
+})
+
+if(array[2] === undefined) { console.log('array[2] is undefined'); } // true
+
+var array = ['first', 'second', undefined, 'fourth'];
+
+// returns ['first', 'second', undefined, 'fourth'];
+array.forEach(function(element) {
+  console.log(element);
+})
+</code></pre>
+<p>一旦 JavaScript 元素被保存为标准的对象属性，通过for...in 循环来迭代数组将变得不明智，因为正常元素和所有<font color="red">可枚举的属性</font>都会被列出。</p>
+<h3 id="15数组的方法">1.5数组的方法</h3>
+<p>Array 对象具有下列方法：<br>
+concat() 连接两个数组并返回一个新的数组。</p>
+<pre><code>var myArray = new Array(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;);
+myArray = myArray.concat(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
+// myArray is now [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+</code></pre>
+<p>join('xxx') 将数组的所有元素连接成一个字符串。</p>
+<pre><code>var myArray = new Array(&quot;Wind&quot;, &quot;Rain&quot;, &quot;Fire&quot;);
+var list = myArray.join(&quot; - &quot;); // &quot;Wind - Rain - Fire&quot;
+</code></pre>
+<p>push() 在数组末尾添加一个或多个元素，<font color="red">并返回数组操作后的长度</font>。</p>
+<pre><code>var myArray = new Array(&quot;1&quot;, &quot;2&quot;);
+myArray.push(&quot;3&quot;); // myArray is now [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+</code></pre>
+<p>pop() 从数组移出最后一个元素，并返回该元素。</p>
+<pre><code>var myArray = new Array(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;);
+var last = myArray.pop();
+// myArray is now [&quot;1&quot;, &quot;2&quot;], last = &quot;3&quot;
+</code></pre>
+<p>shift() 从数组移出第一个元素，并返回该元素。</p>
+<pre><code>var myArray = new Array (&quot;1&quot;, &quot;2&quot;, &quot;3&quot;);
+var first = myArray.shift();
+// myArray is now [&quot;2&quot;, &quot;3&quot;], first is &quot;1&quot;
+</code></pre>
+<p>unshift() 在数组开头添加一个或多个元素，并返回数组的新长度。</p>
+<pre><code>var myArray = new Array (&quot;1&quot;, &quot;2&quot;, &quot;3&quot;);
+myArray.unshift(&quot;4&quot;, &quot;5&quot;);
+// myArray becomes [&quot;4&quot;, &quot;5&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+</code></pre>
+<p>slice(start_index, upto_index) 从数组提取一个片段，并作为一个新数组返回。</p>
+<pre><code>var myArray = new Array (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;);
+myArray = myArray.slice(1, 4); // 包含索引 1，不包括索引 4
+                               // returning [ &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+</code></pre>
+<p>splice(index, count_to_remove, addElement1, addElement2, ...)从数组移出一些元素，（可选）并替换它们。</p>
+<pre><code>var myArray = new Array (&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;);
+myArray.splice(1, 3, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;);
+// myArray is now [&quot;1&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;5&quot;]
+// This code started at index one (or where the &quot;2&quot; was),
+// removed 3 elements there, and then inserted all consecutive
+// elements in its place.
+</code></pre>
+<p>reverse() 颠倒数组元素的顺序：第一个变成最后一个，最后一个变成第一个。</p>
+<pre><code>var myArray = new Array (&quot;1&quot;, &quot;2&quot;, &quot;3&quot;);
+myArray.reverse();
+// transposes the array so that myArray = [ &quot;3&quot;, &quot;2&quot;, &quot;1&quot; ]
+</code></pre>
+<p>sort() 给数组元素排序。(快排)</p>
+<pre><code>var myArray = new Array(&quot;Wind&quot;, &quot;Rain&quot;, &quot;Fire&quot;);
+myArray.sort();
+// sorts the array so that myArray = [ &quot;Fire&quot;, &quot;Rain&quot;, &quot;Wind&quot; ]
+</code></pre>
+<p>sort() 也可以带一个回调函数来决定怎么比较数组元素。这个回调函数比较两个值，并返回 3 个值中的一个。<br>
+例如，下面的代码通过字符串的最后一个字母进行排序：</p>
+<pre><code>var sortFn = function(a, b){
+  if (a[a.length - 1] &lt; b[b.length - 1]) return -1;
+  if (a[a.length - 1] &gt; b[b.length - 1]) return 1;
+  if (a[a.length - 1] == b[b.length - 1]) return 0;
+}
+myArray.sort(sortFn);
+// sorts the array so that myArray = [&quot;Wind&quot;,&quot;Fire&quot;,&quot;Rain&quot;]
+</code></pre>
+<p>如果 a 小于 b ，返回 -1(或任何负数)<br>
+如果 a 大于 b ，返回 1 (或任何正数)<br>
+如果 a 和 b 相等，返回 0。</p>
+<p>indexOf(searchElement[, fromIndex]) 在数组中搜索searchElement 并返回第一个匹配的索引。</p>
+<pre><code>var a = ['a', 'b', 'a', 'b', 'a'];
+console.log(a.indexOf('b')); // logs 1
+// Now try again, starting from after the last match
+console.log(a.indexOf('b', 2)); // logs 3
+console.log(a.indexOf('z')); // logs -1, because 'z' was not found
+</code></pre>
+<p>lastIndexOf(searchElement[, fromIndex]) 和 indexOf 差不多，但这是从结尾开始，并且是反向搜索。</p>
+<pre><code>var a = ['a', 'b', 'c', 'd', 'a', 'b'];
+console.log(a.lastIndexOf('b')); // logs 5
+// Now try again, starting from before the last match
+console.log(a.lastIndexOf('b', 4)); // logs 1
+console.log(a.lastIndexOf('z')); // logs -1
+</code></pre>
+<p>forEach(callback[, thisObject]) 在数组每个元素项上执行callback。</p>
+<pre><code>var a = ['a', 'b', 'c'];
+a.forEach(function(element) { console.log(element);} );
+// logs each item in turn
+</code></pre>
+<p>map(callback[, thisObject]) 在数组的每个单元项上执行 callback 函数，并返回包含回调函数返回值的新数组（也就是遍历数组，通过 callback 对数组元素进行操作，并将所有操作结果放入数组中并返回该数组）。</p>
+<pre><code>var a1 = ['a', 'b', 'c'];
+var a2 = a1.map(function(item) { return item.toUpperCase(); });
+console.log(a2); // logs A,B,C
+</code></pre>
+<p>filter(callback[, thisObject]) 返回一个包含所有在回调函数上返回为 true 的元素的新数组（callback 在这里担任的是过滤器的角色，当元素符合条件，过滤器就返回 true，而 filter 则会返回所有符合过滤条件的元素）。</p>
+<pre><code>var a1 = ['a', 10, 'b', 20, 'c', 30];
+var a2 = a1.filter(function(item) { return typeof item == 'number'; });
+console.log(a2); // logs 10,20,30
+</code></pre>
+<p>every(callback[, thisObject]) 当数组中每个元素都在 callback 上被返回 true 时就返回 true（同上，every 其实类似 filter，只不过它的功能是判断是不是数组中的所有元素都符合条件，并且返回的是布尔值）。</p>
+<pre><code>function isNumber(value){
+  return typeof value == 'number';
+}
+var a1 = [1, 2, 3];
+console.log(a1.every(isNumber)); // logs true
+var a2 = [1, '2', 3];
+console.log(a2.every(isNumber)); // logs false
+</code></pre>
+<p>some(callback[, thisObject]) 只要数组中有一项在 callback 上被返回 true，就返回 true（同上，类似 every，不过前者要求都符合筛选条件才返回 true，后者只要有符合条件的就返回 true）。</p>
+<pre><code>function isNumber(value){
+  return typeof value == 'number';
+}
+var a1 = [1, 2, 3];
+console.log(a1.some(isNumber)); // logs true
+var a2 = [1, '2', 3];
+console.log(a2.some(isNumber)); // logs true
+var a3 = ['1', '2', '3'];
+console.log(a3.some(isNumber)); // logs false
+</code></pre>
+<p>以上方法都带一个被称为迭代方法的的回调函数，因为他们以某种方式迭代整个数组。都有一个可选的第二参数 thisObject，如果提供了这个参数，thisObject 变成回调函数内部的 this 关键字的值。如果没有提供，例如函数在一个显示的对象上下文外被调用时，this 将引用全局对象 (window).</p>
+<p>实际上在调用回调函数时传入了 3 个参数。第一个是当前元素项的值，第二个是它在数组中的索引，第三个是数组本身的一个引用。 JavaScript 函数忽略任何没有在参数列表中命名的参数，因此提供一个只有一个参数的回调函数是安全的，例如 alert 。</p>
+<p>reduce(callback[, initialValue]) 使用回调函数 callback(firstValue, secondValue) 把数组列表计算成一个单一值（数组元素两两递归处理的方式把数组计算成一个值）</p>
+<pre><code>var a = [10, 20, 30];
+var total = a.reduce(function(first, second) { return first + second; }, 0);
+console.log(total) // Prints 60
+</code></pre>
+<p>reduceRight(callback[, initalvalue]) 和 reduce() 相似，但这从最后一个元素开始的。</p>
+<p>reduce 和 reduceRight 是迭代数组方法中最不被人熟知的两个函数.。他们应该使用在那些需要把数组的元素两两递归处理，并最终计算成一个单一结果的算法。</p>
+<h3 id="16多维数组">1.6多维数组</h3>
+<p>数组是可以嵌套的，这就意味着一个数组可以作为一个元素被包含在另外一个数组里面。利用 JavaScript 数组的这个特性，可以创建多维数组。</p>
+<p>以下代码创建了一个二维数组。</p>
+<pre><code>var a = new Array(4);
+for (i = 0; i &lt; 4; i++) {
+  a[i] = new Array(4);
+  for (j = 0; j &lt; 4; j++) {
+    a[i][j] = &quot;[&quot; + i + &quot;,&quot; + j + &quot;]&quot;;
+  }
+}
+</code></pre>
+<p>这个例子创建的数组拥有以下行数据：</p>
+<pre><code>Row 0: [0,0] [0,1] [0,2] [0,3]
+Row 1: [1,0] [1,1] [1,2] [1,3]
+Row 2: [2,0] [2,1] [2,2] [2,3]
+Row 3: [3,0] [3,1] [3,2] [3,3]
+</code></pre>
+<h3 id="17数组和正则表达式">1.7数组和正则表达式</h3>
+<p>当一个数组作为字符串和正则表达式的匹配结果时，该数组将会返回相关匹配信息的属性和元素。 RegExp.exec(), String.match() 和 String.split() 的返回值是一个数组。</p>
+<h3 id="18使用类数组对象">1.8使用类数组对象</h3>
+<p>一些 JavaScript 对象，例如 document.getElementsByTagName() 返回的 NodeList 或者函数内部可用的 arguments 对象，他们表面上看起来，外观和行为像数组，但是不共享他们所有的方法。例如 arguments 对象就提供一个 length 属性，但是不实现 forEach() 方法。</p>
+<p>Array 的原生 (prototype) 方法可以用来处理类似数组行为的对象，例如： :</p>
+<pre><code>function printArguments() {
+  Array.prototype.forEach.call(arguments, function(item) {
+    console.log(item);
+  });
+}
+</code></pre>
+<p>Array 的常规方法也可以用于处理字符串，因为它提供了序列访问字符转为数组的简单方法：</p>
+<pre><code>Array.prototype.forEach.call(&quot;a string&quot;, function(chr) {
+  console.log(chr);
+});
+</code></pre>
+<h2 id="2数组推导式">2.数组推导式</h2>
+<p>数组推导式用来实现在另一个数组的基础上构造一个新的数组。推导式可以经常被用在那些需要调用 map() 和 filter() 函数的地方，或作为一种结合这两种函数的方式。</p>
+<p>下面的推导式创建一个数字数组并且创建一个新的数组，数组的每个元素都是原来数值的两倍。</p>
+<pre><code>var numbers = [1, 2, 3, 4];
+var doubled = [for (i of numbers) i * 2];
+console.log(doubled); // logs 2,4,6,8
+</code></pre>
+<p>这跟下面的 map() 方法的操作是等价的。</p>
+<pre><code>var doubled = numbers.map(function(i){return i * 2;});
+</code></pre>
+<p>推导式也可以用来筛选满足条件表达式的元素。下面的推导式用来筛选是 2 的倍数的元素：</p>
+<pre><code>var numbers = [1, 2, 3, 21, 22, 30];
+var evens = [i for (i of numbers) if (i % 2 === 0)];
+console.log(evens); // logs 2,22,30
+</code></pre>
+<p>filter() 也可以达到相同的目的：</p>
+<pre><code>var evens = numbers.filter(function(i){return i % 2 === 0;});
+</code></pre>
+<p>map() 和 filter() 类型的操作可以被组合（等效）为单个数组推导式。这里就有一个过滤出偶数，创建一个它的倍数数组的例子：</p>
+<pre><code>var numbers = [1, 2, 3, 21, 22, 30];
+var doubledEvens = [i * 2 for (i of numbers) if (i % 2 === 0)];
+console.log(doubledEvens); // logs 4,44,60
+</code></pre>
+<p>数组推导式隐含了块作用域。新的变量 (如例子中的 i) 类似于是采用let声明的。这意味着他们不能在推导式以外访问。</p>
+<p>数组推导式的输入不一定必须是数组; 迭代器和生成器 也是可以的。</p>
+<p>甚至字符串也可以用来作为输入; 实现 filter 或者 map 行为 (参考上面类似数组行为的对象) 如下：</p>
+<pre><code>var str = 'abcdef';
+var consonantsOnlyStr = [c for (c of str) if (!(/[aeiouAEIOU]/).test(c))  ].join(''); // 'bcdf'
+var interpolatedZeros = [c+'0' for (c of str) ].join(''); // 'a0b0c0d0e0f0'
+</code></pre>
+<p>不过，输入形式是不能保存的，所以我们要使用 join() 回复到一个字符串。</p>
+<h2 id="3类型化数组">3.类型化数组</h2>
+<p>类型化数组是类数组对象，其提供访问原始二进制数据的机制。 就像你知道的那样，Array 对象动态增长和收缩，可以有任何 JavaScript 值。但对于类型化数组，JavaScript 引擎执行优化使得这些数组访问速度快速。 随着 Web 应用程序变得越来越强大，添加音频和视频处理等功能、可以使用 WebSockets 、使用原始数据， 这都需要访问原始的二进制数据，所以专门的优化将有助于 JavaScript 代码能够快速和容易地操纵原始二进制数据类型的数组。</p>
+<h3 id="31缓冲区和视图类型化的数组结构">3.1缓冲区和视图：类型化的数组结构</h3>
+<p>为了实现最大的灵活性和效率，JavaScript 类型数组被分解为缓冲 (Buffer) 和视图 (views)。缓冲 (由ArrayBuffer 实现) 是代表数据块的对象，它没有格式可言，并没有提供任何机制来访问其内容。为了访问包含在缓冲区中的内存，您需要使用视图。视图提供了一个上下文，即数据类型、起始偏移量和元素数，这些元素将数据转换为实际类型数组。</p>
+<h4 id="arraybuffer">ArrayBuffer</h4>
+<p>ArrayBuffer是一种数据类型，用于表示一个通用的、固定长度的二进制数据缓冲区。你不能直接操纵一个 ArrayBuffer 中的内容；你需要创建一个数组类型视图或DataView来代表特定格式的缓冲区，并从而实现读写缓冲区的内容。</p>
+<h4 id="类型数组视图">类型数组视图</h4>
+<p>类型数组视图具有自描述性的名字，并且提供数据类型信息，例如Int8, Uint32, Float64 等等。如一个特定类型数组视图Uint8ClampedArray. 它意味着数据元素只包含 0 到 255 的整数值。它通常用于Canvas 数据处理。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[MDN JS学习笔记(基础1)]]></title>
         <id>https://uaenaTzx.github.io/post/mdn-js-xue-xi-bi-ji/</id>
@@ -1262,38 +2543,6 @@ console.log(`?x=${encodeURIComponent('шеллы')}`);
 <p>已废弃的 escape() 方法计算生成一个新的字符串，其中的某些字符已被替换为十六进制转义序列。使用 encodeURI或者encodeURIComponent替代本方法。</p>
 <h3 id="912unescape-已弃用">9.12unescape() 已弃用</h3>
 <p>已废弃的 unescape() 方法计算生成一个新的字符串，其中的十六进制转义序列将被其表示的字符替换。上述的转义序列就像escape里介绍的一样。因为 unescape 已经废弃，建议使用decodeURI()或者decodeURIComponent 替代本方法。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[JS零碎知识点]]></title>
-        <id>https://uaenaTzx.github.io/post/js-ling-sui-zhi-shi-dian/</id>
-        <link href="https://uaenaTzx.github.io/post/js-ling-sui-zhi-shi-dian/">
-        </link>
-        <updated>2022-08-10T05:55:15.000Z</updated>
-        <content type="html"><![CDATA[<p>本篇文章记录了部分JS的重要的对象与方法🙉</p>
-<h1 id="一-thisrefs">一、this.$refs</h1>
-<p>在vue中<code>ref</code>可以以属性的形式添加给标签或者组件<br>
-<code>ref</code>写在标签上时：<code>this.$refs.ipt</code> 获取的是添加了<code>ref=&quot;ipt&quot;</code>标签对应的dom元素<br>
-<code>ref</code>写在组件上时：<code>this.$refs['component']</code> 获取到的是添加了<code>ref=&quot;component&quot;</code>属性的这个组件</p>
-<pre><code>&lt;template&gt;
- //给标签使用
-    &lt;input type=&quot;text&quot; ref=&quot;ipt&quot;/&gt;
- //给组件使用
-    &lt;comp-detail ref=&quot;component&quot;&gt;&lt;/list-detail&gt;
-    &lt;button @click=&quot;confirm&quot;&gt;确定&lt;/button&gt;
-&lt;/template&gt;
-
-methods:{
-    confirm(){
-        console.log(this.$refs.ipt.value)  //打印出输入框中的value值
-        this.$refs['component'].init()     //调用组件comp-detail中的init()方法
-     }
-}
-</code></pre>
-<h1 id="二-location对象">二、Location对象</h1>
-<p><code>Location</code>对象包含有关当前URL的信息。<br>
-<code>Location</code>对象<code>window</code>对象的一部分，可通过window.location.xxx格式的相关属性对其进行访问。<br>
-相关属性和方法：https://www.runoob.com/jsref/obj-location.html</p>
 ]]></content>
     </entry>
 </feed>
