@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uaenaTzx.github.io</id>
     <title>Uaena_blog</title>
-    <updated>2023-01-10T09:02:58.875Z</updated>
+    <updated>2023-02-03T12:33:50.571Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uaenaTzx.github.io"/>
     <link rel="self" href="https://uaenaTzx.github.io/atom.xml"/>
@@ -11,153 +11,265 @@
     <icon>https://uaenaTzx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2023, Uaena_blog</rights>
     <entry>
-        <title type="html"><![CDATA[CSS选择器权重]]></title>
-        <id>https://uaenaTzx.github.io/post/css-xuan-ze-qi-quan-chong/</id>
-        <link href="https://uaenaTzx.github.io/post/css-xuan-ze-qi-quan-chong/">
+        <title type="html"><![CDATA[直接赋值、浅拷贝、深拷贝详解]]></title>
+        <id>https://uaenaTzx.github.io/post/shen-kao-bei-qian-kao-bei-zhi-jie-fu-zhi-xiang-jie/</id>
+        <link href="https://uaenaTzx.github.io/post/shen-kao-bei-qian-kao-bei-zhi-jie-fu-zhi-xiang-jie/">
         </link>
-        <updated>2022-12-25T03:30:58.000Z</updated>
+        <updated>2023-01-10T09:08:04.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-问题引入">一、问题引入</h1>
-<p>相信大家都清楚css有独立的优先级计算方式，但不一定清楚优先级不仅仅局限于<strong>行间&gt;内联&gt;外联</strong>，<strong>ID&gt;class&gt;元素</strong>。<br>
-本文将基于优先级的计算方式对权重的概念进行引入</p>
-<h1 id="二-样式类型">二、样式类型</h1>
-<h2 id="21行间">2.1行间</h2>
-<pre><code>&lt;div style=&quot;width:100%&quot;&gt;xxx&lt;/div&gt;
+<p>数组、对象的直接赋值为何不妥？因为Array或Object直接复制给变量x时，x指向了相同的地址，导致Array或Object改变时，x会发生相同的变化。由于开发过程中，大家多数想要的是变量之间互不影响，因此我们需要用到浅拷贝和深拷贝。</p>
+<h1 id="二-直接赋值">二、直接赋值</h1>
+<p>赋值是指将某一数据赋给变量的过程，具体分为两种方式：<br>
+①基本数据类型：赋予具体值，两者互不影响<br>
+②引用数据类型：赋予地址，两者相互影响</p>
+<h1 id="三-浅拷贝">三、浅拷贝</h1>
+<p>对于一个对象（此处仅考虑对象，数组类同），我们通过浅拷贝可以创建一个新的对象，该对象依据原对象的属性值做了一份拷贝，其中基本数据类型拷贝具体值，引用数据类型拷贝地址。因此我们会得出浅拷贝是不完善的（只做到了第一层）</p>
+<p>以下是几种常见的浅拷贝方法：<br>
+①Array.concat()，Array.slice()，Array.from()<br>
+②Object.assign()<br>
+③es6扩展运算符</p>
+<h1 id="四-常见深拷贝">四、常见深拷贝</h1>
+<p>深拷贝相对于浅拷贝，每一个属性值都会重新分配内存空间，做到了数据的完全独立。</p>
+<p>一下是几种常见的深拷贝方法：</p>
+<h1 id="41通过-json-对象的方法实现深拷贝">4.1通过 JSON 对象的方法实现深拷贝</h1>
+<pre><code>function deepCopy(obj) {
+  objCopy = JSON.parse(JSON.stringify(obj))
+  return objCopy;
+}
 </code></pre>
-<h2 id="22内联">2.2内联</h2>
-<pre><code>&lt;style&gt;
-   div{
-      width:100%;
+<p>问题：​ undefined、任意的函数以及 symbol值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时）。函数、undefined 被单独转换时，会返回 undefined</p>
+<h1 id="42通过jquery的extend方法实现深拷贝">4.2通过jQuery的extend方法实现深拷贝</h1>
+<pre><code>var array = [1,2,3,4];
+var newArray = $.extend(true,[],array);
+</code></pre>
+<h1 id="43递归调用">4.3递归调用</h1>
+<pre><code>function deepCopy(obj) {
+  //数组进行数组拷贝，对象进行对象拷贝
+  var objClone = Array.isArray(obj) ? [] : {};
+  //进行深拷贝的不能为空，并且是对象或者是数组（typeof对象和数组都显示为object）
+  if (obj &amp;&amp; typeof obj === &quot;object&quot;) {
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (obj[key] &amp;&amp; typeof obj[key] === &quot;object&quot;) {
+          objCopy[key] = deepCopy(obj[key]);
+        } else {
+          objClone[key] = obj[key];
+        }
       }
-&lt;/style&gt;
-</code></pre>
-<h2 id="23外联">2.3外联</h2>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
-</code></pre>
-<h1 id="三-选择器类型">三、选择器类型</h1>
-<h2 id="31-id-id">3.1、ID　　#id</h2>
-<h2 id="32-class-class">3.2、class　　.class</h2>
-<h2 id="33-标签-html">3.3、标签　　html</h2>
-<h2 id="34-通用">3.4、通用　　*</h2>
-<h2 id="35-属性-typetext">3.5、属性　　[type=&quot;text&quot;]</h2>
-<h2 id="36-伪类-hover">3.6、伪类　　：hover</h2>
-<h2 id="37-伪元素-first-line">3.7、伪元素　　::first-line</h2>
-<h2 id="38-子选择器-相邻选择器">3.8、子选择器、相邻选择器</h2>
-<h1 id="四-权重计算规则">四、权重计算规则</h1>
-<p>优先级本质上是基于权重进行排序的，以下是优先级的规则：<br>
-①第一等：代表行间样式，如: style=””，权值 +1000。<br>
-②第二等：代表ID选择器，如：#content，权值 +100。<br>
-③第三等：代表类，伪类和属性选择器，如.content，权值 +10。<br>
-④第四等：代表类型选择器和伪元素选择器，如div p，权值 +1。<br>
-⑤通配符、子选择器、相邻选择器等的。如*、&gt;、+,权值 +0。<br>
-⑥继承的样式没有权值。</p>
-<p>权值的比较规则也比较特殊：<br>
-①1,0,0,0 &gt; 0,99,99,99。也就是说从左往右逐个等级比较，前一等级相等才往后比。<br>
-②无论是行间、内联和外联样式，都是按照这个规则来进行比较。而不是直观的行间&gt;内联&gt;外联样式；<br>
-③在权重相同的情况下，后面的样式会覆盖掉前面的样式。<br>
-④通配符、子选择器、相邻选择器等的。虽然权值为0000，但是也比继承的样式优先。</p>
-<p>以下给出具体的选择器优先级比较例子：<br>
-<img src="https://uaenaTzx.github.io/post-images/1673339420227.jpg" alt="" loading="lazy"><br>
-通过以上例子，相信大家对选择器权重的计算会有更清晰的认知</p>
-<h1 id="五-important">五、!important</h1>
-<p>!important的作用是提升优先级为最高</p>
-<pre><code>&lt;style&gt;
-    p{
-        color:grey !important;
     }
-&lt;/style&gt;
-&lt;p style=&quot;color:red;&quot;&gt;灰色&lt;/p&gt;　
+  }
+  return objClone;
+}
+
 </code></pre>
-<p>但是对于ie6会有一些bug</p>
-<pre><code>&lt;style&gt;
-    p{
-        color:grey !important;
-        color:blue;
+<h1 id="五-其他深拷贝">五、其他深拷贝</h1>
+<h1 id="51循环引用的深拷贝">5.1循环引用的深拷贝</h1>
+<p>当对象与对象之间相互引用，或对象引用自身时，深拷贝就会出现死循环的问题<br>
+因此我们给出以下的解决思路：在引用同时将其存储，并在再次引用时，直接返回存储内容<br>
+以下是两种解决的代码方案：<br>
+①使用ES6新增的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">WeakMap</a></p>
+<pre><code>function deepCopy( originObj, map = new WeakMap() ) {
+    //空或者非对象则返回本身
+    if(!originObj || typeof originObj !== 'object') return originObj;  
+
+    //如果这个对象已经被记录则直接返回
+    if( map.get(originObj) ) return  map.get(originObj);
+        
+    //将其引用记录在map中，进行拷贝
+    //初始化拷贝结果
+    let result = Array.isArray(originObj) ? [] : {};  
+    //记录引用关系
+    map.set(originObj, result);         
+    //originObj的全部key集合              
+    let keys = Object.keys(originObj);
+    //递归拷贝                
+    for(let i =0,len=keys.length; i&lt;len; i++) {       
+        let key = keys[i];
+        let temp = originObj[key];
+        result[key] = deepCopy(temp, map);
     }
-&lt;/style&gt;
-&lt;p style=&quot;color:red;&quot;&gt;蓝色&lt;/p&gt;　
+    return result;
+}
 </code></pre>
-<p>当然ie6只是对以上的形式存在bug，解决方法如下：</p>
-<pre><code>&lt;style&gt;
-    p{
-        color:grey !important;
+<p>②ES5使用方法（创建一个引用列表即可）</p>
+<pre><code>function deepCopy(source, uniqueList) {
+
+    if (!isObject(source)) return source; 
+    // 初始化数组
+    if (!uniqueList) uniqueList = []; 
+      
+    var target = Array.isArray(source) ? [] : {};
+    
+    // 数据已经存在，返回保存的数据
+    var uniqueData = find(uniqueList, source);
+    if (uniqueData) {
+        return uniqueData.target;
+    };
+        
+    // 数据不存在，保存源数据，以及对应的引用
+    uniqueList.push({
+        source: source,
+        target: target
+    });
+
+    for(var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+            if (isObject(source[key])) {
+                // 传入数组
+                target[key] = deepCopy(source[key], uniqueList); 
+            } else {
+                target[key] = source[key];
+            }
+        }
     }
-    p{
-        color:blue;
-    }
-&lt;/style&gt;
-&lt;p style=&quot;color:red;&quot;&gt;灰色&lt;/p&gt;　
+    return target;
+}
 </code></pre>
-<h1 id="六-关键词收录">六、关键词收录</h1>
-<p>①权重<br>
-②样式类型<br>
-③选择器类型<br>
-④!important</p>
+<h1 id="52考虑symbol类型的深拷贝">5.2考虑symbol类型的深拷贝</h1>
+<p>我们需要特定的方法判断<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a>类型<br>
+①<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols(…)</a><br>
+②<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys">Reflect.ownKeys(…)</a><br>
+具体的思路就是有symbol属性则优先处理遍历处理symbol<br>
+综上，以下为比较全面的深拷贝代码</p>
+<pre><code>function deepCopy( originObj, map = new WeakMap() ) {
+    //空或者非对象则返回本身
+    if(!originObj || typeof originObj !== 'object') return originObj;  
+
+    //如果这个对象已经被记录则直接返回
+    if( map.get(originObj) ) return  map.get(originObj);
+    
+    //将其引用记录在map中，进行拷贝
+    //初始化拷贝结果
+    let result = Array.isArray(originObj) ? [] : {};  
+    //记录引用关系
+    map.set(originObj, result);         
+
+    // 查找
+    let symKeys = Object.getOwnPropertySymbols(originObj); 
+        // 查找成功	
+        if (symKeys.length) { 
+            symKeys.forEach(symKey =&gt; {
+                if (isObject(originObj[symKey])) {
+                    result[symKey] = deepCopy(originObj[symKey], map); 
+                } else {
+                result[symKey] = originObj[symKey];
+                }    
+            });
+        }
+    
+    //originObj的全部key集合              
+    let keys = Object.keys(originObj);
+    //递归拷贝                
+    for(let i =0 ; i &lt; keys.length ; i++) {       
+        let key = keys[i];
+        result[key] = deepCopy(originObj[key], map);
+    }
+    return result;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[a标签包裹div标签是否合法？]]></title>
-        <id>https://uaenaTzx.github.io/post/wei-shi-me-agreaterdiv-shi-he-fa-de/</id>
-        <link href="https://uaenaTzx.github.io/post/wei-shi-me-agreaterdiv-shi-he-fa-de/">
+        <title type="html"><![CDATA[z-index深入解析]]></title>
+        <id>https://uaenaTzx.github.io/post/z-index-shen-ru-jie-xi/</id>
+        <link href="https://uaenaTzx.github.io/post/z-index-shen-ru-jie-xi/">
         </link>
-        <updated>2022-12-24T13:07:59.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-问题引入">一、问题引入</h1>
-<p>先上结论：<strong>看父元素的属性</strong><br>
-众所周知，块级标签，行内标签，行内块标签是存在嵌套规则的，首先我们给出定义<br>
-块级标签：独立一行，对宽高的属性值生效；默认为浏览器宽度——100%；<br>
-行内标签：可多个共享一行，对宽高属性值不生效（内容撑开）；<br>
-行内块标签：可多个共享一行，对宽高的属性值生效；<br>
-嵌套规则如下：块级可以包含行内，行内不可包含块级。</p>
-<h1 id="二-结论解释">二、结论解释</h1>
-<p>那为何会出现以下的情况呢？</p>
-<pre><code>&lt;div&gt;
-    &lt;a href=&quot;#&quot;&gt;
-        &lt;div&gt;button&lt;/div&gt;
-    &lt;/a&gt;  
+        <updated>2023-01-10T09:03:59.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-基本用法">一、基本用法</h1>
+<p>z-index属性看起来使用非常简单，但在简单的表面之下，还有很多的坑以及可以深入的内容。<br>
+CSS为盒子模型的布局提供了三种定位方案：<br>
+①常规文档流<br>
+②浮动<br>
+③绝对定位<br>
+其中对于第三种定位方案，元素从常规流中移除，位置完全由开发者控制，其中，z-index属性可以操控其在z轴上的位置。</p>
+<p>首先，我们陈列一下z-index属性的三种属性值：<br>
+①auto（自动）<br>
+②int<br>
+③inherit（继承父元素）<br>
+我们主要关注第二类，可以是正值、0、负值。其中数值越大，元素离我们越近。<br>
+通过这个点，我们可以发现，两个元素存在重叠时，z-index值大的会覆盖重叠区域，但还存在其他比较复杂的情况：<br>
+①当一个设置了z-index值的定位元素与常规文档流中的元素相互重叠的时候，谁会被置于上方？<br>
+②当定位元素与浮动元素相互重叠的时候，谁会被置于上方？<br>
+③当定位元素被嵌套在其他定位元素中时会发生什么？<br>
+要解决这三个问题，需要我们进一步理解z-index的原理，以下我们将会对<strong>层叠上下文</strong>、<strong>层叠层</strong>、<strong>层叠次序</strong>这三个概念进行解释。</p>
+<h1 id="二-层叠上下文和层叠层">二、层叠上下文和层叠层</h1>
+<p>我们可以根据DOM树的结构对概念进行引入，对于根节点，即文档根元素，我们可以视为层叠上下文1，而它的子元素即为层叠上下文1的层叠层，同时从另一个角度来看，它们也是新的层叠上下文2、3……</p>
+<p>因此，每个网页都有一个默认的层叠上下文，DOM树中一切的元素都被置于层叠上下文的各个层叠层上。<br>
+当我们为某个元素赋予z-index值（除auto外）时，我们会创建一个全新的层叠上下文，独立于其他层叠上下文（类比森林）。</p>
+<h1 id="三-层叠次序">三、层叠次序</h1>
+<p>在一个层叠上下文中，有7种层叠等级，所有的元素都会依据层叠次序的规则进行层叠排序<br>
+①背景和边框 —— 形成层叠上下文的元素的背景和边框。 层叠上下文中的最低等级。<br>
+②负z-index值 —— 层叠上下文内有着负z-index值的子元素。<br>
+③块级盒 —— 文档流中非行内非定位子元素。<br>
+④浮动盒 —— 非定位浮动元素。<br>
+⑤行内盒 —— 文档流中行内级别非定位子元素。 行内盒在块级盒上 所以能看到div上面的文字⑥z-index: 0 —— 定位元素。 这些元素形成了新的层叠上下文。<br>
+⑦正z-index值 —— 定位元素。 层叠上下文中的最高等级。<br>
+<img src="https://uaenaTzx.github.io/post-images/1673423808316.png" alt="" loading="lazy"><br>
+其中，等级越高，离我们的距离越近。<br>
+通过这些，我们会发现几个要点：<br>
+①z-index即使为0，也会比绝大数层级高<br>
+②非定位元素分散在1、3、4、5这四个等级上，而不是全汇聚在一个等级，其实这个操作非常合理，如果全部汇聚在一个等级，就不会有div在背景之上，span在div之上这些情况了。</p>
+<h1 id="四-补充说明">四、补充说明</h1>
+<p>当我们给元素赋予z-index值时，我们会创建新的独立层叠上下文，我们不妨将两个独立的层叠上下文进行比较，会发现一些奇妙的问题：</p>
+<pre><code>&lt;div class=&quot;one&quot;&gt;
+  &lt;div class=&quot;two&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;three&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;div class=&quot;four&quot;&gt;&lt;/div&gt;
 </code></pre>
-<p>按照嵌套规则来说，是不合理的，这就需要去W3C的官网了解a标签的具体属性：<br>
-a含有transparent属性，因此在浏览器解析后，嵌套规则会由其父元素决定，当父元素为块级元素时，内部显然可以包含块级元素，而当父元素为行内元素时，内部就不能包含块级元素<br>
-举例如下：</p>
-<pre><code>&lt;span&gt;
-    &lt;a href=&quot;#&quot;&gt;
-        &lt;div&gt;button&lt;/div&gt;
-    &lt;/a&gt;  
-&lt;/span&gt;
+<pre><code>div {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+}
+ 
+.one, .two, .three, .four {
+  position: absolute;
+}
+  
+.one {
+  background: #f00;
+  outline: 5px solid #000;
+  top: 100px;
+  left: 200px;
+  z-index: 10;
+}
+  
+.two {
+  background: #0f0;
+  outline: 5px solid #000;
+  top: 50px;
+  left: 75px;
+  z-index: 100;
+}
+ 
+.three {
+  background: #0ff;
+  outline: 5px solid #000;
+  top: 125px;
+  left: 25px;
+  z-index: 150;
+}
+ 
+.four {
+  background: #00f;
+  outline: 5px solid #ff0;
+  top: 200px;
+  left: 350px;
+  z-index: 50;
+}
 </code></pre>
-<h1 id="三-更多细节">三、更多细节</h1>
-<p>在开发过程中，下面这段代码在浏览器的解析上出现了大问题：</p>
-<pre><code>&lt;a href=&quot;#&quot;&gt;
-    &lt;div&gt;
-        &lt;!-- xxxxx --&gt;
-        &lt;a href=&quot;#&quot;&gt;button&lt;/a&gt;
-    &lt;/div&gt;
-&lt;/a&gt;
-</code></pre>
-<p>浏览器的解析结果如下:</p>
-<pre><code>&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;
-&lt;div&gt;
-	&lt;a href=&quot;#&quot;&gt;
-    	&lt;!-- xxxxx --&gt;
-    &lt;/a&gt;
-	&lt;a href=&quot;#&quot;&gt;buttton&lt;/a&gt;
-&lt;/div&gt;
-</code></pre>
-<p>差异为何会如此奇妙？？？😅😅😅<br>
-首先我们从浏览器的解析结果分析问题：当html代码不合规时，浏览器会依据内部的一套复杂的补救措施对不合规的代码进行调整，使得html代码能被顺利解析。因此，我们锁定到问题的根源在于没有遵守嵌套规则，因此，我们需要再从W3C官网中深入a标签的规则</p>
-<pre><code>The a element may be wrapped around entire paragraphs, lists, tables, and so 
-forth, even entire sections, so long as there is no interactive content 
-within (e.g., buttons or other links).
-
-只要在其中没有交互式内容（例如，按钮或其他链接），
-a元素可以围绕整个段落，列表，表格等，甚至整个部分。
-</code></pre>
-<p>显然，a标签围绕的块级标签中存在交互式内容，因此我们再次得出结论：链接不可包含交互式内容！</p>
-<h1 id="四-关键词收录">四、关键词收录</h1>
-<p>①三类标签属性<br>
-②嵌套规则<br>
-③a标签包裹div的情况分析<br>
-④浏览器解析不合规html代码<br>
-⑤a标签不可内包裹交互式内容</p>
+<p><img src="https://uaenaTzx.github.io/post-images/1673424568536.png" alt="" loading="lazy"><br>
+我们会发现z-index为50的four居然会覆盖z-index为150的three，<br>
+其实我们通过html代码可以发现，one和four是两个同级独立层叠上下文，two和three是one的层叠层，方便起见，two和three的z-index值可视为10.100和10.150，显然比four要小。<br>
+这个案例告诉我们比较不同z-index的元素时，我们还要参考层叠上下文的等级，综合考虑。</p>
+<h1 id="五-关键词收录">五、关键词收录</h1>
+<p>①盒子模型的定位方案<br>
+②z-index基础<br>
+③层叠上下文<br>
+④层叠层<br>
+⑤层叠次序<br>
+⑥覆盖情况与层叠上下文等级关系</p>
 ]]></content>
     </entry>
 </feed>
